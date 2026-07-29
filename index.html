@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honda Bintaro - Sales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .text-honda { color: #cc0000; }
+        .bg-honda { background-color: #cc0000; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- NAVBAR -->
+    <header class="bg-white border-b py-3 px-6 flex justify-between items-center max-w-6xl mx-auto">
+        <div class="text-2xl font-bold text-honda flex items-center gap-2">
+            HONDA <span class="text-gray-800 text-sm font-normal">Bintaro</span>
+        </div>
+        <div class="flex-1 max-w-md mx-6">
+            <input type="text" placeholder="Cari Produk..." class="w-full bg-gray-100 rounded-full px-4 py-2 text-sm focus:outline-none">
+        </div>
+        <div class="font-semibold text-gray-600">Menu</div>
+    </header>
+
+    <!-- BANNER AREA -->
+    <div id="banner-container" class="max-w-6xl mx-auto mt-4 bg-gray-200 h-64 md:h-96 rounded-xl flex items-center justify-center overflow-hidden">
+        <span class="text-gray-500">Memuat Banner...</span>
+    </div>
+
+    <!-- INFO BOX -->
+    <div class="max-w-6xl mx-auto my-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow-sm text-center flex flex-col items-center justify-center border-t-4 border-honda">
+            <span class="text-3xl mb-2">🏅</span>
+            <span class="font-bold text-lg">BEST PRICE</span>
+            <span class="text-xs text-gray-400">Garansi Harga Terbaik</span>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm text-center flex flex-col items-center justify-center border-t-4 border-gray-800">
+            <span class="text-3xl mb-2">📋</span>
+            <span class="font-bold text-lg">FAST PROCESS</span>
+            <span class="text-xs text-gray-400">Proses Cepat & Mudah</span>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm text-center flex flex-col items-center justify-center border-t-4 border-gray-400">
+            <span class="text-3xl mb-2">🤝</span>
+            <span class="font-bold text-lg">TRUSTED AGENT</span>
+            <span class="text-xs text-gray-400">Agen Resmi Terpercaya</span>
+        </div>
+    </div>
+
+    <!-- SALES AGENT BANNER -->
+    <div class="max-w-6xl mx-auto mb-10 bg-honda text-white rounded-xl flex items-center p-6 shadow-md relative overflow-hidden">
+        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-honda font-bold text-sm mr-6 z-10 overflow-hidden border-2 border-white">
+            <img src="https://ui-avatars.com/api/?name=Rere&background=random" alt="Rere Sales" class="w-full h-full object-cover">
+        </div>
+        <div class="z-10">
+            <h2 class="text-xl font-bold">RERE - Sales Counter</h2>
+            <p class="text-sm opacity-90">Konsultasikan kebutuhan kendaraan Anda bersama konsultan profesional kami!</p>
+        </div>
+        <!-- Tombol WA -->
+        <a href="https://wa.me/6281234567890" target="_blank" class="hidden md:flex ml-auto bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full items-center gap-2 z-10 transition">
+            💬 Hubungi Kami
+        </a>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div class="max-w-6xl mx-auto mb-16 px-4 md:px-0">
+        <div class="flex justify-between items-center mb-6 border-b pb-2">
+            <h3 class="text-xl font-bold text-honda">Mobil Terbaru</h3>
+        </div>
+        
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Data mobil di-inject via JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // 1. Fetch Banner Desktop
+        fetch('https://cdn.argust.my.id/honda/data/bannerhondabintaro.json')
+            .then(res => res.json())
+            .then(data => {
+                const banners = data.banners.desktop;
+                if(banners.length > 0) {
+                    // Mengambil banner index pertama
+                    document.getElementById('banner-container').innerHTML = `<img src="${banners[0].image}" alt="${banners[0].alt}" class="w-full h-full object-cover">`;
+                }
+            })
+            .catch(err => console.log("Gagal memuat banner", err));
+
+        // 2. Fetch Daftar Mobil
+        fetch('https://cdn.argust.my.id/honda/data/products.json')
+            .then(res => res.json())
+            .then(data => {
+                const grid = document.getElementById('product-grid');
+                grid.innerHTML = ''; 
+
+                for (const [id, car] of Object.entries(data)) {
+                    const price = car.price ? 'Rp ' + car.price.toLocaleString('id-ID') : 'Hubungi Dealer';
+                    
+                    grid.innerHTML += `
+                        <div class="bg-white rounded-lg border shadow-sm hover:shadow-md transition flex flex-col overflow-hidden">
+                            <div class="p-4 flex-1 flex flex-col">
+                                <img src="${car.images[0].thumb}" alt="${car.name}" class="w-full h-40 object-contain mb-4">
+                                <h4 class="font-bold text-gray-800 text-center">${car.name}</h4>
+                                <div class="text-[10px] text-gray-400 text-center mt-1 mb-3">👤 ${car.seats} &bull; ⚙️ ${car.engine}</div>
+                                
+                                <div class="mt-auto text-center border-t pt-3">
+                                    <p class="text-[11px] text-gray-500 mb-1">Harga mulai dari</p>
+                                    <p class="text-lg font-bold text-honda">${price}</p>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-gray-50 border-t">
+                                <a href="model/${id}" class="block w-full text-center bg-honda text-white py-2 rounded text-sm font-semibold hover:bg-red-800 transition">Detail</a>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-gray-400 p-2 px-4 bg-white border-t">
+                                <span>DP: ${car.dp}</span>
+                                <span>Cicilan: ${car.angsuran}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            })
+            .catch(err => console.log("Gagal memuat produk", err));
+    </script>
+</body>
+</html>
