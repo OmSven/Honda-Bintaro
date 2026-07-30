@@ -99,14 +99,6 @@
                 <div id="mega-menu-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     <!-- Populated dynamically -->
                 </div>
-                <div class="mt-8 pt-6 border-t border-gray-100 text-center">
-                    <a href="${basePath}#model-list-section" id="see-all-models-link" class="inline-flex items-center gap-1.5 text-honda font-semibold hover:text-honda-dark text-sm transition">
-                        <span>Lihat Semua Model & detail</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                </div>
             </div>
         </div>
     `;
@@ -359,6 +351,11 @@
             const isNew = car.new;
             const priceFormatted = car.price ? 'Rp ' + car.price.toLocaleString('id-ID') : 'Hubungi Dealer';
             const detailUrl = `${basePath}model/${id}/`;
+            
+            const rawThumb = car.images[0].thumb;
+            const thumbUrl = (rawThumb.startsWith('http://') || rawThumb.startsWith('https://')) 
+                ? rawThumb 
+                : `${basePath}${rawThumb.replace(/^\.\//, '')}`;
 
             grid.innerHTML += `
                 <a href="${detailUrl}" class="bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-xl p-4 flex flex-col items-center justify-between text-center relative hover:shadow-md transition duration-300 group">
@@ -368,7 +365,7 @@
                         </span>` : ''}
                     
                     <div class="h-20 sm:h-24 w-full flex items-center justify-center my-2 sm:my-3 overflow-hidden">
-                        <img src="${basePath}${car.images[0].thumb.replace(/^\.\//, '')}" alt="${car.name}" 
+                        <img src="${thumbUrl}" alt="${car.name}" 
                              class="max-h-full max-w-[90%] object-contain group-hover:scale-105 transition-transform duration-300 select-none" draggable="false">
                     </div>
                     
@@ -427,10 +424,15 @@
                     const priceFormatted = car.price ? 'Rp ' + car.price.toLocaleString('id-ID') : 'Hubungi Dealer';
                     const detailUrl = `${basePath}model/${car.id}/`;
                     
+                    const rawThumb = car.images[0].thumb;
+                    const thumbUrl = (rawThumb.startsWith('http://') || rawThumb.startsWith('https://')) 
+                        ? rawThumb 
+                        : `${basePath}${rawThumb.replace(/^\.\//, '')}`;
+                    
                     hitsDiv.innerHTML += `
                         <a href="${detailUrl}" class="flex items-center gap-3 py-2.5 hover:bg-gray-50/80 transition px-1 rounded-lg">
                             <div class="h-10 w-14 flex items-center justify-center overflow-hidden bg-gray-50 rounded border border-gray-100 flex-shrink-0">
-                                <img src="${basePath}${car.images[0].thumb.replace(/^\.\//, '')}" alt="${car.name}" class="max-h-full max-w-full object-contain select-none" draggable="false">
+                                <img src="${thumbUrl}" alt="${car.name}" class="max-h-full max-w-full object-contain select-none" draggable="false">
                             </div>
                             <div class="flex-1 min-w-0">
                                 <h4 class="font-bold text-xs text-gray-900 truncate font-outfit">${car.name}</h4>
