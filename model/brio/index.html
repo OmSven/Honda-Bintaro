@@ -86,7 +86,7 @@
                 <!-- Right Action Buttons -->
                 <div class="flex items-center gap-4">
                     <!-- Notification Bell -->
-                    <button class="relative p-2 text-gray-500 hover:text-honda transition-colors rounded-full hover:bg-gray-50 focus:outline-none">
+                    <button id="notification-bell" class="relative p-2 text-gray-500 hover:text-honda transition-colors rounded-full hover:bg-gray-50 focus:outline-none">
                         <span class="absolute top-1 right-1 flex h-2.5 w-2.5">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-honda opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-honda"></span>
@@ -423,6 +423,33 @@
         </div>
     </footer>
 
+    <!-- WARNING FRAUD MODAL -->
+    <div id="fraud-modal" class="fixed inset-0 bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="fraud-modal-panel">
+            <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                <div class="flex items-center gap-2 text-honda">
+                    <!-- Warning icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <span class="font-bold text-sm sm:text-base text-gray-900 font-outfit">Pemberitahuan</span>
+                </div>
+                <button id="fraud-modal-close" class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-4 bg-white max-h-[70vh] overflow-y-auto flex items-center justify-center">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEirhSQH2IYumXgPsAecW2g7mDOvCDGxBeVniHOAV3Gw5EWjKYbMGtlyin5PNaFVtXmNh7NWGTp-EFTIsB6V2tG_INT2G-xZXbtvB5urudV929fSDuBDJHOWfoHADZYhLPbxq1LV7S6nfgZztN0jb7picoLYnH_U4o2NluV-DQL1Wx7ZMHnt0vtLzxcgS6ek/s1600/WARNING-FRAUD-DEALER-(FEED).jpg" 
+                     alt="Warning Fraud Dealer" class="max-w-full h-auto object-contain rounded-xl">
+            </div>
+            <div class="p-4 bg-gray-50 border-t border-gray-100 text-center text-xs font-semibold text-gray-600">
+                Berhati-hati saat bertransaksi! Pastikan transfer ke rekening resmi dealer.
+            </div>
+        </div>
+    </div>
+
     <!-- MAIN CORE DETAIL PAGE JAVASCRIPT LOGIC -->
     <script>
         // Global variables for model
@@ -686,14 +713,11 @@
 
                 grid.innerHTML += `
                     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col overflow-hidden relative group">
-                        <div class="flex justify-between items-center p-4 border-b border-gray-50 bg-gray-50/20">
-                            <span class="text-xs font-black text-honda tracking-wider">HONDA</span>
-                            <span class="text-[9px] font-bold text-gray-400 tracking-tight italic">How we move you.</span>
-                        </div>
-
-                        <div class="p-6 h-40 w-full flex items-center justify-center relative overflow-hidden bg-white">
+                        
+                        <!-- Car Image container (full aspect-square, cover, no headers/padding) -->
+                        <div class="w-full aspect-square overflow-hidden bg-gray-100">
                             <img src="${related.images[0].thumb}" alt="${related.name}" 
-                                 class="max-h-full max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-300">
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
 
                         <div class="p-5 flex-1 flex flex-col justify-between">
@@ -735,14 +759,11 @@
                     
                     grid.innerHTML += `
                         <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col overflow-hidden relative group">
-                            <div class="flex justify-between items-center p-4 border-b border-gray-50 bg-gray-50/20">
-                                <span class="text-xs font-black text-honda tracking-wider">HONDA</span>
-                                <span class="text-[9px] font-bold text-gray-400 tracking-tight italic">How we move you.</span>
-                            </div>
-
-                            <div class="p-6 h-40 w-full flex items-center justify-center relative overflow-hidden bg-white">
+                            
+                            <!-- Car Image container (full aspect-square, cover, no headers/padding) -->
+                            <div class="w-full aspect-square overflow-hidden bg-gray-100">
                                 <img src="${related.images[0].thumb}" alt="${related.name}" 
-                                     class="max-h-full max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-300">
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
 
                             <div class="p-5 flex-1 flex flex-col justify-between">
@@ -801,6 +822,46 @@
 
             tabContentSpec.classList.remove('hidden');
             tabContentDesc.classList.add('hidden');
+        });
+
+        // ================= WARNING FRAUD MODAL TOGGLE JAVASCRIPT =================
+        const notificationBtn = document.getElementById('notification-bell');
+        const fraudModal = document.getElementById('fraud-modal');
+        const fraudModalPanel = document.getElementById('fraud-modal-panel');
+        const fraudModalClose = document.getElementById('fraud-modal-close');
+
+        function openFraudModal() {
+            fraudModal.classList.remove('opacity-0', 'pointer-events-none');
+            fraudModal.classList.add('opacity-100');
+            fraudModalPanel.classList.remove('scale-95');
+            fraudModalPanel.classList.add('scale-100');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeFraudModal() {
+            fraudModal.classList.add('opacity-0', 'pointer-events-none');
+            fraudModal.classList.remove('opacity-100');
+            fraudModalPanel.classList.add('scale-95');
+            fraudModalPanel.classList.remove('scale-100');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        if (notificationBtn) {
+            notificationBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openFraudModal();
+            });
+        }
+
+        if (fraudModalClose) {
+            fraudModalClose.addEventListener('click', closeFraudModal);
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === fraudModal) {
+                closeFraudModal();
+            }
         });
 
         // Initialize Page
