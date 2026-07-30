@@ -3,123 +3,1119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Honda Bintaro - Sales</title>
+    <title>Honda Bintaro - Sales Counter Resmi</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        honda: '#cc0000',
+                        'honda-dark': '#990000',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        .text-honda { color: #cc0000; }
-        .bg-honda { background-color: #cc0000; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+        }
+        .mega-menu-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sidebar-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col relative overflow-x-hidden">
 
-    <!-- NAVBAR -->
-    <header class="bg-white border-b py-3 px-6 flex justify-between items-center max-w-6xl mx-auto">
-        <div class="text-2xl font-bold text-honda flex items-center gap-2">
-            HONDA <span class="text-gray-800 text-sm font-normal">Bintaro</span>
+    <!-- NAVBAR HEADER -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20 gap-4">
+                
+                <!-- Logo -->
+                <a href="#" class="flex-shrink-0 flex items-center">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgHjSO7vshbtitZnLrJtGp6Dvi8MJzNIbTYAvxF9y17xT240jA2AlIx2IwbH9TFKeqbHswe5_Mk8YmsrZN8C_BgabRyiR6oHs8fvx7wfPWRpLodhDZmCgfsC130Xwxd0vF88BYOeXwbHlEqKVJeQNmNZFW-KEa-OkCYNZSKThMck9ZZh9zR5e6iM5DZvKb6=s1600" 
+                         alt="Honda Logo" class="h-10 sm:h-12 w-auto object-contain">
+                </a>
+
+                <!-- Model Mega Menu Trigger -->
+                <div class="relative">
+                    <button id="mega-menu-btn" class="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-full hover:border-honda hover:text-honda font-medium text-sm transition">
+                        <!-- Bullet List Icon SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+                        </svg>
+                        <span>Model</span>
+                        <!-- Dropdown arrow SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200" id="mega-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Search Input Bar -->
+                <div class="flex-1 max-w-lg hidden md:block">
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Cari Produk..." 
+                               class="w-full bg-gray-100 border-none rounded-full px-5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-honda/20 focus:bg-white transition-all pl-11">
+                        <span class="absolute left-4 top-3 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Right Action Buttons -->
+                <div class="flex items-center gap-4">
+                    <!-- Notification Bell -->
+                    <button class="relative p-2 text-gray-500 hover:text-honda transition-colors rounded-full hover:bg-gray-50 focus:outline-none">
+                        <span class="absolute top-1 right-1 flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-honda opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-honda"></span>
+                        </span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                    </button>
+
+                    <!-- Sidebar Toggle Button -->
+                    <button id="sidebar-open-btn" class="flex items-center gap-2 p-2 px-3 hover:bg-gray-100 rounded-full transition focus:outline-none text-gray-700 font-medium text-sm">
+                        <!-- Hamburger SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                        <span>Menu</span>
+                    </button>
+                </div>
+
+            </div>
         </div>
-        <div class="flex-1 max-w-md mx-6">
-            <input type="text" placeholder="Cari Produk..." class="w-full bg-gray-100 rounded-full px-4 py-2 text-sm focus:outline-none">
+
+        <!-- DYNAMIC MEGA MENU PANEL OVERLAY -->
+        <div id="mega-menu-panel" class="absolute left-0 right-0 bg-white border-b border-gray-100 shadow-xl opacity-0 translate-y-[-10px] pointer-events-none mega-menu-transition z-40 max-h-[85vh] overflow-y-auto">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold font-outfit text-gray-800">Daftar Model Mobil Honda</h3>
+                    <button id="mega-menu-close-btn" class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Dynamic Grid container populated by JavaScript -->
+                <div id="mega-menu-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Populated dynamically -->
+                </div>
+                <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+                    <a href="#model-list-section" id="see-all-models-link" class="inline-flex items-center gap-1.5 text-honda font-semibold hover:text-honda-dark text-sm transition">
+                        <span>Lihat Semua Model & detail</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="font-semibold text-gray-600">Menu</div>
     </header>
 
-    <!-- BANNER AREA -->
-    <div id="banner-container" class="max-w-6xl mx-auto mt-4 bg-gray-200 h-64 md:h-96 rounded-xl flex items-center justify-center overflow-hidden">
-        <span class="text-gray-500">Memuat Banner...</span>
+    <!-- RIGHT SIDEBAR MENU OVERLAY -->
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-300 z-50"></div>
+    <div id="sidebar-panel" class="fixed right-0 top-0 bottom-0 w-80 bg-white shadow-2xl z-50 transform translate-x-full sidebar-transition flex flex-col">
+        <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+            <span class="font-bold text-lg font-outfit text-gray-900">Navigasi</span>
+            <button id="sidebar-close-btn" class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex-1 overflow-y-auto py-4">
+            <nav class="px-4 space-y-1">
+                <a href="#" class="block px-4 py-3 rounded-lg text-sm font-semibold bg-red-50 text-honda transition">Halaman Utama</a>
+                <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20booking%20test%20drive%20mobil%20Honda." target="_blank" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">Booking Test Drive</a>
+                <a href="#promo-section" class="sidebar-link block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">Promo Honda 2026</a>
+                
+                <!-- Collapsible Model Menu inside Sidebar -->
+                <div>
+                    <button id="sidebar-model-toggle" class="flex justify-between items-center w-full px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition focus:outline-none">
+                        <span>Model</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform transition-transform duration-200" id="sidebar-model-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="sidebar-model-list" class="hidden pl-6 space-y-1 mt-1">
+                        <a href="#model-list-section" data-category="City Car & Hatchback" class="sidebar-cat-link block px-4 py-2 text-xs font-medium text-gray-500 hover:text-honda transition">City Car & Hatchback</a>
+                        <a href="#model-list-section" data-category="MPV" class="sidebar-cat-link block px-4 py-2 text-xs font-medium text-gray-500 hover:text-honda transition">MPV</a>
+                        <a href="#model-list-section" data-category="Sedan" class="sidebar-cat-link block px-4 py-2 text-xs font-medium text-gray-500 hover:text-honda transition">Sedan</a>
+                        <a href="#model-list-section" data-category="SUV" class="sidebar-cat-link block px-4 py-2 text-xs font-medium text-gray-500 hover:text-honda transition">SUV</a>
+                    </div>
+                </div>
+
+                <a href="#kredit-section" class="sidebar-link block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">Persyaratan Kredit</a>
+                <a href="#faq-section" class="sidebar-link block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">FAQ</a>
+                <a href="#privacy-section" class="sidebar-link block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">Kebijakan Privasi</a>
+            </nav>
+        </div>
+        <div class="p-6 border-t border-gray-100 bg-gray-50 text-center">
+            <span class="text-xs text-gray-400 block mb-3 font-medium">Hubungi Kami</span>
+            <a href="https://wa.me/6282299185425" target="_blank" class="flex items-center justify-center gap-2 w-full bg-green-500 text-white py-2.5 rounded-full hover:bg-green-600 font-bold text-sm transition">
+                <span>WhatsApp Rere</span>
+            </a>
+        </div>
     </div>
 
-    <!-- INFO BOX -->
-    <div class="max-w-6xl mx-auto my-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 rounded-xl shadow-sm text-center flex flex-col items-center justify-center border-t-4 border-honda">
-            <span class="text-3xl mb-2">🏅</span>
-            <span class="font-bold text-lg">BEST PRICE</span>
-            <span class="text-xs text-gray-400">Garansi Harga Terbaik</span>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm text-center flex flex-col items-center justify-center border-t-4 border-gray-800">
-            <span class="text-3xl mb-2">📋</span>
-            <span class="font-bold text-lg">FAST PROCESS</span>
-            <span class="text-xs text-gray-400">Proses Cepat & Mudah</span>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm text-center flex flex-col items-center justify-center border-t-4 border-gray-400">
-            <span class="text-3xl mb-2">🤝</span>
-            <span class="font-bold text-lg">TRUSTED AGENT</span>
-            <span class="text-xs text-gray-400">Agen Resmi Terpercaya</span>
-        </div>
-    </div>
+    <!-- RESPONSIVE BANNER SLIDER CAROUSEL -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-4 md:mt-6 relative">
+        <div id="banner-slider" class="relative bg-gray-100 rounded-2xl overflow-hidden shadow-sm aspect-[1200/500] md:aspect-[1200/420]">
+            <!-- Slider Track -->
+            <div id="slider-track" class="w-full h-full relative">
+                <!-- Banner slides are loaded dynamically -->
+                <div class="w-full h-full flex items-center justify-center text-gray-400">
+                    <span>Memuat Banner...</span>
+                </div>
+            </div>
+            
+            <!-- Left/Right navigation arrow buttons -->
+            <button id="slider-prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full glass-effect hover:bg-white text-gray-800 shadow-md flex items-center justify-center focus:outline-none transition z-10 opacity-0 hover:opacity-100 group-hover:opacity-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button id="slider-next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full glass-effect hover:bg-white text-gray-800 shadow-md flex items-center justify-center focus:outline-none transition z-10 opacity-0 hover:opacity-100 group-hover:opacity-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
 
-    <!-- SALES AGENT BANNER -->
-    <div class="max-w-6xl mx-auto mb-10 bg-honda text-white rounded-xl flex items-center p-6 shadow-md relative overflow-hidden">
-        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-honda font-bold text-sm mr-6 z-10 overflow-hidden border-2 border-white">
-            <img src="https://ui-avatars.com/api/?name=Rere&background=random" alt="Rere Sales" class="w-full h-full object-cover">
+            <!-- Slider Dots -->
+            <div id="slider-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                <!-- Loaded dynamically -->
+            </div>
         </div>
-        <div class="z-10">
-            <h2 class="text-xl font-bold">RERE - Sales Counter</h2>
-            <p class="text-sm opacity-90">Konsultasikan kebutuhan kendaraan Anda bersama konsultan profesional kami!</p>
-        </div>
-        <!-- Tombol WA -->
-        <a href="https://wa.me/6281234567890" target="_blank" class="hidden md:flex ml-auto bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-full items-center gap-2 z-10 transition">
-            💬 Hubungi Kami
-        </a>
-    </div>
+    </section>
 
-    <!-- PRODUCT GRID -->
-    <div class="max-w-6xl mx-auto mb-16 px-4 md:px-0">
-        <div class="flex justify-between items-center mb-6 border-b pb-2">
-            <h3 class="text-xl font-bold text-honda">Mobil Terbaru</h3>
+    <!-- PREMIUM USP INFO BOXES -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 my-8 md:my-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Card 1: Best Price -->
+            <div class="bg-white rounded-2xl border border-gray-100 p-6 md:p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition duration-300 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 right-0 h-1.5 bg-honda"></div>
+                <div class="bg-red-50 text-honda p-4 rounded-full mb-4 group-hover:scale-110 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2zM9 16V8m3 8v-5m3 5V9" />
+                    </svg>
+                </div>
+                <h4 class="font-bold text-lg font-outfit text-gray-900 mb-1">BEST PRICE</h4>
+                <p class="text-xs text-gray-400 mb-6">Penawaran harga terbaik dengan promo eksklusif diskon dan cashback maksimal.</p>
+                <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20tanya%20promo%20harga%20terbaik%20Honda." target="_blank" class="w-full text-center py-2 px-4 border border-gray-200 rounded-full text-sm font-semibold text-gray-700 hover:border-honda hover:bg-honda hover:text-white transition duration-300">Hubungi Rere</a>
+            </div>
+
+            <!-- Card 2: Fast Process -->
+            <div class="bg-white rounded-2xl border border-gray-100 p-6 md:p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition duration-300 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 right-0 h-1.5 bg-gray-900"></div>
+                <div class="bg-gray-50 text-gray-900 p-4 rounded-full mb-4 group-hover:scale-110 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <h4 class="font-bold text-lg font-outfit text-gray-900 mb-1">FAST PROCESS</h4>
+                <p class="text-xs text-gray-400 mb-6">Persyaratan kredit dibantu sampai disetujui. Proses cepat, mudah dan transparan.</p>
+                <a href="#kredit-section" class="w-full text-center py-2 px-4 border border-gray-200 rounded-full text-sm font-semibold text-gray-700 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition duration-300">Lihat Syarat</a>
+            </div>
+
+            <!-- Card 3: Trusted Agent -->
+            <div class="bg-white rounded-2xl border border-gray-100 p-6 md:p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition duration-300 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 right-0 h-1.5 bg-gray-400"></div>
+                <div class="bg-gray-50 text-gray-400 p-4 rounded-full mb-4 group-hover:scale-110 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+                <h4 class="font-bold text-lg font-outfit text-gray-900 mb-1">TRUSTED AGENT</h4>
+                <p class="text-xs text-gray-400 mb-6">Sales Counter resmi Honda Bintaro terpercaya, berpengalaman dan profesional.</p>
+                <a href="#sales-banner" class="w-full text-center py-2 px-4 border border-gray-200 rounded-full text-sm font-semibold text-gray-700 hover:border-gray-500 hover:bg-gray-500 hover:text-white transition duration-300">Hubungi Kami</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- RERE SALES COUNTER CONTACT BANNER -->
+    <section id="sales-banner" class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mb-12">
+        <div class="bg-gray-900 rounded-2xl shadow-lg relative overflow-hidden flex flex-col md:flex-row items-center border border-gray-800">
+            <!-- Left Side Image -->
+            <div class="w-full md:w-1/3 h-56 md:h-64 bg-gray-800 flex items-end justify-center relative overflow-hidden flex-shrink-0">
+                <img src="./assets/images/rere.png" alt="Rere Sales Counter" 
+                     class="h-full w-full object-cover object-top filter brightness-95">
+            </div>
+            <!-- Center Text -->
+            <div class="flex-1 p-6 md:p-8 text-center md:text-left z-10">
+                <p class="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">Konsultan Resmi Honda Bintaro</p>
+                <h3 class="text-xl sm:text-2xl font-bold font-outfit text-white mb-2 leading-tight">Konsultasikan kebutuhan kendaraan Anda bersama konsultan profesional kami!</h3>
+                <p class="text-gray-400 text-xs max-w-lg">Kami siap melayani pembelian cash/kredit mobil Honda OTR Jabodetabek dengan penawaran bunga rendah, angsuran ringan, serta cicilan fleksibel.</p>
+            </div>
+            <!-- Right Accent Red Button Block -->
+            <div class="w-full md:w-auto p-6 md:p-8 flex-shrink-0 flex flex-col sm:flex-row md:flex-col items-center justify-center gap-4 bg-honda text-white md:self-stretch md:min-w-[280px]">
+                <div class="text-center">
+                    <h4 class="text-2xl font-black font-outfit uppercase tracking-wide leading-none">RERE</h4>
+                    <span class="text-xs font-semibold opacity-90 block tracking-widest mt-1">SALES COUNTER</span>
+                </div>
+                <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20bertanya%20mengenai%20unit%20mobil%20Honda." target="_blank" 
+                   class="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 w-full text-center">
+                    <!-- WhatsApp SVG Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.458L0 24zm5.835-3.32c1.629.967 3.39 1.48 5.206 1.481 5.485 0 9.95-4.466 9.954-9.953.002-2.657-1.03-5.155-2.906-7.03C16.27 3.299 13.774 2.26 11.121 2.26c-5.495 0-9.96 4.465-9.964 9.954-.001 1.892.493 3.738 1.433 5.345L1.5 21.5l4.392-1.153zM16.621 13.62c-.27-.135-1.597-.788-1.845-.878-.247-.09-.427-.135-.607.135-.18.27-.697.878-.855 1.058-.158.18-.315.202-.585.067-.27-.135-1.14-.42-2.172-1.341-.803-.715-1.344-1.602-1.502-1.872-.158-.27-.017-.417.118-.552.122-.122.27-.315.405-.473.135-.158.18-.27.27-.45.09-.18.045-.338-.022-.473-.068-.135-.608-1.464-.833-2.008-.22-.527-.44-.455-.608-.464-.158-.008-.338-.009-.518-.009-.18 0-.473.067-.72.338-.248.27-.945.923-.945 2.25s.968 2.61 1.103 2.79c.135.18 1.905 2.91 4.613 4.08.645.278 1.148.445 1.54.57.647.206 1.237.177 1.702.107.518-.077 1.597-.653 1.822-1.283.225-.63.225-1.17.158-1.283-.068-.113-.248-.18-.518-.315z"/>
+                    </svg>
+                    <span>Hubungi Rere</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODEL BINTARO (MOBIL TERBARU) SECTION -->
+    <section id="model-list-section" class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-20">
+        
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 border-b border-gray-100 pb-4">
+            <div>
+                <h3 class="text-2xl font-bold font-outfit text-gray-900 leading-tight">Model Honda Bintaro</h3>
+                <p class="text-xs text-gray-400 mt-1">Pilih tipe mobil Honda impian Anda dan dapatkan penawaran spesial</p>
+            </div>
+            
+            <!-- Category Tabs Navigation -->
+            <div class="flex flex-wrap gap-2 w-full md:w-auto mt-2 md:mt-0">
+                <button data-category="Semua" class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-honda text-white shadow-sm transition">Semua</button>
+                <button data-category="City Car & Hatchback" class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-honda hover:text-honda transition">City Car & Hatchback</button>
+                <button data-category="MPV" class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-honda hover:text-honda transition">MPV</button>
+                <button data-category="Sedan" class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-honda hover:text-honda transition">Sedan</button>
+                <button data-category="SUV" class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-honda hover:text-honda transition">SUV</button>
+            </div>
+        </div>
+
+        <!-- Product Grid populated dynamically by JavaScript -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Populated dynamically -->
+            <div class="col-span-full text-center text-gray-400 py-12">
+                <span>Memuat Mobil...</span>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- PROMO BINTARO SECTION -->
+    <section id="promo-section" class="bg-gray-100 py-16 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <h3 class="text-3xl font-bold font-outfit text-gray-900 mb-2">Promo Terbaru Honda Bintaro</h3>
+                <p class="text-xs text-gray-500">Penawaran terbaik dan program cicilan khusus bulan ini</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Promo 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between h-full border border-gray-200/50">
+                    <img src="https://ardiasgusty.github.io/honda/assets/images/banner/brio-slp_1783065132437.webp" alt="Promo Brio" class="w-full h-40 object-cover">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block text-[10px] font-bold text-honda uppercase tracking-widest bg-red-50 px-2.5 py-1 rounded-full mb-3">BRIO PROMO</span>
+                            <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">Honda Brio DP Minim & Cicilan Ringan</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Miliki Honda Brio impian Anda sekarang dengan paket uang muka super murah mulai dari Rp 15 Jutaan saja.</p>
+                        </div>
+                        <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20tanya%20promo%20DP%20minim%20Brio." target="_blank" class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">Tanya Promo &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Promo 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between h-full border border-gray-200/50">
+                    <img src="https://ardiasgusty.github.io/honda/assets/images/banner/hrv-slp_1783065113933.webp" alt="Promo HR-V" class="w-full h-40 object-cover">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block text-[10px] font-bold text-gray-900 uppercase tracking-widest bg-gray-100 px-2.5 py-1 rounded-full mb-3">SUV PROMO</span>
+                            <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">Honda HR-V Cash Back Maksimal</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Dapatkan diskon khusus/cashback bernilai puluhan juta untuk pembelian unit Honda HR-V tipe e:HEV & Turbo.</p>
+                        </div>
+                        <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20tanya%20cashback%20Honda%20HR-V." target="_blank" class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">Tanya Promo &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Promo 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between h-full border border-gray-200/50">
+                    <img src="https://ardiasgusty.github.io/honda/assets/images/banner/honda-family-fair_1783065104846.webp" alt="Promo Hybrid" class="w-full h-40 object-cover">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block text-[10px] font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-2.5 py-1 rounded-full mb-3">HYBRID FAIR</span>
+                            <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">Bunga 0% & Tenor Hingga 3 Tahun</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Program bunga spesial 0% hingga 3 tahun khusus untuk model elektrifikasi Honda Accord & StepWGN e:HEV.</p>
+                        </div>
+                        <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20tanya%20promo%20bunga%200%25%20hybrid." target="_blank" class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">Tanya Promo &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Promo 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between h-full border border-gray-200/50">
+                    <div class="h-40 bg-honda flex flex-col justify-center items-center p-6 text-white text-center">
+                        <span class="text-5xl font-black font-outfit tracking-wide mb-1">Rp 300JT*</span>
+                        <span class="text-xs font-bold tracking-widest uppercase">Total Hadiah Utama</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="inline-block text-[10px] font-bold text-green-600 uppercase tracking-widest bg-green-50 px-2.5 py-1 rounded-full mb-3">GRAND PRIZE</span>
+                            <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">Wujudkan Impian Anda Bersama Honda</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Setiap transaksi pembelian mobil berkesempatan memenangkan undian berhadiah utama mobil Honda Baru!</p>
+                        </div>
+                        <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20bagaimana%20cara%20ikut%20undian%20hadiah%20Honda%20300jt." target="_blank" class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">Tanya Promo &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BERITA TERBARU SECTION -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16">
+        <div class="flex justify-between items-end mb-10">
+            <div>
+                <h3 class="text-2xl font-bold font-outfit text-gray-900">Berita & Informasi</h3>
+                <p class="text-xs text-gray-400 mt-1">Dapatkan update terkini seputar produk dan kegiatan Honda Bintaro</p>
+            </div>
+            <a href="#" class="text-xs font-bold text-honda hover:text-honda-dark flex items-center gap-1 transition">
+                <span>Semua Berita</span>
+                <span>&rarr;</span>
+            </a>
         </div>
         
-        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Data mobil di-inject via JavaScript -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Berita 1 -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition duration-300 flex flex-col h-full">
+                <div class="h-44 bg-gray-200 overflow-hidden">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxsb00VVlHYmdzKe-KdJ8waE_PzMKzh7VTwoNOoqeka7-BLgxTfCJqnNq1c2evDADDtksNp9svoKNAd6h69XqAMlQzVlqe0_BCk-OKtoz-5TWAEAW8_FFEn3KD7_SBTYoHiIxeU85QnFKolfL6gA_PgSttpy2BZTyJs9suSIoQGKGM0x1QSXQNTEUy1I2_/s1600/thumb-honda-brv.jpg" alt="Penyerahan Unit" class="w-full h-full object-cover">
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Event</span>
+                        <h4 class="font-bold text-sm font-outfit text-gray-900 leading-snug hover:text-honda transition mb-3">Penyerahan Unit Perdana BR-V N7X di Honda Bintaro</h4>
+                        <p class="text-xs text-gray-400 line-clamp-3">Kemeriahan penyerahan kunci mobil pertama BR-V N7X Edition kepada customer setia Honda Bintaro.</p>
+                    </div>
+                    <span class="text-[10px] text-gray-400 block mt-4 border-t pt-3">30 Juli 2026</span>
+                </div>
+            </div>
+
+            <!-- Berita 2 -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition duration-300 flex flex-col h-full">
+                <div class="h-44 bg-gray-200 overflow-hidden">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcbGeq2VdT3GpDvgVSNctuYsKJpbtyzf7GtJHqtJl23tvd4GeGLl8zZ6eYa9P2oq8Q71kiTDa24JgD7wQnTOGorIJ93lnZurNg2mTUz22SM7IQ_N95idHCE4fTWp26oHBiJOJA7qg4UjuaYysablcY0cdJtODt_Vjxc88X6TAIw0mPHhXRtuGJgQE7xcqe/s1600/accord-ehev.webp" alt="Teknologi e:HEV" class="w-full h-full object-cover">
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Teknologi</span>
+                        <h4 class="font-bold text-sm font-outfit text-gray-900 leading-snug hover:text-honda transition mb-3">Mengenal Cara Kerja Mesin e:HEV Hybrid Honda</h4>
+                        <p class="text-xs text-gray-400 line-clamp-3">Membahas kecanggihan sistem hybrid ganda e:HEV yang menggabungkan performa mesin bensin dengan motor listrik efisien.</p>
+                    </div>
+                    <span class="text-[10px] text-gray-400 block mt-4 border-t pt-3">28 Juli 2026</span>
+                </div>
+            </div>
+
+            <!-- Berita 3 -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition duration-300 flex flex-col h-full">
+                <div class="h-44 bg-gray-200 overflow-hidden">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhOLS-PRvyNqghyphenhypheniKb8EXIM8UkmvnVMoq8FrapYE2FCmZY8BELQMBzFr3150wfJAapXsCGaWIJXtQQ29LizPaAwmrpAXKOwz2itQ71wHtVa4G191Fa-ZY1nZwq0qSZqO7-R7hKPJm0dNYnwWIC-wGoVz7QekW3-29BrNdJu9w5GzcozYwSbZCFsjgmU-10i/s1600/thumb-honda-brio.jpg" alt="Tips Perawatan" class="w-full h-full object-cover">
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Tips</span>
+                        <h4 class="font-bold text-sm font-outfit text-gray-900 leading-snug hover:text-honda transition mb-3">Tips Merawat Mesin Mobil Brio Agar Awet & Irit</h4>
+                        <p class="text-xs text-gray-400 line-clamp-3">Langkah mudah dan terjadwal dalam menjaga performa mesin i-VTEC agar tetap bertenaga dan irit bahan bakar harian.</p>
+                    </div>
+                    <span class="text-[10px] text-gray-400 block mt-4 border-t pt-3">25 Juli 2026</span>
+                </div>
+            </div>
+
+            <!-- Berita 4 -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition duration-300 flex flex-col h-full">
+                <div class="h-44 bg-gray-200 overflow-hidden">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhwGfy_71Hzf_skvfsZsiXQgrlWgfosIaPoAAM1hxeZ_WFTDNbFtF5xyqKkuduu5mXbyUEZFZc4sCaf8LrBrV9Jsw3vc6MrLQz-K3zIYK19Sg_uFBgxcx_Qk74bfSXG8NgtUT8zSfD8QDBsuOwINUpDwPgDKYVUitii2k_quWeQbgiJKGX3H6K1OjF1WsZ4/s1600/en1.webp" alt="Mobil Listrik" class="w-full h-full object-cover">
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Produk Baru</span>
+                        <h4 class="font-bold text-sm font-outfit text-gray-900 leading-snug hover:text-honda transition mb-3">Honda e:N1 Siap Mengaspal di Jalanan Indonesia</h4>
+                        <p class="text-xs text-gray-400 line-clamp-3">Mengintip fitur keselamatan terlengkap Honda Sensing dan jarak tempuh baterai mobil listrik SUV e:N1.</p>
+                    </div>
+                    <span class="text-[10px] text-gray-400 block mt-4 border-t pt-3">22 Juli 2026</span>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </section>
 
+    <!-- FAQ ACCORDION SECTION -->
+    <section id="faq-section" class="bg-white py-16 border-t border-gray-100 scroll-mt-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold font-outfit text-gray-900 mb-2">FAQ</h3>
+                <p class="text-xs text-gray-500">Pertanyaan umum seputar pembelian mobil Honda</p>
+            </div>
+            
+            <div class="space-y-4" id="faq-accordion-list">
+                
+                <!-- FAQ Item 1 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
+                        <span class="font-bold text-sm sm:text-base text-gray-800">Kenapa membeli mobil di Honda Bintaro?</span>
+                        <span class="faq-icon text-gray-400 transition-transform duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
+                        Honda Bintaro merupakan distributor utama/dealer resmi mobil Honda terbesar yang menyediakan berbagai pilihan model mobil lengkap, fasilitas servis terpadu, serta sales konsultan resmi yang membantu transaksi cash maupun kredit secara aman.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
+                        <span class="font-bold text-sm sm:text-base text-gray-800">Apa bisa melakukan pemesanan kendaraan dengan KTP luar Jabodetabek?</span>
+                        <span class="faq-icon text-gray-400 transition-transform duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
+                        Ya, pemesanan mobil tetap bisa dilayani. Namun untuk pengurusan STNK, plat nomor, dan BPKB akan menyesuaikan dengan alamat KTP Anda. Untuk beberapa wilayah luar Jabodetabek akan dikenakan biaya pengiriman unit (pelataran) dan selisih tarif BBNKB daerah terkait.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
+                        <span class="font-bold text-sm sm:text-base text-gray-800">Apa saja persyaratan kredit agar disetujui leasing?</span>
+                        <span class="faq-icon text-gray-400 transition-transform duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
+                        Secara umum persyaratan dokumen kredit meliputi: KTP Suami & Istri, Kartu Keluarga (KK), NPWP, Slip Gaji/Surat Keterangan Penghasilan, serta mutasi rekening koran tabungan 3 bulan terakhir. Pendapatan minimal bulanan disarankan adalah tiga kali jumlah angsuran yang diajukan.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
+                        <span class="font-bold text-sm sm:text-base text-gray-800">Apakah pembayaran pemesanan kendaraan online aman?</span>
+                        <span class="faq-icon text-gray-400 transition-transform duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
+                        Sangat aman. Setiap transaksi pembelian unit di Honda Bintaro menggunakan Virtual Account resmi yang terbit atas nama Honda Bintaro untuk tiap masing-masing customer. Harap pastikan nama rekening virtual yang muncul saat transfer adalah Virtual Account Honda Bintaro.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PERSYARATAN KREDIT SECTION -->
+    <section id="kredit-section" class="bg-gray-50 py-16 border-t border-gray-100 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white border border-gray-100 rounded-2xl p-6 sm:p-10 shadow-sm">
+                <div class="text-center max-w-xl mx-auto mb-10">
+                    <h3 class="text-2xl sm:text-3xl font-bold font-outfit text-gray-900 mb-2">Persyaratan Kredit Mobil</h3>
+                    <p class="text-xs text-gray-400">Siapkan dokumen pendukung berikut untuk mempercepat proses pengajuan kredit Anda</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Perorangan -->
+                    <div class="p-6 bg-red-50/50 border border-red-50 rounded-xl">
+                        <h4 class="font-bold text-base text-honda font-outfit flex items-center gap-2 mb-4">
+                            <span>👤</span>
+                            <span>Kredit Perorangan</span>
+                        </h4>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gray-600">
+                            <li class="flex items-start gap-2">✓ KTP Pemohon (Suami & Istri jika sudah menikah)</li>
+                            <li class="flex items-start gap-2">✓ Kartu Keluarga (KK)</li>
+                            <li class="flex items-start gap-2">✓ NPWP Pribadi</li>
+                            <li class="flex items-start gap-2">✓ Slip Gaji (Karyawan) / Surat Keterangan Usaha (Wiraswasta)</li>
+                            <li class="flex items-start gap-2">✓ Rekening Koran / Rekening Tabungan 3 bulan terakhir</li>
+                            <li class="flex items-start gap-2">✓ Bukti Kepemilikan Rumah (PBB / Rekening Listrik)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Perusahaan -->
+                    <div class="p-6 bg-gray-50 border border-gray-100 rounded-xl">
+                        <h4 class="font-bold text-base text-gray-900 font-outfit flex items-center gap-2 mb-4">
+                            <span>🏢</span>
+                            <span>Kredit Perusahaan / Badan Usaha</span>
+                        </h4>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gray-600">
+                            <li class="flex items-start gap-2">✓ KTP Direksi dan Pemegang Saham</li>
+                            <li class="flex items-start gap-2">✓ SIUP, TDP, NIB (Nomor Induk Berusaha)</li>
+                            <li class="flex items-start gap-2">✓ Akta Pendirian Perusahaan & Perubahan Terakhir</li>
+                            <li class="flex items-start gap-2">✓ SK Menkumham</li>
+                            <li class="flex items-start gap-2">✓ Rekening Koran Perusahaan 3 bulan terakhir</li>
+                            <li class="flex items-start gap-2">✓ NPWP Perusahaan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST USP BLOCK -->
+    <section class="bg-white border-t border-gray-100 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="flex flex-col items-center">
+                    <span class="text-3xl text-honda mb-3">✓</span>
+                    <h5 class="font-bold text-sm text-gray-900 font-outfit uppercase">Pesan Mobil Lebih Mudah via WhatsApp</h5>
+                    <p class="text-xs text-gray-400 max-w-xs mt-1">Konsultasi unit, brosur, simulasi hitungan kredit, hingga pemesanan SPK dapat dilakukan secara online melalui WhatsApp.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-3xl text-honda mb-3">⏰</span>
+                    <h5 class="font-bold text-sm text-gray-900 font-outfit uppercase">Layanan Cepat & Responsif</h5>
+                    <p class="text-xs text-gray-400 max-w-xs mt-1">Kami berkomitmen memberikan respon chat yang cepat serta estimasi pengiriman unit mobil secara tepat waktu.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-3xl text-honda mb-3">🏠</span>
+                    <h5 class="font-bold text-sm text-gray-900 font-outfit uppercase">Kepuasan Pelanggan Prioritas Kami</h5>
+                    <p class="text-xs text-gray-400 max-w-xs mt-1">Sales Counter kami akan mendampingi Anda di setiap tahap pemesanan mulai dari pengiriman data hingga serah terima unit di rumah.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 border-t border-gray-800 pt-16 pb-8 text-sm mt-auto scroll-mt-20" id="privacy-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Col 1: About & Logo -->
+                <div class="space-y-4">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgHjSO7vshbtitZnLrJtGp6Dvi8MJzNIbTYAvxF9y17xT240jA2AlIx2IwbH9TFKeqbHswe5_Mk8YmsrZN8C_BgabRyiR6oHs8fvx7wfPWRpLodhDZmCgfsC130Xwxd0vF88BYOeXwbHlEqKVJeQNmNZFW-KEa-OkCYNZSKThMck9ZZh9zR5e6iM5DZvKb6=s1600" 
+                         alt="Honda White Logo" class="h-10 w-auto brightness-0 invert object-contain">
+                    <p class="text-xs leading-relaxed text-gray-500">Sales resmi Honda Bintaro Jabodetabek terpercaya. Dapatkan promo harga OTR terbaik, cicilan ringan, uang muka rendah serta bonus aksesoris melimpah.</p>
+                    <div class="pt-2 text-xs text-gray-500">
+                        <span class="font-semibold block text-gray-400">Jam Operasional:</span>
+                        Senin - Sabtu: 08:30 - 17:00 WIB
+                    </div>
+                </div>
+
+                <!-- Col 2: Dealer Address -->
+                <div class="space-y-3">
+                    <h5 class="text-white font-bold font-outfit uppercase tracking-wider text-xs">Honda Bintaro</h5>
+                    <p class="text-xs leading-relaxed text-gray-500">CBD 03 dan 05, Blok A2, Kota Taman Bintaro Jaya Sektor VII, Pondok Aren, Kec. Pondok Aren, Kota Tangerang Selatan, Banten 15224.</p>
+                    <a href="https://maps.google.com/?q=Honda+Bintaro+Sektor+7" target="_blank" class="inline-flex items-center gap-1.5 text-xs text-honda font-semibold hover:text-white transition">
+                        <span>Lihat di Google Maps</span>
+                        <span>&rarr;</span>
+                    </a>
+                </div>
+
+                <!-- Col 3: Pembayaran Aman -->
+                <div class="space-y-3">
+                    <h5 class="text-white font-bold font-outfit uppercase tracking-wider text-xs">Pembayaran Aman</h5>
+                    <p class="text-xs leading-relaxed text-gray-500">Pembayaran aman dengan nomor virtual account resmi bank mandiri, BCA, maupun BRI yang didaftarkan khusus atas nama <b>Honda Bintaro</b>.</p>
+                    <!-- Small mockup bank icons -->
+                    <div class="flex gap-2 items-center opacity-40 pt-1">
+                        <span class="bg-white text-gray-900 text-[10px] font-black px-2 py-0.5 rounded leading-none">BCA</span>
+                        <span class="bg-white text-gray-900 text-[10px] font-black px-2 py-0.5 rounded leading-none">MANDIRI</span>
+                        <span class="bg-white text-gray-900 text-[10px] font-black px-2 py-0.5 rounded leading-none">BRI</span>
+                    </div>
+                </div>
+
+                <!-- Col 4: Hubungi Kami -->
+                <div class="space-y-4">
+                    <h5 class="text-white font-bold font-outfit uppercase tracking-wider text-xs">Hubungi Kami</h5>
+                    <div class="space-y-2">
+                        <a href="tel:6282299185425" class="flex items-center gap-2 p-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-white transition">
+                            <span>📞</span>
+                            <span>Telepon: 0822-9918-5425</span>
+                        </a>
+                        <a href="https://wa.me/6282299185425" target="_blank" class="flex items-center gap-2 p-2 px-4 rounded-lg bg-green-950/40 border border-green-800/30 hover:bg-green-900/30 text-xs font-semibold text-green-400 transition">
+                            <!-- WhatsApp icon plain -->
+                            <span>💬</span>
+                            <span>WhatsApp: +62 822-9918-5425</span>
+                        </a>
+                        <a href="mailto:gusti.ardias@hondabintaro.com" class="flex items-center gap-2 p-2 px-4 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-white transition">
+                            <span>✉</span>
+                            <span>Email: sales@hondabintaro.com</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Social & Copyright -->
+            <div class="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+                <p>&copy; 2026 Honda Bintaro. All rights reserved. Developed for Gusti.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-white transition">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-white transition">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MAIN CORE JAVASCRIPT LOGIC -->
     <script>
-        // 1. Fetch Banner Desktop
-        fetch('https://cdn.argust.my.id/honda/data/bannerhondabintaro.json')
-            .then(res => res.json())
-            .then(data => {
-                const banners = data.banners.desktop;
-                if(banners.length > 0) {
-                    // Mengambil banner index pertama
-                    document.getElementById('banner-container').innerHTML = `<img src="${banners[0].image}" alt="${banners[0].alt}" class="w-full h-full object-cover">`;
+        // Global variables
+        let carsData = {};
+        let activeCategory = "Semua";
+
+        // Navigation elements
+        const megaMenuBtn = document.getElementById('mega-menu-btn');
+        const megaMenuPanel = document.getElementById('mega-menu-panel');
+        const megaMenuArrow = document.getElementById('mega-arrow');
+        const megaMenuCloseBtn = document.getElementById('mega-menu-close-btn');
+
+        const sidebarOpenBtn = document.getElementById('sidebar-open-btn');
+        const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
+        const sidebarPanel = document.getElementById('sidebar-panel');
+        const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link, .sidebar-cat-link');
+
+        const sidebarModelToggle = document.getElementById('sidebar-model-toggle');
+        const sidebarModelList = document.getElementById('sidebar-model-list');
+        const sidebarModelArrow = document.getElementById('sidebar-model-arrow');
+
+        // Close sidebar menu
+        function closeSidebar() {
+            sidebarPanel.classList.add('translate-x-full');
+            sidebarBackdrop.classList.remove('opacity-100');
+            sidebarBackdrop.classList.add('opacity-0', 'pointer-events-none');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Open sidebar menu
+        function openSidebar() {
+            sidebarPanel.classList.remove('translate-x-full');
+            sidebarBackdrop.classList.add('opacity-100');
+            sidebarBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        // Close mega menu
+        function closeMegaMenu() {
+            megaMenuPanel.classList.remove('opacity-100', 'pointer-events-auto');
+            megaMenuPanel.classList.add('opacity-0', 'pointer-events-none');
+            megaMenuArrow.classList.remove('rotate-180');
+        }
+
+        // Open mega menu
+        function openMegaMenu() {
+            megaMenuPanel.classList.add('opacity-100', 'pointer-events-auto');
+            megaMenuPanel.classList.remove('opacity-0', 'pointer-events-none');
+            megaMenuArrow.classList.add('rotate-180');
+        }
+
+        // Event listeners for Navigation Header
+        megaMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (megaMenuPanel.classList.contains('opacity-0')) {
+                openMegaMenu();
+                closeSidebar();
+            } else {
+                closeMegaMenu();
+            }
+        });
+
+        megaMenuCloseBtn.addEventListener('click', closeMegaMenu);
+
+        sidebarOpenBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openSidebar();
+            closeMegaMenu();
+        });
+
+        sidebarCloseBtn.addEventListener('click', closeSidebar);
+        sidebarBackdrop.addEventListener('click', closeSidebar);
+
+        // Sidebar link clicks (close menu and smooth scroll)
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                closeSidebar();
+                const targetId = link.getAttribute('href');
+                if (targetId && targetId !== '#') {
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
-            })
-            .catch(err => console.log("Gagal memuat banner", err));
+                
+                // If a category link was clicked in sidebar, simulate category filter click
+                const cat = link.getAttribute('data-category');
+                if (cat) {
+                    filterCategory(cat);
+                }
+            });
+        });
 
-        // 2. Fetch Daftar Mobil
-        fetch('https://cdn.argust.my.id/honda/data/products.json')
-            .then(res => res.json())
-            .then(data => {
-                const grid = document.getElementById('product-grid');
-                grid.innerHTML = ''; 
+        // Sidebar Model collapse trigger
+        sidebarModelToggle.addEventListener('click', () => {
+            sidebarModelList.classList.toggle('hidden');
+            sidebarModelArrow.classList.toggle('rotate-180');
+        });
 
-                for (const [id, car] of Object.entries(data)) {
-                    const price = car.price ? 'Rp ' + car.price.toLocaleString('id-ID') : 'Hubungi Dealer';
-                    
-                    grid.innerHTML += `
-                        <div class="bg-white rounded-lg border shadow-sm hover:shadow-md transition flex flex-col overflow-hidden">
-                            <div class="p-4 flex-1 flex flex-col">
-                                <img src="${car.images[0].thumb}" alt="${car.name}" class="w-full h-40 object-contain mb-4">
-                                <h4 class="font-bold text-gray-800 text-center">${car.name}</h4>
-                                <div class="text-[10px] text-gray-400 text-center mt-1 mb-3">👤 ${car.seats} &bull; ⚙️ ${car.engine}</div>
-                                
-                                <div class="mt-auto text-center border-t pt-3">
-                                    <p class="text-[11px] text-gray-500 mb-1">Harga mulai dari</p>
-                                    <p class="text-lg font-bold text-honda">${price}</p>
+        // Close dropdowns on clicking outside
+        window.addEventListener('click', (e) => {
+            if (!megaMenuPanel.contains(e.target) && e.target !== megaMenuBtn && !megaMenuBtn.contains(e.target)) {
+                closeMegaMenu();
+            }
+        });
+
+        // ================= FETCH AND POPULATE PRODUCTS DATABASE =================
+        async function fetchProducts() {
+            try {
+                const response = await fetch('./data/products.json');
+                carsData = await response.json();
+                
+                populateMegaMenu();
+                renderProductGrid();
+            } catch (err) {
+                console.error("Gagal memuat data produk:", err);
+                document.getElementById('product-grid').innerHTML = `
+                    <div class="col-span-full text-center text-red-500 py-12">
+                        <p class="font-bold">Gagal memuat produk dari database.</p>
+                        <span class="text-xs text-gray-400">Silakan muat ulang halaman.</span>
+                    </div>
+                `;
+            }
+        }
+
+        // Populate Mega Menu models grid
+        function populateMegaMenu() {
+            const grid = document.getElementById('mega-menu-grid');
+            grid.innerHTML = '';
+
+            for (const [id, car] of Object.entries(carsData)) {
+                const isNew = car.new;
+                const priceFormatted = car.price ? 'Rp ' + car.price.toLocaleString('id-ID') : 'Hubungi Dealer';
+                const detailUrl = `model/${id}/`; // Resolves to local subfolders
+
+                grid.innerHTML += `
+                    <a href="${detailUrl}" class="bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-xl p-4 flex flex-col items-center justify-between text-center relative hover:shadow-md transition duration-300 group">
+                        ${isNew ? `
+                            <span class="absolute top-2.5 right-2.5 flex h-6 w-6 items-center justify-center rounded-full bg-orange-500 text-[9px] font-black text-white uppercase shadow-sm tracking-wider">
+                                NEW
+                            </span>` : ''}
+                        
+                        <div class="h-24 w-full flex items-center justify-center my-3 overflow-hidden">
+                            <img src="${car.images[0].thumb}" alt="${car.name}" 
+                                 class="max-h-full max-w-[90%] object-contain group-hover:scale-105 transition-transform duration-300">
+                        </div>
+                        
+                        <div class="w-full mt-auto">
+                            <h4 class="font-bold text-sm text-gray-800 font-outfit mb-2 truncate">${car.name}</h4>
+                            <span class="inline-block border border-gray-300 text-[9px] font-bold text-gray-500 px-3 py-1 rounded-full uppercase tracking-wider bg-white group-hover:border-honda group-hover:text-honda transition-colors truncate max-w-full">
+                                Harga Mulai: ${priceFormatted}
+                            </span>
+                        </div>
+                    </a>
+                `;
+            }
+        }
+
+        // Filter tab triggers
+        const tabButtons = document.querySelectorAll('.cat-tab-btn');
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabButtons.forEach(b => {
+                    b.classList.remove('bg-honda', 'text-white', 'shadow-sm');
+                    b.classList.add('bg-white', 'border', 'border-gray-200', 'text-gray-600');
+                });
+                btn.classList.add('bg-honda', 'text-white', 'shadow-sm');
+                btn.classList.remove('bg-white', 'border', 'border-gray-200', 'text-gray-600');
+                
+                const cat = btn.getAttribute('data-category');
+                filterCategory(cat);
+            });
+        });
+
+        function filterCategory(category) {
+            activeCategory = category;
+            renderProductGrid();
+        }
+
+        // Render cards inside product grid based on filter tab
+        function renderProductGrid() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            let renderedCount = 0;
+
+            for (const [id, car] of Object.entries(carsData)) {
+                if (activeCategory !== 'Semua' && car.category !== activeCategory) {
+                    continue;
+                }
+
+                renderedCount++;
+                const priceFormatted = car.price ? 'Rp ' + car.price.toLocaleString('id-ID') : 'Hubungi Dealer';
+                const detailUrl = `model/${id}/`;
+
+                grid.innerHTML += `
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col overflow-hidden relative group">
+                        
+                        <!-- Top header card logos -->
+                        <div class="flex justify-between items-center p-4 border-b border-gray-50 bg-gray-50/20">
+                            <!-- Mini Honda logo Red -->
+                            <span class="text-xs font-black text-honda tracking-wider">HONDA</span>
+                            <!-- Tagline logo -->
+                            <span class="text-[9px] font-bold text-gray-400 tracking-tight italic">How we move you.</span>
+                        </div>
+
+                        <!-- Car Image container -->
+                        <div class="p-6 h-48 w-full flex items-center justify-center relative overflow-hidden bg-white">
+                            <img src="${car.images[0].thumb}" alt="${car.name}" 
+                                 class="max-h-full max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-300">
+                        </div>
+
+                        <!-- Info details -->
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <!-- Promo label mockup -->
+                                <span class="text-[9px] font-bold text-honda uppercase tracking-widest block mb-1">PROMO OTR SPESIAL</span>
+                                <h4 class="font-bold text-base font-outfit text-gray-800 hover:text-honda transition leading-snug mb-1 truncate">${car.name}</h4>
+                                <!-- Specifications row -->
+                                <div class="text-[10px] text-gray-400 font-medium flex items-center gap-2 mb-4">
+                                    <span>👤 ${car.seats}</span>
+                                    <span>&bull;</span>
+                                    <span>⚙️ ${car.engine}</span>
+                                </div>
+
+                                <!-- Dynamic Pricing section -->
+                                <div class="pt-3 border-t border-gray-50 text-center">
+                                    <p class="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">Harga Mulai Dari</p>
+                                    <p class="text-lg font-bold font-outfit text-honda leading-none">${priceFormatted}</p>
                                 </div>
                             </div>
-                            <div class="p-3 bg-gray-50 border-t">
-                                <a href="model/${id}" class="block w-full text-center bg-honda text-white py-2 rounded text-sm font-semibold hover:bg-red-800 transition">Detail</a>
-                            </div>
-                            <div class="flex justify-between text-[10px] text-gray-400 p-2 px-4 bg-white border-t">
-                                <span>DP: ${car.dp}</span>
-                                <span>Cicilan: ${car.angsuran}</span>
+
+                            <!-- CTA Buttons and bottom values -->
+                            <div class="mt-5 space-y-3">
+                                <a href="${detailUrl}" class="block w-full text-center bg-honda hover:bg-honda-dark text-white py-2.5 rounded-full text-xs font-bold transition shadow-sm hover:shadow">Detail</a>
+                                
+                                <!-- DP and Angsuran (Cicilan) bottom row -->
+                                <div class="flex justify-between items-center text-[10px] text-gray-500 font-semibold px-1 pt-1">
+                                    <span>DP: <span class="text-gray-900">${car.dp || 'Hubungi Kami'}</span></span>
+                                    <span>Cicilan: <span class="text-honda">${car.angsuran || 'Hubungi Kami'}</span></span>
+                                </div>
                             </div>
                         </div>
-                    `;
+
+                    </div>
+                `;
+            }
+
+            if (renderedCount === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center text-gray-400 py-12">
+                        <p class="font-medium text-sm">Tidak ada mobil untuk kategori ini saat ini.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ================= FETCH AND INITIALIZE CAROUSEL BANNER SLIDER =================
+        let sliderData = [];
+        let currentSlideIndex = 0;
+        let sliderInterval = null;
+
+        async function fetchBanners() {
+            try {
+                const response = await fetch('./data/banner.json');
+                const data = await response.json();
+                
+                // Read window viewport width to choose desktop or mobile banners
+                const isMobile = window.innerWidth < 768;
+                sliderData = isMobile ? data.banners.mobile : data.banners.desktop;
+
+                initSlider();
+            } catch (err) {
+                console.error("Gagal memuat banner:", err);
+            }
+        }
+
+        function initSlider() {
+            const track = document.getElementById('slider-track');
+            const dotsContainer = document.getElementById('slider-dots');
+            track.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            if (sliderData.length === 0) {
+                track.innerHTML = `<div class="w-full h-full flex items-center justify-center text-gray-400"><span>Tidak ada banner tersedia</span></div>`;
+                return;
+            }
+
+            sliderData.forEach((slide, idx) => {
+                // Determine CSS classes for visibility
+                const activeClass = idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none';
+                
+                // Aspect Ratio is preserved by putting the active/first image inline and absolute positioning others.
+                // However, since we toggle opacity, we absolute position ALL of them, but we make sure the CONTAINER itself
+                // is responsive. Let's write them as absolute overlays inside the track, and track has class `h-full w-full`.
+                // The parent has aspect ratio, so it scales nicely!
+                track.innerHTML += `
+                    <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${activeClass}" id="slide-${idx}">
+                        <a href="${slide.link || '#'}">
+                            <img src="${slide.image}" alt="${slide.alt || 'Promo Banner'}" class="w-full h-full object-cover">
+                        </a>
+                    </div>
+                `;
+
+                // Add dot navigation
+                const dotClass = idx === 0 ? 'bg-honda scale-125' : 'bg-gray-400/40 hover:bg-gray-400';
+                dotsContainer.innerHTML += `
+                    <button data-index="${idx}" class="slider-dot-btn w-2.5 h-2.5 rounded-full transition-all duration-300 focus:outline-none ${dotClass}"></button>
+                `;
+            });
+
+            // Set dot triggers
+            const dotBtns = document.querySelectorAll('.slider-dot-btn');
+            dotBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.getAttribute('data-index'));
+                    showSlide(idx);
+                    resetSliderTimer();
+                });
+            });
+
+            currentSlideIndex = 0;
+            startSliderTimer();
+        }
+
+        function showSlide(index) {
+            if (sliderData.length <= 1) return;
+
+            // Normalize index boundaries
+            let nextIndex = index;
+            if (index >= sliderData.length) nextIndex = 0;
+            if (index < 0) nextIndex = sliderData.length - 1;
+
+            const prevSlide = document.getElementById(`slide-${currentSlideIndex}`);
+            const nextSlide = document.getElementById(`slide-${nextIndex}`);
+            const dots = document.querySelectorAll('.slider-dot-btn');
+
+            if (prevSlide && nextSlide) {
+                // Transition active slide
+                prevSlide.classList.replace('opacity-100', 'opacity-0');
+                prevSlide.classList.replace('z-10', 'z-0');
+                prevSlide.classList.add('pointer-events-none');
+
+                nextSlide.classList.replace('opacity-0', 'opacity-100');
+                nextSlide.classList.replace('z-0', 'z-10');
+                nextSlide.classList.remove('pointer-events-none');
+
+                // Toggle dots style
+                dots[currentSlideIndex].classList.remove('bg-honda', 'scale-125');
+                dots[currentSlideIndex].classList.add('bg-gray-400/40');
+
+                dots[nextIndex].classList.add('bg-honda', 'scale-125');
+                dots[nextIndex].classList.remove('bg-gray-400/40');
+
+                currentSlideIndex = nextIndex;
+            }
+        }
+
+        function startSliderTimer() {
+            if (sliderInterval) clearInterval(sliderInterval);
+            sliderInterval = setInterval(() => {
+                showSlide(currentSlideIndex + 1);
+            }, 5000);
+        }
+
+        function resetSliderTimer() {
+            startSliderTimer();
+        }
+
+        // Slider Navigation Arrow buttons listeners
+        document.getElementById('slider-prev-btn').addEventListener('click', () => {
+            showSlide(currentSlideIndex - 1);
+            resetSliderTimer();
+        });
+        document.getElementById('slider-next-btn').addEventListener('click', () => {
+            showSlide(currentSlideIndex + 1);
+            resetSliderTimer();
+        });
+
+        // Re-load slider items on window resize to switch between desktop/mobile images
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const isMobile = window.innerWidth < 768;
+                // If viewport profile changes, fetch/reload banners
+                fetchBanners();
+            }, 250);
+        });
+
+        // ================= FAQ ACCORDION LOGIC =================
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const container = toggle.parentElement;
+                const content = container.querySelector('.faq-content');
+                const icon = toggle.querySelector('.faq-icon');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+                
+                // Optional: Smooth height transitons can be achieved by toggling styles, but toggle hidden is simple & robust.
+            });
+        });
+
+        // Search Input Filter Logic
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase().trim();
+            const cards = document.getElementById('product-grid').children;
+
+            if (query === '') {
+                // Reset categories view
+                renderProductGrid();
+                return;
+            }
+
+            for (let card of cards) {
+                const titleEl = card.querySelector('h4');
+                if (titleEl) {
+                    const titleText = titleEl.innerText.toLowerCase();
+                    if (titleText.includes(query)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
                 }
-            })
-            .catch(err => console.log("Gagal memuat produk", err));
+            }
+        });
+
+        // Initialize Page
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchBanners();
+            fetchProducts();
+        });
     </script>
 </body>
 </html>
