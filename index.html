@@ -59,12 +59,12 @@
             </div>
             
             <!-- Left/Right navigation arrow buttons -->
-            <button id="slider-prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full glass-effect hover:bg-white text-gray-800 shadow-md flex items-center justify-center focus:outline-none transition z-20 opacity-0 group-hover:opacity-100">
+            <button id="slider-prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-md flex items-center justify-center focus:outline-none transition-all duration-300 z-20 opacity-0 group-hover:opacity-100 cursor-pointer pointer-events-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
             </button>
-            <button id="slider-next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full glass-effect hover:bg-white text-gray-800 shadow-md flex items-center justify-center focus:outline-none transition z-20 opacity-0 group-hover:opacity-100">
+            <button id="slider-next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-md flex items-center justify-center focus:outline-none transition-all duration-300 z-20 opacity-0 group-hover:opacity-100 cursor-pointer pointer-events-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
@@ -713,6 +713,7 @@
             sliderContainer.addEventListener('mousedown', (e) => {
                 isDragging = true;
                 dragStartX = e.clientX;
+                dragCurrentX = dragStartX; // Reset current X to match start X to avoid shifts on pure click
                 sliderContainer.classList.add('cursor-grabbing');
                 if (sliderInterval) clearInterval(sliderInterval);
             });

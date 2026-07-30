@@ -75,4 +75,29 @@
             </div>
         </div>
     `;
+
+    // Dynamic Back to Top Button
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.id = 'back-to-top-btn';
+    backToTopBtn.className = 'fixed bottom-6 right-6 p-3 rounded-full bg-[#cc0000] text-white shadow-xl opacity-0 pointer-events-none transition-all duration-300 z-40 hover:bg-[#990000] hover:scale-105 focus:outline-none cursor-pointer';
+    backToTopBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    `;
+    document.body.appendChild(backToTopBtn);
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+            backToTopBtn.classList.add('opacity-100');
+        } else {
+            backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+            backToTopBtn.classList.remove('opacity-100');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 })();
