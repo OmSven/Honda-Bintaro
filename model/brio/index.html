@@ -49,7 +49,7 @@
 
     <!-- BREADCRUMBS -->
     <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-6">
-        <nav class="flex text-xs font-semibold text-gray-400 uppercase tracking-wider gap-2 items-center">
+        <nav class="flex text-xs font-medium text-gray-500 gap-2 items-center">
             <a href="../../" class="hover:text-honda transition">Home</a>
             <span>/</span>
             <a href="../../#model-list-section" id="breadcrumb-category" class="hover:text-honda transition">City Car & Hatchback</a>
@@ -69,14 +69,6 @@
                 <div class="bg-white border border-gray-100 rounded-3xl p-8 flex items-center justify-center shadow-sm relative aspect-square overflow-hidden group">
                     <img id="detail-main-img" src="" alt="Honda Brio" 
                          class="max-h-[90%] max-w-[90%] object-contain transition-transform duration-300 group-hover:scale-105">
-                </div>
-                <!-- Slogan & logo block -->
-                <div class="flex justify-between items-center bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
-                    <div class="flex items-center gap-2">
-                        <span class="text-xl font-black text-honda tracking-wider">HONDA</span>
-                        <h4 class="font-bold text-lg font-outfit text-gray-800" id="detail-model-sub-name">New Honda Brio</h4>
-                    </div>
-                    <span class="text-xs font-bold text-gray-400 tracking-tight italic">How we move you.</span>
                 </div>
             </div>
 
@@ -130,55 +122,55 @@
                     </a>
                 </div>
 
-                <!-- TABS DETAIL MODULE: DESKRIPSI & SPESIFIKASI -->
-                <div class="border border-gray-100 rounded-3xl bg-white overflow-hidden shadow-sm">
-                    <!-- Tab Headers -->
-                    <div class="flex border-b border-gray-100 bg-gray-50/50">
-                        <button id="tab-desc-btn" class="flex-1 py-4 text-center text-sm font-bold font-outfit border-b-2 border-honda text-honda hover:text-honda transition focus:outline-none">Deskripsi</button>
-                        <button id="tab-spec-btn" class="flex-1 py-4 text-center text-sm font-bold font-outfit border-b-2 border-transparent text-gray-500 hover:text-gray-700 transition focus:outline-none">Spesifikasi</button>
-                    </div>
-                    
-                    <!-- Tab Contents -->
-                    <div class="p-6">
-                        <!-- Description Tab content -->
-                        <div id="tab-content-desc" class="space-y-6 text-xs sm:text-sm leading-relaxed text-gray-600">
-                            <div id="detail-description">
-                                <!-- Populated dynamically -->
-                            </div>
-                        </div>
+            </div>
 
-                        <!-- Specifications Tab content -->
-                        <div id="tab-content-spec" class="hidden space-y-4">
-                            <table class="w-full text-xs sm:text-sm border-collapse">
-                                <tbody>
-                                    <tr class="border-b border-gray-50">
-                                        <td class="py-3 font-semibold text-gray-500 w-1/3">Kapasitas Kursi</td>
-                                        <td class="py-3 text-gray-800" id="spec-seats">5 Penumpang</td>
-                                    </tr>
-                                    <tr class="border-b border-gray-50">
-                                        <td class="py-3 font-semibold text-gray-500">Mesin</td>
-                                        <td class="py-3 text-gray-800" id="spec-engine">1.2L DOHC i-VTEC Engine</td>
-                                    </tr>
-                                    <tr class="border-b border-gray-50">
-                                        <td class="py-3 font-semibold text-gray-500">Transmisi</td>
-                                        <td class="py-3 text-gray-800">Manual 5-Kecepatan / CVT</td>
-                                    </tr>
-                                    <tr class="border-b border-gray-50">
-                                        <td class="py-3 font-semibold text-gray-500">Dimensi (P x L x T)</td>
-                                        <td class="py-3 text-gray-800">3.815 mm x 1.680 mm x 1.485 mm</td>
-                                    </tr>
-                                    <tr class="border-b border-gray-50">
-                                        <td class="py-3 font-semibold text-gray-500">Fitur Utama</td>
-                                        <td class="py-3 text-gray-800">Full LED Headlamp with LED DRL, One Push Ignition System, 7" Touchscreen Display Audio, Dual Front SRS Airbags.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+        </div>
+
+        <!-- TABS DETAIL MODULE: DESKRIPSI & SPESIFIKASI -->
+        <div class="mt-12 border border-gray-100 rounded-3xl bg-white overflow-hidden shadow-sm">
+            <!-- Tab Headers -->
+            <div class="flex border-b border-gray-100 bg-gray-50/50">
+                <button id="tab-desc-btn" class="flex-1 py-4 text-center text-sm font-bold font-outfit border-b-2 border-honda text-honda hover:text-honda transition focus:outline-none">Deskripsi</button>
+                <button id="tab-spec-btn" class="flex-1 py-4 text-center text-sm font-bold font-outfit border-b-2 border-transparent text-gray-500 hover:text-gray-700 transition focus:outline-none">Spesifikasi</button>
+            </div>
+            
+            <!-- Tab Contents -->
+            <div class="p-6">
+                <!-- Description Tab content -->
+                <div id="tab-content-desc" class="space-y-6 text-xs sm:text-sm leading-relaxed text-gray-600">
+                    <div id="detail-description">
+                        <!-- Populated dynamically -->
                     </div>
                 </div>
 
+                <!-- Specifications Tab content -->
+                <div id="tab-content-spec" class="hidden space-y-4">
+                    <table class="w-full text-xs sm:text-sm border-collapse">
+                        <tbody>
+                            <tr class="border-b border-gray-50">
+                                <td class="py-3 font-semibold text-gray-500 w-1/3">Kapasitas Kursi</td>
+                                <td class="py-3 text-gray-800" id="spec-seats">5 Penumpang</td>
+                            </tr>
+                            <tr class="border-b border-gray-50">
+                                <td class="py-3 font-semibold text-gray-500">Mesin</td>
+                                <td class="py-3 text-gray-800" id="spec-engine">1.2L DOHC i-VTEC Engine</td>
+                            </tr>
+                            <tr class="border-b border-gray-50">
+                                <td class="py-3 font-semibold text-gray-500">Transmisi</td>
+                                <td class="py-3 text-gray-800" id="spec-transmission">Manual 5-Kecepatan / CVT</td>
+                            </tr>
+                            <tr class="border-b border-gray-50">
+                                <td class="py-3 font-semibold text-gray-500">Dimensi (P x L x T)</td>
+                                <td class="py-3 text-gray-800" id="spec-dimensions">3.815 mm x 1.680 mm x 1.485 mm</td>
+                            </tr>
+                            <tr class="border-b border-gray-50">
+                                <td class="py-3 font-semibold text-gray-500">Fitur Utama</td>
+                                <td class="py-3 text-gray-800" id="spec-features">Full LED Headlamp with LED DRL, One Push Ignition System, 7" Touchscreen Display Audio, Dual Front SRS Airbags.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
         </div>
 
         <!-- RELATED MODELS SLIDER GRID -->
@@ -219,8 +211,12 @@
                 </div>
             </div>
         </div>
-    </sec    <!-- SHARED FOOTER -->
-    <div id="shared-footer" data-base-path="../../"></div>di    <!-- MAIN CORE DETAIL PAGE JAVASCRIPT LOGIC -->
+    </section>
+
+    <!-- SHARED FOOTER -->
+    <div id="shared-footer" data-base-path="../../"></div>
+
+    <!-- MAIN CORE DETAIL PAGE JAVASCRIPT LOGIC -->
     <script>
         // Global variables for model
         const modelId = "brio";
@@ -249,7 +245,8 @@
             // Header info
             document.title = `${car.name} - Spesifikasi, Harga & Promo Honda Bintaro`;
             document.getElementById('detail-model-name').innerText = car.name;
-            document.getElementById('detail-model-sub-name').innerText = car.name;
+            const subNameEl = document.getElementById('detail-model-sub-name');
+            if (subNameEl) subNameEl.innerText = car.name;
             document.getElementById('breadcrumb-model').innerText = car.name;
             document.getElementById('breadcrumb-category').innerText = car.category;
             document.getElementById('breadcrumb-category').href = `../../#model-list-section`;
@@ -257,12 +254,14 @@
 
             // Set tags
             document.getElementById('detail-tag-seats').innerText = `# ${car.seats}`;
-            document.getElementById('detail-tag-seats').innerText = `# ${car.seats}`;
             document.getElementById('detail-tag-engine').innerText = `# ${car.engine}`;
             
-            // Set Table Specs
+            // Set Table Specs (Dynamic from products.json)
             document.getElementById('spec-seats').innerText = car.seats;
             document.getElementById('spec-engine').innerText = car.engine;
+            document.getElementById('spec-transmission').innerText = car.transmission || 'Manual 5-Kecepatan / CVT';
+            document.getElementById('spec-dimensions').innerText = car.dimensions || '3.815 mm x 1.680 mm x 1.485 mm';
+            document.getElementById('spec-features').innerText = car.features || 'Full LED Headlamp, 7" Display Audio, Dual SRS Airbags.';
 
             // Set main image
             document.getElementById('detail-main-img').src = car.images[0].full;
@@ -380,14 +379,14 @@
                                 <span class="text-[9px] font-bold text-honda uppercase tracking-widest block mb-1">PROMO OTR SPESIAL</span>
                                 <h4 class="font-bold text-sm font-outfit text-gray-800 hover:text-honda transition leading-snug mb-1 truncate">${related.name}</h4>
                                 <!-- Premium spec capsules -->
-                                <div class="grid grid-cols-2 gap-2 text-[10px] text-gray-500 font-semibold mb-4">
+                                <div class="flex flex-wrap gap-1.5 text-[10px] text-gray-500 font-semibold mb-4">
                                     <div class="bg-gray-50 border border-gray-100 rounded-full py-1 px-2.5 flex items-center justify-center gap-1.5">
                                         <span>👤</span>
-                                        <span class="truncate">${related.seats}</span>
+                                        <span>${related.seats}</span>
                                     </div>
-                                    <div class="bg-gray-50 border border-gray-100 rounded-full py-1 px-2.5 flex items-center justify-center gap-1.5" title="${related.engine}">
+                                    <div class="bg-gray-50 border border-gray-100 rounded-full py-1 px-2.5 flex items-center justify-center gap-1.5">
                                         <span>⚙️</span>
-                                        <span class="truncate">${related.engine}</span>
+                                        <span>${related.engine}</span>
                                     </div>
                                 </div>
 
@@ -430,14 +429,14 @@
                                     <span class="text-[9px] font-bold text-honda uppercase tracking-widest block mb-1">PROMO OTR SPESIAL</span>
                                     <h4 class="font-bold text-sm font-outfit text-gray-800 hover:text-honda transition leading-snug mb-1 truncate">${related.name}</h4>
                                     <!-- Premium spec capsules -->
-                                    <div class="grid grid-cols-2 gap-2 text-[10px] text-gray-500 font-semibold mb-4">
+                                    <div class="flex flex-wrap gap-1.5 text-[10px] text-gray-500 font-semibold mb-4">
                                         <div class="bg-gray-50 border border-gray-100 rounded-full py-1 px-2.5 flex items-center justify-center gap-1.5">
                                             <span>👤</span>
-                                            <span class="truncate">${related.seats}</span>
+                                            <span>${related.seats}</span>
                                         </div>
-                                        <div class="bg-gray-50 border border-gray-100 rounded-full py-1 px-2.5 flex items-center justify-center gap-1.5" title="${related.engine}">
+                                        <div class="bg-gray-50 border border-gray-100 rounded-full py-1 px-2.5 flex items-center justify-center gap-1.5">
                                             <span>⚙️</span>
-                                            <span class="truncate">${related.engine}</span>
+                                            <span>${related.engine}</span>
                                         </div>
                                     </div>
 
