@@ -6,6 +6,76 @@
     const basePath = headerContainer.getAttribute('data-base-path') || './';
     const isHomepage = headerContainer.getAttribute('data-page') === 'home';
 
+    // Global helper to apply contact configuration dynamically
+    window.applyContactConfig = function(config) {
+        if (!config) return;
+        const phone = config.phoneNumber || "6282299185425";
+        const display = config.phoneDisplay || "0822-9918-5425";
+        const email = config.email || "sales@hondabintaro.com";
+        const salesName = config.salesName || "Rere";
+
+        // 1. Update all WhatsApp links
+        const waLinks = document.querySelectorAll('a[href*="wa.me"]');
+        waLinks.forEach(link => {
+            try {
+                const hrefVal = link.getAttribute('href') || '';
+                const textIndex = hrefVal.indexOf('?text=');
+                let searchParams = '';
+                if (textIndex !== -1) {
+                    searchParams = hrefVal.substring(textIndex);
+                }
+                
+                if (searchParams) {
+                    searchParams = searchParams.replace(/Rere/g, salesName);
+                }
+
+                link.href = `https://wa.me/${phone}${searchParams}`;
+                
+                // Update text label if it contains contact number patterns
+                if (link.innerText.includes('WhatsApp:')) {
+                    link.innerText = `WhatsApp: +62 ${display}`;
+                } else if (link.innerText.includes('0822-9918-5425') || link.innerText.includes('082299185425')) {
+                    link.innerText = link.innerText.replace(/0822-9918-5425/g, display).replace(/082299185425/g, display);
+                }
+            } catch (e) {
+                console.error("Error updating WA link:", e);
+            }
+        });
+
+        // 2. Update all telephone links
+        const telLinks = document.querySelectorAll('a[href^="tel:"]');
+        telLinks.forEach(link => {
+            link.href = `tel:${phone}`;
+            if (link.innerText.includes('Telepon:')) {
+                link.innerText = `Telepon: ${display}`;
+            } else if (link.innerText.includes('0822-9918-5425') || link.innerText.includes('082299185425')) {
+                link.innerText = link.innerText.replace(/0822-9918-5425/g, display).replace(/082299185425/g, display);
+            }
+        });
+
+        // 3. Update all email links
+        const mailLinks = document.querySelectorAll('a[href^="mailto:"]');
+        mailLinks.forEach(link => {
+            link.href = `mailto:${email}`;
+            if (link.innerText.includes('Email:')) {
+                link.innerText = `Email: ${email}`;
+            }
+        });
+
+        // 4. Update plain text occurrences of name or number
+        const contactButtons = document.querySelectorAll('a, button, span, p');
+        contactButtons.forEach(el => {
+            if (el.children.length === 0) {
+                if (el.innerText.includes('Rere')) {
+                    el.innerText = el.innerText.replace(/Rere/g, salesName);
+                }
+                if (el.innerText.includes('0822-9918-5425')) {
+                    el.innerText = el.innerText.replace(/0822-9918-5425/g, display);
+                }
+            }
+        });
+    };
+
     headerContainer.className = "bg-white border-b border-gray-100 sticky top-0 z-50 transition-all duration-300";
     
     // Inject header HTML markup
@@ -335,6 +405,12 @@
         try {
             const res = await fetch(`${basePath}data/products.json`);
             productsList = await res.json();
+            
+            // Apply config dynamically
+            if (productsList._config) {
+                window.applyContactConfig(productsList._config);
+            }
+
             populateMegaMenuGrid();
             initAlgoliaSearch();
         } catch (err) {
@@ -348,6 +424,7 @@
         grid.innerHTML = '';
 
         for (const [id, car] of Object.entries(productsList)) {
+            if (id === '_config') continue;
             const isNew = car.new;
             const priceFormatted = car.price ? 'Rp ' + car.price.toLocaleString('id-ID') : 'Hubungi Dealer';
             const detailUrl = `${basePath}model/${id}/`;
@@ -403,6 +480,7 @@
 
             const matches = [];
             for (const [id, car] of Object.entries(productsList)) {
+                if (id === '_config') continue;
                 if (car.name.toLowerCase().includes(cleanQuery) || 
                     car.category.toLowerCase().includes(cleanQuery) || 
                     car.engine.toLowerCase().includes(cleanQuery)) {

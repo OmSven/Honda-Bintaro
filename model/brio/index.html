@@ -230,6 +230,11 @@
                 const response = await fetch('../../data/products.json');
                 carsData = await response.json();
                 
+                // Apply dynamic configuration if loaded
+                if (carsData._config && window.applyContactConfig) {
+                    window.applyContactConfig(carsData._config);
+                }
+                
                 populateModelDetails();
                 populateRelatedCars();
             } catch (err) {
@@ -338,9 +343,11 @@
 
         // WhatsApp redirect click generator with auto message template
         function updateWhatsAppLink(vName, vPrice) {
-            const phoneNumber = "6282299185425"; // Sales Rere WA number
+            const config = carsData._config || {};
+            const phoneNumber = config.phoneNumber || "6282299185425";
+            const salesName = config.salesName || "Rere";
             const car = carsData[modelId];
-            const message = `Halo Rere Sales Counter Honda Bintaro, saya tertarik memesan unit mobil *${car.name}* tipe *${vName}* dengan harga OTR *${vPrice}*. Mohon informasi simulasi hitungan cicilan DP dan bonus aksesoris terbarunya.`;
+            const message = `Halo ${salesName} Sales Counter Honda Bintaro, saya tertarik memesan unit mobil *${car.name}* tipe *${vName}* dengan harga OTR *${vPrice}*. Mohon informasi simulasi hitungan cicilan DP dan bonus aksesoris terbarunya.`;
             const encodedMsg = encodeURIComponent(message);
             
             document.getElementById('detail-wa-cta').href = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
@@ -357,6 +364,7 @@
             let renderedCount = 0;
 
             for (const [id, related] of Object.entries(carsData)) {
+                if (id === '_config') continue;
                 // Get other cars matching Brio's category
                 if (related.category !== car.category || id === modelId) {
                     continue;

@@ -1,4 +1,10 @@
 {
+  "_config": {
+    "phoneNumber": "6282299185425",
+    "phoneDisplay": "0822-9918-5425",
+    "email": "sales@hondabintaro.com",
+    "salesName": "Rere"
+  },
   "stepwgn": {
     "name": "Honda STEP WGN",
     "price": 637800000,

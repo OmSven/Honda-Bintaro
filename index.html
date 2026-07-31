@@ -486,6 +486,12 @@
             try {
                 const response = await fetch('./data/products.json');
                 carsData = await response.json();
+                
+                // Apply dynamic configuration if loaded
+                if (carsData._config && window.applyContactConfig) {
+                    window.applyContactConfig(carsData._config);
+                }
+                
                 renderProductGrid();
             } catch (err) {
                 console.error("Gagal memuat data produk:", err);
@@ -528,6 +534,7 @@
             let renderedCount = 0;
 
             for (const [id, car] of Object.entries(carsData)) {
+                if (id === '_config') continue;
                 if (activeCategory !== 'Semua' && car.category !== activeCategory) {
                     continue;
                 }
