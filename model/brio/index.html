@@ -289,22 +289,23 @@
                 const parts = v.split(':');
                 const vName = parts[0].trim();
                 const vPrice = parts[1] ? parts[1].trim() : '';
+                const cleanVName = vName.replace(/\s+OTR\s*$/i, '').trim();
                 
                 // Select first variant by default
                 const isActive = idx === 0;
                 if (isActive) {
-                    activeVariantName = vName;
-                    updateWhatsAppLink(vName, vPrice);
+                    activeVariantName = cleanVName;
+                    updateWhatsAppLink(cleanVName, vPrice);
                 }
 
                 const borderClass = isActive ? 'border-honda bg-red-50/20' : 'border-gray-200 hover:border-honda hover:bg-gray-50/30';
                 const checkClass = isActive ? 'block' : 'hidden';
 
                 varGrid.innerHTML += `
-                    <button data-index="${idx}" data-name="${vName}" data-price="${vPrice}" 
+                    <button data-index="${idx}" data-name="${cleanVName}" data-price="${vPrice}" 
                             class="var-select-btn text-left p-4 border rounded-2xl flex justify-between items-center transition duration-300 relative focus:outline-none ${borderClass}">
                         <div>
-                            <h4 class="font-bold text-xs sm:text-sm text-gray-900">${vName}</h4>
+                            <h4 class="font-bold text-xs sm:text-sm text-gray-900">${cleanVName}</h4>
                             <span class="text-[11px] font-bold text-honda mt-1 block">${vPrice}</span>
                         </div>
                         <span class="var-check-icon text-honda ${checkClass}">
@@ -344,7 +345,8 @@
         // WhatsApp redirect click generator with auto message template
         function updateWhatsAppLink(vName, vPrice) {
             const config = carsData._config || {};
-            const phoneNumber = config.phoneNumber || "6282299185425";
+            const rawPhone = config.phoneNumber || "6282299185425";
+            const phoneNumber = rawPhone.replace(/^\+/, '').replace(/^0/, '62');
             const salesName = config.salesName || "Rere";
             const car = carsData[modelId];
             const message = `Halo ${salesName} Sales Counter Honda Bintaro, saya tertarik memesan unit mobil *${car.name}* tipe *${vName}* dengan harga OTR *${vPrice}*. Mohon informasi simulasi hitungan cicilan DP dan bonus aksesoris terbarunya.`;

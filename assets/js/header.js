@@ -9,7 +9,8 @@
     // Global helper to apply contact configuration dynamically
     window.applyContactConfig = function(config) {
         if (!config) return;
-        const phone = config.phoneNumber || "6282299185425";
+        const rawPhone = config.phoneNumber || "6282299185425";
+        const phone = rawPhone.replace(/^\+/, '').replace(/^0/, '62');
         const display = config.phoneDisplay || "0822-9918-5425";
         const email = config.email || "sales@hondabintaro.com";
         const salesName = config.salesName || "Rere";
@@ -33,7 +34,7 @@
                 
                 // Update text label if it contains contact number patterns
                 if (link.innerText.includes('WhatsApp:')) {
-                    link.innerText = `WhatsApp: +62 ${display}`;
+                    link.innerText = `WhatsApp: +62 ${display.replace(/^0/, '')}`;
                 } else if (link.innerText.includes('0822-9918-5425') || link.innerText.includes('082299185425')) {
                     link.innerText = link.innerText.replace(/0822-9918-5425/g, display).replace(/082299185425/g, display);
                 }
@@ -74,6 +75,16 @@
                 }
             }
         });
+
+        // 5. Update header and footer logos dynamically
+        if (config.headerLogo) {
+            const headerLogoEl = document.getElementById('header-logo-img');
+            if (headerLogoEl) headerLogoEl.src = config.headerLogo;
+        }
+        if (config.footerLogo) {
+            const footerLogoEl = document.getElementById('footer-logo-img');
+            if (footerLogoEl) footerLogoEl.src = config.footerLogo;
+        }
     };
 
     headerContainer.className = "bg-white border-b border-gray-100 sticky top-0 z-50 transition-all duration-300";
@@ -85,7 +96,7 @@
                 
                 <!-- Logo -->
                 <a href="${basePath}" class="flex-shrink-0 flex items-center">
-                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgHjSO7vshbtitZnLrJtGp6Dvi8MJzNIbTYAvxF9y17xT240jA2AlIx2IwbH9TFKeqbHswe5_Mk8YmsrZN8C_BgabRyiR6oHs8fvx7wfPWRpLodhDZmCgfsC130Xwxd0vF88BYOeXwbHlEqKVJeQNmNZFW-KEa-OkCYNZSKThMck9ZZh9zR5e6iM5DZvKb6=s1600" 
+                    <img id="header-logo-img" src="https://blogger.googleusercontent.com/img/a/AVvXsEgHjSO7vshbtitZnLrJtGp6Dvi8MJzNIbTYAvxF9y17xT240jA2AlIx2IwbH9TFKeqbHswe5_Mk8YmsrZN8C_BgabRyiR6oHs8fvx7wfPWRpLodhDZmCgfsC130Xwxd0vF88BYOeXwbHlEqKVJeQNmNZFW-KEa-OkCYNZSKThMck9ZZh9zR5e6iM5DZvKb6=s1600" 
                          alt="Honda Logo" class="h-7 sm:h-9 md:h-12 w-auto object-contain select-none">
                 </a>
 
