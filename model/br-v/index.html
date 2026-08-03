@@ -257,18 +257,23 @@
         // Global variables for model
         const modelId = "br-v";
         let carsData = {};
+        let siteConfig = {};
         let activeVariantName = "";
 
         // ================= FETCH AND POPULATE PRODUCTS DATABASE =================
         async function fetchProducts() {
             try {
                 // Fetch from products.json relative to subfolder structure (../../data/products.json)
-                const response = await fetch('../../data/products.json');
-                carsData = await response.json();
+                const [productsRes, configRes] = await Promise.all([
+                    fetch('../../data/products.json'),
+                    fetch('../../data/site_config.json')
+                ]);
+                carsData = await productsRes.json();
+                siteConfig = await configRes.json();
 
                 // Apply dynamic configuration if loaded
-                if (carsData._config && window.applyContactConfig) {
-                    window.applyContactConfig(carsData._config);
+                if (siteConfig.contact && window.applyContactConfig) {
+                    window.applyContactConfig(siteConfig.contact);
                 }
 
                 populateModelDetails();
@@ -286,8 +291,6 @@
             // Header info
             document.title = `${car.name} - Spesifikasi, Harga & Promo Honda Bintaro`;
             document.getElementById('detail-model-name').innerText = car.name;
-            const subNameEl = document.getElementById('detail-model-sub-name');
-            if (subNameEl) subNameEl.innerText = car.name;
             document.getElementById('breadcrumb-model').innerText = car.name;
             document.getElementById('breadcrumb-category').innerText = car.category;
             document.getElementById('breadcrumb-category').href = `../../#model-list-section`;
@@ -300,9 +303,9 @@
             // Set Table Specs (Dynamic from products.json)
             document.getElementById('spec-seats').innerText = car.seats;
             document.getElementById('spec-engine').innerText = car.engine;
-            document.getElementById('spec-transmission').innerText = car.transmission || 'Manual 5-Kecepatan / CVT';
-            document.getElementById('spec-dimensions').innerText = car.dimensions || '3.815 mm x 1.680 mm x 1.485 mm';
-            document.getElementById('spec-features').innerText = car.features || 'Full LED Headlamp, 7" Display Audio, Dual SRS Airbags.';
+            document.getElementById('spec-transmission').innerText = car.transmission || '-';
+            document.getElementById('spec-dimensions').innerText = car.dimensions || '-';
+            document.getElementById('spec-features').innerText = car.features || '-';
 
             // Set main image
             document.getElementById('detail-main-img').src = car.images[0].full;
@@ -380,18 +383,24 @@
 
         // WhatsApp redirect click generator with auto message template
         function updateWhatsAppLink(vName, vPrice) {
-            const config = carsData._config || {};
+            const config = siteConfig.contact || {};
             const rawPhone = config.phoneNumber || "6282299185425";
             const phoneNumber = rawPhone.replace(/^\+/, '').replace(/^0/, '62');
             const salesName = config.salesName || "Rere";
             const car = carsData[modelId];
-            const message = `Halo ${salesName} Sales Counter Honda Bintaro, saya tertarik memesan unit mobil *${car.name}* tipe *${vName}* dengan harga OTR *${vPrice}*. Mohon informasi simulasi hitungan cicilan DP dan bonus aksesoris terbarunya.`;
+            
+            const rawTemplate = siteConfig.whatsappTemplates?.modelDetail || "Halo {salesName} Sales Counter Honda Bintaro, saya tertarik memesan unit mobil *{carName}* tipe *{variantName}* dengan harga OTR *{variantPrice}*. Mohon informasi simulasi hitungan cicilan DP dan bonus aksesoris terbarunya.";
+            const message = rawTemplate
+                .replace(/{salesName}/g, salesName)
+                .replace(/{carName}/g, car.name)
+                .replace(/{variantName}/g, vName)
+                .replace(/{variantPrice}/g, vPrice);
+                
             const encodedMsg = encodeURIComponent(message);
 
             document.getElementById('detail-wa-cta').href = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
         }
 
-        // Populate Related Cars grid based on category matching
         function populateRelatedCars() {
             const car = carsData[modelId];
             if (!car) return;

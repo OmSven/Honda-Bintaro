@@ -1,0 +1,252 @@
+{
+  "contact": {
+    "phoneNumber": "6282299185425",
+    "phoneDisplay": "0822-9918-5425",
+    "email": "sales@hondabintaro.com",
+    "salesName": "Rere",
+    "salesTitle": "Sales Counter",
+    "salesPhoto": "assets/images/rere.png",
+    "headerLogo": "https://blogger.googleusercontent.com/img/a/AVvXsEgHjSO7vshbtitZnLrJtGp6Dvi8MJzNIbTYAvxF9y17xT240jA2AlIx2IwbH9TFKeqbHswe5_Mk8YmsrZN8C_BgabRyiR6oHs8fvx7wfPWRpLodhDZmCgfsC130Xwxd0vF88BYOeXwbHlEqKVJeQNmNZFW-KEa-OkCYNZSKThMck9ZZh9zR5e6iM5DZvKb6=s1600",
+    "footerLogo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGGwKoZTHNAiyQl2GdhLVz8Ij_x3QgqEfXWi2DXS0R9TvzEZh8aH9aNQEOoyQORyRrbzTr_HP9MJDWdzKafn1341u6lM0uZZCB3Mcdz-OcTcYylVgBca3d4CeOzXrdrxX3h1VLtqznGnLkXOxL8Gfe6UM-VnPwx4XIAPfKUWcMmrWr4Tfkv-hhBjvqmCo/s1600/logo-honda-how-we-move-you.png"
+  },
+  "site": {
+    "newsApiUrl": "https://www.honda-bintaro.com/wp-json/wp/v2/posts?categories=2&per_page=4",
+    "allNewsUrl": "https://www.honda-bintaro.com/news/",
+    "newsTitle": "Berita & Informasi",
+    "newsSubtitle": "Dapatkan update terkini seputar produk dan kegiatan Honda Bintaro",
+    "productOrder": [
+      "superone",
+      "brio",
+      "hr-v",
+      "wr-v",
+      "stepwgn",
+      "br-v",
+      "city-hatchback-rs",
+      "cr-v",
+      "civic-rs",
+      "accord",
+      "en1"
+    ],
+    "fraudModalImage": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEirhSQH2IYumXgPsAecW2g7mDOvCDGxBeVniHOAV3Gw5EWjKYbMGtlyin5PNaFVtXmNh7NWGTp-EFTIsB6V2tG_INT2G-xZXbtvB5urudV929fSDuBDJHOWfoHADZYhLPbxq1LV7S6nfgZztN0jb7picoLYnH_U4o2NluV-DQL1Wx7ZMHnt0vtLzxcgS6ek/s1600/WARNING-FRAUD-DEALER-(FEED).jpg"
+  },
+  "whatsappTemplates": {
+    "salesBanner": "Halo {salesName}, saya ingin bertanya mengenai unit mobil Honda.",
+    "testDrive": "Halo {salesName}, saya ingin melakukan Booking Test Drive mobil Honda Bintaro.",
+    "general": "Halo {salesName}, saya ingin berkonsultasi mengenai pembelian mobil Honda.",
+    "modelDetail": "Halo {salesName} Sales Counter Honda Bintaro, saya tertarik memesan unit mobil *{carName}* tipe *{variantName}* dengan harga OTR *{variantPrice}*. Mohon informasi simulasi hitungan cicilan DP dan bonus aksesoris terbarunya."
+  },
+  "navigation": [
+    {
+      "label": "Halaman Utama",
+      "link": "{basePath}",
+      "type": "link"
+    },
+    {
+      "label": "Booking Test Drive",
+      "link": "whatsapp:testDrive",
+      "type": "whatsapp"
+    },
+    {
+      "label": "Promo Honda 2026",
+      "link": "{basePath}#promo-section",
+      "type": "link"
+    },
+    {
+      "label": "Pricelist Mobil",
+      "link": "{basePath}pricelist/",
+      "type": "link"
+    },
+    {
+      "label": "e-Brochure",
+      "link": "{basePath}brochure/",
+      "type": "link"
+    },
+    {
+      "label": "Model Mobil",
+      "type": "dropdown",
+      "items": [
+        {
+          "label": "City Car & Hatchback",
+          "link": "{basePath}index.html?cat=City%20Car%20%26%20Hatchback#model-list-section"
+        },
+        {
+          "label": "MPV",
+          "link": "{basePath}index.html?cat=MPV#model-list-section"
+        },
+        {
+          "label": "Sedan",
+          "link": "{basePath}index.html?cat=Sedan#model-list-section"
+        },
+        {
+          "label": "SUV",
+          "link": "{basePath}index.html?cat=SUV#model-list-section"
+        }
+      ]
+    },
+    {
+      "label": "Persyaratan Kredit",
+      "link": "{basePath}#kredit-section",
+      "type": "link"
+    },
+    {
+      "label": "FAQ",
+      "link": "{basePath}#faq-section",
+      "type": "link"
+    }
+  ],
+  "usp": {
+    "pricelist": {
+      "title": "Pricelist",
+      "description": "Dapatkan pricelist / daftar harga mobil Honda terbaru untuk wilayah Jabodetabek secara lengkap.",
+      "link": "pricelist/",
+      "buttonText": "Lihat Pricelist"
+    },
+    "brochure": {
+      "title": "e-Brochure",
+      "description": "Unduh e-Brochure resmi untuk melihat detail fitur, spesifikasi, dan keunggulan mobil Honda.",
+      "link": "brochure/",
+      "buttonText": "Lihat Brosur"
+    },
+    "testDrive": {
+      "title": "Booking Test Drive",
+      "description": "Rasakan langsung sensasi berkendara mobil Honda dengan menjadwalkan sesi test drive Anda.",
+      "link": "whatsapp:testDrive",
+      "buttonText": "Jadwalkan Test Drive"
+    }
+  },
+  "salesBanner": {
+    "badge": "Konsultan Resmi Honda Bintaro",
+    "heading": "Konsultasikan kebutuhan kendaraan Anda bersama konsultan profesional kami!",
+    "subheading": "Kami siap melayani pembelian cash/kredit mobil Honda OTR Jabodetabek dengan penawaran bunga rendah, angsuran ringan, serta cicilan fleksibel.",
+    "ctaText": "Hubungi {salesName}"
+  },
+  "promos": [
+    {
+      "tag": "BRIO PROMO",
+      "tagColorClass": "bg-red-50 text-honda",
+      "title": "Honda Brio DP Minim & Cicilan Ringan",
+      "description": "Miliki Honda Brio impian Anda sekarang dengan paket uang muka super murah mulai dari Rp 15 Jutaan saja.",
+      "image": "https://ardiasgusty.github.io/honda/assets/images/banner/brio-slp_1783065132437.webp",
+      "waText": "Halo {salesName}, saya ingin tanya promo DP minim Brio.",
+      "ctaText": "Tanya Promo"
+    },
+    {
+      "tag": "SUV PROMO",
+      "tagColorClass": "bg-gray-100 text-gray-900",
+      "title": "Honda HR-V Cash Back Maksimal",
+      "description": "Dapatkan diskon khusus/cashback bernilai puluhan juta untuk pembelian unit Honda HR-V tipe e:HEV & Turbo.",
+      "image": "https://ardiasgusty.github.io/honda/assets/images/banner/hrv-slp_1783065113933.webp",
+      "waText": "Halo {salesName}, saya ingin tanya cashback Honda HR-V.",
+      "ctaText": "Tanya Promo"
+    },
+    {
+      "tag": "HYBRID FAIR",
+      "tagColorClass": "bg-blue-50 text-blue-600",
+      "title": "Bunga 0% & Tenor Hingga 3 Tahun",
+      "description": "Program bunga spesial 0% hingga 3 tahun khusus untuk model elektrifikasi Honda Accord & StepWGN e:HEV.",
+      "image": "https://ardiasgusty.github.io/honda/assets/images/banner/honda-family-fair_1783065104846.webp",
+      "waText": "Halo {salesName}, saya tanya promo bunga 0% hybrid.",
+      "ctaText": "Tanya Promo"
+    },
+    {
+      "tag": "GRAND PRIZE",
+      "tagColorClass": "bg-green-50 text-green-600",
+      "title": "Wujudkan Impian Anda Bersama Honda",
+      "description": "Setiap transaksi pembelian mobil berkesempatan memenangkan undian berhadiah utama mobil Honda Baru!",
+      "image": "",
+      "customImageHtml": "<div class=\"h-40 bg-honda flex flex-col justify-center items-center p-6 text-white text-center\"><span class=\"text-5xl font-black font-outfit tracking-wide mb-1\">Rp 300JT*</span><span class=\"text-xs font-bold tracking-widest uppercase\">Total Hadiah Utama</span></div>",
+      "waText": "Halo {salesName}, bagaimana cara ikut undian hadiah Honda 300jt.",
+      "ctaText": "Tanya Promo"
+    }
+  ],
+  "creditRequirements": {
+    "title": "Persyaratan Kredit Mobil",
+    "subtitle": "Siapkan dokumen pendukung berikut untuk mempercepat proses pengajuan kredit Anda",
+    "categories": [
+      {
+        "title": "Kredit Perorangan",
+        "icon": "👤",
+        "bgClass": "bg-red-50/50 border border-red-50",
+        "titleClass": "text-honda",
+        "items": [
+          "KTP Pemohon (Suami & Istri jika sudah menikah)",
+          "Kartu Keluarga (KK)",
+          "NPWP Pribadi",
+          "Slip Gaji (Karyawan) / Surat Keterangan Usaha (Wiraswasta)",
+          "Rekening Koran / Rekening Tabungan 3 bulan terakhir",
+          "Bukti Kepemilikan Rumah (PBB / Rekening Listrik)"
+        ]
+      },
+      {
+        "title": "Kredit Perusahaan / Badan Usaha",
+        "icon": "🏢",
+        "bgClass": "bg-gray-50 border border-gray-100",
+        "titleClass": "text-gray-900",
+        "items": [
+          "KTP Direksi dan Pemegang Saham",
+          "SIUP, TDP, NIB (Nomor Induk Berusaha)",
+          "Akta Pendirian Perusahaan & Perubahan Terakhir",
+          "SK Menkumham",
+          "Rekening Koran Perusahaan 3 bulan terakhir",
+          "NPWP Perusahaan"
+        ]
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "question": "Kenapa membeli mobil di Honda Bintaro?",
+      "answer": "Honda Bintaro merupakan distributor utama/dealer resmi mobil Honda terbesar yang menyediakan berbagai pilihan model mobil lengkap, fasilitas servis terpadu, serta sales konsultan resmi yang membantu transaksi cash maupun kredit secara aman."
+    },
+    {
+      "question": "Apa bisa melakukan pemesanan kendaraan dengan KTP luar Jabodetabek?",
+      "answer": "Ya, pemesanan mobil tetap bisa dilayani. Namun untuk pengurusan STNK, plat nomor, dan BPKB akan menyesuaikan dengan alamat KTP Anda. Untuk beberapa wilayah luar Jabodetabek akan dikenakan biaya pengiriman unit (pelataran) dan selisih tarif BBNKB daerah terkait."
+    },
+    {
+      "question": "Apa saja persyaratan kredit agar disetujui leasing?",
+      "answer": "Secara umum persyaratan dokumen kredit meliputi: KTP Suami & Istri, Kartu Keluarga (KK), NPWP, Slip Gaji/Surat Keterangan Penghasilan, serta mutasi rekening koran tabungan 3 bulan terakhir. Pendapatan minimal bulanan disarankan adalah tiga kali jumlah angsuran yang diajukan."
+    },
+    {
+      "question": "Apakah pembayaran pemesanan kendaraan online aman?",
+      "answer": "Sangat aman. Setiap transaksi pembelian unit di Honda Bintaro menggunakan Virtual Account resmi yang terbit atas nama Honda Bintaro untuk tiap masing-masing customer. Harap pastikan nama rekening virtual yang muncul saat transfer adalah Virtual Account Honda Bintaro."
+    }
+  ],
+  "footer": {
+    "aboutText": "Sales resmi Honda Bintaro Jabodetabek terpercaya. Dapatkan promo harga OTR terbaik, cicilan ringan, uang muka rendah serta bonus aksesoris melimpah.",
+    "hours": "Senin - Sabtu: 08:30 - 17:00 WIB",
+    "address": "CBD 03 dan 05, Blok A2, Kota Taman Bintaro Jaya Sektor VII, Pondok Aren, Kec. Pondok Aren, Kota Tangerang Selatan, Banten 15224.",
+    "mapLink": "https://maps.google.com/?q=Honda+Bintaro+Sektor+7",
+    "paymentDesc": "Pembayaran aman dengan nomor virtual account resmi bank mandiri, BCA, maupun BRI yang didaftarkan khusus atas nama <b>Honda Bintaro</b>.",
+    "paymentBanks": [
+      "BCA",
+      "MANDIRI",
+      "BRI"
+    ],
+    "copyright": "&copy; 2026 Honda Bintaro. All rights reserved. Developed for Gusti."
+  },
+  "modelLinks": {
+    "brio": "model/brio/",
+    "hr-v": "model/hr-v/",
+    "wr-v": "model/wr-v/",
+    "stepwgn": "model/stepwgn/",
+    "br-v": "model/br-v/",
+    "city-hatchback-rs": "model/city-hatchback-rs/",
+    "cr-v": "model/cr-v/",
+    "civic-rs": "model/civic-rs/",
+    "accord": "model/accord/",
+    "superone": "model/superone/",
+    "en1": "model/en1/"
+  },
+  "brochures": {
+    "accord": "1tfqHJNoClZH0ekF9HKjckSI0a-2ROHCO",
+    "brio": "14CneF_iL55YBzkxJZi7Jz6RI-WOBOQoN",
+    "br-v": "15ajwuhTtYhnaUgW6fzM6i2C3Tf42p6-s",
+    "city-hatchback-rs": "1kyOlDClQgPj2AlP2RZtg-oT5ljtAEN-A",
+    "civic-rs": "1EQ6I4iOzwM32Dp48En9yok8nixHrvKt4",
+    "cr-v": "1fFFbWcCJOHedXwnp_4SSMGd1e_LqD2kc",
+    "en1": "1PmsBvdYPx_0KUQo3eGzRVveF39R5eicY",
+    "hr-v": "1AtxnWSfEzjQhW5eskcEGS_1Ao8LupF7e",
+    "stepwgn": "1T4R1Af7Tcfol_mhUJrUyjbIMWXj6K7qf",
+    "wr-v": "1kaYXJWmMA17nAoVTIJdFamv_wZFUPDIk"
+  }
+}

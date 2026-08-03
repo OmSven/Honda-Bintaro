@@ -27,7 +27,7 @@
                 }
                 
                 if (searchParams) {
-                    searchParams = searchParams.replace(/Rere/g, salesName);
+                    searchParams = searchParams.replace(/Rere/g, salesName).replace(/{salesName}/g, salesName);
                 }
 
                 link.href = `https://wa.me/${phone}${searchParams}`;
@@ -91,21 +91,26 @@
 
     // ================= FETCH AND RENDER PRODUCTS (Mega Menu + Search) =================
     let productsList = {};
+    let siteConfig = {};
 
     async function fetchHeaderProducts() {
         try {
-            const res = await fetch(`${basePath}data/products.json`);
-            productsList = await res.json();
+            const [productsRes, configRes] = await Promise.all([
+                fetch(`${basePath}data/products.json`),
+                fetch(`${basePath}data/site_config.json`)
+            ]);
+            productsList = await productsRes.json();
+            siteConfig = await configRes.json();
             
-            const config = productsList._config || {};
+            const contact = siteConfig.contact || {};
             
             // Build and inject HTML with dynamic config
-            initializeHeaderDOM(config);
+            initializeHeaderDOM(contact);
             
             // Apply config dynamically
-            window.applyContactConfig(config);
+            window.applyContactConfig(contact);
         } catch (err) {
-            console.error("Gagal memuat produk di header:", err);
+            console.error("Gagal memuat produk dan konfigurasi di header:", err);
             // Render using empty config fallbacks
             initializeHeaderDOM({});
         }
@@ -118,6 +123,7 @@
         const email = config.email || "sales@hondabintaro.com";
         const salesName = config.salesName || "Rere";
         const headerLogo = config.headerLogo || "https://blogger.googleusercontent.com/img/a/AVvXsEgHjSO7vshbtitZnLrJtGp6Dvi8MJzNIbTYAvxF9y17xT240jA2AlIx2IwbH9TFKeqbHswe5_Mk8YmsrZN8C_BgabRyiR6oHs8fvx7wfPWRpLodhDZmCgfsC130Xwxd0vF88BYOeXwbHlEqKVJeQNmNZFW-KEa-OkCYNZSKThMck9ZZh9zR5e6iM5DZvKb6=s1600";
+        const fraudModalImg = siteConfig.site?.fraudModalImage || "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEirhSQH2IYumXgPsAecW2g7mDOvCDGxBeVniHOAV3Gw5EWjKYbMGtlyin5PNaFVtXmNh7NWGTp-EFTIsB6V2tG_INT2G-xZXbtvB5urudV929fSDuBDJHOWfoHADZYhLPbxq1LV7S6nfgZztN0jb7picoLYnH_U4o2NluV-DQL1Wx7ZMHnt0vtLzxcgS6ek/s1600/WARNING-FRAUD-DEALER-(FEED).jpg";
 
         headerContainer.className = "bg-white border-b border-gray-100 sticky top-0 z-50 transition-all duration-300";
         
@@ -150,7 +156,7 @@
                         <div class="relative" id="algolia-search-wrapper">
                             <input type="text" id="search-input" placeholder="Cari Produk..." 
                                    class="w-full bg-gray-100 border-none rounded-full px-5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-honda/20 focus:bg-white transition-all pl-11">
-                            <span class="absolute left-4 top-3.5 text-gray-400">
+                            <span class="absolute left-4 text-gray-400" style="top: 0.700rem;">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
@@ -199,7 +205,7 @@
             </div>
 
             <!-- DYNAMIC MEGA MENU PANEL OVERLAY -->
-            <div id="mega-menu-panel" class="absolute left-0 right-0 bg-white border-b border-gray-100 shadow-xl opacity-0 translate-y-[-10px] pointer-events-none mega-menu-transition z-40 max-h-[85vh] overflow-y-auto">
+            <div id="mega-menu-panel" class="absolute left-0 right-0 bg-white border-b border-gray-100 shadow-xl opacity-0 translate-y-[-10px] pointer-events-none z-40 max-h-[85vh] overflow-y-auto">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div class="flex justify-between items-center mb-6">
                         <h3 class="text-xl font-bold font-outfit text-gray-800">Daftar Model Mobil Honda</h3>
@@ -221,7 +227,7 @@
         elementsWrapper.innerHTML = `
             <!-- RIGHT SIDEBAR MENU OVERLAY -->
             <div id="sidebar-backdrop" class="fixed inset-0 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-300 z-50"></div>
-            <div id="sidebar-panel" class="fixed right-0 top-0 bottom-0 w-80 bg-white shadow-2xl z-50 transform translate-x-full sidebar-transition flex flex-col">
+            <div id="sidebar-panel" class="fixed right-0 top-0 bottom-0 w-80 bg-white shadow-2xl z-50 transform translate-x-full flex flex-col">
                 <div class="p-5 border-b border-gray-100 flex justify-between items-center">
                     <span class="font-bold text-lg font-outfit text-gray-900">Navigasi</span>
                     <button id="sidebar-close-btn" class="text-gray-400 hover:text-gray-600 focus:outline-none">
@@ -257,29 +263,8 @@
                         </div>
                     </div>
 
-                    <nav class="px-4 space-y-1">
-                        <a href="${basePath}" class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">Halaman Utama</a>
-                        <a href="https://wa.me/${phone}?text=Halo%20${salesName},%20saya%20ingin%20booking%20test%20drive%20mobil%20Honda." target="_blank" class="block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">Booking Test Drive</a>
-                        <a href="${basePath}#promo-section" class="sidebar-link block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">Promo Honda 2026</a>
-                        
-                        <!-- Collapsible Model Menu inside Sidebar -->
-                        <div>
-                            <button id="sidebar-model-toggle" class="flex justify-between items-center w-full px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition focus:outline-none">
-                                <span>Model Mobil</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform transition-transform duration-200" id="sidebar-model-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                            <div id="sidebar-model-list" class="hidden pl-6 space-y-1 mt-1">
-                                <a href="${basePath}index.html?cat=${encodeURIComponent('City Car & Hatchback')}#model-list-section" class="sidebar-cat-link block px-4 py-1.5 text-xs font-medium text-gray-500 hover:text-honda transition">City Car & Hatchback</a>
-                                <a href="${basePath}index.html?cat=${encodeURIComponent('MPV')}#model-list-section" class="sidebar-cat-link block px-4 py-1.5 text-xs font-medium text-gray-500 hover:text-honda transition">MPV</a>
-                                <a href="${basePath}index.html?cat=${encodeURIComponent('Sedan')}#model-list-section" class="sidebar-cat-link block px-4 py-1.5 text-xs font-medium text-gray-500 hover:text-honda transition">Sedan</a>
-                                <a href="${basePath}index.html?cat=${encodeURIComponent('SUV')}#model-list-section" class="sidebar-cat-link block px-4 py-1.5 text-xs font-medium text-gray-500 hover:text-honda transition">SUV</a>
-                            </div>
-                        </div>
-
-                        <a href="${basePath}#kredit-section" class="sidebar-link block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">Persyaratan Kredit</a>
-                        <a href="${basePath}#faq-section" class="sidebar-link block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">FAQ</a>
+                    <nav class="px-4 space-y-1" id="sidebar-nav-container">
+                        <!-- Navigation items populated dynamically -->
                     </nav>
                 </div>
                 
@@ -292,8 +277,8 @@
             </div>
 
             <!-- WARNING FRAUD MODAL -->
-            <div id="fraud-modal" class="fixed inset-0 bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300 z-50 flex items-center justify-center p-4">
-                <div class="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="fraud-modal-panel">
+            <div id="fraud-modal" class="fixed inset-0 bg-black/60 opacity-0 pointer-events-none z-50 flex items-center justify-center p-4">
+                <div class="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl transform scale-95" id="fraud-modal-panel">
                     <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
                         <div class="flex items-center gap-2 text-honda">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -308,16 +293,84 @@
                         </button>
                     </div>
                     <div class="p-4 bg-white max-h-[70vh] overflow-y-auto flex items-center justify-center">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEirhSQH2IYumXgPsAecW2g7mDOvCDGxBeVniHOAV3Gw5EWjKYbMGtlyin5PNaFVtXmNh7NWGTp-EFTIsB6V2tG_INT2G-xZXbtvB5urudV929fSDuBDJHOWfoHADZYhLPbxq1LV7S6nfgZztN0jb7picoLYnH_U4o2NluV-DQL1Wx7ZMHnt0vtLzxcgS6ek/s1600/WARNING-FRAUD-DEALER-(FEED).jpg" 
+                        <img src="${fraudModalImg}" 
                              alt="Warning Fraud Dealer" class="max-w-full h-auto object-contain rounded-xl select-none" draggable="false">
                     </div>
                     <div class="p-4 bg-gray-50 border-t border-gray-100 text-center text-xs font-semibold text-gray-600">
-                        Berhati-hati saat bertransaksi! Pastikan transfer to rekening resmi dealer.
+                        Berhati-hati saat bertransaksi! Pastikan transfer ke rekening resmi dealer.
                     </div>
                 </div>
             </div>
         `;
         document.body.appendChild(elementsWrapper);
+
+        // Dynamically populate navigation menu items
+        const navContainer = document.getElementById('sidebar-nav-container');
+        if (navContainer && siteConfig.navigation) {
+            let navHtml = '';
+            siteConfig.navigation.forEach(item => {
+                let resolvedLink = (item.link || '')
+                    .replace(/{basePath}/g, basePath)
+                    .replace(/{phone}/g, phone)
+                    .replace(/{salesName}/g, salesName);
+                
+                if (item.type === 'whatsapp') {
+                    const templateKey = item.link.replace(/^whatsapp:/, '');
+                    const rawMsg = siteConfig.whatsappTemplates?.[templateKey] || "Halo {salesName}, saya ingin menghubungi Anda.";
+                    const msg = rawMsg.replace(/{salesName}/g, salesName);
+                    resolvedLink = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+                    
+                    navHtml += `
+                        <a href="${resolvedLink}" target="_blank" class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">${item.label}</a>
+                    `;
+                } else if (item.type === 'dropdown') {
+                    let subItemsHtml = '';
+                    if (item.items && Array.isArray(item.items)) {
+                        item.items.forEach(sub => {
+                            const resolvedSubLink = (sub.link || '')
+                                .replace(/{basePath}/g, basePath)
+                                .replace(/{phone}/g, phone)
+                                .replace(/{salesName}/g, salesName);
+                            subItemsHtml += `
+                                <a href="${resolvedSubLink}" class="sidebar-cat-link block px-4 py-1.5 text-xs font-medium text-gray-500 hover:text-honda transition">${sub.label}</a>
+                            `;
+                        });
+                    }
+                    navHtml += `
+                        <div>
+                            <button id="sidebar-model-toggle" class="flex justify-between items-center w-full px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition focus:outline-none">
+                                <span>${item.label}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform transition-transform duration-200" id="sidebar-model-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div id="sidebar-model-list" class="hidden pl-6 space-y-1 mt-1">
+                                ${subItemsHtml}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    navHtml += `
+                        <a href="${resolvedLink}" class="sidebar-link block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">${item.label}</a>
+                    `;
+                }
+            });
+            navContainer.innerHTML = navHtml;
+        }
+
+        // Add transition styles after a brief tick to prevent page-load transition glitch
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                const sidebar = document.getElementById('sidebar-panel');
+                const mega = document.getElementById('mega-menu-panel');
+                const fraud = document.getElementById('fraud-modal');
+                const fraudPanel = document.getElementById('fraud-modal-panel');
+                if (sidebar) sidebar.style.transition = 'transform 0.3s ease-in-out';
+                if (mega) mega.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                if (fraud) fraud.style.transition = 'opacity 0.3s ease-in-out';
+                if (fraudPanel) fraudPanel.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+        });
 
         // ================= EVENT LISTENING & ACCORDIONS =================
         const megaMenuBtn = document.getElementById('mega-menu-btn');
@@ -383,12 +436,14 @@
             if (megaMenuArrow) megaMenuArrow.classList.add('rotate-180');
         }
 
-        function closeMegaMenu() {
+        // Expose closeMegaMenu globally to let search navigation close mega menu if open
+        window.closeMegaMenu = function() {
             if (!megaMenuPanel) return;
             megaMenuPanel.classList.remove('opacity-100', 'pointer-events-auto');
             megaMenuPanel.classList.add('opacity-0', 'pointer-events-none');
             if (megaMenuArrow) megaMenuArrow.classList.remove('rotate-180');
         }
+        const closeMegaMenu = window.closeMegaMenu;
 
         if (megaMenuBtn) {
             megaMenuBtn.addEventListener('click', (e) => {
@@ -451,8 +506,8 @@
         grid.innerHTML = '';
 
         // Sort products dynamically based on configuration
-        let carsArray = Object.entries(productsList).filter(([id]) => id !== '_config');
-        const orderList = productsList._config?.productOrder || [];
+        let carsArray = Object.entries(productsList);
+        const orderList = siteConfig.site?.productOrder || [];
         
         carsArray.sort((a, b) => {
             const [idA, carA] = a;
@@ -531,7 +586,6 @@
 
             const matches = [];
             for (const [id, car] of Object.entries(productsList)) {
-                if (id === '_config') continue;
                 if (car.name.toLowerCase().includes(cleanQuery) || 
                     car.category.toLowerCase().includes(cleanQuery) || 
                     car.engine.toLowerCase().includes(cleanQuery)) {

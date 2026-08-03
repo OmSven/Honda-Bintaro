@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-Brochure Mobil Honda | Honda Bintaro Jabodetabek</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        honda: '#cc0000',
+                        'honda-dark': '#990000',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- SHARED HEADER CONTAINER -->
+    <div id="shared-header" data-base-path="../"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+        
+        <!-- Page Title Header -->
+        <div class="text-center mb-12 sm:mb-16">
+            <span class="text-xs font-bold text-honda uppercase tracking-widest block mb-2">Brosur Resmi Mobil Honda</span>
+            <h1 class="text-2xl sm:text-4xl font-extrabold font-outfit text-gray-900 mb-4 tracking-tight">e-Brochure Mobil Honda</h1>
+            <div class="h-1 w-16 bg-honda mx-auto rounded-full mb-3"></div>
+            <p class="text-xs sm:text-sm text-gray-400 max-w-md mx-auto">Silakan lihat langsung spesifikasi lengkap secara online atau unduh brosur resmi mobil Honda pilihan Anda.</p>
+        </div>
+
+        <!-- Dynamic Loader & Content Containers -->
+        <div id="brochure-loader" class="text-center py-16">
+            <div class="animate-spin inline-block w-8 h-8 border-[3px] border-current border-t-transparent text-honda rounded-full" role="status" aria-label="loading">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-3 font-semibold">Memuat e-Brochure resmi...</p>
+        </div>
+
+        <!-- Brochure Card Grid Container -->
+        <div id="brochure-grid" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+            <!-- Rendered dynamically -->
+        </div>
+
+    </main>
+
+    <!-- FULLSCREEN MODAL PDF FLIPBOOK VIEWER -->
+    <div id="pdf-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl w-full max-w-5xl h-[85vh] overflow-hidden flex flex-col shadow-2xl transform scale-95 transition-transform duration-300 relative" id="pdf-modal-panel">
+            
+            <!-- Modal Header -->
+            <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                <div class="min-w-0">
+                    <span class="text-[10px] font-bold text-honda uppercase tracking-widest block mb-0.5">Penampil Brosur Resmi</span>
+                    <h3 class="font-bold text-sm sm:text-base text-gray-900 truncate font-outfit" id="pdf-modal-title">Brosur Honda</h3>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="#" target="_blank" id="pdf-modal-download-btn" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-full transition">
+                        <span>📥</span>
+                        <span>Download Brosur</span>
+                    </a>
+                    <button id="pdf-modal-close" class="text-gray-400 hover:text-gray-600 transition p-1.5 hover:bg-gray-100 rounded-full focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Modal Iframe Body -->
+            <div class="flex-1 bg-gray-900 relative">
+                <!-- Inner Loading Ring -->
+                <div id="iframe-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-950 text-white z-10">
+                    <div class="animate-spin inline-block w-8 h-8 border-[3px] border-current border-t-transparent text-honda rounded-full" role="status"></div>
+                    <p class="text-xs text-gray-400 mt-3 font-semibold">Membuka penampil brosur...</p>
+                </div>
+                
+                <iframe src="" class="w-full h-full border-0 hidden" id="pdf-iframe" allow="autoplay"></iframe>
+            </div>
+
+            <!-- Mobile Download Bar -->
+            <div class="p-4 border-t border-gray-100 bg-gray-50 flex sm:hidden justify-center">
+                <a href="#" target="_blank" id="pdf-modal-download-btn-mobile" class="flex justify-center items-center gap-2 w-full bg-honda hover:bg-honda-dark text-white font-bold py-2.5 rounded-full text-xs shadow transition">
+                    <span>📥</span>
+                    <span>Download e-Brochure</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SHARED FOOTER CONTAINER -->
+    <footer id="shared-footer" data-base-path="../"></footer>
+
+    <!-- Header & Footer script bundles -->
+    <script src="../assets/js/header.js" defer></script>
+    <script src="../assets/js/footer.js" defer></script>
+
+    <!-- Page Logic Script -->
+    <script>
+        let carsData = {};
+        let siteConfig = {};
+
+        async function loadBrochures() {
+            const loader = document.getElementById('brochure-loader');
+            const grid = document.getElementById('brochure-grid');
+            
+            try {
+                const [productsRes, configRes] = await Promise.all([
+                    fetch('../data/products.json'),
+                    fetch('../data/site_config.json')
+                ]);
+                carsData = await productsRes.json();
+                siteConfig = await configRes.json();
+            } catch (err) {
+                console.error("Gagal memuat data:", err);
+            }
+
+            if (!carsData || !siteConfig.brochures) {
+                loader.innerHTML = `
+                    <div class="text-red-500 py-12">
+                        <p class="font-bold text-sm">Gagal memuat e-Brochure.</p>
+                        <span class="text-xs text-gray-400 block mt-1">Silakan refresh halaman ini.</span>
+                    </div>
+                `;
+                return;
+            }
+
+            renderBrochureGrid();
+            loader.classList.add('hidden');
+            grid.classList.remove('hidden');
+        }
+
+        function renderBrochureGrid() {
+            const grid = document.getElementById('brochure-grid');
+            grid.innerHTML = '';
+
+            const orderList = siteConfig.site?.productOrder || [];
+            const brochures = siteConfig.brochures;
+
+            // Gather valid keys that have brochure links
+            const validKeys = Object.keys(brochures);
+
+            // Sort based on productOrder
+            validKeys.sort((a, b) => {
+                const indexA = orderList.indexOf(a);
+                const indexB = orderList.indexOf(b);
+                if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+                if (indexA !== -1) return -1;
+                if (indexB !== -1) return 1;
+                return 0;
+            });
+
+            validKeys.forEach(modelId => {
+                const car = carsData[modelId];
+                if (!car) return;
+
+                const fileId = brochures[modelId];
+                const viewUrl = `https://drive.google.com/file/d/${fileId}/view?usp=drive_link`;
+                const directDownload = `https://drive.google.com/uc?export=download&id=${fileId}`;
+
+                const rawThumb = car.images[0].thumb;
+                const thumbUrl = (rawThumb.startsWith('http://') || rawThumb.startsWith('https://')) 
+                    ? rawThumb 
+                    : `../${rawThumb.replace(/^\.\//, '')}`;
+
+                grid.innerHTML += `
+                    <!-- Brochure Card -->
+                    <div class="bg-white rounded-3xl border border-gray-100 p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition duration-300 group">
+                        
+                        <!-- Image Container with Hover zoom -->
+                        <div class="h-32 sm:h-36 w-full flex items-center justify-center overflow-hidden bg-gray-50 rounded-2xl border border-gray-50/50 mb-5 relative">
+                            <img src="${thumbUrl}" alt="${car.name}" 
+                                 class="max-h-[85%] max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-500 select-none" draggable="false">
+                        </div>
+
+                        <!-- Info -->
+                        <div class="mb-6 text-center sm:text-left">
+                            <h3 class="font-bold text-base sm:text-lg text-gray-800 font-outfit truncate leading-tight">${car.name}</h3>
+                            <span class="text-[10px] text-gray-400 font-semibold tracking-wider uppercase block mt-1">Spesifikasi & brosur resmi</span>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="space-y-2">
+                            <button onclick="openPdfModal('${car.name}', '${fileId}')" 
+                                    class="w-full text-center py-2.5 px-4 bg-honda hover:bg-honda-dark text-white rounded-full text-xs font-bold shadow-sm hover:shadow transition duration-300 flex items-center justify-center gap-1.5">
+                                <span>📖</span>
+                                <span>Lihat Brosur</span>
+                            </button>
+                            <a href="${viewUrl}" target="_blank"
+                               class="w-full text-center py-2.5 px-4 border border-gray-200 hover:border-honda text-gray-700 hover:text-honda rounded-full text-xs font-bold transition duration-300 flex items-center justify-center gap-1.5">
+                                <span>📥</span>
+                                <span>Download PDF</span>
+                            </a>
+                        </div>
+
+                    </div>
+                `;
+            });
+        }
+
+        // ================= PDF MODAL VIEW CONTROLLERS =================
+        const modal = document.getElementById('pdf-modal');
+        const modalPanel = document.getElementById('pdf-modal-panel');
+        const modalTitle = document.getElementById('pdf-modal-title');
+        const modalIframe = document.getElementById('pdf-iframe');
+        const modalLoader = document.getElementById('iframe-loader');
+        
+        const modalDownloadBtn = document.getElementById('pdf-modal-download-btn');
+        const modalDownloadBtnMobile = document.getElementById('pdf-modal-download-btn-mobile');
+
+        function openPdfModal(carName, fileId) {
+            modalTitle.innerText = `Brosur Resmi ${carName}`;
+            
+            // Set download buttons redirect links
+            const viewUrl = `https://drive.google.com/file/d/${fileId}/view?usp=drive_link`;
+            modalDownloadBtn.href = viewUrl;
+            modalDownloadBtnMobile.href = viewUrl;
+
+            // Load Google Drive embed view URL
+            const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+            modalIframe.src = previewUrl;
+
+            // Toggle show modal layout
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            modalPanel.classList.remove('scale-95');
+            modalPanel.classList.add('scale-100');
+            document.body.classList.add('overflow-hidden');
+
+            // Listen for iframe onload
+            modalLoader.classList.remove('hidden');
+            modalIframe.classList.add('hidden');
+            
+            modalIframe.onload = function() {
+                modalLoader.classList.add('hidden');
+                modalIframe.classList.remove('hidden');
+            };
+        }
+
+        function closePdfModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.classList.remove('opacity-100');
+            modalPanel.classList.add('scale-95');
+            modalPanel.classList.remove('scale-100');
+            document.body.classList.remove('overflow-hidden');
+
+            // Reset iframe url source
+            modalIframe.src = '';
+        }
+
+        document.getElementById('pdf-modal-close').addEventListener('click', closePdfModal);
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closePdfModal();
+            }
+        });
+
+        // Initialize loader on start
+        window.addEventListener('DOMContentLoaded', loadBrochures);
+    </script>
+
+</body>
+
+</html>

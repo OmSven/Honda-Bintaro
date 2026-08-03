@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricelist Mobil Honda - Harga OTR Terbaru | Honda Bintaro</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        honda: '#cc0000',
+                        'honda-dark': '#990000',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- SHARED HEADER CONTAINER -->
+    <div id="shared-header" data-base-path="../"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+        
+        <!-- Page Title Header -->
+        <div class="text-center mb-10">
+            <h1 class="text-2xl sm:text-4xl font-extrabold font-outfit text-gray-900 mb-4 tracking-tight">Pricelist Mobil Honda</h1>
+            <div class="h-1 w-16 bg-honda mx-auto rounded-full"></div>
+        </div>
+
+        <!-- Dynamic Loader & Content Containers -->
+        <div id="pricelist-loader" class="text-center py-12">
+            <div class="animate-spin inline-block w-8 h-8 border-[3px] border-current border-t-transparent text-honda rounded-full" role="status" aria-label="loading">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-3 font-semibold">Memuat daftar harga OTR terbaru...</p>
+        </div>
+
+        <!-- Main Wrapper (Hidden by default, shown once loaded) -->
+        <div id="pricelist-content" class="hidden space-y-8">
+            
+            <!-- DESKTOP TABLE VIEW (Visible on medium screens and above) -->
+            <div class="hidden md:block overflow-hidden bg-white border border-gray-100 rounded-2xl shadow-sm">
+                <table class="w-full border-collapse text-left text-xs lg:text-sm">
+                    <thead>
+                        <tr class="bg-honda text-white font-bold font-outfit uppercase tracking-wider text-center">
+                            <th class="py-4 px-6 border-r border-red-700/40">MODEL</th>
+                            <th class="py-4 px-4 border-r border-red-700/40">TIPE</th>
+                            <th class="py-4 px-4 border-r border-red-700/40">TRANSMISI</th>
+                            <th class="py-4 px-6 border-r border-red-700/40">HARGA OTR</th>
+                            <th class="py-4 px-6 border-r border-red-700/40">PAKET PRIMA</th>
+                            <th class="py-4 px-6">PAKET PRIMA+</th>
+                        </tr>
+                    </thead>
+                    <tbody id="desktop-tbody" class="divide-y divide-gray-100 text-gray-700">
+                        <!-- Rendered dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- MOBILE CARDS VIEW (Visible on small screens) -->
+            <div id="mobile-cards-container" class="md:hidden space-y-6">
+                <!-- Rendered dynamically -->
+            </div>
+
+            <!-- NOTES / FOOTNOTES SECTION -->
+            <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm text-[10px] sm:text-xs text-gray-400 leading-relaxed space-y-2" id="pricelist-notes">
+                <!-- Rendered dynamically -->
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- SHARED FOOTER CONTAINER -->
+    <footer id="shared-footer" data-base-path="../"></footer>
+
+    <!-- Header & Footer script bundles -->
+    <script src="../assets/js/header.js" defer></script>
+    <script src="../assets/js/footer.js" defer></script>
+
+    <!-- Page Logic Script -->
+    <script>
+        async function loadPricelist() {
+            const loader = document.getElementById('pricelist-loader');
+            const content = document.getElementById('pricelist-content');
+            
+            const apiUrl = 'https://cdn.argust.my.id/honda/data/pricelist.json';
+            const fallbackUrl = '../data/pricelist.json';
+            
+            let data = null;
+            
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Network response was not ok');
+                data = await response.json();
+            } catch (err) {
+                console.warn('Gagal memuat API utama, menggunakan fallback lokal:', err);
+                try {
+                    const fallbackResponse = await fetch(fallbackUrl);
+                    data = await fallbackResponse.json();
+                } catch (fallbackErr) {
+                    console.error('Semua pemuatan data pricelist gagal:', fallbackErr);
+                }
+            }
+            
+            if (!data) {
+                loader.innerHTML = `
+                    <div class="text-red-500 py-12">
+                        <p class="font-bold text-sm">Gagal memuat data pricelist.</p>
+                        <span class="text-xs text-gray-400 block mt-1">Silakan refresh halaman ini.</span>
+                    </div>
+                `;
+                return;
+            }
+            
+            renderDesktopTable(data.models);
+            renderMobileCards(data.models);
+            renderNotes(data.notes);
+            
+            loader.classList.add('hidden');
+            content.classList.remove('hidden');
+        }
+        
+        function renderDesktopTable(models) {
+            const tbody = document.getElementById('desktop-tbody');
+            tbody.innerHTML = '';
+            
+            models.forEach(model => {
+                const rowSpanCount = model.items.length;
+                
+                model.items.forEach((item, index) => {
+                    let modelCell = '';
+                    // Only render the model name cell for the first item with rowspan
+                    if (index === 0) {
+                        modelCell = `
+                            <td class="py-4 px-6 font-bold font-outfit text-gray-900 border-r border-gray-100 align-middle w-1/4" rowspan="${rowSpanCount}">
+                                ${model.label}
+                            </td>
+                        `;
+                    }
+                    
+                    tbody.innerHTML += `
+                        <tr class="hover:bg-gray-50/40 transition-colors">
+                            ${modelCell}
+                            <td class="py-4 px-4 text-center border-r border-gray-100 font-medium">${item.tipe}</td>
+                            <td class="py-4 px-4 text-center border-r border-gray-100 text-gray-500 font-semibold">${item.trans}</td>
+                            <td class="py-4 px-6 text-center border-r border-gray-100 font-bold text-gray-900">${item.harga}</td>
+                            <td class="py-4 px-6 text-center border-r border-gray-100 text-gray-500 font-medium">${item.essential}</td>
+                            <td class="py-4 px-6 text-center text-gray-500 font-medium">${item.extra}</td>
+                        </tr>
+                    `;
+                });
+            });
+        }
+        
+        function renderMobileCards(models) {
+            const container = document.getElementById('mobile-cards-container');
+            container.innerHTML = '';
+            
+            models.forEach(model => {
+                let itemsHtml = '';
+                
+                model.items.forEach(item => {
+                    itemsHtml += `
+                        <!-- Variant Item Card -->
+                        <div class="bg-white p-4 border border-gray-100 rounded-xl space-y-3.5 shadow-sm">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-bold text-sm text-gray-900">${item.tipe}</h4>
+                                <span class="bg-gray-100 text-gray-500 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">${item.trans}</span>
+                            </div>
+                            
+                            <div class="pt-0.5">
+                                <span class="text-[10px] text-gray-400 font-semibold block uppercase tracking-wider mb-0.5">Harga OTR</span>
+                                <span class="text-base font-extrabold text-honda leading-none block">${item.harga}</span>
+                            </div>
+                            
+                            <div class="border-t border-dashed border-gray-100 pt-3.5 space-y-2 text-xs font-medium">
+                                <div class="flex justify-between items-center text-gray-500">
+                                    <span>P. Prima</span>
+                                    <span class="font-semibold text-gray-700">${item.essential}</span>
+                                </div>
+                                <div class="flex justify-between items-center text-gray-500">
+                                    <span>P. Prima+</span>
+                                    <span class="font-semibold text-gray-700">${item.extra}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML += `
+                    <!-- Model Block -->
+                    <div class="space-y-3">
+                        <div class="bg-honda text-white font-bold font-outfit text-xs tracking-wider uppercase py-3 px-4 rounded-xl shadow-sm">
+                            ${model.label}
+                        </div>
+                        <div class="grid grid-cols-1 gap-3.5">
+                            ${itemsHtml}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        function renderNotes(notes) {
+            const container = document.getElementById('pricelist-notes');
+            container.innerHTML = '';
+            
+            notes.forEach(note => {
+                container.innerHTML += `<p>${note}</p>`;
+            });
+        }
+        
+        window.addEventListener('DOMContentLoaded', loadPricelist);
+    </script>
+
+</body>
+
+</html>
