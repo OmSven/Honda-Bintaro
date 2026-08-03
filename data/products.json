@@ -5,7 +5,24 @@
     "email": "sales@hondabintaro.com",
     "salesName": "Rere",
     "headerLogo": "https://blogger.googleusercontent.com/img/a/AVvXsEgHjSO7vshbtitZnLrJtGp6Dvi8MJzNIbTYAvxF9y17xT240jA2AlIx2IwbH9TFKeqbHswe5_Mk8YmsrZN8C_BgabRyiR6oHs8fvx7wfPWRpLodhDZmCgfsC130Xwxd0vF88BYOeXwbHlEqKVJeQNmNZFW-KEa-OkCYNZSKThMck9ZZh9zR5e6iM5DZvKb6=s1600",
-    "footerLogo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGGwKoZTHNAiyQl2GdhLVz8Ij_x3QgqEfXWi2DXS0R9TvzEZh8aH9aNQEOoyQORyRrbzTr_HP9MJDWdzKafn1341u6lM0uZZCB3Mcdz-OcTcYylVgBca3d4CeOzXrdrxX3h1VLtqznGnLkXOxL8Gfe6UM-VnPwx4XIAPfKUWcMmrWr4Tfkv-hhBjvqmCo/s1600/logo-honda-how-we-move-you.png"
+    "footerLogo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGGwKoZTHNAiyQl2GdhLVz8Ij_x3QgqEfXWi2DXS0R9TvzEZh8aH9aNQEOoyQORyRrbzTr_HP9MJDWdzKafn1341u6lM0uZZCB3Mcdz-OcTcYylVgBca3d4CeOzXrdrxX3h1VLtqznGnLkXOxL8Gfe6UM-VnPwx4XIAPfKUWcMmrWr4Tfkv-hhBjvqmCo/s1600/logo-honda-how-we-move-you.png",
+    "newsApiUrl": "https://www.honda-bintaro.com/wp-json/wp/v2/posts?categories=2&per_page=4",
+    "allNewsUrl": "https://www.honda-bintaro.com/news/",
+    "newsTitle": "Berita & Informasi",
+    "newsSubtitle": "Dapatkan update terkini seputar produk dan kegiatan Honda Bintaro",
+    "productOrder": [
+      "superone",
+      "brio",
+      "hr-v",
+      "wr-v",
+      "stepwgn",
+      "br-v",
+      "city-hatchback-rs",
+      "cr-v",
+      "civic-rs",
+      "accord",
+      "en1"
+    ]
   },
   "stepwgn": {
     "name": "Honda STEP WGN",
@@ -217,7 +234,7 @@
     "images": [
       {
         "thumb": "https://www.honda-indonesia.com/glide/local/uploads/images/models/logo/frontal_samping__1785122958000.png?w=300&s=1ad4ef0f5051c91ae8ea31527bb780c8",
-        "full": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhwGfy_71Hzf_skvfsZsiXQgrlWgfosIaPoAAM1hxeZ_WFTDNbFtF5xyqKkuduu5mXbyUEZFZc4sCaf8LrBrV9Jsw3vc6MrLQz-K3zIYK19Sg_uFBgxcx_Qk74bfSXG8NgtUT8zSfD8QDBsuOwINUpDwPgDKYVUitii2k_quWeQbgiJKGX3H6K1OjF1WsZ4/s1600/en1.webp"
+        "full": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-rK6Ms6DaWEpaEN6b3sgpGhGPC233PZMzar7pSGOWvU6GsvM0ulhDXpp1q9t4jclrGT5VKV7YoZCPTCdTn7SfsFGFIbDaLk_rQPxQyT8I-A1SCx37o_oF414_ujUBxWh9hxlD5qbsXcyyM9Twu0_P-ESy3u8obH57TQuoAjjdxnUILVUfe8EMNMYc1mE/s1600/Honda-Super-ONE.webp"
       }
     ],
     "category": "City Car & Hatchback",

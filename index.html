@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Honda Bintaro - Sales Counter Resmi</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -28,12 +31,20 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        h1, h2, h3, h4, h5, h6 {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: 'Outfit', sans-serif;
         }
+
         .mega-menu-transition {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .sidebar-transition {
             transition: transform 0.3s ease-in-out;
         }
@@ -42,6 +53,7 @@
     <script src="./assets/js/header.js" defer></script>
     <script src="./assets/js/footer.js" defer></script>
 </head>
+
 <body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col relative overflow-x-hidden">
 
     <!-- SHARED NAVBAR HEADER -->
@@ -49,7 +61,8 @@
 
     <!-- RESPONSIVE BANNER SLIDER CAROUSEL -->
     <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-4 md:mt-6 relative">
-        <div id="banner-slider" class="relative bg-gray-100 rounded-2xl overflow-hidden shadow-sm group w-full h-auto cursor-grab active:cursor-grabbing select-none">
+        <div id="banner-slider"
+            class="relative bg-gray-100 rounded-2xl overflow-hidden shadow-sm group w-full h-auto cursor-grab active:cursor-grabbing select-none">
             <!-- Slider Track -->
             <div id="slider-track" class="relative w-full h-auto block">
                 <!-- Banner slides are loaded dynamically -->
@@ -57,15 +70,19 @@
                     <span>Memuat Banner...</span>
                 </div>
             </div>
-            
+
             <!-- Left/Right navigation arrow buttons -->
-            <button id="slider-prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-md flex items-center justify-center focus:outline-none transition-all duration-300 z-20 opacity-0 group-hover:opacity-100 cursor-pointer pointer-events-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button id="slider-prev-btn"
+                class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-md flex items-center justify-center focus:outline-none transition-all duration-300 z-20 opacity-0 group-hover:opacity-100 cursor-pointer pointer-events-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
             </button>
-            <button id="slider-next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-md flex items-center justify-center focus:outline-none transition-all duration-300 z-20 opacity-0 group-hover:opacity-100 cursor-pointer pointer-events-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button id="slider-next-btn"
+                class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-md flex items-center justify-center focus:outline-none transition-all duration-300 z-20 opacity-0 group-hover:opacity-100 cursor-pointer pointer-events-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
             </button>
@@ -80,44 +97,65 @@
     <!-- PREMIUM USP INFO BOXES -->
     <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 my-8 md:my-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <!-- Card 1: Best Price -->
-            <div class="bg-white rounded-2xl border border-gray-100 p-6 md:p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition duration-300 relative overflow-hidden group">
+
+            <!-- Card 1: Pricelist -->
+            <div
+                class="bg-white rounded-2xl border border-gray-100 p-6 md:p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition duration-300 relative overflow-hidden group">
                 <div class="absolute top-0 left-0 right-0 h-1.5 bg-honda"></div>
                 <div class="bg-red-50 text-honda p-4 rounded-full mb-4 group-hover:scale-110 transition duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2zM9 16V8m3 8v-5m3 5V9" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                     </svg>
                 </div>
-                <h4 class="font-bold text-lg font-outfit text-gray-900 mb-1">BEST PRICE</h4>
-                <p class="text-xs text-gray-400 mb-6">Penawaran harga terbaik dengan promo eksklusif diskon dan cashback maksimal.</p>
-                <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20tanya%20promo%20harga%20terbaik%20Honda." target="_blank" class="w-full text-center py-2 px-4 border border-gray-200 rounded-full text-sm font-semibold text-gray-700 hover:border-honda hover:bg-honda hover:text-white transition duration-300">Hubungi Rere</a>
+                <h4 class="font-bold text-lg font-outfit text-gray-900 mb-1">Pricelist</h4>
+                <p class="text-xs text-gray-400 mb-6">Dapatkan pricelist / daftar harga mobil Honda terbaru untuk
+                    wilayah Jabodetabek secara lengkap.</p>
+                <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20meminta%20pricelist/daftar%20harga%20mobil%20Honda%20terbaru."
+                    target="_blank"
+                    class="w-full text-center py-2.5 px-4 border border-gray-200 rounded-full text-sm font-semibold text-gray-700 hover:border-honda hover:bg-honda hover:text-white transition duration-300">Lihat
+                    Pricelist</a>
             </div>
 
-            <!-- Card 2: Fast Process -->
-            <div class="bg-white rounded-2xl border border-gray-100 p-6 md:p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition duration-300 relative overflow-hidden group">
-                <div class="absolute top-0 left-0 right-0 h-1.5 bg-gray-900"></div>
-                <div class="bg-gray-50 text-gray-900 p-4 rounded-full mb-4 group-hover:scale-110 transition duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            <!-- Card 2: e-Brochure -->
+            <div
+                class="bg-white rounded-2xl border border-gray-100 p-6 md:p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition duration-300 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 right-0 h-1.5 bg-honda"></div>
+                <div class="bg-red-50 text-honda p-4 rounded-full mb-4 group-hover:scale-110 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg>
                 </div>
-                <h4 class="font-bold text-lg font-outfit text-gray-900 mb-1">FAST PROCESS</h4>
-                <p class="text-xs text-gray-400 mb-6">Persyaratan kredit dibantu sampai disetujui. Proses cepat, mudah dan transparan.</p>
-                <a href="#kredit-section" class="w-full text-center py-2 px-4 border border-gray-200 rounded-full text-sm font-semibold text-gray-700 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition duration-300">Lihat Syarat</a>
+                <h4 class="font-bold text-lg font-outfit text-gray-900 mb-1">e-Brochure</h4>
+                <p class="text-xs text-gray-400 mb-6">Unduh e-Brochure resmi untuk melihat detail fitur, spesifikasi,
+                    dan keunggulan mobil Honda.</p>
+                <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20meminta%20e-Brochure%20mobil%20Honda%20terbaru."
+                    target="_blank"
+                    class="w-full text-center py-2.5 px-4 border border-gray-200 rounded-full text-sm font-semibold text-gray-700 hover:border-honda hover:bg-honda hover:text-white transition duration-300">Unduh
+                    Brosur</a>
             </div>
 
-            <!-- Card 3: Trusted Agent -->
-            <div class="bg-white rounded-2xl border border-gray-100 p-6 md:p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition duration-300 relative overflow-hidden group">
-                <div class="absolute top-0 left-0 right-0 h-1.5 bg-gray-400"></div>
-                <div class="bg-gray-50 text-gray-400 p-4 rounded-full mb-4 group-hover:scale-110 transition duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            <!-- Card 3: Booking Test Drive -->
+            <div
+                class="bg-white rounded-2xl border border-gray-100 p-6 md:p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition duration-300 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 right-0 h-1.5 bg-honda"></div>
+                <div class="bg-red-50 text-honda p-4 rounded-full mb-4 group-hover:scale-110 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                 </div>
-                <h4 class="font-bold text-lg font-outfit text-gray-900 mb-1">TRUSTED AGENT</h4>
-                <p class="text-xs text-gray-400 mb-6">Sales Counter resmi Honda Bintaro terpercaya, berpengalaman dan profesional.</p>
-                <a href="#sales-banner" class="w-full text-center py-2 px-4 border border-gray-200 rounded-full text-sm font-semibold text-gray-700 hover:border-gray-500 hover:bg-gray-500 hover:text-white transition duration-300">Hubungi Kami</a>
+                <h4 class="font-bold text-lg font-outfit text-gray-900 mb-1">Booking Test Drive</h4>
+                <p class="text-xs text-gray-400 mb-6">Rasakan langsung sensasi berkendara mobil Honda dengan
+                    menjadwalkan sesi test drive Anda.</p>
+                <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20melakukan%20Booking%20Test%20Drive%20mobil%20Honda."
+                    target="_blank"
+                    class="w-full text-center py-2.5 px-4 bg-honda hover:bg-honda-dark border border-honda rounded-full text-sm font-bold text-white shadow-sm hover:shadow transition duration-300">Jadwalkan
+                    Test Drive</a>
             </div>
 
         </div>
@@ -125,29 +163,37 @@
 
     <!-- RERE SALES COUNTER CONTACT BANNER -->
     <section id="sales-banner" class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mb-12">
-        <div class="bg-gray-900 rounded-2xl shadow-lg relative overflow-hidden flex flex-col md:flex-row items-center border border-gray-800">
+        <div
+            class="bg-gray-900 rounded-2xl shadow-lg relative overflow-hidden flex flex-col md:flex-row items-center border border-gray-800">
             <!-- Left Side Image -->
-            <div class="w-full md:w-1/3 h-56 md:h-64 bg-gray-800 flex items-end justify-center relative overflow-hidden flex-shrink-0">
-                <img src="./assets/images/rere.png" alt="Rere Sales Counter" 
-                     class="h-full w-full object-cover object-top filter brightness-95">
+            <div
+                class="w-full md:w-1/3 h-56 md:h-64 bg-gray-800 flex items-end justify-center relative overflow-hidden flex-shrink-0">
+                <img src="./assets/images/rere.png" alt="Rere Sales Counter"
+                    class="h-full w-full object-cover object-top filter brightness-95">
             </div>
             <!-- Center Text -->
             <div class="flex-1 p-6 md:p-8 text-center md:text-left z-10">
-                <p class="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">Konsultan Resmi Honda Bintaro</p>
-                <h3 class="text-xl sm:text-2xl font-bold font-outfit text-white mb-2 leading-tight">Konsultasikan kebutuhan kendaraan Anda bersama konsultan profesional kami!</h3>
-                <p class="text-gray-400 text-xs max-w-lg">Kami siap melayani pembelian cash/kredit mobil Honda OTR Jabodetabek dengan penawaran bunga rendah, angsuran ringan, serta cicilan fleksibel.</p>
+                <p class="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">Konsultan Resmi Honda
+                    Bintaro</p>
+                <h3 class="text-xl sm:text-2xl font-bold font-outfit text-white mb-2 leading-tight">Konsultasikan
+                    kebutuhan kendaraan Anda bersama konsultan profesional kami!</h3>
+                <p class="text-gray-400 text-xs max-w-lg">Kami siap melayani pembelian cash/kredit mobil Honda OTR
+                    Jabodetabek dengan penawaran bunga rendah, angsuran ringan, serta cicilan fleksibel.</p>
             </div>
             <!-- Right Accent Red Button Block -->
-            <div class="w-full md:w-auto p-6 md:p-8 flex-shrink-0 flex flex-col sm:flex-row md:flex-col items-center justify-center gap-4 bg-honda text-white md:self-stretch md:min-w-[280px]">
+            <div
+                class="w-full md:w-auto p-6 md:p-8 flex-shrink-0 flex flex-col sm:flex-row md:flex-col items-center justify-center gap-4 bg-honda text-white md:self-stretch md:min-w-[280px]">
                 <div class="text-center">
                     <h4 class="text-2xl font-black font-outfit uppercase tracking-wide leading-none">RERE</h4>
                     <span class="text-xs font-semibold opacity-90 block tracking-widest mt-1">SALES COUNTER</span>
                 </div>
-                <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20bertanya%20mengenai%20unit%20mobil%20Honda." target="_blank" 
-                   class="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 w-full text-center">
+                <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20bertanya%20mengenai%20unit%20mobil%20Honda."
+                    target="_blank"
+                    class="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300 w-full text-center">
                     <!-- WhatsApp SVG Icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.458L0 24zm5.835-3.32c1.629.967 3.39 1.48 5.206 1.481 5.485 0 9.95-4.466 9.954-9.953.002-2.657-1.03-5.155-2.906-7.03C16.27 3.299 13.774 2.26 11.121 2.26c-5.495 0-9.96 4.465-9.964 9.954-.001 1.892.493 3.738 1.433 5.345L1.5 21.5l4.392-1.153zM16.621 13.62c-.27-.135-1.597-.788-1.845-.878-.247-.09-.427-.135-.607.135-.18.27-.697.878-.855 1.058-.158.18-.315.202-.585.067-.27-.135-1.14-.42-2.172-1.341-.803-.715-1.344-1.602-1.502-1.872-.158-.27-.017-.417.118-.552.122-.122.27-.315.405-.473.135-.158.18-.27.27-.45.09-.18.045-.338-.022-.473-.068-.135-.608-1.464-.833-2.008-.22-.527-.44-.455-.608-.464-.158-.008-.338-.009-.518-.009-.18 0-.473.067-.72.338-.248.27-.945.923-.945 2.25s.968 2.61 1.103 2.79c.135.18 1.905 2.91 4.613 4.08.645.278 1.148.445 1.54.57.647.206 1.237.177 1.702.107.518-.077 1.597-.653 1.822-1.283.225-.63.225-1.17.158-1.283-.068-.113-.248-.18-.518-.315z"/>
+                        <path
+                            d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.458L0 24zm5.835-3.32c1.629.967 3.39 1.48 5.206 1.481 5.485 0 9.95-4.466 9.954-9.953.002-2.657-1.03-5.155-2.906-7.03C16.27 3.299 13.774 2.26 11.121 2.26c-5.495 0-9.96 4.465-9.964 9.954-.001 1.892.493 3.738 1.433 5.345L1.5 21.5l4.392-1.153zM16.621 13.62c-.27-.135-1.597-.788-1.845-.878-.247-.09-.427-.135-.607.135-.18.27-.697.878-.855 1.058-.158.18-.315.202-.585.067-.27-.135-1.14-.42-2.172-1.341-.803-.715-1.344-1.602-1.502-1.872-.158-.27-.017-.417.118-.552.122-.122.27-.315.405-.473.135-.158.18-.27.27-.45.09-.18.045-.338-.022-.473-.068-.135-.608-1.464-.833-2.008-.22-.527-.44-.455-.608-.464-.158-.008-.338-.009-.518-.009-.18 0-.473.067-.72.338-.248.27-.945.923-.945 2.25s.968 2.61 1.103 2.79c.135.18 1.905 2.91 4.613 4.08.645.278 1.148.445 1.54.57.647.206 1.237.177 1.702.107.518-.077 1.597-.653 1.822-1.283.225-.63.225-1.17.158-1.283-.068-.113-.248-.18-.518-.315z" />
                     </svg>
                     <span>Hubungi Rere</span>
                 </a>
@@ -157,20 +203,28 @@
 
     <!-- MODEL BINTARO (MOBIL TERBARU) SECTION -->
     <section id="model-list-section" class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-20">
-        
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 border-b border-gray-100 pb-4">
+
+        <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 border-b border-gray-100 pb-4">
             <div>
                 <h3 class="text-2xl font-bold font-outfit text-gray-900 leading-tight">Model Honda Bintaro</h3>
-                <p class="text-xs text-gray-400 mt-1">Pilih tipe mobil Honda impian Anda dan dapatkan penawaran spesial</p>
+                <p class="text-xs text-gray-400 mt-1">Pilih tipe mobil Honda impian Anda dan dapatkan penawaran spesial
+                </p>
             </div>
-            
+
             <!-- Category Tabs Navigation -->
             <div class="flex flex-wrap gap-2 w-full md:w-auto mt-2 md:mt-0">
-                <button data-category="Semua" class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-honda text-white shadow-sm transition">Semua</button>
-                <button data-category="City Car & Hatchback" class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-honda hover:text-honda transition">City Car & Hatchback</button>
-                <button data-category="MPV" class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-honda hover:text-honda transition">MPV</button>
-                <button data-category="Sedan" class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-honda hover:text-honda transition">Sedan</button>
-                <button data-category="SUV" class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-honda hover:text-honda transition">SUV</button>
+                <button data-category="Semua"
+                    class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-honda text-white shadow-sm transition">Semua</button>
+                <button data-category="City Car & Hatchback"
+                    class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-honda hover:text-honda transition">City
+                    Car & Hatchback</button>
+                <button data-category="MPV"
+                    class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-honda hover:text-honda transition">MPV</button>
+                <button data-category="Sedan"
+                    class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-honda hover:text-honda transition">Sedan</button>
+                <button data-category="SUV"
+                    class="cat-tab-btn px-4 py-2 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-600 hover:border-honda hover:text-honda transition">SUV</button>
             </div>
         </div>
 
@@ -191,60 +245,95 @@
                 <h3 class="text-3xl font-bold font-outfit text-gray-900 mb-2">Promo Terbaru Honda Bintaro</h3>
                 <p class="text-xs text-gray-500">Penawaran terbaik dan program cicilan khusus bulan ini</p>
             </div>
-            
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Promo 1 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between h-full border border-gray-200/50">
-                    <img src="https://ardiasgusty.github.io/honda/assets/images/banner/brio-slp_1783065132437.webp" alt="Promo Brio" class="w-full h-40 object-cover">
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between h-full border border-gray-200/50">
+                    <img src="https://ardiasgusty.github.io/honda/assets/images/banner/brio-slp_1783065132437.webp"
+                        alt="Promo Brio" class="w-full h-40 object-cover">
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
-                            <span class="inline-block text-[10px] font-bold text-honda uppercase tracking-widest bg-red-50 px-2.5 py-1 rounded-full mb-3">BRIO PROMO</span>
-                            <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">Honda Brio DP Minim & Cicilan Ringan</h4>
-                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Miliki Honda Brio impian Anda sekarang dengan paket uang muka super murah mulai dari Rp 15 Jutaan saja.</p>
+                            <span
+                                class="inline-block text-[10px] font-bold text-honda uppercase tracking-widest bg-red-50 px-2.5 py-1 rounded-full mb-3">BRIO
+                                PROMO</span>
+                            <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">Honda Brio DP
+                                Minim & Cicilan Ringan</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Miliki Honda Brio impian Anda sekarang
+                                dengan paket uang muka super murah mulai dari Rp 15 Jutaan saja.</p>
                         </div>
-                        <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20tanya%20promo%20DP%20minim%20Brio." target="_blank" class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">Tanya Promo &rarr;</a>
+                        <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20tanya%20promo%20DP%20minim%20Brio."
+                            target="_blank"
+                            class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">Tanya
+                            Promo &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Promo 2 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between h-full border border-gray-200/50">
-                    <img src="https://ardiasgusty.github.io/honda/assets/images/banner/hrv-slp_1783065113933.webp" alt="Promo HR-V" class="w-full h-40 object-cover">
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between h-full border border-gray-200/50">
+                    <img src="https://ardiasgusty.github.io/honda/assets/images/banner/hrv-slp_1783065113933.webp"
+                        alt="Promo HR-V" class="w-full h-40 object-cover">
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
-                            <span class="inline-block text-[10px] font-bold text-gray-900 uppercase tracking-widest bg-gray-100 px-2.5 py-1 rounded-full mb-3">SUV PROMO</span>
-                            <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">Honda HR-V Cash Back Maksimal</h4>
-                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Dapatkan diskon khusus/cashback bernilai puluhan juta untuk pembelian unit Honda HR-V tipe e:HEV & Turbo.</p>
+                            <span
+                                class="inline-block text-[10px] font-bold text-gray-900 uppercase tracking-widest bg-gray-100 px-2.5 py-1 rounded-full mb-3">SUV
+                                PROMO</span>
+                            <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">Honda HR-V Cash
+                                Back Maksimal</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Dapatkan diskon khusus/cashback
+                                bernilai puluhan juta untuk pembelian unit Honda HR-V tipe e:HEV & Turbo.</p>
                         </div>
-                        <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20tanya%20cashback%20Honda%20HR-V." target="_blank" class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">Tanya Promo &rarr;</a>
+                        <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20ingin%20tanya%20cashback%20Honda%20HR-V."
+                            target="_blank"
+                            class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">Tanya
+                            Promo &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Promo 3 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between h-full border border-gray-200/50">
-                    <img src="https://ardiasgusty.github.io/honda/assets/images/banner/honda-family-fair_1783065104846.webp" alt="Promo Hybrid" class="w-full h-40 object-cover">
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between h-full border border-gray-200/50">
+                    <img src="https://ardiasgusty.github.io/honda/assets/images/banner/honda-family-fair_1783065104846.webp"
+                        alt="Promo Hybrid" class="w-full h-40 object-cover">
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
-                            <span class="inline-block text-[10px] font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-2.5 py-1 rounded-full mb-3">HYBRID FAIR</span>
-                            <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">Bunga 0% & Tenor Hingga 3 Tahun</h4>
-                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Program bunga spesial 0% hingga 3 tahun khusus untuk model elektrifikasi Honda Accord & StepWGN e:HEV.</p>
+                            <span
+                                class="inline-block text-[10px] font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-2.5 py-1 rounded-full mb-3">HYBRID
+                                FAIR</span>
+                            <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">Bunga 0% & Tenor
+                                Hingga 3 Tahun</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Program bunga spesial 0% hingga 3
+                                tahun khusus untuk model elektrifikasi Honda Accord & StepWGN e:HEV.</p>
                         </div>
-                        <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20tanya%20promo%20bunga%200%25%20hybrid." target="_blank" class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">Tanya Promo &rarr;</a>
+                        <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20saya%20tanya%20promo%20bunga%200%25%20hybrid."
+                            target="_blank"
+                            class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">Tanya
+                            Promo &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Promo 4 -->
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between h-full border border-gray-200/50">
+                <div
+                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between h-full border border-gray-200/50">
                     <div class="h-40 bg-honda flex flex-col justify-center items-center p-6 text-white text-center">
                         <span class="text-5xl font-black font-outfit tracking-wide mb-1">Rp 300JT*</span>
                         <span class="text-xs font-bold tracking-widest uppercase">Total Hadiah Utama</span>
                     </div>
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
-                            <span class="inline-block text-[10px] font-bold text-green-600 uppercase tracking-widest bg-green-50 px-2.5 py-1 rounded-full mb-3">GRAND PRIZE</span>
-                            <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">Wujudkan Impian Anda Bersama Honda</h4>
-                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Setiap transaksi pembelian mobil berkesempatan memenangkan undian berhadiah utama mobil Honda Baru!</p>
+                            <span
+                                class="inline-block text-[10px] font-bold text-green-600 uppercase tracking-widest bg-green-50 px-2.5 py-1 rounded-full mb-3">GRAND
+                                PRIZE</span>
+                            <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">Wujudkan Impian
+                                Anda Bersama Honda</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">Setiap transaksi pembelian mobil
+                                berkesempatan memenangkan undian berhadiah utama mobil Honda Baru!</p>
                         </div>
-                        <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20bagaimana%20cara%20ikut%20undian%20hadiah%20Honda%20300jt." target="_blank" class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">Tanya Promo &rarr;</a>
+                        <a href="https://wa.me/6282299185425?text=Halo%20Rere,%20bagaimana%20cara%20ikut%20undian%20hadiah%20Honda%20300jt."
+                            target="_blank"
+                            class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">Tanya
+                            Promo &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -255,77 +344,70 @@
     <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16">
         <div class="flex justify-between items-end mb-10">
             <div>
-                <h3 class="text-2xl font-bold font-outfit text-gray-900">Berita & Informasi</h3>
-                <p class="text-xs text-gray-400 mt-1">Dapatkan update terkini seputar produk dan kegiatan Honda Bintaro</p>
+                <h3 id="news-title" class="text-2xl font-bold font-outfit text-gray-900">Berita & Informasi</h3>
+                <p id="news-subtitle" class="text-xs text-gray-400 mt-1">Dapatkan update terkini seputar produk dan
+                    kegiatan Honda Bintaro</p>
             </div>
-            <a href="#" class="text-xs font-bold text-honda hover:text-honda-dark flex items-center gap-1 transition">
+            <a id="all-news-link" href="https://www.honda-bintaro.com/news/" target="_blank" rel="noopener noreferrer"
+                class="text-xs font-bold text-honda hover:text-honda-dark flex items-center gap-1 transition">
                 <span>Semua Berita</span>
                 <span>&rarr;</span>
             </a>
         </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            <!-- Berita 1 -->
-            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition duration-300 flex flex-col h-full">
-                <div class="h-44 bg-gray-200 overflow-hidden">
-                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxsb00VVlHYmdzKe-KdJ8waE_PzMKzh7VTwoNOoqeka7-BLgxTfCJqnNq1c2evDADDtksNp9svoKNAd6h69XqAMlQzVlqe0_BCk-OKtoz-5TWAEAW8_FFEn3KD7_SBTYoHiIxeU85QnFKolfL6gA_PgSttpy2BZTyJs9suSIoQGKGM0x1QSXQNTEUy1I2_/s1600/thumb-honda-brv.jpg" alt="Penyerahan Unit" class="w-full h-full object-cover">
-                </div>
-                <div class="p-5 flex-1 flex flex-col justify-between">
+
+        <div id="news-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Loading Skeleton 1 -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col h-full animate-pulse">
+                <div class="h-44 bg-gray-100"></div>
+                <div class="p-5 flex-1 flex flex-col justify-between gap-3">
                     <div>
-                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Event</span>
-                        <h4 class="font-bold text-sm font-outfit text-gray-900 leading-snug hover:text-honda transition mb-3">Penyerahan Unit Perdana BR-V N7X di Honda Bintaro</h4>
-                        <p class="text-xs text-gray-400 line-clamp-3">Kemeriahan penyerahan kunci mobil pertama BR-V N7X Edition kepada customer setia Honda Bintaro.</p>
+                        <div class="h-3 bg-gray-100 rounded w-1/4 mb-3"></div>
+                        <div class="h-5 bg-gray-100 rounded w-3/4 mb-2"></div>
+                        <div class="h-4 bg-gray-100 rounded w-full mb-1"></div>
+                        <div class="h-4 bg-gray-100 rounded w-2/3"></div>
                     </div>
-                    <span class="text-[10px] text-gray-400 block mt-4 border-t pt-3">30 Juli 2026</span>
+                    <div class="h-3 bg-gray-100 rounded w-1/3 mt-4 border-t pt-3"></div>
                 </div>
             </div>
-
-            <!-- Berita 2 -->
-            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition duration-300 flex flex-col h-full">
-                <div class="h-44 bg-gray-200 overflow-hidden">
-                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcbGeq2VdT3GpDvgVSNctuYsKJpbtyzf7GtJHqtJl23tvd4GeGLl8zZ6eYa9P2oq8Q71kiTDa24JgD7wQnTOGorIJ93lnZurNg2mTUz22SM7IQ_N95idHCE4fTWp26oHBiJOJA7qg4UjuaYysablcY0cdJtODt_Vjxc88X6TAIw0mPHhXRtuGJgQE7xcqe/s1600/accord-ehev.webp" alt="Teknologi e:HEV" class="w-full h-full object-cover">
-                </div>
-                <div class="p-5 flex-1 flex flex-col justify-between">
+            <!-- Loading Skeleton 2 -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col h-full animate-pulse">
+                <div class="h-44 bg-gray-100"></div>
+                <div class="p-5 flex-1 flex flex-col justify-between gap-3">
                     <div>
-                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Teknologi</span>
-                        <h4 class="font-bold text-sm font-outfit text-gray-900 leading-snug hover:text-honda transition mb-3">Mengenal Cara Kerja Mesin e:HEV Hybrid Honda</h4>
-                        <p class="text-xs text-gray-400 line-clamp-3">Membahas kecanggihan sistem hybrid ganda e:HEV yang menggabungkan performa mesin bensin dengan motor listrik efisien.</p>
+                        <div class="h-3 bg-gray-100 rounded w-1/4 mb-3"></div>
+                        <div class="h-5 bg-gray-100 rounded w-3/4 mb-2"></div>
+                        <div class="h-4 bg-gray-100 rounded w-full mb-1"></div>
+                        <div class="h-4 bg-gray-100 rounded w-2/3"></div>
                     </div>
-                    <span class="text-[10px] text-gray-400 block mt-4 border-t pt-3">28 Juli 2026</span>
+                    <div class="h-3 bg-gray-100 rounded w-1/3 mt-4 border-t pt-3"></div>
                 </div>
             </div>
-
-            <!-- Berita 3 -->
-            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition duration-300 flex flex-col h-full">
-                <div class="h-44 bg-gray-200 overflow-hidden">
-                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhOLS-PRvyNqghyphenhypheniKb8EXIM8UkmvnVMoq8FrapYE2FCmZY8BELQMBzFr3150wfJAapXsCGaWIJXtQQ29LizPaAwmrpAXKOwz2itQ71wHtVa4G191Fa-ZY1nZwq0qSZqO7-R7hKPJm0dNYnwWIC-wGoVz7QekW3-29BrNdJu9w5GzcozYwSbZCFsjgmU-10i/s1600/thumb-honda-brio.jpg" alt="Tips Perawatan" class="w-full h-full object-cover">
-                </div>
-                <div class="p-5 flex-1 flex flex-col justify-between">
+            <!-- Loading Skeleton 3 -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col h-full animate-pulse">
+                <div class="h-44 bg-gray-100"></div>
+                <div class="p-5 flex-1 flex flex-col justify-between gap-3">
                     <div>
-                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Tips</span>
-                        <h4 class="font-bold text-sm font-outfit text-gray-900 leading-snug hover:text-honda transition mb-3">Tips Merawat Mesin Mobil Brio Agar Awet & Irit</h4>
-                        <p class="text-xs text-gray-400 line-clamp-3">Langkah mudah dan terjadwal dalam menjaga performa mesin i-VTEC agar tetap bertenaga dan irit bahan bakar harian.</p>
+                        <div class="h-3 bg-gray-100 rounded w-1/4 mb-3"></div>
+                        <div class="h-5 bg-gray-100 rounded w-3/4 mb-2"></div>
+                        <div class="h-4 bg-gray-100 rounded w-full mb-1"></div>
+                        <div class="h-4 bg-gray-100 rounded w-2/3"></div>
                     </div>
-                    <span class="text-[10px] text-gray-400 block mt-4 border-t pt-3">25 Juli 2026</span>
+                    <div class="h-3 bg-gray-100 rounded w-1/3 mt-4 border-t pt-3"></div>
                 </div>
             </div>
-
-            <!-- Berita 4 -->
-            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition duration-300 flex flex-col h-full">
-                <div class="h-44 bg-gray-200 overflow-hidden">
-                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhwGfy_71Hzf_skvfsZsiXQgrlWgfosIaPoAAM1hxeZ_WFTDNbFtF5xyqKkuduu5mXbyUEZFZc4sCaf8LrBrV9Jsw3vc6MrLQz-K3zIYK19Sg_uFBgxcx_Qk74bfSXG8NgtUT8zSfD8QDBsuOwINUpDwPgDKYVUitii2k_quWeQbgiJKGX3H6K1OjF1WsZ4/s1600/en1.webp" alt="Mobil Listrik" class="w-full h-full object-cover">
-                </div>
-                <div class="p-5 flex-1 flex flex-col justify-between">
+            <!-- Loading Skeleton 4 -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col h-full animate-pulse">
+                <div class="h-44 bg-gray-100"></div>
+                <div class="p-5 flex-1 flex flex-col justify-between gap-3">
                     <div>
-                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">Produk Baru</span>
-                        <h4 class="font-bold text-sm font-outfit text-gray-900 leading-snug hover:text-honda transition mb-3">Honda e:N1 Siap Mengaspal di Jalanan Indonesia</h4>
-                        <p class="text-xs text-gray-400 line-clamp-3">Mengintip fitur keselamatan terlengkap Honda Sensing dan jarak tempuh baterai mobil listrik SUV e:N1.</p>
+                        <div class="h-3 bg-gray-100 rounded w-1/4 mb-3"></div>
+                        <div class="h-5 bg-gray-100 rounded w-3/4 mb-2"></div>
+                        <div class="h-4 bg-gray-100 rounded w-full mb-1"></div>
+                        <div class="h-4 bg-gray-100 rounded w-2/3"></div>
                     </div>
-                    <span class="text-[10px] text-gray-400 block mt-4 border-t pt-3">22 Juli 2026</span>
+                    <div class="h-3 bg-gray-100 rounded w-1/3 mt-4 border-t pt-3"></div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -336,66 +418,94 @@
                 <h3 class="text-3xl font-bold font-outfit text-gray-900 mb-2">FAQ</h3>
                 <p class="text-xs text-gray-500">Pertanyaan umum seputar pembelian mobil Honda</p>
             </div>
-            
+
             <div class="space-y-4" id="faq-accordion-list">
-                
+
                 <!-- FAQ Item 1 -->
                 <div class="border border-gray-200 rounded-xl overflow-hidden transition-all duration-300">
-                    <button class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
-                        <span class="font-bold text-sm sm:text-base text-gray-800">Kenapa membeli mobil di Honda Bintaro?</span>
+                    <button
+                        class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
+                        <span class="font-bold text-sm sm:text-base text-gray-800">Kenapa membeli mobil di Honda
+                            Bintaro?</span>
                         <span class="faq-icon text-gray-400 transition-transform duration-200">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
                             </svg>
                         </span>
                     </button>
-                    <div class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
-                        Honda Bintaro merupakan distributor utama/dealer resmi mobil Honda terbesar yang menyediakan berbagai pilihan model mobil lengkap, fasilitas servis terpadu, serta sales konsultan resmi yang membantu transaksi cash maupun kredit secara aman.
+                    <div
+                        class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
+                        Honda Bintaro merupakan distributor utama/dealer resmi mobil Honda terbesar yang menyediakan
+                        berbagai pilihan model mobil lengkap, fasilitas servis terpadu, serta sales konsultan resmi yang
+                        membantu transaksi cash maupun kredit secara aman.
                     </div>
                 </div>
 
                 <!-- FAQ Item 2 -->
                 <div class="border border-gray-200 rounded-xl overflow-hidden transition-all duration-300">
-                    <button class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
-                        <span class="font-bold text-sm sm:text-base text-gray-800">Apa bisa melakukan pemesanan kendaraan dengan KTP luar Jabodetabek?</span>
+                    <button
+                        class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
+                        <span class="font-bold text-sm sm:text-base text-gray-800">Apa bisa melakukan pemesanan
+                            kendaraan dengan KTP luar Jabodetabek?</span>
                         <span class="faq-icon text-gray-400 transition-transform duration-200">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
                             </svg>
                         </span>
                     </button>
-                    <div class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
-                        Ya, pemesanan mobil tetap bisa dilayani. Namun untuk pengurusan STNK, plat nomor, dan BPKB akan menyesuaikan dengan alamat KTP Anda. Untuk beberapa wilayah luar Jabodetabek akan dikenakan biaya pengiriman unit (pelataran) dan selisih tarif BBNKB daerah terkait.
+                    <div
+                        class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
+                        Ya, pemesanan mobil tetap bisa dilayani. Namun untuk pengurusan STNK, plat nomor, dan BPKB akan
+                        menyesuaikan dengan alamat KTP Anda. Untuk beberapa wilayah luar Jabodetabek akan dikenakan
+                        biaya pengiriman unit (pelataran) dan selisih tarif BBNKB daerah terkait.
                     </div>
                 </div>
 
                 <!-- FAQ Item 3 -->
                 <div class="border border-gray-200 rounded-xl overflow-hidden transition-all duration-300">
-                    <button class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
-                        <span class="font-bold text-sm sm:text-base text-gray-800">Apa saja persyaratan kredit agar disetujui leasing?</span>
+                    <button
+                        class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
+                        <span class="font-bold text-sm sm:text-base text-gray-800">Apa saja persyaratan kredit agar
+                            disetujui leasing?</span>
                         <span class="faq-icon text-gray-400 transition-transform duration-200">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
                             </svg>
                         </span>
                     </button>
-                    <div class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
-                        Secara umum persyaratan dokumen kredit meliputi: KTP Suami & Istri, Kartu Keluarga (KK), NPWP, Slip Gaji/Surat Keterangan Penghasilan, serta mutasi rekening koran tabungan 3 bulan terakhir. Pendapatan minimal bulanan disarankan adalah tiga kali jumlah angsuran yang diajukan.
+                    <div
+                        class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
+                        Secara umum persyaratan dokumen kredit meliputi: KTP Suami & Istri, Kartu Keluarga (KK), NPWP,
+                        Slip Gaji/Surat Keterangan Penghasilan, serta mutasi rekening koran tabungan 3 bulan terakhir.
+                        Pendapatan minimal bulanan disarankan adalah tiga kali jumlah angsuran yang diajukan.
                     </div>
                 </div>
 
                 <!-- FAQ Item 4 -->
                 <div class="border border-gray-200 rounded-xl overflow-hidden transition-all duration-300">
-                    <button class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
-                        <span class="font-bold text-sm sm:text-base text-gray-800">Apakah pembayaran pemesanan kendaraan online aman?</span>
+                    <button
+                        class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
+                        <span class="font-bold text-sm sm:text-base text-gray-800">Apakah pembayaran pemesanan kendaraan
+                            online aman?</span>
                         <span class="faq-icon text-gray-400 transition-transform duration-200">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
                             </svg>
                         </span>
                     </button>
-                    <div class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
-                        Sangat aman. Setiap transaksi pembelian unit di Honda Bintaro menggunakan Virtual Account resmi yang terbit atas nama Honda Bintaro untuk tiap masing-masing customer. Harap pastikan nama rekening virtual yang muncul saat transfer adalah Virtual Account Honda Bintaro.
+                    <div
+                        class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
+                        Sangat aman. Setiap transaksi pembelian unit di Honda Bintaro menggunakan Virtual Account resmi
+                        yang terbit atas nama Honda Bintaro untuk tiap masing-masing customer. Harap pastikan nama
+                        rekening virtual yang muncul saat transfer adalah Virtual Account Honda Bintaro.
                     </div>
                 </div>
 
@@ -408,10 +518,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white border border-gray-100 rounded-2xl p-6 sm:p-10 shadow-sm">
                 <div class="text-center max-w-xl mx-auto mb-10">
-                    <h3 class="text-2xl sm:text-3xl font-bold font-outfit text-gray-900 mb-2">Persyaratan Kredit Mobil</h3>
-                    <p class="text-xs text-gray-400">Siapkan dokumen pendukung berikut untuk mempercepat proses pengajuan kredit Anda</p>
+                    <h3 class="text-2xl sm:text-3xl font-bold font-outfit text-gray-900 mb-2">Persyaratan Kredit Mobil
+                    </h3>
+                    <p class="text-xs text-gray-400">Siapkan dokumen pendukung berikut untuk mempercepat proses
+                        pengajuan kredit Anda</p>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Perorangan -->
                     <div class="p-6 bg-red-50/50 border border-red-50 rounded-xl">
@@ -423,8 +535,10 @@
                             <li class="flex items-start gap-2">✓ KTP Pemohon (Suami & Istri jika sudah menikah)</li>
                             <li class="flex items-start gap-2">✓ Kartu Keluarga (KK)</li>
                             <li class="flex items-start gap-2">✓ NPWP Pribadi</li>
-                            <li class="flex items-start gap-2">✓ Slip Gaji (Karyawan) / Surat Keterangan Usaha (Wiraswasta)</li>
-                            <li class="flex items-start gap-2">✓ Rekening Koran / Rekening Tabungan 3 bulan terakhir</li>
+                            <li class="flex items-start gap-2">✓ Slip Gaji (Karyawan) / Surat Keterangan Usaha
+                                (Wiraswasta)</li>
+                            <li class="flex items-start gap-2">✓ Rekening Koran / Rekening Tabungan 3 bulan terakhir
+                            </li>
                             <li class="flex items-start gap-2">✓ Bukti Kepemilikan Rumah (PBB / Rekening Listrik)</li>
                         </ul>
                     </div>
@@ -455,18 +569,23 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div class="flex flex-col items-center">
                     <span class="text-3xl text-honda mb-3">✓</span>
-                    <h5 class="font-bold text-sm text-gray-900 font-outfit uppercase">Pesan Mobil Lebih Mudah via WhatsApp</h5>
-                    <p class="text-xs text-gray-400 max-w-xs mt-1">Konsultasi unit, brosur, simulasi hitungan kredit, hingga pemesanan SPK dapat dilakukan secara online melalui WhatsApp.</p>
+                    <h5 class="font-bold text-sm text-gray-900 font-outfit uppercase">Pesan Mobil Lebih Mudah via
+                        WhatsApp</h5>
+                    <p class="text-xs text-gray-400 max-w-xs mt-1">Konsultasi unit, brosur, simulasi hitungan kredit,
+                        hingga pemesanan SPK dapat dilakukan secara online melalui WhatsApp.</p>
                 </div>
                 <div class="flex flex-col items-center">
                     <span class="text-3xl text-honda mb-3">⏰</span>
                     <h5 class="font-bold text-sm text-gray-900 font-outfit uppercase">Layanan Cepat & Responsif</h5>
-                    <p class="text-xs text-gray-400 max-w-xs mt-1">Kami berkomitmen memberikan respon chat yang cepat serta estimasi pengiriman unit mobil secara tepat waktu.</p>
+                    <p class="text-xs text-gray-400 max-w-xs mt-1">Kami berkomitmen memberikan respon chat yang cepat
+                        serta estimasi pengiriman unit mobil secara tepat waktu.</p>
                 </div>
                 <div class="flex flex-col items-center">
                     <span class="text-3xl text-honda mb-3">🏠</span>
-                    <h5 class="font-bold text-sm text-gray-900 font-outfit uppercase">Kepuasan Pelanggan Prioritas Kami</h5>
-                    <p class="text-xs text-gray-400 max-w-xs mt-1">Sales Counter kami akan mendampingi Anda di setiap tahap pemesanan mulai dari pengiriman data hingga serah terima unit di rumah.</p>
+                    <h5 class="font-bold text-sm text-gray-900 font-outfit uppercase">Kepuasan Pelanggan Prioritas Kami
+                    </h5>
+                    <p class="text-xs text-gray-400 max-w-xs mt-1">Sales Counter kami akan mendampingi Anda di setiap
+                        tahap pemesanan mulai dari pengiriman data hingga serah terima unit di rumah.</p>
                 </div>
             </div>
         </div>
@@ -481,17 +600,171 @@
         let carsData = {};
         let activeCategory = "Semua";
 
+        // ================= FETCH DYNAMIC NEWS FROM WORDPRESS API =================
+        const fallbackNews = [
+            {
+                title: "Penyerahan Unit Perdana BR-V N7X di Honda Bintaro",
+                link: "https://www.honda-bintaro.com/honda-giias-2026-transformasi-menuju-era-baru/",
+                category: "Event",
+                description: "Kemeriahan penyerahan kunci mobil pertama BR-V N7X Edition kepada customer setia Honda Bintaro.",
+                date: "30 Juli 2026",
+                image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxsb00VVlHYmdzKe-KdJ8waE_PzMKzh7VTwoNOoqeka7-BLgxTfCJqnNq1c2evDADDtksNp9svoKNAd6h69XqAMlQzVlqe0_BCk-OKtoz-5TWAEAW8_FFEn3KD7_SBTYoHiIxeU85QnFKolfL6gA_PgSttpy2BZTyJs9suSIoQGKGM0x1QSXQNTEUy1I2_/s1600/thumb-honda-brv.jpg"
+            },
+            {
+                title: "Mengenal Cara Kerja Mesin e:HEV Hybrid Honda",
+                link: "https://www.honda-bintaro.com/honda-giias-2026-transformasi-menuju-era-baru/",
+                category: "Teknologi",
+                description: "Membahas kecanggihan sistem hybrid ganda e:HEV yang menggabungkan performa mesin bensin dengan motor listrik efisien.",
+                date: "28 Juli 2026",
+                image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcbGeq2VdT3GpDvgVSNctuYsKJpbtyzf7GtJHqtJl23tvd4GeGLl8zZ6eYa9P2oq8Q71kiTDa24JgD7wQnTOGorIJ93lnZurNg2mTUz22SM7IQ_N95idHCE4fTWp26oHBiJOJA7qg4UjuaYysablcY0cdJtODt_Vjxc88X6TAIw0mPHhXRtuGJgQE7xcqe/s1600/accord-ehev.webp"
+            },
+            {
+                title: "Tips Merawat Mesin Mobil Brio Agar Awet & Irit",
+                link: "https://www.honda-bintaro.com/honda-giias-2026-transformasi-menuju-era-baru/",
+                category: "Tips",
+                description: "Langkah mudah dan terjadwal dalam menjaga performa mesin i-VTEC agar tetap bertenaga dan irit bahan bakar harian.",
+                date: "25 Juli 2026",
+                image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhOLS-PRvyNqghyphenhypheniKb8EXIM8UkmvnVMoq8FrapYE2FCmZY8BELQMBzFr3150wfJAapXsCGaWIJXtQQ29LizPaAwmrpAXKOwz2itQ71wHtVa4G191Fa-ZY1nZwq0qSZqO7-R7hKPJm0dNYnwWIC-wGoVz7QekW3-29BrNdJu9w5GzcozYwSbZCFsjgmU-10i/s1600/thumb-honda-brio.jpg"
+            },
+            {
+                title: "Honda e:N1 Siap Mengaspal di Jalanan Indonesia",
+                link: "https://www.honda-bintaro.com/honda-giias-2026-transformasi-menuju-era-baru/",
+                category: "Produk Baru",
+                description: "Mengintip fitur keselamatan terlengkap Honda Sensing dan jarak tempuh baterai mobil listrik SUV e:N1.",
+                date: "22 Juli 2026",
+                image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhwGfy_71Hzf_skvfsZsiXQgrlWgfosIaPoAAM1hxeZ_WFTDNbFtF5xyqKkuduu5mXbyUEZFZc4sCaf8LrBrV9Jsw3vc6MrLQz-K3zIYK19Sg_uFBgxcx_Qk74bfSXG8NgtUT8zSfD8QDBsuOwINUpDwPgDKYVUitii2k_quWeQbgiJKGX3H6K1OjF1WsZ4/s1600/en1.webp"
+            }
+        ];
+
+        async function fetchNews(config) {
+            // Apply news section visual titles and links
+            if (config.newsTitle) {
+                const titleEl = document.getElementById('news-title');
+                if (titleEl) titleEl.textContent = config.newsTitle;
+            }
+            if (config.newsSubtitle) {
+                const subtitleEl = document.getElementById('news-subtitle');
+                if (subtitleEl) subtitleEl.textContent = config.newsSubtitle;
+            }
+            if (config.allNewsUrl) {
+                const linkEl = document.getElementById('all-news-link');
+                if (linkEl) linkEl.href = config.allNewsUrl;
+            }
+
+            const apiUrl = config.newsApiUrl || 'https://www.honda-bintaro.com/wp-json/wp/v2/posts?categories=2&per_page=4';
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('API response was not ok');
+                const posts = await response.json();
+
+                if (!posts || posts.length === 0) {
+                    renderNews(fallbackNews);
+                    return;
+                }
+
+                const formattedNews = posts.map(post => {
+                    // Extract first image from HTML content
+                    let imageUrl = 'assets/images/default-news.jpg';
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(post.content.rendered, 'text/html');
+                    const img = doc.querySelector('img');
+
+                    if (img) {
+                        if (img.srcset) {
+                            const sources = img.srcset.split(',').map(s => s.trim().split(' '));
+                            const preferred = sources.find(src => {
+                                const wStr = src[1];
+                                if (!wStr) return false;
+                                const width = parseInt(wStr);
+                                return width >= 500 && width <= 850;
+                            });
+                            imageUrl = preferred ? preferred[0] : (sources[sources.length - 1][0] || img.src);
+                        } else {
+                            imageUrl = img.src;
+                        }
+                    }
+
+                    // Extract first valid paragraph text for description
+                    let description = '';
+                    const paragraphs = doc.querySelectorAll('p');
+                    for (let p of paragraphs) {
+                        const text = p.textContent.trim();
+                        if (text && !text.startsWith('The post') && !text.startsWith('Baca juga')) {
+                            description = text.length > 130 ? text.substring(0, 130) + '...' : text;
+                            break;
+                        }
+                    }
+
+                    // Format Date to ID style
+                    let dateFormatted = '';
+                    try {
+                        const dateObj = new Date(post.date);
+                        const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                        dateFormatted = `${dateObj.getDate()} ${months[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+                    } catch (e) {
+                        dateFormatted = post.date;
+                    }
+
+                    return {
+                        title: post.title.rendered,
+                        link: post.link,
+                        category: 'Berita',
+                        description: description,
+                        date: dateFormatted,
+                        image: imageUrl
+                    };
+                });
+
+                renderNews(formattedNews);
+            } catch (err) {
+                console.warn('Gagal mengambil berita dinamis, menggunakan fallback:', err);
+                renderNews(fallbackNews);
+            }
+        }
+
+        function renderNews(newsList) {
+            const container = document.getElementById('news-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            newsList.forEach(item => {
+                container.innerHTML += `
+                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-md transition duration-300 flex flex-col h-full">
+                        <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="h-44 bg-gray-200 overflow-hidden block">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                        </a>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2">${item.category}</span>
+                                <h4 class="font-bold text-sm font-outfit text-gray-900 leading-snug hover:text-honda transition mb-3">
+                                    <a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a>
+                                </h4>
+                                <p class="text-xs text-gray-400 line-clamp-3">${item.description}</p>
+                            </div>
+                            <span class="text-[10px] text-gray-400 block mt-4 border-t pt-3">${item.date}</span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
         // ================= FETCH AND POPULATE PRODUCTS DATABASE =================
         async function fetchProducts() {
             try {
                 const response = await fetch('./data/products.json');
                 carsData = await response.json();
-                
+
                 // Apply dynamic configuration if loaded
                 if (carsData._config && window.applyContactConfig) {
                     window.applyContactConfig(carsData._config);
                 }
-                
+
+                // Fetch dynamic news using configurations
+                if (carsData._config) {
+                    fetchNews(carsData._config);
+                }
+
                 renderProductGrid();
             } catch (err) {
                 console.error("Gagal memuat data produk:", err);
@@ -514,7 +787,7 @@
                 });
                 btn.classList.add('bg-honda', 'text-white', 'shadow-sm');
                 btn.classList.remove('bg-white', 'border', 'border-gray-200', 'text-gray-600');
-                
+
                 const cat = btn.getAttribute('data-category');
                 filterCategory(cat);
             });
@@ -533,8 +806,32 @@
 
             let renderedCount = 0;
 
-            for (const [id, car] of Object.entries(carsData)) {
-                if (id === '_config') continue;
+            // Sort products dynamically based on configuration
+            let carsArray = Object.entries(carsData).filter(([id]) => id !== '_config');
+            const orderList = carsData._config?.productOrder || [];
+
+            carsArray.sort((a, b) => {
+                const [idA, carA] = a;
+                const [idB, carB] = b;
+
+                // 1. Sort by productOrder array in config
+                if (orderList.length > 0) {
+                    const indexA = orderList.indexOf(idA);
+                    const indexB = orderList.indexOf(idB);
+                    if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+                    if (indexA !== -1) return -1;
+                    if (indexB !== -1) return 1;
+                }
+
+                // 2. Sort by 'order' property inside the product
+                const orderA = carA.order !== undefined ? carA.order : 9999;
+                const orderB = carB.order !== undefined ? carB.order : 9999;
+                if (orderA !== orderB) return orderA - orderB;
+
+                return 0; // fallback to original JSON order
+            });
+
+            for (const [id, car] of carsArray) {
                 if (activeCategory !== 'Semua' && car.category !== activeCategory) {
                     continue;
                 }
@@ -553,7 +850,7 @@
 
                         <div class="p-5 flex-1 flex flex-col justify-between">
                             <div>
-                                <span class="text-[9px] font-bold text-honda uppercase tracking-widest block mb-1">PROMO OTR SPESIAL</span>
+                                <!--span class="text-[9px] font-bold text-honda uppercase tracking-widest block mb-1">PROMO OTR SPESIAL</span-->
                                 <h4 class="font-bold text-base font-outfit text-gray-800 hover:text-honda transition leading-snug mb-1 truncate">${car.name}</h4>
                                 <!-- Premium spec capsules -->
                                 <div class="flex flex-wrap gap-1.5 text-[10px] text-gray-500 font-semibold mb-4">
@@ -603,9 +900,9 @@
 
         async function fetchBanners() {
             try {
-                const response = await fetch('./data/banner.json');
+                const response = await fetch('https://cdn.argust.my.id/honda/data/bannerhondabintaro.json');
                 const data = await response.json();
-                
+
                 const isMobile = window.innerWidth < 768;
                 sliderData = isMobile ? data.banners.mobile : data.banners.desktop;
 
@@ -630,7 +927,7 @@
             sliderData.forEach((slide, idx) => {
                 const isActive = idx === 0;
                 const positionClass = isActive ? 'relative z-10 opacity-100' : 'absolute inset-0 z-0 opacity-0 pointer-events-none';
-                
+
                 track.innerHTML += `
                     <div class="w-full h-auto transition-opacity duration-700 ease-in-out ${positionClass}" id="slide-${idx}">
                         <a href="${slide.link || '#'}">
@@ -810,4 +1107,5 @@
         });
     </script>
 </body>
+
 </html>
