@@ -349,23 +349,6 @@
                 }
             }
             updateQuotaDisplay();
-            
-            // Decrease quota slowly (every 45-80 seconds) down to 0
-            function tickQuota() {
-                if (quota > 0) {
-                    quota--;
-                    localStorage.setItem('promo_quota_val', quota.toString());
-                    updateQuotaDisplay();
-                }
-                if (quota > 0) {
-                    const nextTick = 45000 + Math.random() * 35000;
-                    setTimeout(tickQuota, nextTick);
-                }
-            }
-            if (quota > 0) {
-                const initialDelay = 15000 + Math.random() * 20000;
-                setTimeout(tickQuota, initialDelay);
-            }
 
             // 3. Load products & configurations to render options & grid cards
             const selectCar = document.getElementById('select-car');
@@ -483,6 +466,17 @@
                         .replace(/{paymentMethod}/g, payment);
                         
                     const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+                    
+                    // Deduct promo quota upon form submission
+                    let currentQuota = 5;
+                    const storedVal = localStorage.getItem('promo_quota_val');
+                    if (storedVal !== null) {
+                        currentQuota = parseInt(storedVal, 10);
+                    }
+                    if (currentQuota > 0) {
+                        currentQuota--;
+                        localStorage.setItem('promo_quota_val', currentQuota.toString());
+                    }
                     
                     // Open WA in a new tab
                     window.open(waUrl, '_blank');
