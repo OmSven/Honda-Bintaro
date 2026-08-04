@@ -93,6 +93,110 @@
     let productsList = {};
     let siteConfig = {};
 
+    function updatePageSEO(siteConfig) {
+        if (!siteConfig || !siteConfig.seo) return;
+        let pageKey = headerContainer.getAttribute('data-page') || 'default';
+        let modelId = headerContainer.getAttribute('data-model-id');
+        
+        // Normalize pageKey if it is a specific model name (legacy static pages)
+        const knownModels = ['brio', 'hr-v', 'wr-v', 'br-v', 'cr-v', 'city-hatchback-rs', 'civic-rs', 'accord', 'stepwgn', 'en1'];
+        if (knownModels.includes(pageKey)) {
+            modelId = pageKey;
+            pageKey = 'model';
+        }
+        
+        // Fallback to URL path detection for model page and ID
+        if (pageKey === 'model' || window.location.pathname.includes('/model/')) {
+            pageKey = 'model';
+            if (!modelId) {
+                const pathParts = window.location.pathname.split('/');
+                const modelIndex = pathParts.indexOf('model');
+                if (modelIndex !== -1 && pathParts[modelIndex + 1]) {
+                    modelId = pathParts[modelIndex + 1].replace(/index\.html$/i, '').replace(/\/$/, '');
+                }
+            }
+        }
+        
+        let seoData = null;
+        if (pageKey === 'model' && modelId && siteConfig.seo.models) {
+            seoData = siteConfig.seo.models[modelId];
+        } else if (siteConfig.seo[pageKey]) {
+            seoData = siteConfig.seo[pageKey];
+        }
+        
+        if (!seoData) {
+            seoData = siteConfig.seo.default || {};
+        }
+
+        const currentYear = new Date().getFullYear().toString();
+        const replaceYear = (str) => str ? str.replace(/{year}/g, currentYear) : '';
+
+        const pageTitle = replaceYear(seoData.title);
+        const pageDesc = replaceYear(seoData.description);
+        const pageKeywords = replaceYear(seoData.keywords);
+
+        // 1. Update Title
+        if (pageTitle) {
+            document.title = pageTitle;
+        }
+
+        // Helper to find or create meta tag
+        function setMetaTag(name, content, isProperty = false) {
+            if (!content) return;
+            const selector = isProperty ? `meta[property="${name}"]` : `meta[name="${name}"]`;
+            let meta = document.head.querySelector(selector);
+            if (!meta) {
+                meta = document.createElement('meta');
+                if (isProperty) {
+                    meta.setAttribute('property', name);
+                } else {
+                    meta.setAttribute('name', name);
+                }
+                document.head.appendChild(meta);
+            }
+            meta.setAttribute('content', content);
+        }
+
+        // 2. Update Description & Keywords
+        setMetaTag('description', pageDesc);
+        setMetaTag('keywords', pageKeywords);
+
+        // 3. Update Open Graph Tags
+        setMetaTag('og:title', pageTitle, true);
+        setMetaTag('og:description', pageDesc, true);
+        
+        let ogImage = seoData.image;
+        if (!ogImage && pageKey === 'model' && modelId && productsList[modelId]) {
+            const carData = productsList[modelId];
+            ogImage = carData.images?.[0]?.full || carData.images?.[0]?.thumb;
+        }
+        if (!ogImage) {
+            ogImage = siteConfig.seo.default?.image || 'assets/images/logo.png';
+        }
+
+        const absoluteImage = ogImage.startsWith('http') ? ogImage : new URL(basePath + ogImage, window.location.href).href;
+        setMetaTag('og:image', absoluteImage, true);
+        setMetaTag('og:url', window.location.href, true);
+        setMetaTag('og:type', 'website', true);
+
+        // 4. Update Twitter Tags
+        setMetaTag('twitter:card', 'summary_large_image');
+        setMetaTag('twitter:title', pageTitle);
+        setMetaTag('twitter:description', pageDesc);
+        setMetaTag('twitter:image', absoluteImage);
+
+        // 5. Update Favicon
+        const faviconUrl = siteConfig.site?.favicon || "https://asset.honda-indonesia.com/2023/07/26/favicon.ico";
+        let faviconLink = document.head.querySelector('link[rel*="icon"]');
+        if (!faviconLink) {
+            faviconLink = document.createElement('link');
+            faviconLink.rel = 'icon';
+            faviconLink.type = 'image/x-icon';
+            document.head.appendChild(faviconLink);
+        }
+        faviconLink.href = faviconUrl;
+    }
+
     async function fetchHeaderProducts() {
         try {
             const [productsRes, configRes] = await Promise.all([
@@ -101,6 +205,9 @@
             ]);
             productsList = await productsRes.json();
             siteConfig = await configRes.json();
+            
+            // Apply SEO dynamically
+            updatePageSEO(siteConfig);
             
             const contact = siteConfig.contact || {};
             

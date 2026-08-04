@@ -10,6 +10,8 @@
     "footerLogo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGGwKoZTHNAiyQl2GdhLVz8Ij_x3QgqEfXWi2DXS0R9TvzEZh8aH9aNQEOoyQORyRrbzTr_HP9MJDWdzKafn1341u6lM0uZZCB3Mcdz-OcTcYylVgBca3d4CeOzXrdrxX3h1VLtqznGnLkXOxL8Gfe6UM-VnPwx4XIAPfKUWcMmrWr4Tfkv-hhBjvqmCo/s1600/logo-honda-how-we-move-you.png"
   },
   "site": {
+    "favicon": "https://asset.honda-indonesia.com/2023/07/26/favicon.ico",
+    "promoFeaturedModels": ["brio", "hr-v", "wr-v", "br-v"],
     "newsApiUrl": "https://www.honda-bintaro.com/wp-json/wp/v2/posts?categories=2&per_page=4",
     "allNewsUrl": "https://www.honda-bintaro.com/news/",
     "newsTitle": "Berita & Informasi",
@@ -33,7 +35,8 @@
     "salesBanner": "Halo {salesName}, saya ingin bertanya mengenai unit mobil Honda.",
     "testDrive": "Halo {salesName}, saya ingin melakukan Booking Test Drive mobil Honda Bintaro.",
     "general": "Halo {salesName}, saya ingin berkonsultasi mengenai pembelian mobil Honda.",
-    "modelDetail": "Halo {salesName} Sales Counter Honda Bintaro, saya tertarik memesan unit mobil *{carName}* tipe *{variantName}* dengan harga OTR *{variantPrice}*. Mohon informasi simulasi hitungan cicilan DP dan bonus aksesoris terbarunya."
+    "modelDetail": "Halo {salesName} Sales Counter Honda Bintaro, saya tertarik memesan unit mobil *{carName}* tipe *{variantName}* dengan harga OTR *{variantPrice}*. Mohon informasi simulasi hitungan cicilan DP dan bonus aksesoris terbarunya.",
+    "promoForm": "Halo {salesName} Sales Counter Honda Bintaro, saya *{name}* ingin berkonsultasi mengenai unit mobil *{carName}* dengan rencana pembelian secara *{paymentMethod}*. Mohon informasi simulasi promo terbarunya."
   },
   "navigation": [
     {
@@ -237,6 +240,91 @@
     "superone": "model/superone/",
     "en1": "model/en1/"
   },
+  "seo": {
+    "default": {
+      "title": "Honda Bintaro - Dealer & Sales Counter Resmi Honda Jabodetabek",
+      "description": "Sales resmi Honda Bintaro. Temukan harga OTR terbaru, paket kredit DP murah, cicilan ringan, serta diskon spesial untuk mobil Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord.",
+      "keywords": "honda bintaro, dealer honda bintaro, sales honda bintaro, harga honda brio bintaro, promo honda bintaro, kredit mobil honda",
+      "image": "assets/images/logo.png"
+    },
+    "home": {
+      "title": "Honda Bintaro - Dealer & Sales Counter Resmi Honda Jabodetabek",
+      "description": "Sales resmi Honda Bintaro. Temukan harga OTR terbaru, paket kredit DP murah, cicilan ringan, serta diskon spesial untuk mobil Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord.",
+      "keywords": "honda bintaro, dealer honda bintaro, sales honda bintaro, harga honda brio bintaro, promo honda bintaro, kredit mobil honda"
+    },
+    "pricelist": {
+      "title": "Daftar Harga OTR Mobil Honda Terbaru 2026 | Honda Bintaro",
+      "description": "Cek daftar harga OTR mobil Honda terbaru untuk wilayah Bintaro & Jabodetabek. Promo harga spesial Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord.",
+      "keywords": "harga otr honda, pricelist honda bintaro, harga honda brio, harga hr-v bintaro, harga cr-v bintaro"
+    },
+    "brochure": {
+      "title": "Unduh Brosur Resmi Mobil Honda Terbaru | e-Brochure Honda Bintaro",
+      "description": "Cek spesifikasi lengkap dan fitur unggulan mobil Honda pilihan Anda. Unduh e-Brochure resmi Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord langsung.",
+      "keywords": "brosur honda, e-brochure honda, spesifikasi honda brio, download brosur honda"
+    },
+    "promo": {
+      "title": "Promo Mobil Honda Jabodetabek {year} - DP Minim & Angsuran Murah",
+      "description": "Promo spesial Honda Jabodetabek {year}. Miliki Honda Brio, HR-V, WR-V, BR-V, CR-V dengan DP minim, angsuran ringan, serta diskon puluhan juta rupiah. Hubungi Rere!",
+      "keywords": "promo honda {year}, promo mobil honda jabodetabek, sales honda bintaro, diskon honda bintaro, cicilan honda murah"
+    },
+    "thank-you": {
+      "title": "Terima Kasih - Data Pengisian Promo Diterima | Honda Bintaro",
+      "description": "Terima kasih telah berkonsultasi mengenai promo mobil Honda. Sales Counter kami akan segera menghubungi Anda.",
+      "keywords": "thank you honda bintaro"
+    },
+    "models": {
+      "brio": {
+        "title": "Promo Honda Brio Terbaru 2026 - Harga OTR & Spesifikasi | Honda Bintaro",
+        "description": "Dapatkan penawaran terbaik Honda Brio Satya & Brio RS di Honda Bintaro. Promo DP murah, cicilan ringan, dan diskon menarik.",
+        "keywords": "honda brio bintaro, promo brio satya, harga honda brio rs, kredit brio bintaro"
+      },
+      "hr-v": {
+        "title": "Promo Honda HR-V Terbaru 2026 - Harga OTR & Spesifikasi | Honda Bintaro",
+        "description": "Cek harga OTR dan spesifikasi lengkap Honda HR-V terbaru di Bintaro. Dapatkan paket cicilan ringan dan penawaran tukar tambah terbaik.",
+        "keywords": "honda hr-v bintaro, promo hr-v, harga otr honda hrv, kredit hrv bintaro"
+      },
+      "wr-v": {
+        "title": "Promo Honda WR-V Terbaru 2026 - Harga OTR & Spesifikasi | Honda Bintaro",
+        "description": "Miliki Honda WR-V impian Anda dengan promo DP rendah dan cicilan ringan di Honda Bintaro. Cek harga OTR dan brosur di sini.",
+        "keywords": "honda wr-v bintaro, promo wrv, harga otr honda wrv, kredit wrv bintaro"
+      },
+      "br-v": {
+        "title": "Promo Honda BR-V Terbaru 2026 - Harga OTR & Spesifikasi | Honda Bintaro",
+        "description": "Dapatkan harga OTR Honda BR-V terbaik untuk keluarga Anda di Honda Bintaro. Paket kredit bunga rendah dan proses cepat.",
+        "keywords": "honda br-v bintaro, promo brv, harga otr honda brv, kredit brv bintaro"
+      },
+      "cr-v": {
+        "title": "Promo Honda CR-V Terbaru 2026 - Harga OTR & Spesifikasi | Honda Bintaro",
+        "description": "Cek harga OTR dan spesifikasi premium All New Honda CR-V Turbo & Hybrid di Honda Bintaro. Promo VIP khusus bulan ini.",
+        "keywords": "honda cr-v bintaro, promo crv, harga otr honda crv, kredit crv bintaro"
+      },
+      "city-hatchback-rs": {
+        "title": "Promo Honda City Hatchback RS 2026 - Spesifikasi & Harga | Honda Bintaro",
+        "description": "Dapatkan penawaran harga OTR spesial Honda City Hatchback RS terbaru di Bintaro. Pilihan kredit DP murah dan angsuran ringan.",
+        "keywords": "honda city hatchback rs, promo city hatchback bintaro, kredit city rs"
+      },
+      "civic-rs": {
+        "title": "Promo Honda Civic RS Terbaru 2026 - Harga OTR & Spesifikasi | Honda Bintaro",
+        "description": "Miliki sedan premium sport All New Honda Civic RS dengan penawaran eksklusif di Honda Bintaro. Proses kredit cepat dan mudah.",
+        "keywords": "honda civic rs bintaro, promo civic rs, harga otr civic bintaro, kredit civic rs"
+      },
+      "accord": {
+        "title": "Promo All New Honda Accord e:HEV 2026 - Harga & Spesifikasi | Honda Bintaro",
+        "description": "Cek harga OTR All New Honda Accord e:HEV (Hybrid) di Honda Bintaro. Penawaran paket kredit VIP eksklusif bunga sangat ringan.",
+        "keywords": "honda accord hybrid, promo honda accord bintaro, harga accord hybrid bintaro"
+      },
+      "stepwgn": {
+        "title": "Promo All New Honda StepWGN e:HEV 2026 - Harga & Spesifikasi | Honda Bintaro",
+        "description": "Dapatkan penawaran eksklusif pemesanan All New Honda StepWGN e:HEV di Honda Bintaro. Cek estimasi harga OTR dan fiturnya.",
+        "keywords": "honda stepwgn bintaro, promo stepwgn, harga otr stepwgn bintaro"
+      },
+      "en1": {
+        "title": "Promo Mobil Listrik Honda e:N1 Terbaru 2026 - Harga & Spesifikasi | Honda Bintaro",
+        "description": "Pesan mobil listrik pertama Honda e:N1 di dealer resmi Honda Bintaro. Dapatkan promo harga OTR terbaik dan spesifikasi lengkapnya.",
+        "keywords": "honda en1 bintaro, mobil listrik honda, harga honda e:n1 bintaro"
+      }
+    }
+  },
   "brochures": {
     "accord": "1tfqHJNoClZH0ekF9HKjckSI0a-2ROHCO",
     "brio": "14CneF_iL55YBzkxJZi7Jz6RI-WOBOQoN",
@@ -248,5 +336,12 @@
     "hr-v": "1AtxnWSfEzjQhW5eskcEGS_1Ao8LupF7e",
     "stepwgn": "1T4R1Af7Tcfol_mhUJrUyjbIMWXj6K7qf",
     "wr-v": "1kaYXJWmMA17nAoVTIJdFamv_wZFUPDIk"
+  },
+  "thankYou": {
+    "title": "Pengiriman Berhasil!",
+    "subtitle": "Terima kasih atas minat Anda pada promo kami.",
+    "description": "Sistem kami sedang membuka aplikasi WhatsApp Anda di tab baru. Sales Counter kami, {salesName}, akan segera merespons Anda dalam waktu 10-15 menit untuk memberikan hitungan kredit / promo yang Anda ajukan.",
+    "buttonText": "Hubungi WA Sekarang (Alternatif)",
+    "backButtonText": "Kembali ke Beranda"
   }
 }

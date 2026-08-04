@@ -41,18 +41,36 @@ Hampir seluruh teks, tautan, gambar, dan menu navigasi pada website diatur secar
 
 ---
 
-## 🛠️ Riwayat Perubahan (Changelog v0.1)
+## 🛠️ Riwayat Perubahan (Changelog)
 
+### Catatan Rilis v0.2
+Rilis **v0.2** fokus pada optimalisasi SEO & Meta Sharing WhatsApp, pembuatan Landing Page Google Ads berkonversi tinggi, Halaman Terima Kasih dinamis, serta otomatisasi sinkronisasi SEO statis.
+
+#### 🛠️ Fitur Baru (New Features)
+1. **Sistem Sinkronisasi SEO Statis (`sync_seo.js`):** Script otomatisasi Node.js untuk menyelaraskan tag metadata SEO (`title`, `description`, `keywords`, `og:image`, `twitter:card`, `favicon`) di seluruh 15+ file HTML website berdasarkan pengaturan terpusat di `site_config.json`.
+2. **Dynamic Year Parser:** Script client-side di `header.js` yang menerjemahkan penanda `{year}` di judul halaman secara dinamis menjadi tahun berjalan saat ini (misal: 2026).
+3. **Landing Page Iklan Google Ads (`/promo/`):** Halaman khusus iklan tanpa distraksi navigasi dengan fitur countdown timer 24 jam (reset harian), indikator kuota dinamis (5 ke 0 menggunakan `localStorage`), dan grid 4 kolom mobil terlaris yang dinamis dari JSON.
+4. **Halaman Terima Kasih Dinamis (`/thank-you/`):** Halaman sasaran konversi iklan berbayar dengan header & footer terpusat, serta seluruh konten teks halaman yang dapat dikustomisasi secara dinamis dari `site_config.json`.
+5. **OpenGraph Preview WhatsApp:** Mengatur gambar pratinjau tautan WhatsApp secara dinamis (menggunakan gambar model mobil spesifik dari `products.json` atau fallback logo resmi Honda dari JSON).
+
+#### 🐛 Perbaikan Bug & Optimasi (Bug Fixes & Optimizations)
+1. **Penyempurnaan Regex Pembersihan SEO:** Memperbaiki script sinkronisasi agar mendukung pembersihan tag `<link>` berformat self-closing (tanpa tag penutup `</link>`).
+2. **Optimasi Gambar Grid Promo:** Mengubah rasio gambar kartu mobil di landing page menjadi kotak penuh (`aspect-square`) dengan mode `object-cover` agar gambar visual marketing mengisi penuh area box secara estetik.
+3. **Integrasi FAQ Dinamis:** Memindahkan daftar Pertanyaan Umum (FAQ) di landing page promo agar dibaca secara dinamis dari file JSON global.
+
+---
+
+### Catatan Rilis v0.1
 Berikut adalah catatan rilis fitur dan perbaikan yang dikerjakan pada rilis perdana **v0.1**:
 
-### 🛠️ Fitur Baru (New Features)
+#### 🛠️ Fitur Baru (New Features)
 1.  **Dinamisasi Header & Footer:** Memisahkan struktur header/footer statis menjadi script asinkron (`header.js` dan `footer.js`) yang memuat data secara terpusat dari `site_config.json`.
 2.  **Halaman Pricelist Mobil:** Membuat modul halaman `/pricelist/` yang memuat data OTR dari URL CDN argust.my.id dengan mekanisme data lokal fallback.
 3.  **Halaman e-Brochure Mobil:** Membuat modul halaman `/brochure/` lengkap dengan modal penampil PDF Google Drive terintegrasi.
 4.  **Generasi Halaman Produk Dinamis:** Menghasilkan 10 subhalaman detail produk di folder `/model/` yang terintegrasi secara dinamis dengan layout global.
 5.  **Dinamisasi Persyaratan Kredit & Gambar Fraud:** Memindahkan teks persyaratan kredit dan tautan gambar popup fraud ke dalam konfigurasi JSON terpusat.
 
-### 🐛 Perbaikan Bug & Optimasi (Bug Fixes & Optimizations)
+#### 🐛 Perbaikan Bug & Optimasi (Bug Fixes & Optimizations)
 1.  **Penanganan Glitch Transisi Menu:** Menghapus transisi default Tailwind saat pemuatan halaman pertama kali untuk mencegah sidebar navigasi dan modal berkedip (muncul lalu tertutup sendiri), digantikan dengan transisi asinkron `requestAnimationFrame`.
 2.  **Koreksi Posisi Ikon Pencarian:** Menggeser posisi ikon kaca pembesar pencarian di kolom input header agar sejajar vertikal secara sempurna.
 3.  **Perbaikan Bug Halaman Detail:** Menyelesaikan error runtime javascript (`Cannot set properties of null`) pada halaman detail model akibat pencarian elemen spesifikasi yang kosong.
