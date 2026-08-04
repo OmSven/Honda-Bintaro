@@ -43,15 +43,30 @@ Hampir seluruh teks, tautan, gambar, dan menu navigasi pada website diatur secar
 
 ## 🛠️ Riwayat Perubahan (Changelog)
 
-### Catatan Rilis v0.2
-Rilis **v0.2** fokus pada optimalisasi SEO & Meta Sharing WhatsApp, pembuatan Landing Page Google Ads berkonversi tinggi, Halaman Terima Kasih dinamis, serta otomatisasi sinkronisasi SEO statis.
+### Catatan Rilis v0.1.3
+Rilis **v0.1.3** fokus pada penyempurnaan UI preloader, integrasi grid Promo Terbaru dari data terpusat, pengurutan navigasi Model, serta perbaikan bugs/konflik styling pada landing page dan homepage.
+
+#### 🛠️ Fitur Baru (New Features)
+1. **Section Promo Terbaru (Dinamis dari JSON):** Menambahkan section "Promo Terbaru Honda Bintaro" di `/promo/` yang merender 4 kartu promosi terpusat secara dinamis dari file `site_config.json` (termasuk banner kustom "Rp 300JT*").
+2. **Navigasi Bersih & Menu Promo Baru:** Menyisipkan menu "Promo Honda 2026" ke navigasi utama, serta memperbarui dropdown menu "Model" di sidebar agar memuat daftar tipe mobil resmi Honda yang riil (Brio, HR-V, Accord, dll.) secara terurut sesuai daftar prioritas `productOrder`.
+3. **Preloader Global Lebih Besar:** Memperbesar ukuran overlay preloader transisi di `header.js` dari 64px menjadi 140px agar logo GIF animasi Honda tampil lebih megah dan premium.
+
+#### 🐛 Perbaikan Bug & Optimasi (Bug Fixes & Optimizations)
+1. **Resolusi Bug ReferenceError Halaman Promo:** Memperbaiki bug error pembacaan variabel `phone` di `/promo/` yang sempat menyebabkan pemuatan seluruh produk dinamis terhenti (kini sudah lancar 100%).
+2. **Fix Konflik Warna Hover Kategori:** Mengatasi bug teks tidak terbaca saat di-hover pada kategori tombol lineup aktif di homepage (`index.html`) dengan mengubah hover-state menjadi `hover:text-white` secara dinamis.
+3. **Keandalan Akordion Model:** Mengembalikan pemicu klik sidebar "Model" untuk selalu membuka accordion list kategori pada mobile & desktop guna menjamin stabilitas navigasi menu.
+
+---
+
+### Catatan Rilis v0.1.2
+Rilis **v0.1.2** fokus pada optimalisasi SEO & Meta Sharing WhatsApp, pembuatan Landing Page Google Ads berkonversi tinggi, Halaman Terima Kasih dinamis, serta otomatisasi sinkronisasi SEO statis.
 
 #### 🛠️ Fitur Baru (New Features)
 1. **Sistem Sinkronisasi SEO Statis (`sync_seo.js`):** Script otomatisasi Node.js untuk menyelaraskan tag metadata SEO (`title`, `description`, `keywords`, `og:image`, `twitter:card`, `favicon`) di seluruh 15+ file HTML website berdasarkan pengaturan terpusat di `site_config.json`.
 2. **Dynamic Year Parser:** Script client-side di `header.js` yang menerjemahkan penanda `{year}` di judul halaman secara dinamis menjadi tahun berjalan saat ini (misal: 2026).
 3. **Landing Page Iklan Google Ads (`/promo/`):** Halaman khusus iklan tanpa distraksi navigasi dengan fitur countdown timer 24 jam (reset harian), indikator kuota dinamis (5 ke 0 menggunakan `localStorage`), dan grid 4 kolom mobil terlaris yang dinamis dari JSON.
 4. **Halaman Terima Kasih Dinamis (`/thank-you/`):** Halaman sasaran konversi iklan berbayar dengan header & footer terpusat, serta seluruh konten teks halaman yang dapat dikustomisasi secara dinamis dari `site_config.json`.
-5. **OpenGraph Preview WhatsApp:** Mengatur gambar pratinjau tautan WhatsApp secara dinamis (menggunakan gambar model mobil spesifik dari `products.json` atau fallback logo resmi Honda dari JSON).
+5. **OpenGraph Preview WhatsApp:** Mengatur gambar pratinjau tautan WhatsApp secara dinamis (menggunakan gambar model mobil spesifik dari `products.json` or fallback logo resmi Honda dari JSON).
 
 #### 🐛 Perbaikan Bug & Optimasi (Bug Fixes & Optimizations)
 1. **Penyempurnaan Regex Pembersihan SEO:** Memperbaiki script sinkronisasi agar mendukung pembersihan tag `<link>` berformat self-closing (tanpa tag penutup `</link>`).

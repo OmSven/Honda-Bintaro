@@ -96,16 +96,15 @@
 
             <!-- Right Urgency & Leads Form Card -->
             <div class="lg:col-span-5 relative w-full max-w-md mx-auto" id="promo-form-section">
-                <!-- Urgency Countdown Banner -->
-                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-red-600 to-amber-500 text-xs font-bold px-4 py-1.5 rounded-full shadow-md z-20 flex items-center gap-1.5 whitespace-nowrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    PROMO TERBATAS HARI INI
-                </div>
-
                 <!-- Form Card -->
                 <div class="bg-white/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 text-gray-800 shadow-xl border border-white/20 mt-4 relative pt-10">
+                    <!-- Urgency Countdown Banner -->
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-red-600 to-amber-500 text-xs font-bold px-4 py-1.5 rounded-full shadow-md z-20 flex items-center gap-1.5 whitespace-nowrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        PROMO TERBATAS HARI INI
+                    </div>
                     <h3 class="text-xl font-bold text-center text-gray-900 leading-tight">Dapatkan Penawaran OTR Terbaik</h3>
                     <p class="text-xs text-gray-500 text-center mt-1 mb-6">Lengkapi data Anda, langsung dapatkan hitungan simulasi via WhatsApp</p>
                     
@@ -209,6 +208,22 @@
                 <div class="text-left">
                     <h4 class="font-bold text-sm text-gray-900">Tukar Tambah Terbaik</h4>
                     <p class="text-xs text-gray-500">Mobil lama dihargai tinggi dibanding pasaran</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROMO TERBARU HONDA BINTARO SECTION (4 CARDS FROM JSON) -->
+    <section class="bg-white border-t border-b border-gray-100 py-16" id="latest-promo-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 font-outfit">Promo Terbaru Honda Bintaro</h2>
+                <p class="text-xs sm:text-sm text-gray-500">Penawaran terbaik dan program cicilan khusus bulan ini</p>
+            </div>
+
+            <div id="dynamic-latest-promos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <div class="col-span-full flex items-center justify-center py-12 text-gray-400 text-xs">
+                    <span>Memuat Promo Terbaru...</span>
                 </div>
             </div>
         </div>
@@ -360,6 +375,7 @@
             ]).then(([products, config]) => {
                 const contact = config.contact || {};
                 const salesName = contact.salesName || "Rere";
+                const phone = contact.phoneNumber || "6282299185425";
                 
                 // Read featured models for promo list from config, default to top 4
                 const featuredIds = config.site?.promoFeaturedModels || ["brio", "hr-v", "wr-v", "br-v"];
@@ -375,6 +391,55 @@
                         selectCar.appendChild(opt);
                     }
                 });
+
+                // Render Promo Terbaru Honda Bintaro (4 cards from JSON config)
+                const latestPromosContainer = document.getElementById('dynamic-latest-promos');
+                if (latestPromosContainer) {
+                    latestPromosContainer.innerHTML = '';
+                    const promos = config.promos || [];
+                    promos.forEach(item => {
+                        const waTextFormatted = (item.waText || "Halo {salesName}, saya ingin bertanya mengenai promo.")
+                            .replace(/{salesName}/g, salesName);
+                        const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(waTextFormatted)}`;
+                        
+                        let mediaHtml = '';
+                        if (item.customImageHtml) {
+                            mediaHtml = item.customImageHtml;
+                        } else {
+                            mediaHtml = `<img src="${item.image || '../assets/images/logo.png'}" alt="${item.title}" class="object-cover w-full h-40">`;
+                        }
+                        
+                        const cardHtml = `
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md hover:border-gray-200 transition duration-300 flex flex-col justify-between h-full">
+                                <div>
+                                    <!-- Card Media (Image or Custom HTML) -->
+                                    <div class="relative overflow-hidden w-full h-40">
+                                        ${mediaHtml}
+                                    </div>
+                                    <!-- Content -->
+                                    <div class="p-5 space-y-3 text-left">
+                                        <span class="inline-block text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded ${item.tagColorClass || 'bg-red-50 text-honda'}">
+                                            ${item.tag}
+                                        </span>
+                                        <h3 class="text-base font-extrabold text-gray-900 leading-tight">${item.title}</h3>
+                                        <p class="text-xs text-gray-500 leading-relaxed">${item.description}</p>
+                                    </div>
+                                </div>
+                                <!-- Link to WhatsApp -->
+                                <div class="px-5 pb-5">
+                                    <a href="${waUrl}" target="_blank"
+                                        class="w-full py-2.5 bg-gray-50 hover:bg-red-50 hover:text-red-600 text-gray-700 font-bold text-xs rounded-xl text-center transition duration-300 uppercase flex items-center justify-center gap-1 cursor-pointer border border-gray-100 hover:border-red-200">
+                                        ${item.ctaText || 'Tanya Promo'}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                        latestPromosContainer.insertAdjacentHTML('beforeend', cardHtml);
+                    });
+                }
 
                 // Render promo cards as a grid (only featured models)
                 dynamicCards.innerHTML = '';
@@ -482,7 +547,7 @@
                     window.open(waUrl, '_blank');
                     
                     // Immediately redirect the current tab to Thank You page
-                    window.location.href = '../thank-you/index.html';
+                    window.location.href = '../thank-you/';
                 });
             }).catch(err => {
                 console.error("Gagal memuat produk dan konfigurasi:", err);

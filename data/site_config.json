@@ -45,17 +45,62 @@
       "type": "link"
     },
     {
-      "label": "Booking Test Drive",
-      "link": "whatsapp:testDrive",
-      "type": "whatsapp"
+      "label": "Model",
+      "type": "dropdown",
+      "items": [
+        {
+          "label": "Honda Super-ONE",
+          "link": "{basePath}model/superone/"
+        },
+        {
+          "label": "Honda Brio",
+          "link": "{basePath}model/brio/"
+        },
+        {
+          "label": "Honda HR-V",
+          "link": "{basePath}model/hr-v/"
+        },
+        {
+          "label": "Honda WR-V",
+          "link": "{basePath}model/wr-v/"
+        },
+        {
+          "label": "Honda StepWGN",
+          "link": "{basePath}model/stepwgn/"
+        },
+        {
+          "label": "Honda BR-V",
+          "link": "{basePath}model/br-v/"
+        },
+        {
+          "label": "Honda City Hatchback RS",
+          "link": "{basePath}model/city-hatchback-rs/"
+        },
+        {
+          "label": "Honda CR-V",
+          "link": "{basePath}model/cr-v/"
+        },
+        {
+          "label": "Honda Civic RS",
+          "link": "{basePath}model/civic-rs/"
+        },
+        {
+          "label": "Honda Accord",
+          "link": "{basePath}model/accord/"
+        },
+        {
+          "label": "Honda e:N1",
+          "link": "{basePath}model/en1/"
+        }
+      ]
     },
     {
       "label": "Promo Honda 2026",
-      "link": "{basePath}#promo-section",
+      "link": "{basePath}promo/",
       "type": "link"
     },
     {
-      "label": "Pricelist Mobil",
+      "label": "Pricelist",
       "link": "{basePath}pricelist/",
       "type": "link"
     },
@@ -65,26 +110,9 @@
       "type": "link"
     },
     {
-      "label": "Model Mobil",
-      "type": "dropdown",
-      "items": [
-        {
-          "label": "City Car & Hatchback",
-          "link": "{basePath}index.html?cat=City%20Car%20%26%20Hatchback#model-list-section"
-        },
-        {
-          "label": "MPV",
-          "link": "{basePath}index.html?cat=MPV#model-list-section"
-        },
-        {
-          "label": "Sedan",
-          "link": "{basePath}index.html?cat=Sedan#model-list-section"
-        },
-        {
-          "label": "SUV",
-          "link": "{basePath}index.html?cat=SUV#model-list-section"
-        }
-      ]
+      "label": "FAQ",
+      "link": "{basePath}#faq-section",
+      "type": "link"
     },
     {
       "label": "Persyaratan Kredit",
@@ -92,9 +120,9 @@
       "type": "link"
     },
     {
-      "label": "FAQ",
-      "link": "{basePath}#faq-section",
-      "type": "link"
+      "label": "Booking Test Drive",
+      "link": "whatsapp:testDrive",
+      "type": "whatsapp"
     }
   ],
   "usp": {

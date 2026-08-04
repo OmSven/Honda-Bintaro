@@ -1,4 +1,40 @@
 (function() {
+    // Inject Preloader Overlay dynamically
+    if (typeof window !== 'undefined') {
+        const injectPreloader = () => {
+            if (document.getElementById('global-preloader')) return;
+            const preloader = document.createElement('div');
+            preloader.id = 'global-preloader';
+            preloader.className = 'fixed inset-0 bg-white z-[99999] flex items-center justify-center transition-opacity duration-300';
+            preloader.innerHTML = `
+                <div class="flex flex-col items-center space-y-4">
+                    <img src="https://www.honda-bintaro.com/wp-content/uploads/2025/01/honda_loading.gif" alt="Loading..." style="width: 140px; height: 140px; object-fit: contain;">
+                </div>
+            `;
+            document.body.prepend(preloader);
+            
+            const removePreloader = () => {
+                preloader.style.opacity = '0';
+                preloader.style.pointerEvents = 'none';
+                setTimeout(() => preloader.remove(), 300);
+            };
+            
+            if (document.readyState === 'complete') {
+                removePreloader();
+            } else {
+                window.addEventListener('load', removePreloader);
+                // Fallback in case load event takes too long
+                setTimeout(removePreloader, 2500);
+            }
+        };
+        
+        if (document.body) {
+            injectPreloader();
+        } else {
+            document.addEventListener('DOMContentLoaded', injectPreloader);
+        }
+    }
+
     const headerContainer = document.getElementById('shared-header');
     if (!headerContainer) return;
 
@@ -421,15 +457,23 @@
                     .replace(/{phone}/g, phone)
                     .replace(/{salesName}/g, salesName);
                 
+                const isBookingBtn = item.label.toLowerCase().includes('booking test drive');
+                
                 if (item.type === 'whatsapp') {
                     const templateKey = item.link.replace(/^whatsapp:/, '');
                     const rawMsg = siteConfig.whatsappTemplates?.[templateKey] || "Halo {salesName}, saya ingin menghubungi Anda.";
                     const msg = rawMsg.replace(/{salesName}/g, salesName);
                     resolvedLink = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
                     
-                    navHtml += `
-                        <a href="${resolvedLink}" target="_blank" class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">${item.label}</a>
-                    `;
+                    if (isBookingBtn) {
+                        navHtml += `
+                            <a href="${resolvedLink}" target="_blank" class="block mx-4 my-3 px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold text-center rounded-xl transition shadow-md shadow-red-600/20 border border-red-700 uppercase tracking-wider text-xs sm:text-sm">${item.label}</a>
+                        `;
+                    } else {
+                        navHtml += `
+                            <a href="${resolvedLink}" target="_blank" class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 transition">${item.label}</a>
+                        `;
+                    }
                 } else if (item.type === 'dropdown') {
                     let subItemsHtml = '';
                     if (item.items && Array.isArray(item.items)) {
@@ -457,9 +501,15 @@
                         </div>
                     `;
                 } else {
-                    navHtml += `
-                        <a href="${resolvedLink}" class="sidebar-link block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">${item.label}</a>
-                    `;
+                    if (isBookingBtn) {
+                        navHtml += `
+                            <a href="${resolvedLink}" class="block mx-4 my-3 px-4 py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold text-center rounded-xl transition shadow-md shadow-red-600/20 border border-red-700 uppercase tracking-wider text-xs sm:text-sm">${item.label}</a>
+                        `;
+                    } else {
+                        navHtml += `
+                            <a href="${resolvedLink}" class="sidebar-link block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">${item.label}</a>
+                        `;
+                    }
                 }
             });
             navContainer.innerHTML = navHtml;
