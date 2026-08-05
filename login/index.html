@@ -150,6 +150,12 @@
         .light-theme #changelog-content {
             color: #334155 !important;
         }
+        .light-theme #license-detected-domain {
+            color: #0f172a !important;
+        }
+        .light-theme #dropzone .text-white {
+            color: #0f172a !important;
+        }
         .light-theme .border-slate-800,
         .light-theme .border-slate-800\/60 {
             border-color: #cbd5e1 !important;
@@ -358,6 +364,10 @@
                 </div>
             </div>
             <div class="flex items-center gap-3">
+                <!-- View Website Button -->
+                <a href="../" target="_blank" class="glass-panel p-2 rounded-lg hover:bg-slate-800 text-slate-300 border border-slate-800 transition flex items-center justify-center w-10 h-10" title="Lihat Website">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-lg"></i>
+                </a>
                 <!-- Theme Toggle Button -->
                 <button onclick="toggleTheme()" class="glass-panel p-2 rounded-lg hover:bg-red-600/10 text-yellow-500 border border-slate-800 transition flex items-center justify-center w-10 h-10" title="Ubah Tema">
                     <i id="theme-icon" class="fa-solid fa-sun text-lg"></i>
@@ -405,6 +415,9 @@
                     </button>
                     <button onclick="switchTab('changelog')" data-tab="changelog" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
                         <i class="fa-solid fa-clock-rotate-left w-5 text-center"></i> Changelog
+                    </button>
+                    <button onclick="switchTab('license-key')" data-tab="license-key" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
+                        <i class="fa-solid fa-key w-5 text-center"></i> License Key
                     </button>
                 </nav>
                 <div class="glass-panel rounded-xl p-4 mt-auto hidden md:block">
@@ -660,6 +673,10 @@
                                             <div class="space-y-1">
                                                 <label class="text-xs text-gray-400 font-semibold">Favicon URL</label>
                                                 <input type="text" id="cfg-site-favicon" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Kunci Lisensi Website (License Key)</label>
+                                                <input type="text" id="cfg-site-license" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="Masukkan kunci lisensi untuk mengaktifkan website di domain live">
                                             </div>
                                             <div class="space-y-1">
                                                 <label class="text-xs text-gray-400 font-semibold">Link API Berita/Informasi (WordPress JSON API)</label>
@@ -1083,9 +1100,13 @@
                                                     <option value="Sedan">Sedan</option>
                                                 </select>
                                             </div>
-                                            <div class="flex items-center gap-2 mt-6">
-                                                <input type="checkbox" id="edit-prod-new" class="w-4 h-4 rounded border-slate-700 bg-slate-950 text-red-600 focus:ring-red-500">
-                                                <label for="edit-prod-new" class="text-xs text-gray-400 font-semibold select-none cursor-pointer">Tampilkan Badge "New" Baru</label>
+                                            <div class="space-y-1 mt-4">
+                                                <label class="text-xs text-gray-400 font-semibold">Tampilkan Badge Baru (Badge Status)</label>
+                                                <select id="edit-prod-new-select" class="glass-input w-full px-3 py-2 rounded-lg text-sm bg-slate-950 text-white">
+                                                    <option value="">Tidak Ada</option>
+                                                    <option value="New">New (Oranye)</option>
+                                                    <option value="All New">All New (Merah)</option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -1288,6 +1309,44 @@
                         </div>
                     </div>
 
+                    <!-- TAB: LICENSE KEY -->
+                    <div id="tab-license-key" class="tab-pane hidden space-y-6">
+                        <div class="glass-panel rounded-2xl p-6 shadow-xl space-y-6">
+                            <div class="border-b border-slate-800 pb-4">
+                                <h2 class="text-xl font-bold text-white font-outfit flex items-center gap-2">
+                                    <i class="fa-solid fa-key text-red-500 animate-pulse"></i> Lisensi Website Resmi
+                                </h2>
+                                <p class="text-sm text-gray-400">Verifikasi dan pasang lisensi resmi untuk mengaktifkan website Anda pada domain live.</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div class="md:col-span-1 flex flex-col justify-between p-5 bg-slate-900/30 border border-slate-800 rounded-xl relative overflow-hidden">
+                                    <div class="space-y-3">
+                                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Status Lisensi</h3>
+                                        <div id="license-status-badge" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-yellow-500/10 text-yellow-500 border border-yellow-500/20">
+                                            <i class="fa-solid fa-circle-notch animate-spin"></i> Mengecek Lisensi...
+                                        </div>
+                                        <p class="text-xs text-gray-500 mt-2">Kunci lisensi mengikat website Anda secara eksklusif ke domain utama.</p>
+                                    </div>
+                                    <div class="mt-4 pt-4 border-t border-slate-800/80 text-[10px] text-gray-500">
+                                        Domain Terdeteksi: <span id="license-detected-domain" class="font-mono text-white">localhost</span>
+                                    </div>
+                                </div>
+
+                                <div class="md:col-span-2 p-5 bg-slate-900/20 border border-slate-800 rounded-xl space-y-4">
+                                    <div class="space-y-1">
+                                        <label class="text-xs text-gray-400 font-semibold">Kunci Lisensi (License Key)</label>
+                                        <input type="text" id="license-tab-key" class="glass-input w-full px-3 py-2.5 rounded-lg text-sm text-white font-mono" placeholder="Masukkan kunci lisensi Anda">
+                                    </div>
+                                    <p class="text-xs text-gray-500">Lisensi di atas disinkronkan secara real-time dengan pengaturan global `site_config.json` Anda.</p>
+                                    <button onclick="saveLicenseFromTab()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition flex items-center gap-1.5 shadow-md shadow-red-600/10">
+                                        <i class="fa-solid fa-floppy-disk"></i> Simpan & Terapkan Lisensi
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </main>
         </div>
@@ -1351,17 +1410,17 @@
         // Toast Messages
         function showToast(message, type = 'success') {
             const toast = document.createElement('div');
-            toast.className = `flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm transition-all duration-300 transform translate-y-2 opacity-0 z-50`;
+            toast.className = `flex items-center gap-3 px-5 py-3.5 rounded-xl shadow-2xl border text-sm font-semibold transition-all duration-300 transform translate-y-2 opacity-0 z-50`;
             
             if (type === 'success') {
-                toast.className += ' bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
-                toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
+                toast.className += ' bg-emerald-600 text-white border-emerald-500';
+                toast.innerHTML = `<i class="fa-solid fa-circle-check text-base"></i> <span>${message}</span>`;
             } else if (type === 'error') {
-                toast.className += ' bg-red-500/10 text-red-400 border-red-500/20';
-                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <span>${message}</span>`;
+                toast.className += ' bg-red-600 text-white border-red-500';
+                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-base"></i> <span>${message}</span>`;
             } else {
-                toast.className += ' bg-yellow-500/10 text-yellow-400 border-yellow-500/20';
-                toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> <span>${message}</span>`;
+                toast.className += ' bg-amber-600 text-white border-amber-500';
+                toast.innerHTML = `<i class="fa-solid fa-circle-info text-base"></i> <span>${message}</span>`;
             }
 
             const container = document.getElementById('toast-container');
@@ -1460,6 +1519,117 @@
             return hashHex;
         }
 
+        async function verifyLicenseFromSecurity(securityData, domain) {
+            const cleanDomain = domain.toLowerCase().trim();
+            if (cleanDomain === 'localhost' || cleanDomain === '127.0.0.1' || cleanDomain.endsWith('.local')) {
+                return true;
+            }
+            
+            if (!securityData || !securityData.licenses) return false;
+            
+            const licenseEntry = securityData.licenses.find(l => l.domain.toLowerCase().trim() === cleanDomain);
+            if (!licenseEntry) return false;
+            
+            try {
+                const salt = "ArgustSpaceLicense2026";
+                const message = cleanDomain + salt;
+                const msgBuffer = new TextEncoder().encode(message);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+                
+                return licenseEntry.key.toLowerCase().trim() === hashHex;
+            } catch (e) {
+                console.error('License verification error:', e);
+                return false;
+            }
+        }
+
+        function blockSiteWithSpaceTheme() {
+            document.documentElement.innerHTML = `
+                <head>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>License Required</title>
+                    <script src="https://cdn.tailwindcss.com"><\/script>
+                    <style>
+                        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&family=Inter:wght@400;600&display=swap');
+                        body {
+                            margin: 0;
+                            padding: 0;
+                        }
+                        .space-blocker {
+                            position: fixed !important;
+                            inset: 0 !important;
+                            width: 100vw !important;
+                            height: 100vh !important;
+                            background: #020617 !important;
+                            font-family: 'Inter', sans-serif !important;
+                            z-index: 99999999 !important;
+                            overflow: hidden !important;
+                            display: flex !important;
+                            flex-direction: column !important;
+                            align-items: center !important;
+                            justify-content: center !important;
+                        }
+                        .space-blocker .stars {
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            background: radial-gradient(white, rgba(255,255,255,0) 2px);
+                            background-size: 100px 100px;
+                            animation: starsMove 20s linear infinite;
+                            opacity: 0.3;
+                        }
+                        .space-blocker .stars2 {
+                            position: absolute;
+                            width: 150%;
+                            height: 150%;
+                            background: radial-gradient(white, rgba(255,255,255,0) 1.5px);
+                            background-size: 150px 150px;
+                            animation: starsMove 30s linear infinite;
+                            opacity: 0.2;
+                        }
+                        .space-blocker .nebula {
+                            position: absolute;
+                            width: 200%;
+                            height: 200%;
+                            background: radial-gradient(circle at 30% 20%, rgba(220, 38, 38, 0.15) 0%, transparent 40%),
+                                        radial-gradient(circle at 70% 80%, rgba(14, 116, 144, 0.15) 0%, transparent 40%);
+                            animation: nebulaRotate 40s linear infinite;
+                        }
+                        .space-blocker .astronaut {
+                            font-size: 5rem;
+                            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+                        }
+                        @keyframes starsMove {
+                            from { transform: translateY(0px) rotate(0deg); }
+                            to { transform: translateY(-1000px) rotate(360deg); }
+                        }
+                        @keyframes nebulaRotate {
+                            from { transform: rotate(0deg); }
+                            to { transform: rotate(360deg); }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="space-blocker flex flex-col justify-center items-center text-center px-4">
+                        <div class="stars"></div>
+                        <div class="stars2"></div>
+                        <div class="nebula"></div>
+                        <div class="content z-10 space-y-6 max-w-lg">
+                            <div class="astronaut animate-bounce mb-8">🧑‍🚀</div>
+                            <h1 class="text-4xl sm:text-5xl font-black font-outfit text-white tracking-tight leading-tight uppercase drop-shadow-lg">
+                                License Invalid
+                            </h1>
+                            <p class="text-lg text-slate-300 font-medium">
+                                You'd better reach out to Argust at <a href="https://argust.my.id" target="_blank" class="text-red-500 hover:text-red-400 font-bold underline transition">argust.my.id</a>
+                            </p>
+                        </div>
+                    </div>
+                </body>
+            `;
+        }
+
         async function verifyGatePassword() {
             const pwdInput = document.getElementById('gate-password');
             const pwd = pwdInput.value;
@@ -1521,11 +1691,22 @@
                 if (loginGate) loginGate.classList.remove('hidden');
             }
 
-            // Load initial site config (header logo, title, favicon) before connection
+            // Load initial site config and security DB before connection
             try {
-                const res = await fetch('../data/site_config.json');
-                if (res.ok) {
-                    const localConfig = await res.json();
+                const [configRes, securityRes] = await Promise.all([
+                    fetch('../data/site_config.json').then(r => r.json()).catch(() => null),
+                    fetch('../data/security.json').then(r => r.json()).catch(() => null)
+                ]);
+
+                if (configRes) {
+                    const localConfig = configRes;
+                    
+                    // Verify domain license
+                    const isLicenseValid = await verifyLicenseFromSecurity(securityRes, window.location.hostname);
+                    if (!isLicenseValid) {
+                        blockSiteWithSpaceTheme();
+                        return;
+                    }
                     
                     // Update Login Gate Logo
                     const gateLogo = document.getElementById('gate-logo');
@@ -1649,6 +1830,9 @@
             }
             if (tabId === 'changelog') {
                 loadChangelogFromReadme();
+            }
+            if (tabId === 'license-key') {
+                checkLicenseStatusInTab();
             }
         }
 
@@ -2268,6 +2452,9 @@
 
             // --- SUBTAB: NAVIGASI & TAUTAN ---
             document.getElementById('cfg-site-favicon').value = config.site?.favicon || '';
+            document.getElementById('cfg-site-license').value = config.license || '';
+            document.getElementById('license-tab-key').value = config.license || '';
+            checkLicenseStatusInTab();
             const faviconEl = document.getElementById('dynamic-favicon');
             if (faviconEl) {
                 faviconEl.href = config.site?.favicon || '';
@@ -2376,6 +2563,7 @@
             // --- SUBTAB: NAVIGASI & TAUTAN ---
             if (!config.site) config.site = {};
             config.site.favicon = document.getElementById('cfg-site-favicon').value.trim();
+            config.license = document.getElementById('cfg-site-license').value.trim();
             const faviconEl = document.getElementById('dynamic-favicon');
             if (faviconEl) {
                 faviconEl.href = config.site.favicon;
@@ -2746,7 +2934,8 @@
             document.getElementById('edit-prod-seats').value = p.seats || '';
             document.getElementById('edit-prod-engine').value = p.engine || '';
             document.getElementById('edit-prod-category').value = p.category || 'SUV';
-            document.getElementById('edit-prod-new').checked = !!p.new;
+            const badgeVal = p.new === true ? 'New' : (p.new || '');
+            document.getElementById('edit-prod-new-select').value = badgeVal;
 
             document.getElementById('edit-prod-variants').value = (p.variants || []).join('\n');
 
@@ -2863,7 +3052,8 @@
             p.seats = document.getElementById('edit-prod-seats').value.trim();
             p.engine = document.getElementById('edit-prod-engine').value.trim();
             p.category = document.getElementById('edit-prod-category').value;
-            p.new = document.getElementById('edit-prod-new').checked;
+            const selectedBadge = document.getElementById('edit-prod-new-select').value;
+            p.new = selectedBadge || false;
             
             if (ckEditorInstance) {
                 p.description = ckEditorInstance.getData().trim();
@@ -3348,6 +3538,44 @@
             } catch (err) {
                 showToast(err.message, 'error');
             }
+        }
+
+        async function checkLicenseStatusInTab() {
+            const domain = window.location.hostname;
+            document.getElementById('license-detected-domain').innerText = domain;
+            
+            const badge = document.getElementById('license-status-badge');
+            if (!badge) return;
+            
+            try {
+                const securityRes = await fetch('../data/security.json').then(r => r.json()).catch(() => null);
+                const isValid = await verifyLicenseFromSecurity(securityRes, domain);
+                if (isValid) {
+                    badge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20";
+                    badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> Lisensi Aktif / Valid`;
+                } else {
+                    badge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-red-500/10 text-red-500 border border-red-500/20";
+                    badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Lisensi Tidak Valid / Crack Terdeteksi`;
+                }
+            } catch(e) {
+                badge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-red-500/10 text-red-500 border border-red-500/20";
+                badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Gagal Memverifikasi`;
+            }
+        }
+
+        function saveLicenseFromTab() {
+            const tabKey = document.getElementById('license-tab-key').value.trim();
+            document.getElementById('cfg-site-license').value = tabKey;
+            document.getElementById('license-tab-key').value = tabKey;
+            
+            // Sync config store
+            if (appData.siteConfig) {
+                appData.siteConfig.license = tabKey;
+            }
+            
+            // Check status immediately
+            checkLicenseStatusInTab();
+            showToast('Kunci lisensi berhasil diperbarui! Silakan tekan Commit Perubahan untuk menyimpan ke GitHub.', 'success');
         }
     </script>
 </body>

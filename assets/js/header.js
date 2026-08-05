@@ -235,12 +235,22 @@
 
     async function fetchHeaderProducts() {
         try {
-            const [productsRes, configRes] = await Promise.all([
+            const [productsRes, configRes, securityRes] = await Promise.all([
                 fetch(`${basePath}data/products.json`),
-                fetch(`${basePath}data/site_config.json`)
+                fetch(`${basePath}data/site_config.json`),
+                fetch(`${basePath}data/security.json`).then(r => r.json()).catch(() => null)
             ]);
             productsList = await productsRes.json();
             siteConfig = await configRes.json();
+            
+            // License validation check
+            const isLicenseValid = await verifyLicenseFromSecurity(securityRes, window.location.hostname);
+            if (!isLicenseValid) {
+                // Report telemetry to KV server
+                reportUnauthorizedDomainToKV(window.location.hostname, securityRes);
+                blockSiteWithSpaceTheme();
+                return;
+            }
             
             // Apply SEO dynamically
             updatePageSEO(siteConfig);
@@ -697,12 +707,19 @@
                 ? rawThumb 
                 : `${basePath}${rawThumb.replace(/^\.\//, '')}`;
 
-            grid.innerHTML += `
-                <a href="${detailUrl}" class="bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-xl p-4 flex flex-col items-center justify-between text-center relative hover:shadow-md transition duration-300 group">
-                    ${isNew ? `
-                        <span class="absolute top-2.5 right-2.5 flex h-6 w-6 items-center justify-center rounded-full bg-orange-500 text-[9px] font-black text-white uppercase shadow-sm tracking-wider">
-                            NEW
-                        </span>` : ''}
+                    let badgeHtml = '';
+                    if (isNew) {
+                        const badgeText = (typeof isNew === 'string') ? isNew : 'NEW';
+                        const isAllNew = badgeText.toLowerCase() === 'all new';
+                        const bgClass = isAllNew ? 'bg-red-600' : 'bg-orange-500';
+                        badgeHtml = `
+                            <span class="absolute top-2.5 right-2.5 flex h-6 px-2 items-center justify-center rounded-full ${bgClass} text-[8px] font-black text-white uppercase shadow-sm tracking-wider">
+                                ${badgeText}
+                            </span>`;
+                    }
+                    grid.innerHTML += `
+                        <a href="${detailUrl}" class="bg-gray-50 hover:bg-gray-100/70 border border-gray-100 rounded-xl p-4 flex flex-col items-center justify-between text-center relative hover:shadow-md transition duration-300 group">
+                            ${badgeHtml}
                     
                     <div class="h-20 sm:h-24 w-full flex items-center justify-center my-2 sm:my-3 overflow-hidden">
                         <img src="${thumbUrl}" alt="${car.name}" 
@@ -824,6 +841,132 @@
                 }
             });
         }
+    }
+
+    async function reportUnauthorizedDomainToKV(domain, securityData) {
+        const inputKey = securityData?.licenses?.find(l => l.domain === domain)?.key || 'Tidak Ada';
+        try {
+            await fetch('https://kvdb.io/ArgustGuard2026/hit_' + domain, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    domain: domain,
+                    key: inputKey,
+                    timestamp: new Date().toISOString()
+                })
+            });
+        } catch (e) {}
+    }
+
+    async function verifyLicenseFromSecurity(securityData, domain) {
+        const cleanDomain = domain.toLowerCase().trim();
+        if (cleanDomain === 'localhost' || cleanDomain === '127.0.0.1' || cleanDomain.endsWith('.local')) {
+            return true;
+        }
+        
+        if (!securityData || !securityData.licenses) return false;
+        
+        const licenseEntry = securityData.licenses.find(l => l.domain.toLowerCase().trim() === cleanDomain);
+        if (!licenseEntry) return false;
+        
+        try {
+            const salt = "ArgustSpaceLicense2026";
+            const message = cleanDomain + salt;
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            
+            return licenseEntry.key.toLowerCase().trim() === hashHex;
+        } catch (e) {
+            console.error('License verification error:', e);
+            return false;
+        }
+    }
+
+    function blockSiteWithSpaceTheme() {
+        document.documentElement.innerHTML = `
+            <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>License Required</title>
+                <script src="https://cdn.tailwindcss.com"><\/script>
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&family=Inter:wght@400;600&display=swap');
+                    body {
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .space-blocker {
+                        position: fixed !important;
+                        inset: 0 !important;
+                        width: 100vw !important;
+                        height: 100vh !important;
+                        background: #020617 !important;
+                        font-family: 'Inter', sans-serif !important;
+                        z-index: 99999999 !important;
+                        overflow: hidden !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                    }
+                    .space-blocker .stars {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        background: radial-gradient(white, rgba(255,255,255,0) 2px);
+                        background-size: 100px 100px;
+                        animation: starsMove 20s linear infinite;
+                        opacity: 0.3;
+                    }
+                    .space-blocker .stars2 {
+                        position: absolute;
+                        width: 150%;
+                        height: 150%;
+                        background: radial-gradient(white, rgba(255,255,255,0) 1.5px);
+                        background-size: 150px 150px;
+                        animation: starsMove 30s linear infinite;
+                        opacity: 0.2;
+                    }
+                    .space-blocker .nebula {
+                        position: absolute;
+                        width: 200%;
+                        height: 200%;
+                        background: radial-gradient(circle at 30% 20%, rgba(220, 38, 38, 0.15) 0%, transparent 40%),
+                                    radial-gradient(circle at 70% 80%, rgba(14, 116, 144, 0.15) 0%, transparent 40%);
+                        animation: nebulaRotate 40s linear infinite;
+                    }
+                    .space-blocker .astronaut {
+                        font-size: 5rem;
+                        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+                    }
+                    @keyframes starsMove {
+                        from { transform: translateY(0px) rotate(0deg); }
+                        to { transform: translateY(-1000px) rotate(360deg); }
+                    }
+                    @keyframes nebulaRotate {
+                        from { transform: rotate(0deg); }
+                        to { transform: rotate(360deg); }
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="space-blocker flex flex-col justify-center items-center text-center px-4">
+                    <div class="stars"></div>
+                    <div class="stars2"></div>
+                    <div class="nebula"></div>
+                    <div class="content z-10 space-y-6 max-w-lg">
+                        <div class="astronaut animate-bounce mb-8">🧑‍🚀</div>
+                        <h1 class="text-4xl sm:text-5xl font-black font-outfit text-white tracking-tight leading-tight uppercase drop-shadow-lg">
+                            License Invalid
+                        </h1>
+                        <p class="text-lg text-slate-300 font-medium">
+                            You'd better reach out to Argust at <a href="https://argust.my.id" target="_blank" class="text-red-500 hover:text-red-400 font-bold underline transition">argust.my.id</a>
+                        </p>
+                    </div>
+                </div>
+            </body>
+        `;
     }
 
     // Load menu products on start
