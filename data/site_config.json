@@ -11,7 +11,12 @@
   },
   "site": {
     "favicon": "https://asset.honda-indonesia.com/2023/07/26/favicon.ico",
-    "promoFeaturedModels": ["brio", "hr-v", "wr-v", "br-v"],
+    "promoFeaturedModels": [
+      "brio",
+      "hr-v",
+      "wr-v",
+      "br-v"
+    ],
     "newsApiUrl": "https://www.honda-bintaro.com/wp-json/wp/v2/posts?categories=2&per_page=4",
     "allNewsUrl": "https://www.honda-bintaro.com/news/",
     "newsTitle": "Berita & Informasi",
@@ -185,7 +190,6 @@
       "title": "Wujudkan Impian Anda Bersama Honda",
       "description": "Setiap transaksi pembelian mobil berkesempatan memenangkan undian berhadiah utama mobil Honda Baru!",
       "image": "",
-      "customImageHtml": "<div class=\"h-40 bg-honda flex flex-col justify-center items-center p-6 text-white text-center\"><span class=\"text-5xl font-black font-outfit tracking-wide mb-1\">Rp 300JT*</span><span class=\"text-xs font-bold tracking-widest uppercase\">Total Hadiah Utama</span></div>",
       "waText": "Halo {salesName}, bagaimana cara ikut undian hadiah Honda 300jt.",
       "ctaText": "Tanya Promo"
     }
@@ -354,16 +358,16 @@
     }
   },
   "brochures": {
-    "accord": "1tfqHJNoClZH0ekF9HKjckSI0a-2ROHCO",
-    "brio": "14CneF_iL55YBzkxJZi7Jz6RI-WOBOQoN",
-    "br-v": "15ajwuhTtYhnaUgW6fzM6i2C3Tf42p6-s",
-    "city-hatchback-rs": "1kyOlDClQgPj2AlP2RZtg-oT5ljtAEN-A",
-    "civic-rs": "1EQ6I4iOzwM32Dp48En9yok8nixHrvKt4",
-    "cr-v": "1fFFbWcCJOHedXwnp_4SSMGd1e_LqD2kc",
-    "en1": "1PmsBvdYPx_0KUQo3eGzRVveF39R5eicY",
-    "hr-v": "1AtxnWSfEzjQhW5eskcEGS_1Ao8LupF7e",
     "stepwgn": "1T4R1Af7Tcfol_mhUJrUyjbIMWXj6K7qf",
-    "wr-v": "1kaYXJWmMA17nAoVTIJdFamv_wZFUPDIk"
+    "accord": "1tfqHJNoClZH0ekF9HKjckSI0a-2ROHCO",
+    "civic-rs": "1EQ6I4iOzwM32Dp48En9yok8nixHrvKt4",
+    "city-hatchback-rs": "1kyOlDClQgPj2AlP2RZtg-oT5ljtAEN-A",
+    "cr-v": "1fFFbWcCJOHedXwnp_4SSMGd1e_LqD2kc",
+    "wr-v": "1kaYXJWmMA17nAoVTIJdFamv_wZFUPDIk",
+    "hr-v": "1AtxnWSfEzjQhW5eskcEGS_1Ao8LupF7e",
+    "br-v": "15ajwuhTtYhnaUgW6fzM6i2C3Tf42p6-s",
+    "brio": "14CneF_iL55YBzkxJZi7Jz6RI-WOBOQoN",
+    "en1": "1PmsBvdYPx_0KUQo3eGzRVveF39R5eicY"
   },
   "thankYou": {
     "title": "Pengiriman Berhasil!",
@@ -371,5 +375,11 @@
     "description": "Sistem kami sedang membuka aplikasi WhatsApp Anda di tab baru. Sales Counter kami, {salesName}, akan segera merespons Anda dalam waktu 10-15 menit untuk memberikan hitungan kredit / promo yang Anda ajukan.",
     "buttonText": "Hubungi WA Sekarang (Alternatif)",
     "backButtonText": "Kembali ke Beranda"
+  },
+  "license": "23429834ghjwegrhjefjsf",
+  "promoPage": {
+    "badge": "Promo Eksklusif Honda Jabodetabek {year}",
+    "title": "Miliki Mobil Honda Impian Anda <br class=\"hidden sm:inline\"><span class=\"text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-400\">DP Termurah & Bunga 0%</span>",
+    "description": "Dapatkan diskon OTR besar-besaran, gratis biaya service berkala s.d. 4 tahun, dan pengajuan kredit dibantu sampai 100% disetujui. Hubungi Sales Counter Resmi sekarang juga!"
   }
 }
