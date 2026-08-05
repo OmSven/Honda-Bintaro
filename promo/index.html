@@ -377,6 +377,27 @@
                 const salesName = contact.salesName || "Rere";
                 const phone = contact.phoneNumber || "6282299185425";
                 
+                // Dynamic Hero Content for Promo Page
+                const promoPage = config.promoPage || {};
+                if (promoPage.badge) {
+                    const badgeEl = document.querySelector('.tracking-wide.uppercase');
+                    if (badgeEl) {
+                        badgeEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-50 animate-ping text-red-50"></span> ${promoPage.badge.replace(/{year}/g, new Date().getFullYear())}`;
+                    }
+                }
+                if (promoPage.title) {
+                    const titleEl = document.querySelector('h1.font-extrabold');
+                    if (titleEl) {
+                        titleEl.innerHTML = promoPage.title;
+                    }
+                }
+                if (promoPage.description) {
+                    const descEl = document.querySelector('p.text-gray-300');
+                    if (descEl) {
+                        descEl.innerHTML = promoPage.description;
+                    }
+                }
+                
                 // Read featured models for promo list from config, default to top 4
                 const featuredIds = config.site?.promoFeaturedModels || ["brio", "hr-v", "wr-v", "br-v"];
                 const allOrder = config.site?.productOrder || Object.keys(products);

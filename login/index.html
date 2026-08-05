@@ -1,0 +1,2982 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honda Bintaro - Admin Editor</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- CKEditor 5 CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        honda: '#cc0000',
+                        'honda-dark': '#990000',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Classic Sticky Footer Layout */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f1f5f9;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .main-content-wrapper {
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+        footer {
+            flex-shrink: 0;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #cc0000;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .glass-input {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f8fafc;
+            transition: all 0.2s ease-in-out;
+        }
+        .glass-input:focus {
+            border-color: #cc0000;
+            box-shadow: 0 0 0 2px rgba(204, 0, 0, 0.2);
+            outline: none;
+        }
+
+        /* Light Theme overrides */
+        .light-theme {
+            background-color: #f1f5f9;
+            color: #1e293b;
+        }
+        .light-theme .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        }
+        .light-theme .glass-input {
+            background: #ffffff;
+            border-color: #cbd5e1;
+            color: #0f172a;
+        }
+        .light-theme .glass-input:focus {
+            border-color: #cc0000;
+            box-shadow: 0 0 0 2px rgba(204, 0, 0, 0.15);
+        }
+        .light-theme h1, 
+        .light-theme h2, 
+        .light-theme h3, 
+        .light-theme h4, 
+        .light-theme h5, 
+        .light-theme h6 {
+            color: #0f172a !important;
+        }
+        .light-theme .text-gray-400 {
+            color: #475569 !important; /* slate-600 */
+        }
+        .light-theme .text-gray-500 {
+            color: #64748b !important; /* slate-500 */
+        }
+        .light-theme .text-red-500 {
+            color: #cc0000 !important;
+        }
+        .light-theme .bg-slate-950\/40 {
+            background: #e2e8f0 !important;
+            border-color: #cbd5e1 !important;
+        }
+        .light-theme .bg-slate-900\/50,
+        .light-theme .bg-slate-900\/20,
+        .light-theme .bg-slate-900\/40 {
+            background: #ffffff !important;
+            border-color: #cbd5e1 !important;
+        }
+        .light-theme .border-slate-800,
+        .light-theme .border-slate-800\/60 {
+            border-color: #cbd5e1 !important;
+        }
+        .light-theme .nav-btn:hover {
+            background: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+        .light-theme .nav-btn:not(.bg-red-600) {
+            color: #475569 !important;
+        }
+        
+        /* Ensure active buttons (red class) keep white text in light theme */
+        .light-theme .bg-red-600,
+        .light-theme .bg-red-600 * {
+            color: #ffffff !important;
+        }
+        .light-theme .bg-red-600:hover {
+            background-color: #b91c1c !important;
+        }
+
+        /* Ensure slate buttons keep light text color in light theme */
+        .light-theme .bg-slate-800,
+        .light-theme .bg-slate-800 *,
+        .light-theme .bg-slate-900,
+        .light-theme .bg-slate-900 *,
+        .light-theme .bg-slate-950,
+        .light-theme .bg-slate-950 * {
+            color: #f8fafc !important;
+        }
+        
+        .light-theme footer {
+            background-color: #cbd5e1 !important;
+            border-top-color: #94a3b8 !important;
+            color: #475569 !important;
+        }
+        .light-theme .ck.ck-editor__main>.ck-editor__editable {
+            background: #ffffff;
+            color: #0f172a;
+        }
+        .light-theme .ck.ck-toolbar {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        /* CKEditor Custom Styling */
+        .ck-editor__editable_inline {
+            min-height: 200px;
+        }
+        .ck.ck-editor__main>.ck-editor__editable:focus {
+            border-color: #cc0000 !important;
+            box-shadow: 0 0 0 2px rgba(204, 0, 0, 0.2) !important;
+        }
+        .ck.ck-editor {
+            color: #0f172a !important;
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden">
+    <!-- Main content container wrapper to push footer to bottom -->
+    <div class="main-content-wrapper">
+        <!-- Floating Gradient Blobs -->
+        <div class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-red-900/10 blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-slate-900/40 blur-[120px] pointer-events-none"></div>
+
+        <!-- TOAST NOTIFICATION CONTAINER -->
+        <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2"></div>
+
+        <!-- MAIN HEADER -->
+        <header class="glass-panel sticky top-0 z-40 px-6 py-4 flex items-center justify-between shadow-lg">
+            <div class="flex items-center gap-3">
+                <img id="header-logo-img" src="" class="h-10 md:h-12 object-contain hidden" alt="Logo Header">
+                <div id="header-logo-fallback" class="flex items-center gap-2">
+                    <div class="bg-red-600 p-2 rounded-lg text-white font-black text-xl tracking-wider font-outfit shadow-md shadow-red-600/30">
+                        H
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-white font-outfit leading-tight">Honda Bintaro</h1>
+                        <p class="text-[10px] text-gray-400">Content Management System v1.2</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleTheme()" class="glass-panel p-2 rounded-lg hover:bg-red-600/10 text-yellow-500 border border-slate-800 transition flex items-center justify-center w-10 h-10" title="Ubah Tema">
+                    <i id="theme-icon" class="fa-solid fa-sun text-lg"></i>
+                </button>
+                <button onclick="fetchDataFromGitHub()" id="fetch-all-btn" class="hidden glass-panel hover:bg-red-600/20 text-red-500 border border-red-500/30 px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2 h-10 transition-all duration-300">
+                    <i class="fa-solid fa-cloud-arrow-down"></i> Tarik Ulang Data
+                </button>
+                <div id="github-status" class="flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 h-10">
+                    <span class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span> Belum Terkoneksi
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN DASHBOARD WRAPPER -->
+        <div class="flex-grow flex flex-col md:flex-row max-w-8xl w-full mx-auto p-4 md:p-6 gap-6 z-10">
+            
+            <!-- SIDEBAR NAVIGATION (STICKY) -->
+            <aside class="md:w-64 flex flex-col gap-2 shrink-0 md:sticky md:top-24 md:self-start z-30">
+                <nav id="nav-tabs" class="flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible gap-1.5 p-1 glass-panel rounded-xl">
+                    <button onclick="switchTab('github-config')" data-tab="github-config" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-white bg-red-600 shadow-md shadow-red-600/20 whitespace-nowrap">
+                        <i class="fa-solid fa-gears w-5 text-center"></i> Konfigurasi GitHub
+                    </button>
+                    <button onclick="switchTab('site-config')" data-tab="site-config" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
+                        <i class="fa-solid fa-globe w-5 text-center"></i> Pengaturan Web
+                    </button>
+                    <button onclick="switchTab('banners')" data-tab="banners" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
+                        <i class="fa-solid fa-images w-5 text-center"></i> Banner Slider
+                    </button>
+                    <button onclick="switchTab('products')" data-tab="products" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
+                        <i class="fa-solid fa-car w-5 text-center"></i> Katalog Produk
+                    </button>
+                    <button onclick="switchTab('pricelist')" data-tab="pricelist" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
+                        <i class="fa-solid fa-tags w-5 text-center"></i> Pricelist OTR
+                    </button>
+                    <button onclick="switchTab('media')" data-tab="media" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
+                        <i class="fa-solid fa-cloud-arrow-up w-5 text-center"></i> Upload Media
+                    </button>
+                </nav>
+                <div class="glass-panel rounded-xl p-4 mt-auto hidden md:block">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2"><i class="fa-solid fa-circle-info mr-1"></i> Bantuan</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Setiap kali Anda menekan tombol <b>Commit Perubahan</b>, perubahan Anda akan langsung disimpan ke repositori GitHub. 
+                        <br><br>
+                        Data di website Anda akan langsung terupdate secara dinamis bagi pengunjung.
+                    </p>
+                </div>
+            </aside>
+
+            <!-- CONTENT AREA -->
+            <main class="flex-grow flex-1 min-w-0">
+                <div id="content-container" class="h-full">
+                    
+                    <!-- TAB: GITHUB CONFIG -->
+                    <div id="tab-github-config" class="tab-pane space-y-6">
+                        <div class="glass-panel rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                            <div class="border-b border-slate-800 pb-4 mb-6">
+                                <h2 class="text-xl font-bold text-white font-outfit flex items-center gap-2">
+                                    <i class="fa-solid fa-gears text-red-500"></i> Konfigurasi Kredensial GitHub
+                                </h2>
+                                <p class="text-sm text-gray-400">Hubungkan halaman admin ini dengan repositori kode website Anda menggunakan Personal Access Token (PAT) GitHub.</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2 md:col-span-2">
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400">Personal Access Token (PAT)</label>
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                                            <i class="fa-solid fa-key"></i>
+                                        </span>
+                                        <input type="password" id="gh-token" class="glass-input w-full pl-10 pr-4 py-3 rounded-xl text-sm" placeholder="ghp_xxxxxxxxxxxxxxxxx" value="">
+                                    </div>
+                                    <p class="text-xs text-gray-500">Buat token PAT di GitHub Anda (Settings > Developer Settings > Personal Access Tokens > Tokens classic) dengan scope <code>repo</code>.</p>
+                                </div>
+                                
+                                <div class="space-y-2">
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400">Username GitHub (Owner)</label>
+                                    <input type="text" id="gh-owner" class="glass-input w-full px-4 py-3 rounded-xl text-sm" placeholder="ardiasgusty" value="ardiasgusty">
+                                </div>
+                                
+                                <div class="space-y-2">
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400">Nama Repositori (Repo)</label>
+                                    <input type="text" id="gh-repo" class="glass-input w-full px-4 py-3 rounded-xl text-sm" placeholder="Website-Honda-Sales" value="Website-Honda-Sales">
+                                </div>
+                                
+                                <div class="space-y-2">
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-400">Nama Branch</label>
+                                    <input type="text" id="gh-branch" class="glass-input w-full px-4 py-3 rounded-xl text-sm" placeholder="main" value="main">
+                                </div>
+                            </div>
+
+                            <div class="mt-8 flex gap-3 border-t border-slate-800 pt-6">
+                                <button onclick="saveAndConnectGitHub()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg shadow-red-600/20 transition-all flex items-center gap-2">
+                                    <i class="fa-solid fa-plug"></i> Simpan & Hubungkan
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- REPOSITORY INFO PANEL (CONNECTED STATE) -->
+                        <div id="repo-info-panel" class="hidden glass-panel rounded-2xl p-6 shadow-xl">
+                            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Status Repositori</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                                    <p class="text-xs text-gray-400">Total Banners (desktop/mobile)</p>
+                                    <p class="text-xl font-bold text-white mt-1" id="stat-banners">0 / 0</p>
+                                </div>
+                                <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                                    <p class="text-xs text-gray-400">Produk Mobil</p>
+                                    <p class="text-xl font-bold text-white mt-1" id="stat-products">0</p>
+                                </div>
+                                <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                                    <p class="text-xs text-gray-400">Kontak Sales Aktif</p>
+                                    <p class="text-xl font-bold text-white mt-1" id="stat-sales-name">-</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: SITE CONFIG (WITH SUBTABS) -->
+                    <div id="tab-site-config" class="tab-pane hidden space-y-6">
+                        <div class="glass-panel rounded-2xl p-6 shadow-xl">
+                            <div class="border-b border-slate-800 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                                <div>
+                                    <h2 class="text-xl font-bold text-white font-outfit flex items-center gap-2">
+                                        <i class="fa-solid fa-globe text-red-500"></i> Pengaturan Website (`site_config.json`)
+                                    </h2>
+                                    <p class="text-sm text-gray-400">Kelola profil, navigasi menu, persyaratan kredit, promo utama, FAQ, dan SEO global website Anda.</p>
+                                </div>
+                                <button onclick="commitFileToGitHub('data/site_config.json')" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg shadow-lg shadow-red-600/20 transition-all flex items-center gap-2 self-start">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i> Commit Perubahan
+                                </button>
+                            </div>
+
+                            <!-- SUB-TAB NAVIGATION -->
+                            <div class="flex overflow-x-auto gap-1.5 p-1 bg-slate-950/40 border border-slate-800 rounded-xl mb-6">
+                                <button onclick="switchSubTab('profil')" data-subtab="profil" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-white bg-red-600 transition">Profil & Logo</button>
+                                <button onclick="switchSubTab('wa-template')" data-subtab="wa-template" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">WhatsApp Template</button>
+                                <button onclick="switchSubTab('nav-tautan')" data-subtab="nav-tautan" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">Navigasi & Tautan</button>
+                                <button onclick="switchSubTab('kredit-req')" data-subtab="kredit-req" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">Persyaratan Kredit</button>
+                                <button onclick="switchSubTab('seo-meta')" data-subtab="seo-meta" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">SEO Metadata</button>
+                                <button onclick="switchSubTab('promo-thankyou')" data-subtab="promo-thankyou" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">Halaman Promo & Thank You</button>
+                                <button onclick="switchSubTab('faq-footer')" data-subtab="faq-footer" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">FAQ & Footer</button>
+                            </div>
+
+                            <!-- SUB-TAB CONTENT PANES -->
+                            
+                            <!-- SUB-TAB: PROFIL & LOGO -->
+                            <div id="subtab-pane-profil" class="subtab-pane space-y-6">
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-user-tie text-red-500 mr-2"></i> Profil Sales</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Nama Sales</label>
+                                            <input type="text" id="cfg-sales-name" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Gelar/Jabatan</label>
+                                            <input type="text" id="cfg-sales-title" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Email Sales</label>
+                                            <input type="email" id="cfg-sales-email" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Nomor WA Display (Contoh: 0822-9918-5425)</label>
+                                            <input type="text" id="cfg-wa-display" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Nomor WA System (Format: 628xxxxxxxxxx)</label>
+                                            <input type="text" id="cfg-wa-number" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                    </div>
+
+                                    <!-- Sales Photo field with Double Preview and Auto Replace -->
+                                    <div class="space-y-2 image-upload-group" data-field-id="cfg-sales-photo">
+                                        <label class="text-xs text-gray-400 font-semibold block">Foto Sales URL</label>
+                                        <div class="flex gap-2">
+                                            <input type="text" id="cfg-sales-photo" class="glass-input flex-1 px-3 py-2 rounded-lg text-sm" oninput="updateImagePreview('cfg-sales-photo')">
+                                            <input type="file" id="cfg-sales-photo-file" class="hidden" accept="image/*" onchange="handleImageSelect('cfg-sales-photo', this)">
+                                            <button onclick="document.getElementById('cfg-sales-photo-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1.5">
+                                                <i class="fa-solid fa-image"></i> Ganti Gambar
+                                            </button>
+                                        </div>
+                                        <div class="image-preview-panel hidden flex flex-col sm:flex-row gap-4 p-3 bg-slate-950/40 border border-slate-800 rounded-lg">
+                                            <div class="current-preview-box flex-1">
+                                                <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Sebelum (Di GitHub)</p>
+                                                <img class="current-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                            </div>
+                                            <div class="new-preview-box flex-grow flex-1 hidden">
+                                                <p class="text-[10px] text-emerald-500 font-bold uppercase mb-1">Sesudah (Pratinjau Unggahan)</p>
+                                                <img class="new-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                <div class="flex gap-1.5 mt-2">
+                                                    <button onclick="cancelImageSelect('cfg-sales-photo')" class="bg-slate-900 hover:bg-slate-800 text-[10px] text-gray-400 font-semibold px-2.5 py-1 border border-slate-700 rounded transition">Batal</button>
+                                                    <button onclick="confirmImageReplace('cfg-sales-photo')" class="confirm-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[10px] text-white font-semibold px-2.5 py-1 rounded flex items-center gap-1 shadow-sm transition">Upload & Replace</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Header Logo field with Double Preview and Auto Replace -->
+                                    <div class="space-y-2 image-upload-group" data-field-id="cfg-logo-header">
+                                        <label class="text-xs text-gray-400 font-semibold block">Logo Header URL</label>
+                                        <div class="flex gap-2">
+                                            <input type="text" id="cfg-logo-header" class="glass-input flex-1 px-3 py-2 rounded-lg text-sm" oninput="updateImagePreview('cfg-logo-header')">
+                                            <input type="file" id="cfg-logo-header-file" class="hidden" accept="image/*" onchange="handleImageSelect('cfg-logo-header', this)">
+                                            <button onclick="document.getElementById('cfg-logo-header-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1.5">
+                                                <i class="fa-solid fa-image"></i> Ganti Gambar
+                                            </button>
+                                        </div>
+                                        <div class="image-preview-panel hidden flex flex-col sm:flex-row gap-4 p-3 bg-slate-950/40 border border-slate-800 rounded-lg">
+                                            <div class="current-preview-box flex-1">
+                                                <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Sebelum (Di GitHub)</p>
+                                                <img class="current-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                            </div>
+                                            <div class="new-preview-box flex-grow flex-1 hidden">
+                                                <p class="text-[10px] text-emerald-500 font-bold uppercase mb-1">Sesudah (Pratinjau Unggahan)</p>
+                                                <img class="new-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                <div class="flex gap-1.5 mt-2">
+                                                    <button onclick="cancelImageSelect('cfg-logo-header')" class="bg-slate-900 hover:bg-slate-800 text-[10px] text-gray-400 font-semibold px-2.5 py-1 border border-slate-700 rounded transition">Batal</button>
+                                                    <button onclick="confirmImageReplace('cfg-logo-header')" class="confirm-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[10px] text-white font-semibold px-2.5 py-1 rounded flex items-center gap-1 shadow-sm transition">Upload & Replace</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Footer Logo field with Double Preview and Auto Replace -->
+                                    <div class="space-y-2 image-upload-group" data-field-id="cfg-logo-footer">
+                                        <label class="text-xs text-gray-400 font-semibold block">Logo Footer URL</label>
+                                        <div class="flex gap-2">
+                                            <input type="text" id="cfg-logo-footer" class="glass-input flex-1 px-3 py-2 rounded-lg text-sm" oninput="updateImagePreview('cfg-logo-footer')">
+                                            <input type="file" id="cfg-logo-footer-file" class="hidden" accept="image/*" onchange="handleImageSelect('cfg-logo-footer', this)">
+                                            <button onclick="document.getElementById('cfg-logo-footer-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1.5">
+                                                <i class="fa-solid fa-image"></i> Ganti Gambar
+                                            </button>
+                                        </div>
+                                        <div class="image-preview-panel hidden flex flex-col sm:flex-row gap-4 p-3 bg-slate-950/40 border border-slate-800 rounded-lg">
+                                            <div class="current-preview-box flex-1">
+                                                <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Sebelum (Di GitHub)</p>
+                                                <img class="current-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                            </div>
+                                            <div class="new-preview-box flex-grow flex-1 hidden">
+                                                <p class="text-[10px] text-emerald-500 font-bold uppercase mb-1">Sesudah (Pratinjau Unggahan)</p>
+                                                <img class="new-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                <div class="flex gap-1.5 mt-2">
+                                                    <button onclick="cancelImageSelect('cfg-logo-footer')" class="bg-slate-900 hover:bg-slate-800 text-[10px] text-gray-400 font-semibold px-2.5 py-1 border border-slate-700 rounded transition">Batal</button>
+                                                    <button onclick="confirmImageReplace('cfg-logo-footer')" class="confirm-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[10px] text-white font-semibold px-2.5 py-1 rounded flex items-center gap-1 shadow-sm transition">Upload & Replace</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SUB-TAB: WHATSAPP TEMPLATE -->
+                            <div id="subtab-pane-wa-template" class="subtab-pane hidden space-y-6">
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-brands fa-whatsapp text-red-500 mr-2"></i> Template Pesan WhatsApp</h3>
+                                    <div class="grid grid-cols-1 gap-4">
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Sales Banner (Tombol Utama)</label>
+                                            <input type="text" id="cfg-wa-salesbanner" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Booking Test Drive</label>
+                                            <input type="text" id="cfg-wa-testdrive" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Konsultasi Umum</label>
+                                            <input type="text" id="cfg-wa-general" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Detail Model (Pemberian cicilan/bonus, gunakan parameter `{carName}`, `{variantName}`, `{variantPrice}`)</label>
+                                            <input type="text" id="cfg-wa-modeldetail" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Form Promo (Gunakan parameter `{name}`, `{carName}`, `{paymentMethod}`)</label>
+                                            <input type="text" id="cfg-wa-promoform" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SUB-TAB: NAVIGASI & TAUTAN -->
+                            <div id="subtab-pane-nav-tautan" class="subtab-pane hidden space-y-6">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                    <!-- Global Links & CNAME Settings -->
+                                    <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                        <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-link text-red-500 mr-2"></i> Tautan & API Sistem</h3>
+                                        <div class="space-y-3">
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Favicon URL</label>
+                                                <input type="text" id="cfg-site-favicon" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Link API Berita/Informasi (WordPress JSON API)</label>
+                                                <input type="text" id="cfg-site-news-api" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Tautan Seluruh Berita (Tombol Selengkapnya)</label>
+                                                <input type="text" id="cfg-site-news-url" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Judul Section Berita</label>
+                                                <input type="text" id="cfg-site-news-title" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Subtitle Section Berita</label>
+                                                <input type="text" id="cfg-site-news-subtitle" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                            </div>
+                                            <!-- Dynamic warning fraud popup image url with Double Preview and Auto Replace -->
+                                            <div class="space-y-2 image-upload-group" data-field-id="cfg-site-fraud-image">
+                                                <label class="text-xs text-gray-400 font-semibold block">Warning Fraud Image URL (Popup Transfer Aman)</label>
+                                                <div class="flex gap-2">
+                                                    <input type="text" id="cfg-site-fraud-image" class="glass-input flex-1 px-3 py-2 rounded-lg text-sm" oninput="updateImagePreview('cfg-site-fraud-image')">
+                                                    <input type="file" id="cfg-site-fraud-image-file" class="hidden" accept="image/*" onchange="handleImageSelect('cfg-site-fraud-image', this)">
+                                                    <button onclick="document.getElementById('cfg-site-fraud-image-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1.5">
+                                                        <i class="fa-solid fa-image"></i> Ganti Gambar
+                                                    </button>
+                                                </div>
+                                                <div class="image-preview-panel hidden flex flex-col sm:flex-row gap-4 p-3 bg-slate-950/40 border border-slate-800 rounded-lg">
+                                                    <div class="current-preview-box flex-1">
+                                                        <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Sebelum (Di GitHub)</p>
+                                                        <img class="current-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                    </div>
+                                                    <div class="new-preview-box flex-grow flex-1 hidden">
+                                                        <p class="text-[10px] text-emerald-500 font-bold uppercase mb-1">Sesudah (Pratinjau Unggahan)</p>
+                                                        <img class="new-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                        <div class="flex gap-1.5 mt-2">
+                                                            <button onclick="cancelImageSelect('cfg-site-fraud-image')" class="bg-slate-900 hover:bg-slate-800 text-[10px] text-gray-400 font-semibold px-2.5 py-1 border border-slate-700 rounded transition">Batal</button>
+                                                            <button onclick="confirmImageReplace('cfg-site-fraud-image')" class="confirm-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[10px] text-white font-semibold px-2.5 py-1 rounded flex items-center gap-1 shadow-sm transition">Upload & Replace</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Navigation JSON Editor -->
+                                    <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-3 flex flex-col">
+                                        <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2 flex items-center gap-1">
+                                            <i class="fa-solid fa-compass text-red-500"></i> Navigasi Menu (JSON Editor)
+                                        </h3>
+                                        <p class="text-xs text-gray-400">Edit menu navigasi header/sidebar dalam format JSON mentah agar leluasa menyusun sub-menu / dropdown.</p>
+                                        <textarea id="cfg-navigation-json" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-mono h-64 flex-1" placeholder="[ ... ]"></textarea>
+                                        <div id="cfg-nav-json-error" class="text-xs text-red-500 font-semibold hidden">Format JSON tidak valid! Periksa kurung dan tanda koma.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SUB-TAB: PERSYARATAN KREDIT -->
+                            <div id="subtab-pane-kredit-req" class="subtab-pane hidden space-y-6">
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-file-invoice text-red-500 mr-2"></i> Persyaratan Kredit</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Judul Section Kredit</label>
+                                            <input type="text" id="cfg-credit-title" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Sub-Judul Section Kredit</label>
+                                            <input type="text" id="cfg-credit-subtitle" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
+                                        <div class="space-y-2">
+                                            <h4 class="text-xs font-bold text-white uppercase tracking-wider">👤 Kategori Perorangan</h4>
+                                            <div class="space-y-1.5">
+                                                <label class="text-[10px] text-gray-500 font-bold uppercase">Nama Kategori</label>
+                                                <input type="text" id="cfg-credit-perorangan-title" class="glass-input w-full px-2 py-1.5 rounded text-xs">
+                                            </div>
+                                            <div class="space-y-1.5">
+                                                <label class="text-[10px] text-gray-500 font-bold uppercase">Ikon Kategori</label>
+                                                <input type="text" id="cfg-credit-perorangan-icon" class="glass-input w-full px-2 py-1.5 rounded text-xs font-mono">
+                                            </div>
+                                            <div class="space-y-1.5">
+                                                <label class="text-[10px] text-gray-500 font-bold uppercase">Daftar Syarat (Satu item per baris)</label>
+                                                <textarea id="cfg-credit-perorangan-items" class="glass-input w-full px-2 py-1.5 rounded text-xs h-32"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <h4 class="text-xs font-bold text-white uppercase tracking-wider">🏢 Kategori Perusahaan / Badan Usaha</h4>
+                                            <div class="space-y-1.5">
+                                                <label class="text-[10px] text-gray-500 font-bold uppercase">Nama Kategori</label>
+                                                <input type="text" id="cfg-credit-perusahaan-title" class="glass-input w-full px-2 py-1.5 rounded text-xs">
+                                            </div>
+                                            <div class="space-y-1.5">
+                                                <label class="text-[10px] text-gray-500 font-bold uppercase">Ikon Kategori</label>
+                                                <input type="text" id="cfg-credit-perusahaan-icon" class="glass-input w-full px-2 py-1.5 rounded text-xs font-mono">
+                                            </div>
+                                            <div class="space-y-1.5">
+                                                <label class="text-[10px] text-gray-500 font-bold uppercase">Daftar Syarat (Satu item per baris)</label>
+                                                <textarea id="cfg-credit-perusahaan-items" class="glass-input w-full px-2 py-1.5 rounded text-xs h-32"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SUB-TAB: SEO METADATA -->
+                            <div id="subtab-pane-seo-meta" class="subtab-pane hidden space-y-6">
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-magnifying-glass text-red-500 mr-2"></i> Konfigurasi SEO Halaman</h3>
+                                    
+                                    <div class="flex items-center gap-3 bg-slate-950/40 p-4 rounded-xl border border-slate-800">
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold block">Pilih Halaman SEO</label>
+                                            <select id="seo-page-select" onchange="loadSelectedSeoPage()" class="glass-input px-3 py-2 rounded-lg text-sm bg-slate-950 min-w-[220px]">
+                                                <option value="default">Default (Fallback)</option>
+                                                <option value="home">Halaman Beranda</option>
+                                                <option value="pricelist">Halaman Daftar Harga</option>
+                                                <option value="brochure">Halaman e-Brosur</option>
+                                                <option value="promo">Halaman Promo Utama</option>
+                                                <option value="thank-you">Halaman Terima Kasih</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- SEO Editor Form -->
+                                    <div id="seo-editor-form" class="space-y-4 pt-2">
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">SEO Title</label>
+                                                <input type="text" id="seo-inp-title" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">SEO Description</label>
+                                                <textarea id="seo-inp-desc" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-20"></textarea>
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">SEO Keywords (Pisahkan dengan koma)</label>
+                                                <input type="text" id="seo-inp-keywords" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                            </div>
+                                            
+                                            <!-- SEO Image with upload-replace support -->
+                                            <div class="space-y-2 image-upload-group" data-field-id="seo-inp-image">
+                                                <label class="text-xs text-gray-400 font-semibold block">SEO Share Image URL</label>
+                                                <div class="flex gap-2">
+                                                    <input type="text" id="seo-inp-image" class="glass-input flex-1 px-3 py-2 rounded-lg text-sm" oninput="updateImagePreview('seo-inp-image')">
+                                                    <input type="file" id="seo-inp-image-file" class="hidden" accept="image/*" onchange="handleImageSelect('seo-inp-image', this)">
+                                                    <button onclick="document.getElementById('seo-inp-image-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1.5">
+                                                        <i class="fa-solid fa-image"></i> Ganti Gambar
+                                                    </button>
+                                                </div>
+                                                <div class="image-preview-panel hidden flex flex-col sm:flex-row gap-4 p-3 bg-slate-950/40 border border-slate-800 rounded-lg">
+                                                    <div class="current-preview-box flex-1">
+                                                        <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Sebelum (Di GitHub)</p>
+                                                        <img class="current-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                    </div>
+                                                    <div class="new-preview-box flex-grow flex-1 hidden">
+                                                        <p class="text-[10px] text-emerald-500 font-bold uppercase mb-1">Sesudah (Pratinjau Unggahan)</p>
+                                                        <img class="new-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                        <div class="flex gap-1.5 mt-2">
+                                                            <button onclick="cancelImageSelect('seo-inp-image')" class="bg-slate-900 hover:bg-slate-800 text-[10px] text-gray-400 font-semibold px-2.5 py-1 border border-slate-700 rounded transition">Batal</button>
+                                                            <button onclick="confirmImageReplace('seo-inp-image')" class="confirm-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[10px] text-white font-semibold px-2.5 py-1 rounded flex items-center gap-1 shadow-sm transition">Upload & Replace</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button onclick="saveCurrentSeoPage()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md transition mt-2">
+                                            Simpan SEO Halaman Ini
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SUB-TAB: HALAMAN PROMO & THANK YOU -->
+                            <div id="subtab-pane-promo-thankyou" class="subtab-pane hidden space-y-6">
+                                <!-- Promo Page Text Copy -->
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-bullhorn text-red-500 mr-2"></i> Teks Headline Halaman Promo Utama</h3>
+                                    <div class="grid grid-cols-1 gap-4">
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Teks Badge (Contoh: Promo Eksklusif Honda Jabodetabek {year})</label>
+                                            <input type="text" id="cfg-promo-badge" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Judul Headline (Gunakan HTML jika perlu)</label>
+                                            <input type="text" id="cfg-promo-title" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Sub-Judul Deskripsi</label>
+                                            <textarea id="cfg-promo-desc" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-16"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Thank You Page Copy -->
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-circle-check text-red-500 mr-2"></i> Teks Halaman Terima Kasih (Thank You Page)</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Judul Utama (Title)</label>
+                                            <input type="text" id="cfg-thank-title" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Sub-Judul Utama (Subtitle)</label>
+                                            <input type="text" id="cfg-thank-subtitle" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1 md:col-span-2">
+                                            <label class="text-xs text-gray-400 font-semibold">Deskripsi Halaman (Mendukung parameter `{salesName}`)</label>
+                                            <textarea id="cfg-thank-desc" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-20"></textarea>
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Teks Tombol WA Fallback</label>
+                                            <input type="text" id="cfg-thank-btn" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Teks Tombol Kembali</label>
+                                            <input type="text" id="cfg-thank-back" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Dynamic e-Brochure PDF Drive IDs mapping -->
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-file-pdf text-red-500 mr-2"></i> Tautan PDF Brosur Mobil (Google Drive File ID)</h3>
+                                    <p class="text-xs text-gray-400">Masukkan ID File Google Drive agar Brosur PDF bisa dibaca interaktif langsung di dalam website.</p>
+                                    <div id="cfg-brochures-container" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        <!-- Dynamically loaded brochure fields -->
+                                    </div>
+                                </div>
+
+                                <!-- Dynamic Promo Cards list -->
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2 flex items-center justify-between">
+                                        <span>🔥 Daftar Promo Grid</span>
+                                        <button onclick="addPromoCardField()" class="bg-slate-800 hover:bg-slate-700 text-xs px-2.5 py-1 rounded flex items-center gap-1 transition">
+                                            <i class="fa-solid fa-plus text-red-500"></i> Tambah Promo
+                                        </button>
+                                    </h3>
+                                    <div id="cfg-promos-container" class="space-y-4">
+                                        <!-- Dynamic promo cards -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SUB-TAB: FAQ & FOOTER -->
+                            <div id="subtab-pane-faq-footer" class="subtab-pane hidden space-y-6">
+                                <!-- FAQs Section -->
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-circle-question text-red-500 mr-2"></i> Kelola FAQ</h3>
+                                    <div id="cfg-faq-container" class="space-y-4">
+                                        <!-- Dynamic FAQs -->
+                                    </div>
+                                    <button onclick="addFaqField()" class="text-xs text-red-500 font-semibold hover:text-red-400 transition flex items-center gap-1">
+                                        <i class="fa-solid fa-plus"></i> Tambah FAQ
+                                    </button>
+                                </div>
+
+                                <!-- Footer texts -->
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-shoe-prints text-red-500 mr-2"></i> Informasi Footer</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="space-y-1 md:col-span-2">
+                                            <label class="text-xs text-gray-400 font-semibold">Teks Deskripsi Footer (Tentang Sales)</label>
+                                            <textarea id="cfg-foot-about" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-16"></textarea>
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Jam Operasional Kantor</label>
+                                            <input type="text" id="cfg-foot-hours" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Link Google Maps Kantor</label>
+                                            <input type="text" id="cfg-foot-map" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1 md:col-span-2">
+                                            <label class="text-xs text-gray-400 font-semibold">Alamat Lengkap Dealer</label>
+                                            <input type="text" id="cfg-foot-address" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1 md:col-span-2">
+                                            <label class="text-xs text-gray-400 font-semibold">Teks Hak Cipta (Copyright)</label>
+                                            <input type="text" id="cfg-foot-copyright" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1 md:col-span-2">
+                                            <label class="text-xs text-gray-400 font-semibold">Keterangan Transfer/Pembayaran Footer</label>
+                                            <input type="text" id="cfg-payment-desc" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="Pembayaran sah hanya ditujukan ke rekening...">
+                                        </div>
+                                        <div class="space-y-1 md:col-span-2">
+                                            <label class="text-xs text-gray-400 font-semibold">Daftar Rekening Bank (Pisahkan dengan koma, contoh: BCA 123456 a/n PT ABC, Mandiri 7890 a/n PT ABC)</label>
+                                            <input type="text" id="cfg-payment-banks" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="BCA 123456 a/n PT ABC, Mandiri 7890 a/n PT ABC">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: BANNERS -->
+                    <div id="tab-banners" class="tab-pane hidden space-y-6">
+                        <div class="glass-panel rounded-2xl p-6 shadow-xl">
+                            <div class="border-b border-slate-800 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                                <div>
+                                    <h2 class="text-xl font-bold text-white font-outfit flex items-center gap-2">
+                                        <i class="fa-solid fa-images text-red-500"></i> Kelola Banner Slider
+                                    </h2>
+                                    <p class="text-sm text-gray-400">Kelola gambar banner slider di halaman beranda. Pisahkan banner untuk tampilan Desktop dan Mobile.</p>
+                                </div>
+                                <button onclick="commitFileToGitHub('data/banner.json')" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg shadow-lg shadow-red-600/20 transition-all flex items-center gap-2 self-start">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i> Commit Perubahan
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <!-- Desktop Banners -->
+                                <div class="space-y-4">
+                                    <h3 class="text-md font-bold text-white flex items-center justify-between border-b border-slate-800 pb-2">
+                                        <span>🖥️ Banner Desktop</span>
+                                        <button onclick="addBanner('desktop')" class="bg-slate-800 hover:bg-slate-700 text-xs px-2.5 py-1.5 rounded-md flex items-center gap-1 transition">
+                                            <i class="fa-solid fa-plus text-red-500"></i> Tambah
+                                        </button>
+                                    </h3>
+                                    <div id="banners-desktop-container" class="space-y-4">
+                                        <!-- Dynamic Desktop Banners -->
+                                    </div>
+                                </div>
+
+                                <!-- Mobile Banners -->
+                                <div class="space-y-4">
+                                    <h3 class="text-md font-bold text-white flex items-center justify-between border-b border-slate-800 pb-2">
+                                        <span>📱 Banner Mobile</span>
+                                        <button onclick="addBanner('mobile')" class="bg-slate-800 hover:bg-slate-700 text-xs px-2.5 py-1.5 rounded-md flex items-center gap-1 transition">
+                                            <i class="fa-solid fa-plus text-red-500"></i> Tambah
+                                        </button>
+                                    </h3>
+                                    <div id="banners-mobile-container" class="space-y-4">
+                                        <!-- Dynamic Mobile Banners -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: PRODUCTS -->
+                    <div id="tab-products" class="tab-pane hidden space-y-6">
+                        <div class="glass-panel rounded-2xl p-6 shadow-xl">
+                            <div class="border-b border-slate-800 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                                <div>
+                                    <h2 class="text-xl font-bold text-white font-outfit flex items-center gap-2">
+                                        <i class="fa-solid fa-car text-red-500"></i> Database Katalog Produk Mobil
+                                    </h2>
+                                    <p class="text-sm text-gray-400">Atur database spesifikasi teknis mobil, pilihan warna, kelengkapan fitur, dan DP/angsuran awal.</p>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <button onclick="addNewProductModal()" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition flex items-center gap-1.5">
+                                        <i class="fa-solid fa-plus text-red-500"></i> Tambah Model Baru
+                                    </button>
+                                    <button onclick="commitFileToGitHub('data/products.json')" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg shadow-lg shadow-red-600/20 transition-all flex items-center gap-2">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i> Commit Perubahan
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col lg:flex-row gap-6">
+                                <!-- Left: List of Models -->
+                                <div class="lg:w-1/4 shrink-0 flex flex-col gap-1.5 p-2 bg-slate-900/40 rounded-xl border border-slate-800/80 align-self-start">
+                                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest px-3 py-2">Daftar Model</h3>
+                                    <div id="product-models-list" class="space-y-1 overflow-y-auto max-h-[500px] lg:max-h-[650px] pr-1">
+                                        <!-- Dynamic model names list buttons -->
+                                    </div>
+                                </div>
+
+                                <!-- Right: Selected Model Editor Form -->
+                                <div class="flex-1">
+                                    <div id="product-editor-empty" class="h-64 flex items-center justify-center border border-dashed border-slate-800 rounded-xl text-gray-500">
+                                        Silakan pilih model mobil di daftar sebelah kiri untuk memulai pengeditan.
+                                    </div>
+                                    <div id="product-editor-form" class="hidden glass-panel border border-slate-800 rounded-xl p-5 space-y-6">
+                                        <!-- Header Info & Delete -->
+                                        <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                                            <h3 class="text-lg font-bold text-white" id="edit-prod-header">Edit Mobil</h3>
+                                            <button onclick="deleteProduct()" class="text-red-500 hover:text-red-400 text-xs font-bold flex items-center gap-1 transition">
+                                                <i class="fa-solid fa-trash-can"></i> Hapus Model Ini
+                                            </button>
+                                        </div>
+
+                                        <input type="hidden" id="edit-prod-id">
+
+                                        <!-- Main Grid Input fields -->
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Nama Mobil (Contoh: Honda WR-V)</label>
+                                                <input type="text" id="edit-prod-name" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Harga Terendah Base (Angka Murni: 290100000)</label>
+                                                <input type="number" id="edit-prod-price" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Uang Muka Display (DP)</label>
+                                                <input type="text" id="edit-prod-dp" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Cicilan Display (Angsuran)</label>
+                                                <input type="text" id="edit-prod-angsuran" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Kapasitas Tempat Duduk (Seats)</label>
+                                                <input type="text" id="edit-prod-seats" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="5-Seater">
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Tipe Mesin (Engine)</label>
+                                                <input type="text" id="edit-prod-engine" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="1.5L DOHC i-VTEC Engine">
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs text-gray-400 font-semibold">Kategori Mobil</label>
+                                                <select id="edit-prod-category" class="glass-input w-full px-3 py-2 rounded-lg text-sm bg-slate-950">
+                                                    <option value="City Car & Hatchback">City Car & Hatchback</option>
+                                                    <option value="SUV">SUV</option>
+                                                    <option value="MPV">MPV</option>
+                                                    <option value="Sedan">Sedan</option>
+                                                </select>
+                                            </div>
+                                            <div class="flex items-center gap-2 mt-6">
+                                                <input type="checkbox" id="edit-prod-new" class="w-4 h-4 rounded border-slate-700 bg-slate-950 text-red-600 focus:ring-red-500">
+                                                <label for="edit-prod-new" class="text-xs text-gray-400 font-semibold select-none cursor-pointer">Tampilkan Badge "New" Baru</label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Variants list -->
+                                        <div class="space-y-2">
+                                            <label class="block text-xs text-gray-400 font-semibold">Varian Mobil OTR (Satu baris per varian, format: Tipe Trans OTR : Harga)</label>
+                                            <textarea id="edit-prod-variants" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-24" placeholder="S M/T OTR : Rp307.100.000&#10;E CVT OTR : Rp323.000.000"></textarea>
+                                        </div>
+
+                                        <!-- Images Gallery -->
+                                        <div class="bg-slate-900/20 p-4 rounded-xl border border-slate-800 space-y-3">
+                                            <h4 class="text-xs font-bold text-white uppercase tracking-wider">Galeri Foto Mobil</h4>
+                                            <div id="edit-prod-images-container" class="space-y-4">
+                                                <!-- Dynamic thumb/full paths -->
+                                            </div>
+                                            <button onclick="addProductImageRow()" class="text-xs text-red-500 font-semibold hover:text-red-400 transition flex items-center gap-1">
+                                                <i class="fa-solid fa-plus"></i> Tambah Foto Galeri
+                                            </button>
+                                        </div>
+
+                                        <!-- Description HTML editor (CKEditor) -->
+                                        <div class="space-y-2">
+                                            <label class="block text-xs text-gray-400 font-semibold">Deskripsi / Detail Keunggulan (Visual Editor)</label>
+                                            <textarea id="edit-prod-description" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-40" placeholder="Deskripsi keunggulan..."></textarea>
+                                        </div>
+                                        
+                                        <div class="flex justify-end pt-3 border-t border-slate-800">
+                                            <button onclick="saveCurrentProductDetails()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md transition">
+                                                Simpan Perubahan Model Ini
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: PRICELIST -->
+                    <div id="tab-pricelist" class="tab-pane hidden space-y-6">
+                        <div class="glass-panel rounded-2xl p-6 shadow-xl">
+                            <div class="border-b border-slate-800 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                                <div>
+                                    <h2 class="text-xl font-bold text-white font-outfit flex items-center gap-2">
+                                        <i class="fa-solid fa-tags text-red-500"></i> Daftar Harga OTR (Pricelist)
+                                    </h2>
+                                    <p class="text-sm text-gray-400">Atur tabel harga OTR lengkap se-Jabodetabek dan paket Essential/Extra pada halaman Pricelist.</p>
+                                </div>
+                                <button onclick="commitFileToGitHub('data/pricelist.json')" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg shadow-lg shadow-red-600/20 transition-all flex items-center gap-2 self-start">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i> Commit Perubahan
+                                </button>
+                            </div>
+
+                            <div class="space-y-6">
+                                <!-- Dropdown select table model to edit -->
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-4 bg-slate-900/30 p-4 rounded-xl border border-slate-800">
+                                    <div class="space-y-1 flex-1">
+                                        <label class="text-xs text-gray-400 font-semibold block">Pilih Kategori Pricelist</label>
+                                        <select id="pricelist-model-select" onchange="loadSelectedPricelistModel()" class="glass-input px-3 py-2 rounded-lg text-sm bg-slate-950 min-w-[250px]">
+                                            <!-- Dynamic list of model types in pricelist -->
+                                        </select>
+                                    </div>
+                                    <div class="flex items-end gap-3 mt-4 sm:mt-0">
+                                        <button onclick="addNewPricelistModel()" class="bg-slate-800 hover:bg-slate-700 text-xs text-white px-3 py-2.5 rounded-lg border border-slate-700 flex items-center gap-1 transition">
+                                            <i class="fa-solid fa-plus text-red-500"></i> Tambah Kategori Baru
+                                        </button>
+                                        <button onclick="deletePricelistModel()" class="text-red-500 hover:text-red-400 text-xs font-bold py-2.5 flex items-center gap-1 transition">
+                                            <i class="fa-solid fa-trash-can"></i> Hapus Kategori Ini
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Dynamic pricelist editing table -->
+                                <div id="pricelist-editor-container" class="hidden glass-panel border border-slate-800 rounded-xl p-5 space-y-4">
+                                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
+                                        <div class="space-y-1 w-full sm:w-auto">
+                                            <label class="text-xs text-gray-400 font-semibold block">Nama Kategori Pricelist</label>
+                                            <input type="text" id="pricelist-model-label" class="glass-input px-3 py-1.5 rounded-lg text-sm font-bold min-w-[280px]">
+                                        </div>
+                                        <button onclick="addPricelistRow()" class="bg-slate-800 hover:bg-slate-700 text-xs px-2.5 py-1.5 rounded-md flex items-center gap-1 transition self-end sm:self-auto">
+                                            <i class="fa-solid fa-plus text-red-500"></i> Tambah Baris Varian
+                                        </button>
+                                    </div>
+
+                                    <div class="overflow-x-auto w-full">
+                                        <table class="w-full text-left text-sm border-collapse">
+                                            <thead>
+                                                <tr class="border-b border-slate-800 text-gray-400 text-xs uppercase font-bold">
+                                                    <th class="py-3 px-2">Varian / Tipe</th>
+                                                    <th class="py-3 px-2">Transmisi</th>
+                                                    <th class="py-3 px-2">Harga OTR</th>
+                                                    <th class="py-3 px-2">Paket Essential</th>
+                                                    <th class="py-3 px-2">Paket Extra</th>
+                                                    <th class="py-3 px-2 text-center w-16">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="pricelist-rows-container">
+                                                <!-- Dynamic pricing rows -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- Notes Footers Editor -->
+                                    <div class="bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-2 mt-6">
+                                        <h3 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1">
+                                            <i class="fa-solid fa-note-sticky text-red-500"></i> Catatan Kaki Pricelist (Satu baris per catatan)
+                                        </h3>
+                                        <textarea id="pricelist-notes" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-28" placeholder="Catatan kaki 1&#10;Catatan kaki 2"></textarea>
+                                    </div>
+
+                                    <div class="flex justify-end pt-3">
+                                        <button onclick="saveCurrentPricelistDetails()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md transition">
+                                            Simpan Perubahan Tabel Ini
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: MEDIA (MEDIA LIBRARY WITH DELETE) -->
+                    <div id="tab-media" class="tab-pane hidden space-y-6">
+                        <div class="glass-panel rounded-2xl p-6 shadow-xl space-y-6">
+                            <div class="border-b border-slate-800 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                                <div>
+                                    <h2 class="text-xl font-bold text-white font-outfit flex items-center gap-2">
+                                        <i class="fa-solid fa-photo-film text-red-500 animate-pulse"></i> Pustaka Media & Upload
+                                    </h2>
+                                    <p class="text-sm text-gray-400">Unggah gambar baru atau kelola/hapus file gambar yang ada di folder <code>assets/images/</code> server GitHub Anda.</p>
+                                </div>
+                                <button onclick="fetchMediaLibrary()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 border border-slate-700 rounded-lg flex items-center gap-1.5 transition">
+                                    <i class="fa-solid fa-arrows-rotate"></i> Refresh Pustaka Media
+                                </button>
+                            </div>
+
+                            <!-- Upload Area -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 border-b border-slate-800/80 pb-6">
+                                <div class="md:col-span-1 space-y-3">
+                                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Unggah Gambar Baru</h3>
+                                    <div id="dropzone" class="border-2 border-dashed border-slate-800 hover:border-red-500 rounded-2xl p-6 text-center cursor-pointer transition flex flex-col justify-center items-center gap-3 bg-slate-900/20 min-h-[160px]">
+                                        <i class="fa-solid fa-cloud-arrow-up text-red-500 text-3xl animate-bounce"></i>
+                                        <p class="text-xs font-semibold text-white">Seret atau Pilih Gambar</p>
+                                        <input type="file" id="media-file-input" class="hidden" accept="image/*">
+                                    </div>
+                                    <input type="text" id="media-filename" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="nama-gambar.png">
+                                    <button id="media-upload-btn" onclick="uploadMediaToGitHub()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs py-2.5 rounded-lg transition-all flex items-center justify-center gap-1.5">
+                                        <i class="fa-solid fa-upload"></i> Unggah Baru
+                                    </button>
+                                </div>
+
+                                <div class="md:col-span-2 flex flex-col bg-slate-900/10 border border-slate-800/60 p-4 rounded-xl">
+                                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Hasil Unggahan Terakhir</h3>
+                                    <div id="media-history-empty" class="flex-1 flex flex-col justify-center items-center text-gray-500 text-xs gap-2 min-h-[120px]">
+                                        <i class="fa-solid fa-box-open text-xl"></i> Belum ada file yang diunggah.
+                                    </div>
+                                    <div id="media-history-container" class="space-y-2 hidden max-h-[220px] overflow-y-auto pr-1"></div>
+                                </div>
+                            </div>
+
+                            <!-- Media Library Grid -->
+                            <div class="space-y-4">
+                                <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Semua Gambar di Server (GitHub)</h3>
+                                <div id="media-library-loading" class="text-center py-10 text-gray-500 text-sm hidden">
+                                    <i class="fa-solid fa-spinner animate-spin text-red-500 text-2xl mb-2"></i>
+                                    <p>Memuat pustaka media dari GitHub...</p>
+                                </div>
+                                <div id="media-library-empty" class="text-center py-10 border border-dashed border-slate-800 rounded-xl text-gray-500 text-sm hidden">
+                                    <i class="fa-solid fa-circle-info text-xl mb-1"></i> Tidak ada gambar ditemukan di folder <code>assets/images/</code>.
+                                </div>
+                                <div id="media-library-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-h-[500px] overflow-y-auto pr-2">
+                                    <!-- Loaded images from assets/images/ -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- MAIN FOOTER (STICKY AT BOTTOM OF VIEWPORT) -->
+    <footer class="py-6 border-t border-slate-900 bg-slate-950/80 text-center text-xs text-gray-500">
+        <p>© 2026 Honda Bintaro CMS. Terintegrasi sepenuhnya dengan API GitHub.</p>
+    </footer>
+
+    <!-- ADD PRODUCT MODAL -->
+    <div id="add-product-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 hidden px-4">
+        <div class="glass-panel w-full max-w-md p-6 rounded-2xl shadow-2xl space-y-4">
+            <h3 class="text-lg font-bold text-white">Tambah Model Mobil Baru</h3>
+            <div class="space-y-3">
+                <div class="space-y-1">
+                    <label class="text-xs text-gray-400 font-semibold">ID Model (Kecil, satu kata, unik. Contoh: <code>wr-v</code>)</label>
+                    <input type="text" id="new-prod-id" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="wr-v">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-xs text-gray-400 font-semibold">Nama Model (Contoh: <code>Honda WR-V</code>)</label>
+                    <input type="text" id="new-prod-name" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="Honda WR-V">
+                </div>
+            </div>
+            <div class="flex justify-end gap-3 pt-2">
+                <button onclick="closeAddProductModal()" class="text-xs font-semibold px-4 py-2 hover:bg-slate-800 text-gray-400 rounded-lg">Batal</button>
+                <button onclick="createNewProductConfirm()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-lg">Buat Model</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CORE JAVASCRIPT LOGIC -->
+    <script>
+        // Data Store
+        let appData = {
+            siteConfig: null,
+            banner: null,
+            products: null,
+            pricelist: null
+        };
+
+        // File Sha Store
+        let fileSha = {};
+
+        // GitHub Integration config
+        let ghConfig = {
+            token: '',
+            owner: 'ardiasgusty',
+            repo: 'Website-Honda-Sales',
+            branch: 'main'
+        };
+
+        // Active State
+        let selectedProductId = '';
+        let selectedPricelistModelId = '';
+        let selectedSeoPage = 'default';
+        let pendingUploads = {}; 
+        let ckEditorInstance = null; 
+
+        // Toast Messages
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg border text-sm transition-all duration-300 transform translate-y-2 opacity-0 z-50`;
+            
+            if (type === 'success') {
+                toast.className += ' bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+                toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
+            } else if (type === 'error') {
+                toast.className += ' bg-red-500/10 text-red-400 border-red-500/20';
+                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> <span>${message}</span>`;
+            } else {
+                toast.className += ' bg-yellow-500/10 text-yellow-400 border-yellow-500/20';
+                toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> <span>${message}</span>`;
+            }
+
+            const container = document.getElementById('toast-container');
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Initialize Kredensial from localStorage & Theme Setup
+        window.addEventListener('DOMContentLoaded', () => {
+            // Theme Setup
+            const savedTheme = localStorage.getItem('admin_theme');
+            const themeIcon = document.getElementById('theme-icon');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+                themeIcon.className = 'fa-solid fa-moon';
+                themeIcon.style.color = '#38bdf8';
+            } else {
+                themeIcon.style.color = '#f59e0b';
+            }
+
+            document.getElementById('gh-token').value = localStorage.getItem('gh_token') || '';
+            document.getElementById('gh-owner').value = localStorage.getItem('gh_owner') || 'ardiasgusty';
+            document.getElementById('gh-repo').value = localStorage.getItem('gh_repo') || 'Website-Honda-Sales';
+            document.getElementById('gh-branch').value = localStorage.getItem('gh_branch') || 'main';
+
+            updateGhConfigFromDom();
+
+            if (ghConfig.token) {
+                saveAndConnectGitHub();
+            }
+
+            // Set up dropzone events for Media manager
+            const dropzone = document.getElementById('dropzone');
+            const fileInput = document.getElementById('media-file-input');
+
+            dropzone.addEventListener('click', () => fileInput.click());
+            dropzone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropzone.classList.add('border-red-500', 'bg-slate-900/40');
+            });
+            dropzone.addEventListener('dragleave', () => {
+                dropzone.classList.remove('border-red-500', 'bg-slate-900/20');
+            });
+            dropzone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropzone.classList.remove('border-red-500', 'bg-slate-900/20');
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    handleFileSelect();
+                }
+            });
+            fileInput.addEventListener('change', handleFileSelect);
+        });
+
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            body.classList.toggle('light-theme');
+            
+            if (body.classList.contains('light-theme')) {
+                themeIcon.className = 'fa-solid fa-moon';
+                themeIcon.style.color = '#38bdf8';
+                localStorage.setItem('admin_theme', 'light');
+            } else {
+                themeIcon.className = 'fa-solid fa-sun';
+                themeIcon.style.color = '#f59e0b';
+                localStorage.setItem('admin_theme', 'dark');
+            }
+        }
+
+        function updateGhConfigFromDom() {
+            ghConfig.token = document.getElementById('gh-token').value.trim();
+            ghConfig.owner = document.getElementById('gh-owner').value.trim();
+            ghConfig.repo = document.getElementById('gh-repo').value.trim();
+            ghConfig.branch = document.getElementById('gh-branch').value.trim();
+        }
+
+        // Tab Switcher
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+            const targetPane = document.getElementById(`tab-${tabId}`);
+            if (targetPane) targetPane.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = "nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap";
+            });
+
+            const activeBtn = document.querySelector(`[data-tab="${tabId}"]`);
+            if (activeBtn) {
+                activeBtn.className = "nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-white bg-red-600 shadow-md shadow-red-600/20 whitespace-nowrap";
+            }
+
+            if (tabId === 'media' && ghConfig.token) {
+                fetchMediaLibrary();
+            }
+        }
+
+        // Subtab Switcher
+        function switchSubTab(subtabId) {
+            document.querySelectorAll('.subtab-pane').forEach(el => el.classList.add('hidden'));
+            const targetPane = document.getElementById(`subtab-pane-${subtabId}`);
+            if (targetPane) targetPane.classList.remove('hidden');
+
+            document.querySelectorAll('.subnav-btn').forEach(btn => {
+                btn.className = "subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition";
+            });
+
+            const activeBtn = document.querySelector(`[data-subtab="${subtabId}"]`);
+            if (activeBtn) {
+                activeBtn.className = "subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-white bg-red-600 transition";
+            }
+        }
+
+        // GitHub Connector
+        async function saveAndConnectGitHub() {
+            updateGhConfigFromDom();
+            
+            if (!ghConfig.token) {
+                showToast('Harap masukkan Personal Access Token (PAT) GitHub!', 'warning');
+                return;
+            }
+
+            localStorage.setItem('gh_token', ghConfig.token);
+            localStorage.setItem('gh_owner', ghConfig.owner);
+            localStorage.setItem('gh_repo', ghConfig.repo);
+            localStorage.setItem('gh_branch', ghConfig.branch);
+
+            const statusLabel = document.getElementById('github-status');
+            statusLabel.className = "flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20 h-10";
+            statusLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span> Menghubungkan...`;
+
+            try {
+                const testUrl = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}`;
+                const res = await fetch(testUrl, {
+                    headers: { 'Authorization': `token ${ghConfig.token}` }
+                });
+
+                if (!res.ok) throw new Error(`Repo tidak ditemukan atau Token salah (Status: ${res.status})`);
+                
+                showToast('Terhubung ke GitHub Repositori!');
+                
+                statusLabel.className = "flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 h-10";
+                statusLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Terkoneksi: ${ghConfig.owner}/${ghConfig.repo}`;
+                
+                document.getElementById('fetch-all-btn').classList.remove('hidden');
+
+                // Pull all JSON files immediately
+                await fetchDataFromGitHub();
+            } catch (err) {
+                showToast(err.message, 'error');
+                statusLabel.className = "flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-red-500/10 text-red-500 border border-red-500/20 h-10";
+                statusLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500"></span> Gagal Terkoneksi`;
+            }
+        }
+
+        // Pull dynamic JSON files from GitHub
+        async function fetchDataFromGitHub() {
+            showToast('Menarik data dari GitHub...', 'info');
+            const files = [
+                { key: 'siteConfig', path: 'data/site_config.json' },
+                { key: 'banner', path: 'data/banner.json' },
+                { key: 'products', path: 'data/products.json' },
+                { key: 'pricelist', path: 'data/pricelist.json' }
+            ];
+
+            let successCount = 0;
+
+            for (const file of files) {
+                const url = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${file.path}?ref=${ghConfig.branch}`;
+                try {
+                    const res = await fetch(url, {
+                        headers: { 'Authorization': `token ${ghConfig.token}`, 'Accept': 'application/vnd.github.v3+json' }
+                    });
+                    if (!res.ok) throw new Error(`Gagal menarik file ${file.path}`);
+                    
+                    const resData = await res.json();
+                    fileSha[file.path] = resData.sha;
+                    const decoded = decodeURIComponent(escape(atob(resData.content.replace(/\s/g, ''))));
+                    appData[file.key] = JSON.parse(decoded);
+                    successCount++;
+                } catch (e) {
+                    console.error(e);
+                    showToast(`Gagal menarik file ${file.path}`, 'error');
+                }
+            }
+
+            if (successCount === files.length) {
+                showToast('✅ Semua data JSON berhasil ditarik!');
+                
+                // Show Logo dynamically in header
+                const logoImg = document.getElementById('header-logo-img');
+                const logoFallback = document.getElementById('header-logo-fallback');
+                if (appData.siteConfig?.contact?.headerLogo) {
+                    logoImg.src = appData.siteConfig.contact.headerLogo;
+                    logoImg.classList.remove('hidden');
+                    logoFallback.classList.add('hidden');
+                } else {
+                    logoImg.classList.add('hidden');
+                    logoFallback.classList.remove('hidden');
+                }
+
+                document.getElementById('repo-info-panel').classList.remove('hidden');
+                updateStatsPanel();
+                
+                // Populate forms
+                populateSiteConfigForm();
+                populateBannersForm();
+                populateProductsForm();
+                populatePricelistForm();
+            }
+        }
+
+        // Update repository stats box
+        function updateStatsPanel() {
+            const countDesktop = appData.banner?.banners?.desktop?.length || 0;
+            const countMobile = appData.banner?.banners?.mobile?.length || 0;
+            const countProducts = Object.keys(appData.products || {}).length;
+            const salesName = appData.siteConfig?.contact?.salesName || '-';
+
+            document.getElementById('stat-banners').innerText = `${countDesktop} Desktop / ${countMobile} Mobile`;
+            document.getElementById('stat-products').innerText = countProducts;
+            document.getElementById('stat-sales-name').innerText = salesName;
+        }
+
+        // Commit/Save specific JSON data to GitHub
+        async function commitFileToGitHub(path) {
+            updateGhConfigFromDom();
+            if (!ghConfig.token) {
+                showToast('PAT Token tidak ditemukan!', 'error');
+                return;
+            }
+
+            let jsonPayload = null;
+
+            if (path === 'data/site_config.json') {
+                saveSiteConfigDomToData();
+                jsonPayload = appData.siteConfig;
+            } else if (path === 'data/banner.json') {
+                saveBannersDomToData();
+                jsonPayload = appData.banner;
+            } else if (path === 'data/products.json') {
+                if (selectedProductId) {
+                    saveCurrentProductDetails();
+                }
+                jsonPayload = appData.products;
+            } else if (path === 'data/pricelist.json') {
+                if (selectedPricelistModelId) {
+                    saveCurrentPricelistDetails();
+                }
+                jsonPayload = appData.pricelist;
+            }
+
+            if (!jsonPayload) {
+                showToast('Payload kosong, abaikan.', 'warning');
+                return;
+            }
+
+            const stringContent = JSON.stringify(jsonPayload, null, 2);
+            const encodedContent = btoa(unescape(encodeURIComponent(stringContent)));
+            const url = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}`;
+
+            showToast('Mengirimkan commit ke GitHub...', 'info');
+
+            // Retrieve current SHA if missing
+            if (!fileSha[path]) {
+                try {
+                    const checkRes = await fetch(url, {
+                        headers: { 'Authorization': `token ${ghConfig.token}`, 'Accept': 'application/vnd.github.v3+json' }
+                    });
+                    if (checkRes.ok) fileSha[path] = (await checkRes.json()).sha;
+                } catch (e) {}
+            }
+
+            const commitMessage = prompt("Masukkan pesan commit:", `Update ${path.split('/').pop()} via Admin Dashboard`);
+            if (commitMessage === null) return; // User cancel
+
+            const bodyData = {
+                message: commitMessage || `⚡ Update ${path} via Admin Dashboard`,
+                content: encodedContent,
+                branch: ghConfig.branch
+            };
+
+            if (fileSha[path]) {
+                bodyData.sha = fileSha[path];
+            }
+
+            try {
+                const res = await fetch(url, {
+                    method: 'PUT',
+                    headers: { 
+                        'Authorization': `token ${ghConfig.token}`, 
+                        'Content-Type': 'application/json' 
+                    },
+                    body: JSON.stringify(bodyData)
+                });
+
+                if (!res.ok) {
+                    const errorResponse = await res.json();
+                    throw new Error(errorResponse.message || 'Gagal menyimpan file.');
+                }
+
+                const resJson = await res.json();
+                fileSha[path] = resJson.content.sha;
+                showToast('🎉 Hebat! Data berhasil dikomit ke GitHub. Halaman website akan terupdate dinamis.', 'success');
+                updateStatsPanel();
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+
+        // =======================================================
+        // SYSTEM UPLOAD & REPLACE IMAGE (WITH AUTOMATIC DELETION)
+        // =======================================================
+        
+        function updateImagePreview(fieldId) {
+            const input = document.getElementById(fieldId);
+            const src = input ? input.value.trim() : '';
+            const groupEl = document.querySelector(`.image-upload-group[data-field-id="${fieldId}"]`);
+            if (!groupEl) return;
+
+            const panel = groupEl.querySelector('.image-preview-panel');
+            const currentImg = groupEl.querySelector('.current-img-preview');
+            
+            if (src) {
+                if (panel) panel.classList.remove('hidden');
+                if (currentImg) currentImg.src = resolveImagePreviewUrl(src);
+            } else {
+                if (panel && !pendingUploads[fieldId]) {
+                    panel.classList.add('hidden');
+                }
+            }
+        }
+
+        function handleImageSelect(fieldId, fileInput) {
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            pendingUploads[fieldId] = file;
+
+            const groupEl = document.querySelector(`.image-upload-group[data-field-id="${fieldId}"]`);
+            if (!groupEl) return;
+
+            const panel = groupEl.querySelector('.image-preview-panel');
+            panel.classList.remove('hidden');
+
+            const currentInput = document.getElementById(fieldId);
+            let currentSrc = currentInput ? currentInput.value.trim() : '';
+            
+            const currentImg = groupEl.querySelector('.current-img-preview');
+            if (currentImg) currentImg.src = resolveImagePreviewUrl(currentSrc || '');
+
+            const newImg = groupEl.querySelector('.new-img-preview');
+            const newBox = groupEl.querySelector('.new-preview-box');
+            if (newImg && newBox) {
+                newImg.src = URL.createObjectURL(file);
+                newBox.classList.remove('hidden');
+            }
+        }
+
+        function cancelImageSelect(fieldId) {
+            delete pendingUploads[fieldId];
+            
+            const fileInput = document.getElementById(`${fieldId}-file`);
+            if (fileInput) fileInput.value = '';
+
+            const groupEl = document.querySelector(`.image-upload-group[data-field-id="${fieldId}"]`);
+            if (!groupEl) return;
+
+            const panel = groupEl.querySelector('.image-preview-panel');
+            const newBox = groupEl.querySelector('.new-preview-box');
+            
+            if (newBox) newBox.classList.add('hidden');
+            
+            const currentInput = document.getElementById(fieldId);
+            if (!currentInput || !currentInput.value.trim()) {
+                if (panel) panel.classList.add('hidden');
+            }
+        }
+
+        async function confirmImageReplace(fieldId) {
+            const file = pendingUploads[fieldId];
+            if (!file) return;
+
+            updateGhConfigFromDom();
+            if (!ghConfig.token) {
+                showToast('Kredensial GitHub belum diisi!', 'error');
+                return;
+            }
+
+            const groupEl = document.querySelector(`.image-upload-group[data-field-id="${fieldId}"]`);
+            const btn = groupEl.querySelector('.confirm-upload-btn');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Replacing...`;
+
+            try {
+                const currentInput = document.getElementById(fieldId);
+                const oldPath = currentInput ? cleanRepoPath(currentInput.value) : '';
+                
+                // 1. Delete old file on GitHub if it is a local repo image
+                if (oldPath && oldPath.startsWith('assets/images/') && !oldPath.includes('logo-honda') && !oldPath.includes('rere.png')) {
+                    showToast(`Menghapus gambar lama (${oldPath.split('/').pop()}) di GitHub...`, 'info');
+                    const getUrl = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${oldPath}?ref=${ghConfig.branch}`;
+                    
+                    let shaToDelete = null;
+                    try {
+                        const getRes = await fetch(getUrl, {
+                            headers: { 'Authorization': `token ${ghConfig.token}`, 'Accept': 'application/vnd.github.v3+json' }
+                        });
+                        if (getRes.ok) {
+                            shaToDelete = (await getRes.json()).sha;
+                        }
+                    } catch (e) {
+                        console.warn('Gagal mendapatkan SHA gambar lama:', e);
+                    }
+
+                    if (shaToDelete) {
+                        const deleteUrl = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${oldPath}`;
+                        await fetch(deleteUrl, {
+                            method: 'DELETE',
+                            headers: { 
+                                'Authorization': `token ${ghConfig.token}`,
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                message: `🗑️ Hapus gambar usang ${oldPath.split('/').pop()} via Admin Replace`,
+                                sha: shaToDelete,
+                                branch: ghConfig.branch
+                            })
+                        });
+                    }
+                }
+
+                // 2. Upload new file
+                const newFilename = `${fieldId}_${Date.now()}.${file.name.split('.').pop()}`;
+                const uploadPath = `assets/images/${newFilename}`;
+                const uploadUrl = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${uploadPath}`;
+
+                showToast(`Mengunggah gambar baru (${newFilename})...`, 'info');
+                
+                const base64Content = await fileToBase64(file);
+                const pureBase64 = base64Content.split(',')[1];
+
+                const uploadRes = await fetch(uploadUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${ghConfig.token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `🖼️ Upload gambar baru ${newFilename} via Admin Replace`,
+                        content: pureBase64,
+                        branch: ghConfig.branch
+                    })
+                });
+
+                if (!uploadRes.ok) {
+                    const errJson = await uploadRes.json();
+                    throw new Error(errJson.message || 'Gagal mengunggah gambar baru.');
+                }
+
+                const newRelativePath = `./assets/images/${newFilename}`;
+                if (currentInput) {
+                    currentInput.value = newRelativePath;
+                    currentInput.dispatchEvent(new Event('input'));
+                }
+
+                showToast(`🎉 Gambar berhasil diganti & diunggah ke GitHub!`, 'success');
+                
+                delete pendingUploads[fieldId];
+                const newBox = groupEl.querySelector('.new-preview-box');
+                if (newBox) newBox.classList.add('hidden');
+                
+                const currentImg = groupEl.querySelector('.current-img-preview');
+                if (currentImg) currentImg.src = newRelativePath;
+
+            } catch (err) {
+                showToast(err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        }
+
+        // ==========================================
+        // DYNAMIC ROWS UPLOAD & REPLACE IMAGE
+        // ==========================================
+        function handleRowImageSelect(fileInput) {
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            const row = fileInput.closest('.banner-item-row') || fileInput.closest('.prod-img-row') || fileInput.closest('.promo-card-row');
+            if (!row) return;
+
+            row.pendingFile = file;
+
+            const panel = row.querySelector('.row-preview-panel');
+            if (panel) {
+                panel.classList.remove('hidden');
+                
+                const currentImg = panel.querySelector('.current-img-preview');
+                const textInput = row.querySelector('.row-ban-image') || row.querySelector('.row-img-full') || row.querySelector('.row-img-thumb') || row.querySelector('.row-pr-image');
+                if (currentImg && textInput) {
+                    currentImg.src = resolveImagePreviewUrl(textInput.value.trim() || '');
+                }
+
+                const newImg = panel.querySelector('.new-img-preview');
+                const newBox = panel.querySelector('.new-preview-box');
+                if (newImg && newBox) {
+                    newImg.src = URL.createObjectURL(file);
+                    newBox.classList.remove('hidden');
+                }
+            }
+        }
+
+        function cancelRowImageSelect(btn) {
+            const row = btn.closest('.banner-item-row') || btn.closest('.prod-img-row') || btn.closest('.promo-card-row');
+            if (!row) return;
+
+            delete row.pendingFile;
+
+            const fileInput = row.querySelector('input[type="file"]');
+            if (fileInput) fileInput.value = '';
+
+            const panel = row.querySelector('.row-preview-panel');
+            const newBox = row.querySelector('.new-preview-box');
+            
+            if (newBox) newBox.classList.add('hidden');
+            if (panel) {
+                const textInput = row.querySelector('.row-ban-image') || row.querySelector('.row-img-full') || row.querySelector('.row-img-thumb') || row.querySelector('.row-pr-image');
+                if (!textInput || !textInput.value.trim()) {
+                    panel.classList.add('hidden');
+                }
+            }
+        }
+
+        async function confirmRowImageReplace(btn, fieldName) {
+            const row = btn.closest('.banner-item-row') || btn.closest('.prod-img-row') || btn.closest('.promo-card-row');
+            if (!row || !row.pendingFile) return;
+
+            updateGhConfigFromDom();
+            if (!ghConfig.token) {
+                showToast('Kredensial GitHub belum diisi!', 'error');
+                return;
+            }
+
+            const file = row.pendingFile;
+            const confirmBtn = row.querySelector('.confirm-row-upload-btn');
+            const originalText = confirmBtn.innerHTML;
+            confirmBtn.disabled = true;
+            confirmBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i>`;
+
+            try {
+                const textInput = row.querySelector('.row-ban-image') || row.querySelector('.row-img-full') || row.querySelector('.row-img-thumb') || row.querySelector('.row-pr-image');
+                const oldPath = textInput ? cleanRepoPath(textInput.value) : '';
+
+                // 1. Delete old file
+                if (oldPath && oldPath.startsWith('assets/images/')) {
+                    const getUrl = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${oldPath}?ref=${ghConfig.branch}`;
+                    let shaToDelete = null;
+                    try {
+                        const getRes = await fetch(getUrl, {
+                            headers: { 'Authorization': `token ${ghConfig.token}`, 'Accept': 'application/vnd.github.v3+json' }
+                        });
+                        if (getRes.ok) shaToDelete = (await getRes.json()).sha;
+                    } catch (e) {}
+
+                    if (shaToDelete) {
+                        const deleteUrl = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${oldPath}`;
+                        await fetch(deleteUrl, {
+                            method: 'DELETE',
+                            headers: { 
+                                'Authorization': `token ${ghConfig.token}`,
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                message: `🗑️ Hapus gambar usang ${oldPath.split('/').pop()} via Admin Replace`,
+                                sha: shaToDelete,
+                                branch: ghConfig.branch
+                            })
+                        });
+                    }
+                }
+
+                // 2. Upload new file
+                const newFilename = `${fieldName}_row_${Date.now()}.${file.name.split('.').pop()}`;
+                const uploadPath = `assets/images/${newFilename}`;
+                const uploadUrl = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${uploadPath}`;
+
+                const base64Content = await fileToBase64(file);
+                const pureBase64 = base64Content.split(',')[1];
+
+                const uploadRes = await fetch(uploadUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${ghConfig.token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `🖼️ Upload gambar baru ${newFilename} via Admin Row Replace`,
+                        content: pureBase64,
+                        branch: ghConfig.branch
+                    })
+                });
+
+                if (!uploadRes.ok) throw new Error('Gagal mengunggah gambar baru.');
+
+                const newRelativePath = `./assets/images/${newFilename}`;
+                if (textInput) {
+                    textInput.value = newRelativePath;
+                    textInput.dispatchEvent(new Event('input'));
+                }
+
+                showToast('🎉 Gambar berhasil diganti & diunggah!');
+                
+                delete row.pendingFile;
+                const newBox = row.querySelector('.new-preview-box');
+                if (newBox) newBox.classList.add('hidden');
+                const currentImg = row.querySelector('.current-img-preview');
+                if (currentImg) currentImg.src = resolveImagePreviewUrl(newRelativePath);
+
+            } catch (err) {
+                showToast(err.message, 'error');
+            } finally {
+                confirmBtn.disabled = false;
+                confirmBtn.innerHTML = originalText;
+            }
+        }
+
+        function cleanRepoPath(url) {
+            if (!url) return '';
+            let clean = url.trim();
+            clean = clean.replace(/^\.\.\//, '');
+            clean = clean.replace(/^\.\//, '');
+            // Match for repository assets on github pages
+            const match = clean.match(/github\.io\/[^/]+\/[^/]+\/(.*)/);
+            if (match && match[1]) {
+                return match[1];
+            }
+            const altMatch = clean.match(/github\.io\/[^/]+\/(.*)/);
+            if (altMatch && altMatch[1]) {
+                return altMatch[1];
+            }
+            return clean;
+        }
+
+        function resolveImagePreviewUrl(url) {
+            if (!url) return '';
+            let clean = url.trim();
+            if (/^https?:\/\//i.test(clean)) {
+                return clean;
+            }
+            clean = clean.replace(/^\.\.\//, '').replace(/^\.\//, '');
+            if (ghConfig.owner && ghConfig.repo) {
+                return `https://raw.githubusercontent.com/${ghConfig.owner}/${ghConfig.repo}/${ghConfig.branch}/${clean}`;
+            }
+            return `../${clean}`;
+        }
+
+        function renderFaqItem(faq, idx) {
+            const html = `
+                <div class="faq-row grid grid-cols-1 md:grid-cols-2 gap-3 p-3 bg-slate-950/20 border border-slate-800 rounded-lg relative text-xs">
+                    <button onclick="this.closest('.faq-row').remove()" class="absolute top-2 right-2 text-red-500 hover:text-red-400 p-1 border border-red-500/20 rounded hover:bg-red-500/5"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="space-y-1">
+                        <label class="text-[10px] text-gray-500 font-bold uppercase">Pertanyaan (Question)</label>
+                        <input type="text" class="row-faq-q glass-input w-full px-2 py-1.5 rounded font-bold" value="${faq.question || ''}">
+                    </div>
+                    <div class="space-y-1 pr-6">
+                        <label class="text-[10px] text-gray-500 font-bold uppercase">Jawaban (Answer)</label>
+                        <textarea class="row-faq-a glass-input w-full px-2 py-1.5 rounded h-16">${faq.answer || ''}</textarea>
+                    </div>
+                </div>
+            `;
+            document.getElementById('cfg-faq-container').insertAdjacentHTML('beforeend', html);
+        }
+
+        function addFaqField() {
+            renderFaqItem({ question: '', answer: '' }, Date.now());
+        }
+
+
+        // ==========================================
+        // 1. SITE CONFIG FORM POPULATE & SAVE
+        // ==========================================
+        function populateSiteConfigForm() {
+            const config = appData.siteConfig;
+            if (!config) return;
+
+            // --- SUBTAB: PROFIL ---
+            document.getElementById('cfg-sales-name').value = config.contact?.salesName || '';
+            document.getElementById('cfg-sales-title').value = config.contact?.salesTitle || '';
+            document.getElementById('cfg-sales-email').value = config.contact?.email || '';
+            document.getElementById('cfg-wa-display').value = config.contact?.phoneDisplay || '';
+            document.getElementById('cfg-wa-number').value = config.contact?.phoneNumber || '';
+            document.getElementById('cfg-sales-photo').value = config.contact?.salesPhoto || '';
+            document.getElementById('cfg-logo-header').value = config.contact?.headerLogo || '';
+            document.getElementById('cfg-logo-footer').value = config.contact?.footerLogo || '';
+            
+            updateImagePreview('cfg-sales-photo');
+            updateImagePreview('cfg-logo-header');
+            updateImagePreview('cfg-logo-footer');
+
+            // --- SUBTAB: WHATSAPP TEMPLATE ---
+            document.getElementById('cfg-wa-salesbanner').value = config.whatsappTemplates?.salesBanner || '';
+            document.getElementById('cfg-wa-testdrive').value = config.whatsappTemplates?.testDrive || '';
+            document.getElementById('cfg-wa-general').value = config.whatsappTemplates?.general || '';
+            document.getElementById('cfg-wa-modeldetail').value = config.whatsappTemplates?.modelDetail || '';
+            document.getElementById('cfg-wa-promoform').value = config.whatsappTemplates?.promoForm || '';
+
+            // --- SUBTAB: NAVIGASI & TAUTAN ---
+            document.getElementById('cfg-site-favicon').value = config.site?.favicon || '';
+            document.getElementById('cfg-site-news-api').value = config.site?.newsApiUrl || '';
+            document.getElementById('cfg-site-news-url').value = config.site?.allNewsUrl || '';
+            document.getElementById('cfg-site-news-title').value = config.site?.newsTitle || '';
+            document.getElementById('cfg-site-news-subtitle').value = config.site?.newsSubtitle || '';
+            document.getElementById('cfg-site-fraud-image').value = config.site?.fraudModalImage || '';
+            updateImagePreview('cfg-site-fraud-image');
+
+            document.getElementById('cfg-navigation-json').value = JSON.stringify(config.navigation || [], null, 2);
+
+            // --- SUBTAB: PERSYARATAN KREDIT ---
+            const cred = config.creditRequirements || {};
+            document.getElementById('cfg-credit-title').value = cred.title || '';
+            document.getElementById('cfg-credit-subtitle').value = cred.subtitle || '';
+            
+            const catPerorangan = cred.categories?.[0] || {};
+            document.getElementById('cfg-credit-perorangan-title').value = catPerorangan.title || '';
+            document.getElementById('cfg-credit-perorangan-icon').value = catPerorangan.icon || '';
+            document.getElementById('cfg-credit-perorangan-items').value = (catPerorangan.items || []).join('\n');
+            
+            const catPerusahaan = cred.categories?.[1] || {};
+            document.getElementById('cfg-credit-perusahaan-title').value = catPerusahaan.title || '';
+            document.getElementById('cfg-credit-perusahaan-icon').value = catPerusahaan.icon || '';
+            document.getElementById('cfg-credit-perusahaan-items').value = (catPerusahaan.items || []).join('\n');
+
+            // --- SUBTAB: PROMO & THANK YOU ---
+            const promoPage = config.promoPage || {};
+            document.getElementById('cfg-promo-badge').value = promoPage.badge || 'Promo Eksklusif Honda Jabodetabek {year}';
+            document.getElementById('cfg-promo-title').value = promoPage.title || 'Miliki Mobil Honda Impian Anda <br class="hidden sm:inline"><span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-400">DP Termurah & Bunga 0%</span>';
+            document.getElementById('cfg-promo-desc').value = promoPage.description || 'Dapatkan diskon OTR besar-besaran, gratis biaya service berkala s.d. 4 tahun, dan pengajuan kredit dibantu sampai 100% disetujui. Hubungi Sales Counter Resmi sekarang juga!';
+
+            const thank = config.thankYou || {};
+            document.getElementById('cfg-thank-title').value = thank.title || 'Pengiriman Berhasil!';
+            document.getElementById('cfg-thank-subtitle').value = thank.subtitle || 'Terima kasih atas minat Anda pada promo kami.';
+            document.getElementById('cfg-thank-desc').value = thank.description || 'Sistem kami sedang membuka aplikasi WhatsApp Anda di tab baru. Sales Counter kami, {salesName}, akan segera merespons Anda dalam waktu 10-15 menit untuk memberikan hitungan kredit / promo yang Anda ajukan.';
+            document.getElementById('cfg-thank-btn').value = thank.buttonText || 'Hubungi WA Sekarang (Alternatif)';
+            document.getElementById('cfg-thank-back').value = thank.backButtonText || 'Kembali ke Beranda';
+
+            // Dynamic Brochure PDF IDs mapping
+            const brochuresContainer = document.getElementById('cfg-brochures-container');
+            brochuresContainer.innerHTML = '';
+            const brochures = config.brochures || {};
+            const productKeys = Object.keys(appData.products || {});
+            productKeys.forEach(modelId => {
+                const modelName = appData.products[modelId]?.name || modelId;
+                const fileId = brochures[modelId] || '';
+                const fieldHtml = `
+                    <div class="brochure-item-row grid grid-cols-3 gap-2 items-center bg-slate-950/20 p-2.5 rounded-lg border border-slate-800/60 text-xs">
+                        <span class="text-[10px] text-white font-semibold col-span-1 leading-tight">${modelName} (<code>${modelId}</code>)</span>
+                        <input type="text" data-model-id="${modelId}" class="col-brochure-id glass-input col-span-2 px-2.5 py-1.5 rounded text-[11px] font-mono" placeholder="File ID Google Drive" value="${fileId}">
+                    </div>
+                `;
+                brochuresContainer.insertAdjacentHTML('beforeend', fieldHtml);
+            });
+
+            // Dynamic promos grid cards
+            const promosContainer = document.getElementById('cfg-promos-container');
+            promosContainer.innerHTML = '';
+            const promosList = config.promos || [];
+            promosList.forEach((promo, idx) => renderPromoCardItem(promo, idx));
+
+            // --- SUBTAB: SEO METADATA ---
+            loadSelectedSeoPage();
+
+            // --- SUBTAB: FAQ & FOOTER ---
+            const faqContainer = document.getElementById('cfg-faq-container');
+            faqContainer.innerHTML = '';
+            const faqs = config.faqs || [];
+            faqs.forEach((faq, idx) => renderFaqItem(faq, idx));
+
+            document.getElementById('cfg-foot-about').value = config.footer?.aboutText || '';
+            document.getElementById('cfg-foot-hours').value = config.footer?.hours || '';
+            document.getElementById('cfg-foot-map').value = config.footer?.mapLink || '';
+            document.getElementById('cfg-foot-address').value = config.footer?.address || '';
+            document.getElementById('cfg-foot-copyright').value = config.footer?.copyright || '';
+            
+            // Payment fields (described under faq-footer as requested)
+            document.getElementById('cfg-payment-desc').value = config.footer?.paymentDesc || '';
+            document.getElementById('cfg-payment-banks').value = (config.footer?.paymentBanks || []).join(', ');
+        }
+
+        function saveSiteConfigDomToData() {
+            const config = appData.siteConfig;
+            if (!config) return;
+
+            // --- SUBTAB: PROFIL ---
+            config.contact.salesName = document.getElementById('cfg-sales-name').value.trim();
+            config.contact.salesTitle = document.getElementById('cfg-sales-title').value.trim();
+            config.contact.email = document.getElementById('cfg-sales-email').value.trim();
+            config.contact.phoneDisplay = document.getElementById('cfg-wa-display').value.trim();
+            config.contact.phoneNumber = document.getElementById('cfg-wa-number').value.trim();
+            config.contact.salesPhoto = document.getElementById('cfg-sales-photo').value.trim();
+            config.contact.headerLogo = document.getElementById('cfg-logo-header').value.trim();
+            config.contact.footerLogo = document.getElementById('cfg-logo-footer').value.trim();
+
+            // --- SUBTAB: WHATSAPP TEMPLATE ---
+            config.whatsappTemplates.salesBanner = document.getElementById('cfg-wa-salesbanner').value.trim();
+            config.whatsappTemplates.testDrive = document.getElementById('cfg-wa-testdrive').value.trim();
+            config.whatsappTemplates.general = document.getElementById('cfg-wa-general').value.trim();
+            config.whatsappTemplates.modelDetail = document.getElementById('cfg-wa-modeldetail').value.trim();
+            config.whatsappTemplates.promoForm = document.getElementById('cfg-wa-promoform').value.trim();
+
+            // --- SUBTAB: NAVIGASI & TAUTAN ---
+            if (!config.site) config.site = {};
+            config.site.favicon = document.getElementById('cfg-site-favicon').value.trim();
+            config.site.newsApiUrl = document.getElementById('cfg-site-news-api').value.trim();
+            config.site.allNewsUrl = document.getElementById('cfg-site-news-url').value.trim();
+            config.site.newsTitle = document.getElementById('cfg-site-news-title').value.trim();
+            config.site.newsSubtitle = document.getElementById('cfg-site-news-subtitle').value.trim();
+            config.site.fraudModalImage = document.getElementById('cfg-site-fraud-image').value.trim();
+
+            // Navigation JSON
+            const navJson = document.getElementById('cfg-navigation-json').value.trim();
+            try {
+                config.navigation = JSON.parse(navJson);
+                document.getElementById('cfg-nav-json-error').classList.add('hidden');
+            } catch (e) {
+                document.getElementById('cfg-nav-json-error').classList.remove('hidden');
+                showToast('JSON Navigasi tidak valid, perubahan menu dilewati.', 'error');
+            }
+
+            // --- SUBTAB: PERSYARATAN KREDIT ---
+            if (!config.creditRequirements) config.creditRequirements = {};
+            config.creditRequirements.title = document.getElementById('cfg-credit-title').value.trim();
+            config.creditRequirements.subtitle = document.getElementById('cfg-credit-subtitle').value.trim();
+            
+            if (!config.creditRequirements.categories) config.creditRequirements.categories = [{}, {}];
+            
+            config.creditRequirements.categories[0].title = document.getElementById('cfg-credit-perorangan-title').value.trim();
+            config.creditRequirements.categories[0].icon = document.getElementById('cfg-credit-perorangan-icon').value.trim();
+            config.creditRequirements.categories[0].bgClass = "bg-red-50/50 border border-red-50";
+            config.creditRequirements.categories[0].titleClass = "text-honda";
+            const peroranganItems = document.getElementById('cfg-credit-perorangan-items').value.trim();
+            config.creditRequirements.categories[0].items = peroranganItems ? peroranganItems.split('\n').map(i => i.trim()).filter(i => i) : [];
+            
+            config.creditRequirements.categories[1].title = document.getElementById('cfg-credit-perusahaan-title').value.trim();
+            config.creditRequirements.categories[1].icon = document.getElementById('cfg-credit-perusahaan-icon').value.trim();
+            config.creditRequirements.categories[1].bgClass = "bg-gray-50 border border-gray-100";
+            config.creditRequirements.categories[1].titleClass = "text-gray-900";
+            const perusahaanItems = document.getElementById('cfg-credit-perusahaan-items').value.trim();
+            config.creditRequirements.categories[1].items = perusahaanItems ? perusahaanItems.split('\n').map(i => i.trim()).filter(i => i) : [];
+
+            // --- SUBTAB: PROMO & THANK YOU ---
+            if (!config.promoPage) config.promoPage = {};
+            config.promoPage.badge = document.getElementById('cfg-promo-badge').value.trim();
+            config.promoPage.title = document.getElementById('cfg-promo-title').value.trim();
+            config.promoPage.description = document.getElementById('cfg-promo-desc').value.trim();
+
+            if (!config.thankYou) config.thankYou = {};
+            config.thankYou.title = document.getElementById('cfg-thank-title').value.trim();
+            config.thankYou.subtitle = document.getElementById('cfg-thank-subtitle').value.trim();
+            config.thankYou.description = document.getElementById('cfg-thank-desc').value.trim();
+            config.thankYou.buttonText = document.getElementById('cfg-thank-btn').value.trim();
+            config.thankYou.backButtonText = document.getElementById('cfg-thank-back').value.trim();
+
+            // Brochures mapping
+            config.brochures = {};
+            document.querySelectorAll('.brochure-item-row input.col-brochure-id').forEach(input => {
+                const modelId = input.getAttribute('data-model-id');
+                const fileId = input.value.trim();
+                if (fileId) {
+                    config.brochures[modelId] = fileId;
+                }
+            });
+
+            // Promos Grid list
+            config.promos = [];
+            document.querySelectorAll('.promo-card-row').forEach(row => {
+                config.promos.push({
+                    tag: row.querySelector('.row-pr-tag').value.trim(),
+                    tagColorClass: row.querySelector('.row-pr-color').value.trim(),
+                    title: row.querySelector('.row-pr-title').value.trim(),
+                    description: row.querySelector('.row-pr-desc').value.trim(),
+                    image: row.querySelector('.row-pr-image').value.trim(),
+                    waText: row.querySelector('.row-pr-watext').value.trim(),
+                    ctaText: row.querySelector('.row-pr-ctatext').value.trim()
+                });
+            });
+
+            // --- SUBTAB: FAQ & FOOTER ---
+            config.faqs = [];
+            document.querySelectorAll('.faq-row').forEach(row => {
+                config.faqs.push({
+                    question: row.querySelector('.row-faq-q').value.trim(),
+                    answer: row.querySelector('.row-faq-a').value.trim()
+                });
+            });
+
+            if (!config.footer) config.footer = {};
+            config.footer.aboutText = document.getElementById('cfg-foot-about').value.trim();
+            config.footer.hours = document.getElementById('cfg-foot-hours').value.trim();
+            config.footer.mapLink = document.getElementById('cfg-foot-map').value.trim();
+            config.footer.address = document.getElementById('cfg-foot-address').value.trim();
+            config.footer.copyright = document.getElementById('cfg-foot-copyright').value.trim();
+            config.footer.paymentDesc = document.getElementById('cfg-payment-desc').value.trim();
+            
+            const banksVal = document.getElementById('cfg-payment-banks').value.trim();
+            config.footer.paymentBanks = banksVal ? banksVal.split(',').map(b => b.trim()).filter(b => b) : [];
+        }
+
+        // --- SUBTAB: SEO METADATA JS HANDLER ---
+        function loadSelectedSeoPage() {
+            selectedSeoPage = document.getElementById('seo-page-select').value;
+            const config = appData.siteConfig;
+            if (!config || !config.seo) return;
+
+            const seoData = config.seo[selectedSeoPage] || {};
+
+            document.getElementById('seo-inp-title').value = seoData.title || '';
+            document.getElementById('seo-inp-desc').value = seoData.description || '';
+            document.getElementById('seo-inp-keywords').value = seoData.keywords || '';
+            document.getElementById('seo-inp-image').value = seoData.image || '';
+
+            updateImagePreview('seo-inp-image');
+        }
+
+        function saveCurrentSeoPage() {
+            const config = appData.siteConfig;
+            if (!config || !config.seo) return;
+
+            if (!config.seo[selectedSeoPage]) config.seo[selectedSeoPage] = {};
+
+            config.seo[selectedSeoPage].title = document.getElementById('seo-inp-title').value.trim();
+            config.seo[selectedSeoPage].description = document.getElementById('seo-inp-desc').value.trim();
+            config.seo[selectedSeoPage].keywords = document.getElementById('seo-inp-keywords').value.trim();
+            config.seo[selectedSeoPage].image = document.getElementById('seo-inp-image').value.trim();
+
+            showToast(`Pengaturan SEO untuk halaman "${selectedSeoPage}" berhasil diperbarui secara lokal!`);
+        }
+
+        // --- PROMO CARD LIST INJECTOR ---
+        function renderPromoCardItem(promo, idx) {
+            const inputId = `promo_card_img_${idx}`;
+            const html = `
+                <div class="promo-card-row p-4 rounded-xl bg-slate-900/50 border border-slate-800 space-y-3 relative">
+                    <button onclick="this.closest('.promo-card-row').remove()" class="absolute top-4 right-4 text-red-500 hover:text-red-400 text-xs p-1 border border-red-500/20 rounded hover:bg-red-500/5"><i class="fa-solid fa-trash"></i></button>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                        <div class="space-y-1">
+                            <label class="text-[10px] text-gray-500 font-bold uppercase">Tag</label>
+                            <input type="text" class="row-pr-tag glass-input w-full px-2 py-1.5 rounded" value="${promo.tag || ''}" placeholder="BRIO PROMO">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] text-gray-500 font-bold uppercase">Warna Tag Class</label>
+                            <input type="text" class="row-pr-color glass-input w-full px-2 py-1.5 rounded font-mono" value="${promo.tagColorClass || 'bg-red-50 text-honda'}" placeholder="bg-red-50 text-honda">
+                        </div>
+                        <div class="space-y-1 col-span-2">
+                            <label class="text-[10px] text-gray-500 font-bold uppercase">Judul Promo</label>
+                            <input type="text" class="row-pr-title glass-input w-full px-2 py-1.5 rounded" value="${promo.title || ''}">
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-1">
+                        <label class="text-[10px] text-gray-500 font-bold uppercase">Deskripsi Promo</label>
+                        <textarea class="row-pr-desc glass-input w-full px-2 py-1.5 rounded text-xs h-12">${promo.description || ''}</textarea>
+                    </div>
+
+                    <!-- Promo Card image with Double Preview -->
+                    <div class="space-y-1">
+                        <label class="text-[10px] text-gray-500 font-bold uppercase block">Gambar Promo URL</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="${inputId}" class="row-pr-image glass-input flex-1 px-2 py-1 rounded text-xs" value="${promo.image || ''}" oninput="this.closest('.promo-card-row').querySelector('.current-img-preview').src = resolveImagePreviewUrl(this.value)">
+                            <input type="file" id="${inputId}-file" class="hidden" accept="image/*" onchange="handleRowImageSelect(this)">
+                            <button onclick="document.getElementById('${inputId}-file').click()" class="bg-slate-800 hover:bg-slate-700 text-[10px] px-2 py-1 rounded border border-slate-700 font-semibold transition"><i class="fa-solid fa-image"></i> Ganti</button>
+                        </div>
+                        
+                        <div class="row-preview-panel ${promo.image ? '' : 'hidden'} flex flex-col sm:flex-row gap-3 p-2 bg-slate-950/40 border border-slate-800/80 rounded mt-1.5">
+                            <div class="flex-1">
+                                <p class="text-[8px] text-gray-500 font-bold uppercase">Di GitHub</p>
+                                <img class="current-img-preview h-14 object-contain rounded bg-slate-900" src="${resolveImagePreviewUrl(promo.image || '')}">
+                            </div>
+                            <div class="new-preview-box flex-grow flex-1 hidden">
+                                <p class="text-[8px] text-emerald-500 font-bold uppercase">Pratinjau Unggahan</p>
+                                <img class="new-img-preview h-14 object-contain rounded bg-slate-900" src="">
+                                <div class="flex gap-1 mt-1">
+                                    <button onclick="cancelRowImageSelect(this)" class="bg-slate-900 hover:bg-slate-800 text-[8px] text-gray-400 px-1 border border-slate-700 rounded">Batal</button>
+                                    <button onclick="confirmRowImageReplace(this, 'promo_card')" class="confirm-row-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[8px] text-white px-1.5 py-0.5 rounded flex items-center gap-0.5"><i class="fa-solid fa-circle-check"></i> Upload</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="space-y-1">
+                            <label class="text-[10px] text-gray-500 font-bold uppercase">Pesan WA (Gunakan parameter '{salesName}')</label>
+                            <input type="text" class="row-pr-watext glass-input w-full px-2 py-1 rounded" value="${promo.waText || 'Halo {salesName}, ...'}">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] text-gray-500 font-bold uppercase">Teks CTA</label>
+                            <input type="text" class="row-pr-ctatext glass-input w-full px-2 py-1 rounded" value="${promo.ctaText || 'Tanya Promo'}">
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('cfg-promos-container').insertAdjacentHTML('beforeend', html);
+        }
+
+        function addPromoCardField() {
+            renderPromoCardItem({ tag: '', tagColorClass: 'bg-red-50 text-honda', title: '', description: '', image: '', waText: 'Halo {salesName}, saya ingin bertanya.', ctaText: 'Tanya Promo' }, Date.now());
+        }
+
+        // ==========================================
+        // 2. BANNERS FORM POPULATE & SAVE
+        // ==========================================
+        function populateBannersForm() {
+            const banner = appData.banner;
+            if (!banner) return;
+
+            const dtContainer = document.getElementById('banners-desktop-container');
+            dtContainer.innerHTML = '';
+            (banner.banners?.desktop || []).forEach((b, idx) => renderBannerItem(b, idx, 'desktop'));
+
+            const mbContainer = document.getElementById('banners-mobile-container');
+            mbContainer.innerHTML = '';
+            (banner.banners?.mobile || []).forEach((b, idx) => renderBannerItem(b, idx, 'mobile'));
+        }
+
+        function renderBannerItem(b, idx, type) {
+            const containerId = type === 'desktop' ? 'banners-desktop-container' : 'banners-mobile-container';
+            const inputId = `${type}_banner_img_${idx}`;
+            
+            const html = `
+                <div class="banner-item-row p-4 rounded-xl bg-slate-900/50 border border-slate-800 space-y-3 relative">
+                    <div class="absolute top-4 right-4 flex items-center gap-1.5">
+                        <button onclick="moveBannerRow(this, -1)" class="text-gray-400 hover:text-white text-xs p-1 border border-slate-700 rounded"><i class="fa-solid fa-arrow-up"></i></button>
+                        <button onclick="moveBannerRow(this, 1)" class="text-gray-400 hover:text-white text-xs p-1 border border-slate-700 rounded"><i class="fa-solid fa-arrow-down"></i></button>
+                        <button onclick="this.closest('.banner-item-row').remove()" class="text-red-500 hover:text-red-400 text-xs p-1 border border-red-500/20 rounded hover:bg-red-500/5"><i class="fa-solid fa-trash font-semibold"></i></button>
+                    </div>
+                    <div class="space-y-1.5 w-[80%]">
+                        <label class="text-[10px] text-gray-500 font-bold uppercase">ID Banner</label>
+                        <input type="text" class="row-ban-id glass-input w-full px-2 py-1 rounded text-xs font-mono" value="${b.id || ''}">
+                    </div>
+                    
+                    <div class="space-y-1">
+                        <label class="text-[10px] text-gray-500 font-bold uppercase block">Gambar Banner URL</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="${inputId}" class="row-ban-image glass-input flex-1 px-2 py-1 rounded text-xs" value="${b.image || ''}" oninput="this.closest('.banner-item-row').querySelector('.current-img-preview').src = resolveImagePreviewUrl(this.value)">
+                            <input type="file" id="${inputId}-file" class="hidden" accept="image/*" onchange="handleRowImageSelect(this)">
+                            <button onclick="document.getElementById('${inputId}-file').click()" class="bg-slate-800 hover:bg-slate-700 text-[10px] px-2 py-1.5 rounded border border-slate-700 font-semibold transition flex items-center gap-1">
+                                <i class="fa-solid fa-image"></i> Ganti
+                            </button>
+                        </div>
+                        
+                        <div class="row-preview-panel ${b.image ? '' : 'hidden'} flex flex-col sm:flex-row gap-3 p-2 bg-slate-950/40 border border-slate-800/80 rounded mt-1.5">
+                            <div class="flex-1">
+                                <p class="text-[8px] text-gray-500 font-bold uppercase">Di GitHub</p>
+                                <img class="current-img-preview h-14 object-contain rounded bg-slate-900" src="${resolveImagePreviewUrl(b.image || '')}">
+                            </div>
+                            <div class="new-preview-box flex-grow flex-1 hidden">
+                                <p class="text-[8px] text-emerald-500 font-bold uppercase">Pratinjau Unggahan</p>
+                                <img class="new-img-preview h-14 object-contain rounded bg-slate-900" src="">
+                                <div class="flex gap-1 mt-1">
+                                    <button onclick="cancelRowImageSelect(this)" class="bg-slate-900 hover:bg-slate-800 text-[8px] text-gray-400 px-1 border border-slate-700 rounded">Batal</button>
+                                    <button onclick="confirmRowImageReplace(this, 'banner_${type}')" class="confirm-row-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[8px] text-white px-1.5 py-0.5 rounded flex items-center gap-0.5"><i class="fa-solid fa-circle-check"></i> Upload</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="space-y-1">
+                            <label class="text-[10px] text-gray-500 font-bold uppercase">Target Link URL</label>
+                            <input type="text" class="row-ban-link glass-input w-full px-2 py-1 rounded text-xs" value="${b.link || '#'}">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] text-gray-500 font-bold uppercase">Alt Teks</label>
+                            <input type="text" class="row-ban-alt glass-input w-full px-2 py-1 rounded text-xs" value="${b.alt || ''}">
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById(containerId).insertAdjacentHTML('beforeend', html);
+        }
+
+        function addBanner(type) {
+            renderBannerItem({ id: 'new-banner', image: '', link: '#', alt: '' }, Date.now(), type);
+        }
+
+        function moveBannerRow(btn, direction) {
+            const row = btn.closest('.banner-item-row');
+            if (direction === -1) {
+                const prev = row.previousElementSibling;
+                if (prev) row.parentNode.insertBefore(row, prev);
+            } else {
+                const next = row.nextElementSibling;
+                if (next) row.parentNode.insertBefore(next, row);
+            }
+        }
+
+        function saveBannersDomToData() {
+            const banner = appData.banner;
+            if (!banner) return;
+
+            banner.banners = { desktop: [], mobile: [] };
+
+            document.querySelectorAll('#banners-desktop-container .banner-item-row').forEach(row => {
+                banner.banners.desktop.push({
+                    id: row.querySelector('.row-ban-id').value.trim(),
+                    image: row.querySelector('.row-ban-image').value.trim(),
+                    link: row.querySelector('.row-ban-link').value.trim(),
+                    alt: row.querySelector('.row-ban-alt').value.trim()
+                });
+            });
+
+            document.querySelectorAll('#banners-mobile-container .banner-item-row').forEach(row => {
+                banner.banners.mobile.push({
+                    id: row.querySelector('.row-ban-id').value.trim(),
+                    image: row.querySelector('.row-ban-image').value.trim(),
+                    link: row.querySelector('.row-ban-link').value.trim(),
+                    alt: row.querySelector('.row-ban-alt').value.trim()
+                });
+            });
+        }
+
+
+        // ==========================================
+        // 3. PRODUCTS FORM POPULATE & SAVE
+        // ==========================================
+        function populateProductsForm() {
+            const listContainer = document.getElementById('product-models-list');
+            listContainer.innerHTML = '';
+            
+            const products = appData.products || {};
+            const keys = Object.keys(products);
+
+            if (keys.length === 0) {
+                listContainer.innerHTML = `<span class="text-xs text-gray-500 p-3 italic">Tidak ada produk</span>`;
+                return;
+            }
+
+            keys.forEach(key => {
+                const p = products[key];
+                const activeClass = selectedProductId === key ? 'bg-red-600 text-white font-bold shadow' : 'text-gray-400 hover:text-white hover:bg-slate-800/40';
+                const btn = `
+                    <button onclick="selectProductModel('${key}')" class="w-full text-left px-3 py-2 rounded-lg text-xs transition ${activeClass} flex items-center justify-between">
+                        <span>${p.name || key}</span>
+                        <span class="text-[10px] text-gray-500 font-mono">${key}</span>
+                    </button>
+                `;
+                listContainer.insertAdjacentHTML('beforeend', btn);
+            });
+
+            if (selectedProductId && products[selectedProductId]) {
+                renderProductEditorForm(selectedProductId);
+            } else {
+                document.getElementById('product-editor-empty').classList.remove('hidden');
+                document.getElementById('product-editor-form').classList.add('hidden');
+                destroyCKEditor();
+            }
+        }
+
+        function selectProductModel(id) {
+            selectedProductId = id;
+            populateProductsForm(); 
+        }
+
+        function renderProductEditorForm(id) {
+            document.getElementById('product-editor-empty').classList.add('hidden');
+            const form = document.getElementById('product-editor-form');
+            form.classList.remove('hidden');
+
+            const p = appData.products[id];
+            
+            document.getElementById('edit-prod-header').innerText = `Edit: ${p.name || id}`;
+            document.getElementById('edit-prod-id').value = id;
+            document.getElementById('edit-prod-name').value = p.name || '';
+            document.getElementById('edit-prod-price').value = p.price || 0;
+            document.getElementById('edit-prod-dp').value = p.dp || '';
+            document.getElementById('edit-prod-angsuran').value = p.angsuran || '';
+            document.getElementById('edit-prod-seats').value = p.seats || '';
+            document.getElementById('edit-prod-engine').value = p.engine || '';
+            document.getElementById('edit-prod-category').value = p.category || 'SUV';
+            document.getElementById('edit-prod-new').checked = !!p.new;
+
+            document.getElementById('edit-prod-variants').value = (p.variants || []).join('\n');
+
+            const gallery = document.getElementById('edit-prod-images-container');
+            gallery.innerHTML = '';
+            (p.images || []).forEach((img, idx) => renderProductImageItem(img, idx));
+
+            setupCKEditor(p.description || '');
+        }
+
+        function setupCKEditor(initialContent) {
+            const descTextarea = document.querySelector('#edit-prod-description');
+            if (!descTextarea) return;
+
+            if (ckEditorInstance) {
+                ckEditorInstance.setData(initialContent);
+            } else {
+                ClassicEditor
+                    .create(descTextarea, {
+                        toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo']
+                    })
+                    .then(editor => {
+                        ckEditorInstance = editor;
+                        ckEditorInstance.setData(initialContent);
+                        
+                        ckEditorInstance.model.document.on('change:data', () => {
+                            descTextarea.value = ckEditorInstance.getData();
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error initializing CKEditor:', error);
+                    });
+            }
+        }
+
+        function destroyCKEditor() {
+            if (ckEditorInstance) {
+                ckEditorInstance.destroy()
+                    .then(() => {
+                        ckEditorInstance = null;
+                    })
+                    .catch(error => {
+                        console.error('Error destroying CKEditor:', error);
+                    });
+            }
+        }
+
+        function renderProductImageItem(img, idx) {
+            const inputFullId = `prod_img_full_${idx}`;
+            const inputThumbId = `prod_img_thumb_${idx}`;
+
+            const html = `
+                <div class="prod-img-row flex flex-col gap-2 p-3 bg-slate-950/60 border border-slate-800 rounded-lg relative">
+                    <button onclick="this.closest('.prod-img-row').remove()" class="absolute top-2 right-2 text-red-500 hover:text-red-400 text-xs py-1 px-1.5 border border-red-500/20 rounded hover:bg-red-500/5"><i class="fa-solid fa-trash"></i> Hapus</button>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 w-full pr-10">
+                        <div class="space-y-1.5">
+                            <label class="text-[10px] text-gray-500 font-bold uppercase block">Thumbnail Logo (Kecil)</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="${inputThumbId}" class="row-img-thumb glass-input flex-1 px-2 py-1 rounded text-xs" value="${img.thumb || ''}" oninput="this.closest('.prod-img-row').querySelector('.current-thumb-preview').src = resolveImagePreviewUrl(this.value)">
+                                <input type="file" id="${inputThumbId}-file" class="hidden" accept="image/*" onchange="handleRowImageSelect(this)">
+                                <button onclick="document.getElementById('${inputThumbId}-file').click()" class="bg-slate-800 hover:bg-slate-700 text-[10px] px-2 py-1 rounded border border-slate-700 font-semibold transition"><i class="fa-solid fa-image"></i> Ganti</button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-[10px] text-gray-500 font-bold uppercase block">Full Resolution (Slide)</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="${inputFullId}" class="row-img-full glass-input flex-1 px-2 py-1 rounded text-xs" value="${img.full || ''}" oninput="this.closest('.prod-img-row').querySelector('.current-full-preview').src = resolveImagePreviewUrl(this.value)">
+                                <input type="file" id="${inputFullId}-file" class="hidden" accept="image/*" onchange="handleRowImageSelect(this)">
+                                <button onclick="document.getElementById('${inputFullId}-file').click()" class="bg-slate-800 hover:bg-slate-700 text-[10px] px-2 py-1 rounded border border-slate-700 font-semibold transition"><i class="fa-solid fa-image"></i> Ganti</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row-preview-panel flex flex-col sm:flex-row gap-4 p-2 bg-slate-900/50 border border-slate-800/80 rounded mt-1.5">
+                        <div class="flex-1 grid grid-cols-2 gap-2">
+                            <div>
+                                <p class="text-[8px] text-gray-500 font-bold uppercase">Thumb (GitHub)</p>
+                                <img class="current-img-preview current-thumb-preview h-12 object-contain rounded bg-slate-900" src="${resolveImagePreviewUrl(img.thumb || '')}">
+                            </div>
+                            <div>
+                                <p class="text-[8px] text-gray-500 font-bold uppercase">Slide (GitHub)</p>
+                                <img class="current-full-preview h-12 object-contain rounded bg-slate-900" src="${resolveImagePreviewUrl(img.full || '')}">
+                            </div>
+                        </div>
+                        <div class="new-preview-box flex-grow flex-1 hidden">
+                            <p class="text-[8px] text-emerald-500 font-bold uppercase">Pratinjau Unggahan Baru</p>
+                            <img class="new-img-preview h-12 object-contain rounded bg-slate-900" src="">
+                            <div class="flex gap-1 mt-1">
+                                <button onclick="cancelRowImageSelect(this)" class="bg-slate-900 hover:bg-slate-800 text-[8px] text-gray-400 px-1 border border-slate-700 rounded">Batal</button>
+                                <button onclick="confirmRowImageReplace(this, 'product_gallery')" class="confirm-row-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[8px] text-white px-1.5 py-0.5 rounded flex items-center gap-0.5"><i class="fa-solid fa-circle-check"></i> Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('edit-prod-images-container').insertAdjacentHTML('beforeend', html);
+        }
+
+        function addProductImageRow() {
+            renderProductImageItem({ thumb: '', full: '' }, Date.now());
+        }
+
+        function saveCurrentProductDetails() {
+            const id = document.getElementById('edit-prod-id').value;
+            const p = appData.products[id];
+            if (!p) return;
+
+            p.name = document.getElementById('edit-prod-name').value.trim();
+            p.price = parseInt(document.getElementById('edit-prod-price').value) || 0;
+            p.dp = document.getElementById('edit-prod-dp').value.trim();
+            p.angsuran = document.getElementById('edit-prod-angsuran').value.trim();
+            p.seats = document.getElementById('edit-prod-seats').value.trim();
+            p.engine = document.getElementById('edit-prod-engine').value.trim();
+            p.category = document.getElementById('edit-prod-category').value;
+            p.new = document.getElementById('edit-prod-new').checked;
+            
+            if (ckEditorInstance) {
+                p.description = ckEditorInstance.getData().trim();
+            } else {
+                p.description = document.getElementById('edit-prod-description').value.trim();
+            }
+
+            const varText = document.getElementById('edit-prod-variants').value.trim();
+            p.variants = varText ? varText.split('\n').map(v => v.trim()).filter(v => v) : [];
+
+            p.images = [];
+            document.querySelectorAll('.prod-img-row').forEach(row => {
+                p.images.push({
+                    thumb: row.querySelector('.row-img-thumb').value.trim(),
+                    full: row.querySelector('.row-img-full').value.trim()
+                });
+            });
+
+            showToast(`Perubahan untuk model ${p.name} disimpan secara lokal! Jangan lupa Commit ke GitHub.`);
+            populateProductsForm(); 
+        }
+
+        function addNewProductModal() {
+            document.getElementById('new-prod-id').value = '';
+            document.getElementById('new-prod-name').value = '';
+            document.getElementById('add-product-modal').classList.remove('hidden');
+        }
+
+        function closeAddProductModal() {
+            document.getElementById('add-product-modal').classList.add('hidden');
+        }
+
+        function createNewProductConfirm() {
+            const id = document.getElementById('new-prod-id').value.trim().toLowerCase();
+            const name = document.getElementById('new-prod-name').value.trim();
+
+            if (!id || !name) {
+                showToast('Harap isi ID dan Nama Model mobil!', 'warning');
+                return;
+            }
+
+            if (appData.products[id]) {
+                showToast('ID mobil ini sudah ada di database!', 'error');
+                return;
+            }
+
+            appData.products[id] = {
+                name: name,
+                price: 0,
+                variants: [],
+                dp: "Rp. -",
+                angsuran: "Rp. -",
+                seats: "5-Seater",
+                engine: "",
+                description: "<p>Deskripsi baru...</p>",
+                images: [],
+                category: "SUV",
+                new: true
+            };
+
+            closeAddProductModal();
+            showToast(`Model ${name} berhasil ditambahkan! Silakan lengkapi spesifikasinya.`);
+            selectedProductId = id;
+            populateProductsForm();
+        }
+
+        function deleteProduct() {
+            const id = document.getElementById('edit-prod-id').value;
+            const p = appData.products[id];
+            if (!p) return;
+
+            if (confirm(`Apakah Anda yakin ingin menghapus model mobil "${p.name}" (${id}) dari database?`)) {
+                delete appData.products[id];
+                showToast(`Model ${p.name} berhasil dihapus dari database!`);
+                selectedProductId = '';
+                populateProductsForm();
+            }
+        }
+
+
+        // ==========================================
+        // 4. PRICELIST FORM POPULATE & SAVE
+        // ==========================================
+        function populatePricelistForm() {
+            const selectEl = document.getElementById('pricelist-model-select');
+            selectEl.innerHTML = '';
+
+            const models = appData.pricelist?.models || [];
+            if (models.length === 0) {
+                selectEl.innerHTML = `<option value="">Tidak ada data</option>`;
+                document.getElementById('pricelist-editor-container').classList.add('hidden');
+                return;
+            }
+
+            models.forEach(m => {
+                const opt = `<option value="${m.id}">${m.label || m.id}</option>`;
+                selectEl.insertAdjacentHTML('beforeend', opt);
+            });
+
+            if (!selectedPricelistModelId || !models.find(m => m.id === selectedPricelistModelId)) {
+                selectedPricelistModelId = models[0].id;
+            }
+
+            selectEl.value = selectedPricelistModelId;
+
+            const notes = appData.pricelist?.notes || [];
+            document.getElementById('pricelist-notes').value = notes.join('\n');
+
+            loadSelectedPricelistModel();
+        }
+
+        function loadSelectedPricelistModel() {
+            selectedPricelistModelId = document.getElementById('pricelist-model-select').value;
+            
+            const models = appData.pricelist?.models || [];
+            const m = models.find(item => item.id === selectedPricelistModelId);
+            
+            if (!m) {
+                document.getElementById('pricelist-editor-container').classList.add('hidden');
+                return;
+            }
+
+            document.getElementById('pricelist-editor-container').classList.remove('hidden');
+            document.getElementById('pricelist-model-label').value = m.label || '';
+
+            const container = document.getElementById('pricelist-rows-container');
+            container.innerHTML = '';
+            (m.items || []).forEach((row, idx) => renderPricelistRowItem(row, idx));
+        }
+
+        function renderPricelistRowItem(row, idx) {
+            const html = `
+                <tr class="pricelist-data-row border-b border-slate-800/80 hover:bg-slate-900/20 text-xs">
+                    <td class="py-2.5 px-2">
+                        <input type="text" class="col-pl-tipe glass-input w-full px-2 py-1 rounded" value="${row.tipe || ''}">
+                    </td>
+                    <td class="py-2.5 px-2">
+                        <input type="text" class="col-pl-trans glass-input w-full px-2 py-1 rounded" value="${row.trans || ''}">
+                    </td>
+                    <td class="py-2.5 px-2">
+                        <input type="text" class="col-pl-harga glass-input w-full px-2 py-1 rounded" value="${row.harga || ''}">
+                    </td>
+                    <td class="py-2.5 px-2">
+                        <input type="text" class="col-pl-essential glass-input w-full px-2 py-1 rounded" value="${row.essential || ''}">
+                    </td>
+                    <td class="py-2.5 px-2">
+                        <input type="text" class="col-pl-extra glass-input w-full px-2 py-1 rounded" value="${row.extra || ''}">
+                    </td>
+                    <td class="py-2.5 px-2 text-center">
+                        <button onclick="this.closest('.pricelist-data-row').remove()" class="text-red-500 hover:text-red-400 p-1 border border-red-500/20 rounded hover:bg-red-500/5"><i class="fa-solid fa-xmark"></i></button>
+                    </td>
+                </tr>
+            `;
+            document.getElementById('pricelist-rows-container').insertAdjacentHTML('beforeend', html);
+        }
+
+        function addPricelistRow() {
+            renderPricelistRowItem({ tipe: '', trans: '', harga: '', essential: '', extra: '' }, Date.now());
+        }
+
+        function saveCurrentPricelistDetails() {
+            const models = appData.pricelist?.models || [];
+            const m = models.find(item => item.id === selectedPricelistModelId);
+            if (!m) return;
+
+            m.label = document.getElementById('pricelist-model-label').value.trim();
+            m.items = [];
+
+            document.querySelectorAll('.pricelist-data-row').forEach(row => {
+                m.items.push({
+                    tipe: row.querySelector('.col-pl-tipe').value.trim(),
+                    trans: row.querySelector('.col-pl-trans').value.trim(),
+                    harga: row.querySelector('.col-pl-harga').value.trim(),
+                    essential: row.querySelector('.col-pl-essential').value.trim(),
+                    extra: row.querySelector('.col-pl-extra').value.trim()
+                });
+            });
+
+            const notesText = document.getElementById('pricelist-notes').value.trim();
+            appData.pricelist.notes = notesText ? notesText.split('\n').map(n => n.trim()).filter(n => n) : [];
+
+            showToast(`Pricelist kategori ${m.label} & catatan diperbarui secara lokal! Jangan lupa Commit ke GitHub.`);
+            populatePricelistForm(); 
+        }
+
+        function addNewPricelistModel() {
+            const label = prompt("Masukkan Nama Kategori Pricelist Baru (Contoh: New Honda BRIO RS):");
+            if (!label) return;
+
+            const id = label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            const models = appData.pricelist?.models || [];
+
+            if (models.find(m => m.id === id)) {
+                showToast('Kategori ini sudah ada!', 'error');
+                return;
+            }
+
+            models.push({
+                id: id,
+                label: label,
+                items: []
+            });
+
+            showToast(`Kategori ${label} berhasil ditambahkan.`);
+            selectedPricelistModelId = id;
+            populatePricelistForm();
+        }
+
+        function deletePricelistModel() {
+            const models = appData.pricelist?.models || [];
+            const mIdx = models.findIndex(item => item.id === selectedPricelistModelId);
+            if (mIdx === -1) return;
+
+            if (confirm(`Hapus kategori pricelist "${models[mIdx].label}"?`)) {
+                models.splice(mIdx, 1);
+                showToast('Kategori pricelist dihapus!');
+                selectedPricelistModelId = '';
+                populatePricelistForm();
+            }
+        }
+
+
+        // =======================================================
+        // 5. MEDIA UPLOADER & MEDIA LIBRARY FUNCTIONS
+        // =======================================================
+        let selectedUploadFile = null;
+
+        function handleFileSelect() {
+            const fileInput = document.getElementById('media-file-input');
+            if (!fileInput.files.length) return;
+
+            selectedUploadFile = fileInput.files[0];
+            
+            const nameInput = document.getElementById('media-filename');
+            if (!nameInput.value.trim()) {
+                nameInput.value = selectedUploadFile.name;
+            }
+
+            const dropzone = document.getElementById('dropzone');
+            dropzone.className = `border-2 border-solid border-emerald-500 rounded-2xl p-6 text-center cursor-pointer transition flex flex-col justify-center items-center gap-3 bg-emerald-500/5 min-h-[160px]`;
+            dropzone.innerHTML = `
+                <i class="fa-solid fa-file-image text-emerald-400 text-3xl"></i>
+                <div>
+                    <p class="text-xs font-semibold text-white">${selectedUploadFile.name}</p>
+                    <p class="text-[10px] text-gray-400 mt-1">${(selectedUploadFile.size / 1024).toFixed(1)} KB</p>
+                </div>
+                <button onclick="resetDropzone(event)" class="text-xs text-red-500 font-semibold hover:underline">Ganti File</button>
+            `;
+        }
+
+        function resetDropzone(e) {
+            if (e) e.stopPropagation();
+            selectedUploadFile = null;
+            document.getElementById('media-file-input').value = '';
+            document.getElementById('media-filename').value = '';
+
+            const dropzone = document.getElementById('dropzone');
+            dropzone.className = `border-2 border-dashed border-slate-800 hover:border-red-500 rounded-2xl p-6 text-center cursor-pointer transition flex flex-col justify-center items-center gap-3 bg-slate-900/20 min-h-[160px]`;
+            dropzone.innerHTML = `
+                <i class="fa-solid fa-cloud-arrow-up text-red-500 text-3xl animate-bounce"></i>
+                <p class="text-xs font-semibold text-white">Seret atau Pilih Gambar</p>
+                <input type="file" id="media-file-input" class="hidden" accept="image/*">
+            `;
+            document.getElementById('media-file-input').addEventListener('change', handleFileSelect);
+        }
+
+        async function uploadMediaToGitHub() {
+            updateGhConfigFromDom();
+            if (!ghConfig.token) {
+                showToast('Token GitHub belum diisi!', 'error');
+                return;
+            }
+
+            if (!selectedUploadFile) {
+                showToast('Pilih file gambar terlebih dahulu!', 'warning');
+                return;
+            }
+
+            const rawFilename = document.getElementById('media-filename').value.trim();
+            if (!rawFilename) {
+                showToast('Beri nama file gambar!', 'warning');
+                return;
+            }
+
+            const cleanFilename = rawFilename.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+
+            const btn = document.getElementById('media-upload-btn');
+            const originalBtnText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Sedang Mengunggah...`;
+
+            try {
+                const base64Content = await fileToBase64(selectedUploadFile);
+                const pureBase64 = base64Content.split(',')[1];
+
+                const uploadPath = `assets/images/${cleanFilename}`;
+                const url = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${uploadPath}`;
+
+                let sha = null;
+                try {
+                    const checkRes = await fetch(url, {
+                        headers: { 'Authorization': `token ${ghConfig.token}`, 'Accept': 'application/vnd.github.v3+json' }
+                    });
+                    if (checkRes.ok) sha = (await checkRes.json()).sha;
+                } catch (e) {}
+
+                const bodyData = {
+                    message: `🖼️ Upload image ${cleanFilename} via Dashboard`,
+                    content: pureBase64,
+                    branch: ghConfig.branch
+                };
+
+                if (sha) {
+                    bodyData.sha = sha;
+                }
+
+                showToast('Mengunggah gambar ke GitHub...', 'info');
+
+                const res = await fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${ghConfig.token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(bodyData)
+                });
+
+                if (!res.ok) {
+                    const errorResponse = await res.json();
+                    throw new Error(errorResponse.message || 'Gagal mengunggah gambar.');
+                }
+
+                showToast(`🎉 Berhasil mengunggah ${cleanFilename} ke GitHub!`, 'success');
+                addUploadResultToHistory(cleanFilename);
+                resetDropzone();
+                
+                // Refresh list
+                fetchMediaLibrary();
+            } catch (err) {
+                showToast(err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnText;
+            }
+        }
+
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = (error) => reject(error);
+            });
+        }
+
+        function addUploadResultToHistory(filename) {
+            const container = document.getElementById('media-history-container');
+            const emptyState = document.getElementById('media-history-empty');
+
+            emptyState.classList.add('hidden');
+            container.classList.remove('hidden');
+
+            const relativePath = `./assets/images/${filename}`;
+            
+            const html = `
+                <div class="upload-result-row p-3 rounded-xl bg-slate-900/50 border border-slate-800 flex items-center justify-between gap-4 text-xs">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <i class="fa-solid fa-image text-emerald-400 text-lg shrink-0"></i>
+                        <div class="min-w-0">
+                            <p class="font-bold text-white truncate font-mono">${filename}</p>
+                            <p class="text-[10px] text-gray-500 truncate">${relativePath}</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="navigator.clipboard.writeText('${relativePath}'); showToast('Path disalin!');" class="bg-slate-800 hover:bg-slate-700 hover:text-white px-3 py-1.5 rounded font-semibold text-gray-300 transition-all flex items-center gap-1">
+                            <i class="fa-regular fa-copy"></i> Salin Link
+                        </button>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('afterbegin', html);
+        }
+
+        // Fetch Media Library contents
+        async function fetchMediaLibrary() {
+            updateGhConfigFromDom();
+            if (!ghConfig.token) return;
+
+            const grid = document.getElementById('media-library-grid');
+            const loading = document.getElementById('media-library-loading');
+            const empty = document.getElementById('media-library-empty');
+
+            grid.innerHTML = '';
+            loading.classList.remove('hidden');
+            empty.classList.add('hidden');
+
+            const url = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/assets/images?ref=${ghConfig.branch}`;
+
+            try {
+                const res = await fetch(url, {
+                    headers: { 'Authorization': `token ${ghConfig.token}`, 'Accept': 'application/vnd.github.v3+json' }
+                });
+
+                if (!res.ok) throw new Error('Gagal mengambil daftar gambar.');
+
+                const files = await res.json();
+                const imageExtensions = ['png', 'jpg', 'jpeg', 'webp', 'gif', 'svg'];
+                
+                const images = files.filter(f => {
+                    if (f.type !== 'file') return false;
+                    const ext = f.name.split('.').pop().toLowerCase();
+                    return imageExtensions.includes(ext);
+                });
+
+                loading.classList.add('hidden');
+
+                if (images.length === 0) {
+                    empty.classList.remove('hidden');
+                    return;
+                }
+
+                images.forEach(img => {
+                    const relativePath = `./assets/images/${img.name}`;
+                    const card = `
+                        <div class="media-card bg-slate-900/55 border border-slate-800 rounded-xl p-2.5 space-y-2 flex flex-col justify-between hover:border-red-500/40 transition">
+                            <div class="relative w-full aspect-square bg-slate-950/80 rounded overflow-hidden flex items-center justify-center">
+                                <img src="${img.download_url}" class="max-h-full max-w-full object-contain" loading="lazy">
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-[10px] font-bold text-white truncate font-mono" title="${img.name}">${img.name}</p>
+                                <p class="text-[8px] text-gray-500 truncate font-mono">${(img.size / 1024).toFixed(1)} KB</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-1.5 pt-1.5 border-t border-slate-800">
+                                <button onclick="navigator.clipboard.writeText('${relativePath}'); showToast('Path disalin!');" class="bg-slate-800 hover:bg-slate-700 text-[9px] py-1 text-gray-300 font-semibold rounded flex items-center justify-center gap-1 transition" title="Salin Path Relatif">
+                                    <i class="fa-regular fa-copy"></i> Copy
+                                </button>
+                                <button onclick="deleteMediaFromLibrary('${img.name}', '${img.sha}')" class="bg-red-950/40 hover:bg-red-900/60 border border-red-500/20 text-red-400 text-[9px] py-1 font-semibold rounded flex items-center justify-center gap-1 transition" title="Hapus Gambar Permanen">
+                                    <i class="fa-solid fa-trash-can"></i> Hapus
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    grid.insertAdjacentHTML('beforeend', card);
+                });
+
+            } catch (err) {
+                loading.classList.add('hidden');
+                showToast(err.message, 'error');
+            }
+        }
+
+        async function deleteMediaFromLibrary(filename, sha) {
+            if (!confirm(`Apakah Anda yakin ingin menghapus gambar "${filename}" secara permanen dari server GitHub? Tindakan ini tidak dapat dibatalkan.`)) {
+                return;
+            }
+
+            updateGhConfigFromDom();
+            if (!ghConfig.token) return;
+
+            showToast(`Menghapus ${filename}...`, 'info');
+
+            const url = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/assets/images/${filename}`;
+
+            try {
+                const res = await fetch(url, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `token ${ghConfig.token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `🗑️ Hapus gambar ${filename} via Media Library`,
+                        sha: sha,
+                        branch: ghConfig.branch
+                    })
+                });
+
+                if (!res.ok) throw new Error('Gagal menghapus gambar di server.');
+
+                showToast('Gambar berhasil dihapus permanen dari server GitHub!', 'success');
+                fetchMediaLibrary();
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+    </script>
+</body>
+</html>

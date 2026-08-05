@@ -43,6 +43,25 @@ Hampir seluruh teks, tautan, gambar, dan menu navigasi pada website diatur secar
 
 ## 🛠️ Riwayat Perubahan (Changelog)
 
+### Catatan Rilis v0.1.4
+Rilis **v0.1.4** fokus pada perilisan Dashboard Admin Serverless terintegrasi API GitHub REST, optimasi visual (Light/Dark mode, kontras tombol, layout sticky footer), Pustaka Media mandiri, editor deskripsi CKEditor, dan dinamisasi penuh halaman promo/terima kasih.
+
+#### 🛠️ Fitur Baru (New Features)
+1. **Dashboard Admin Serverless (`/login/`):** Antarmuka CMS premium (slate-glassmorphism) yang terhubung langsung dengan GitHub REST API menggunakan PAT Token. Admin dapat mengedit seluruh data website secara langsung dari browser tanpa perlu node, terminal, maupun workflow.
+2. **Pustaka Media Dinamis (Media Library):** Modul untuk menampilkan daftar seluruh gambar di folder `assets/images/` GitHub. Admin dapat menyalin path relatif sekali klik atau menghapus file gambar secara permanen dari server GitHub.
+3. **Double Previews & Auto Asset Replacement:** Menampilkan pratinjau gambar sebelum (di GitHub) dan sesudah (unggahan lokal) berdampingan. Saat mengganti gambar, sistem secara otomatis menghapus file gambar lama di repositori GitHub sebelum mengunggah file baru.
+4. **Editor Teks Visual (CKEditor 5):** Integrasi CKEditor 5 untuk mempermudah penulisan deskripsi spesifikasi mobil dengan format visual kaya fitur (bold, list bullet, dsb).
+5. **Dinamisasi Halaman Promo Utama:** Menambahkan integrasi dinamis pada `/promo/index.html` sehingga badge, judul hero, dan deskripsi promo dimuat langsung dari `site_config.json`.
+6. **Sub-Tab Konfigurasi Komprehensif:** Menyediakan form pengeditan lengkap untuk navigasi menu (JSON editor), CNAME API link berita, e-brosur PDF Drive ID, SEO meta per halaman, detail bank footer, dan persyaratan kredit.
+
+#### 🐛 Perbaikan Bug & Optimasi (Bug Fixes & Optimizations)
+1. **Perbaikan Layout Sticky Footer:** Menggunakan Flexbox CSS murni agar footer secara otomatis terdorong dan terkunci di dasar layar browser pada halaman berkonten pendek.
+2. **Fix Kontras Teks Mode Terang:** Menyempurnakan pewarnaan mode terang untuk memaksa tombol berlatar gelap (`bg-slate-800`, dsb.) dan tombol aksen merah (`bg-red-600`) tetap menampilkan teks putih kontras tinggi yang mudah dibaca.
+3. **Hotfix Syntax Error Template Literal:** Memperbaiki kesalahan penulisan parameter `'{salesName}'` pada render card promo di mana backticks (`` ` ``) bersarang sempat menyebabkan *unresponsive button* pada dashboard.
+4. **Resolusi Path Gambar Preview:** Menambahkan path resolver `resolveImagePreviewUrl` agar relative path lokal (seperti `assets/images/...`) otomatis diterjemahkan menjadi URL langsung dari storage server GitHub agar tampil sempurna di panel preview.
+
+---
+
 ### Catatan Rilis v0.1.3
 Rilis **v0.1.3** fokus pada penyempurnaan UI preloader, integrasi grid Promo Terbaru dari data terpusat, pengurutan navigasi Model, serta perbaikan bugs/konflik styling pada landing page dan homepage.
 
