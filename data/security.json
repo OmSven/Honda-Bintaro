@@ -1,9 +1,4 @@
 {
   "superAdminPasswordHash": "070b2280a7318111d4a1e64ec2f8c058972f25aaa1a16094e7d1869a3ac83adf",
-  "licenses": [
-    {
-      "domain": "gusti.hondabintaro.com",
-      "key": "fe1506a60ba23cf1e33cdc9765700edbe70d7b1846880dd86fc59dfe76d0cecf"
-    }
-  ]
+  "licenses": []
 }
