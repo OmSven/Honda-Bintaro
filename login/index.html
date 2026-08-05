@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Honda Bintaro - Admin Editor</title>
+    <link rel="icon" id="dynamic-favicon" href="">
     <!-- Google Fonts -->
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -35,8 +38,6 @@
             margin: 0;
         }
         body {
-            display: flex;
-            flex-direction: column;
             font-family: 'Inter', sans-serif;
             background-color: #0b0f19;
             color: #f1f5f9;
@@ -129,11 +130,25 @@
             background: #e2e8f0 !important;
             border-color: #cbd5e1 !important;
         }
-        .light-theme .bg-slate-900\/50,
+        .light-theme .bg-slate-900\/10,
         .light-theme .bg-slate-900\/20,
-        .light-theme .bg-slate-900\/40 {
+        .light-theme .bg-slate-900\/30,
+        .light-theme .bg-slate-900\/40,
+        .light-theme .bg-slate-900\/50,
+        .light-theme .bg-slate-950\/10,
+        .light-theme .bg-slate-950\/20,
+        .light-theme .bg-slate-950\/30,
+        .light-theme .bg-slate-950\/40,
+        .light-theme .bg-slate-950\/50,
+        .light-theme .bg-slate-950\/60 {
             background: #ffffff !important;
             border-color: #cbd5e1 !important;
+        }
+        .light-theme #repo-info-panel .text-white {
+            color: #0f172a !important;
+        }
+        .light-theme #changelog-content {
+            color: #334155 !important;
         }
         .light-theme .border-slate-800,
         .light-theme .border-slate-800\/60 {
@@ -191,17 +206,142 @@
         .ck.ck-editor {
             color: #0f172a !important;
         }
+
+        #admin-dashboard-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* In dark mode, invert the logo colors to make dark text white */
+        #header-logo-img,
+        #gate-logo-img {
+            filter: brightness(0) invert(1);
+        }
+        /* In light mode, reset the filter */
+        .light-theme #header-logo-img,
+        .light-theme #gate-logo-img {
+            filter: none;
+        }
+
+        /* Changelog Markdown Rendering Style overrides */
+        #changelog-content {
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+        #changelog-content h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff !important;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 2px solid #cc0000;
+            padding-bottom: 0.5rem;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.025em;
+        }
+        .light-theme #changelog-content h3 {
+            color: #0f172a !important;
+            border-bottom-color: rgba(0,0,0,0.08);
+        }
+        #changelog-content h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #cc0000 !important;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        #changelog-content p {
+            margin-bottom: 1rem;
+            color: #94a3b8;
+        }
+        .light-theme #changelog-content p {
+            color: #475569 !important;
+        }
+        #changelog-content ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+        #changelog-content li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+        }
+        .light-theme #changelog-content li {
+            color: #334155 !important;
+        }
+        #changelog-content li::before {
+            content: "•";
+            color: #cc0000;
+            font-weight: bold;
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+        }
+        #changelog-content hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            margin: 2.5rem 0;
+        }
+        .light-theme #changelog-content hr {
+            background: linear-gradient(to right, rgba(0,0,0,0.08), rgba(0,0,0,0.02));
+        }
     </style>
 </head>
 <body class="relative overflow-x-hidden">
-    <!-- Main content container wrapper to push footer to bottom -->
-    <div class="main-content-wrapper">
+    <!-- Login Gate (Security) -->
+    <div id="login-gate" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0b0f19] px-4 hidden">
+        <!-- Floating Blobs -->
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-red-900/10 blur-[150px] pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-slate-900/40 blur-[150px] pointer-events-none"></div>
+
+        <div class="glass-panel w-full max-w-md p-8 rounded-3xl shadow-2xl space-y-6 text-center border border-white/10 relative overflow-hidden">
+            <!-- Confetti Glow -->
+            <div class="absolute -top-12 -left-12 w-32 h-32 bg-red-600/10 rounded-full blur-2xl"></div>
+
+            <div class="space-y-2">
+                <div id="gate-logo" class="mx-auto w-16 h-16 rounded-2xl bg-red-600 flex items-center justify-center shadow-lg shadow-red-600/30 text-white font-black text-3xl font-outfit">
+                    H
+                </div>
+                <img id="gate-logo-img" class="mx-auto h-12 object-contain hidden" src="" alt="Honda Logo">
+                <h2 class="text-2xl font-bold text-white font-outfit tracking-tight">Honda Bintaro</h2>
+                <p class="text-xs text-gray-400">Silakan masukkan kata sandi untuk mengakses CMS</p>
+            </div>
+
+            <div class="space-y-4 text-left">
+                <div class="space-y-1">
+                    <label class="text-[10px] text-gray-500 font-bold uppercase tracking-wider block">Kata Sandi (Password)</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <input type="password" id="gate-password" class="glass-input w-full pl-10 pr-4 py-3 rounded-xl text-sm" placeholder="••••••••" onkeydown="if(event.key==='Enter') verifyGatePassword()">
+                    </div>
+                </div>
+                <button onclick="verifyGatePassword()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-sm py-3 rounded-xl transition duration-300 shadow-lg shadow-red-600/20 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-right-to-bracket"></i> Masuk Ke Dashboard
+                </button>
+            </div>
+            <p class="text-[10px] text-gray-600 pt-2 font-mono">CMS Security Gate v1.0</p>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Container -->
+    <div id="admin-dashboard-container" class="hidden flex flex-col min-h-screen">
+        <!-- Main content container wrapper to push footer to bottom -->
+        <div class="main-content-wrapper">
         <!-- Floating Gradient Blobs -->
         <div class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-red-900/10 blur-[120px] pointer-events-none"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-slate-900/40 blur-[120px] pointer-events-none"></div>
 
         <!-- TOAST NOTIFICATION CONTAINER -->
-        <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2"></div>
+        <div id="toast-container" class="fixed bottom-5 left-5 z-50 flex flex-col gap-2"></div>
 
         <!-- MAIN HEADER -->
         <header class="glass-panel sticky top-0 z-40 px-6 py-4 flex items-center justify-between shadow-lg">
@@ -222,12 +362,20 @@
                 <button onclick="toggleTheme()" class="glass-panel p-2 rounded-lg hover:bg-red-600/10 text-yellow-500 border border-slate-800 transition flex items-center justify-center w-10 h-10" title="Ubah Tema">
                     <i id="theme-icon" class="fa-solid fa-sun text-lg"></i>
                 </button>
+                <!-- Logout Button -->
+                <button onclick="logoutAdmin()" class="glass-panel p-2 rounded-lg hover:bg-red-600/10 text-red-500 border border-slate-800 transition flex items-center justify-center w-10 h-10" title="Keluar dari Dashboard">
+                    <i class="fa-solid fa-right-from-bracket text-lg"></i>
+                </button>
                 <button onclick="fetchDataFromGitHub()" id="fetch-all-btn" class="hidden glass-panel hover:bg-red-600/20 text-red-500 border border-red-500/30 px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2 h-10 transition-all duration-300">
                     <i class="fa-solid fa-cloud-arrow-down"></i> Tarik Ulang Data
                 </button>
                 <div id="github-status" class="flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 h-10">
                     <span class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span> Belum Terkoneksi
                 </div>
+                <!-- GitHub Disconnect Button -->
+                <button onclick="disconnectGitHub()" id="disconnect-btn" class="hidden glass-panel hover:bg-red-600/20 text-red-500 border border-slate-800 transition flex items-center justify-center w-10 h-10 duration-300" title="Putuskan Koneksi GitHub">
+                    <i class="fa-solid fa-link-slash text-lg"></i>
+                </button>
             </div>
         </header>
 
@@ -254,6 +402,9 @@
                     </button>
                     <button onclick="switchTab('media')" data-tab="media" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
                         <i class="fa-solid fa-cloud-arrow-up w-5 text-center"></i> Upload Media
+                    </button>
+                    <button onclick="switchTab('changelog')" data-tab="changelog" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
+                        <i class="fa-solid fa-clock-rotate-left w-5 text-center"></i> Changelog
                     </button>
                 </nav>
                 <div class="glass-panel rounded-xl p-4 mt-auto hidden md:block">
@@ -1110,6 +1261,33 @@
                         </div>
                     </div>
 
+                    <!-- TAB: CHANGELOG -->
+                    <div id="tab-changelog" class="tab-pane hidden space-y-6">
+                        <div class="glass-panel rounded-2xl p-6 shadow-xl space-y-6">
+                            <div class="border-b border-slate-800 pb-4 flex justify-between items-center">
+                                <div>
+                                    <h2 class="text-xl font-bold text-white font-outfit flex items-center gap-2">
+                                        <i class="fa-solid fa-clock-rotate-left text-red-500 animate-pulse"></i> Riwayat Perubahan (Changelog)
+                                    </h2>
+                                    <p class="text-sm text-gray-400">Riwayat pembaruan sistem dan perbaikan bug yang diambil dinamis dari README.md</p>
+                                </div>
+                                <button onclick="loadChangelogFromReadme()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 border border-slate-700 rounded-lg flex items-center gap-1.5 transition">
+                                    <i class="fa-solid fa-arrows-rotate"></i> Refresh Readme
+                                </button>
+                            </div>
+                            
+                            <div id="changelog-loading" class="text-center py-10 text-gray-500 text-sm hidden">
+                                <i class="fa-solid fa-spinner animate-spin text-red-500 text-2xl mb-2"></i>
+                                <p>Memuat changelog dari README.md...</p>
+                            </div>
+                            
+                            <!-- Markdown HTML Render Target -->
+                            <div id="changelog-content" class="prose prose-invert max-w-none text-sm text-slate-300 space-y-4 max-h-[600px] overflow-y-auto pr-2">
+                                <!-- Rendered markdown content -->
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </main>
         </div>
@@ -1119,6 +1297,7 @@
     <footer class="py-6 border-t border-slate-900 bg-slate-950/80 text-center text-xs text-gray-500">
         <p>© 2026 Honda Bintaro CMS. Terintegrasi sepenuhnya dengan API GitHub.</p>
     </footer>
+    </div><!-- #admin-dashboard-container -->
 
     <!-- ADD PRODUCT MODAL -->
     <div id="add-product-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 hidden px-4">
@@ -1198,8 +1377,183 @@
             }, 3500);
         }
 
-        // Initialize Kredensial from localStorage & Theme Setup
-        window.addEventListener('DOMContentLoaded', () => {
+        function logoutAdmin() {
+            sessionStorage.removeItem('admin_authenticated');
+            showToast('Anda telah keluar.', 'info');
+            setTimeout(() => {
+                window.location.reload();
+            }, 800);
+        }
+
+        async function loadChangelogFromReadme() {
+            const contentEl = document.getElementById('changelog-content');
+            const loadingEl = document.getElementById('changelog-loading');
+            if (!contentEl) return;
+
+            loadingEl.classList.remove('hidden');
+            contentEl.innerHTML = '';
+
+            let readmeText = '';
+            
+            // Try fetching from GitHub if connected
+            if (ghConfig.token && ghConfig.owner && ghConfig.repo) {
+                try {
+                    const url = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/README.md?ref=${ghConfig.branch}`;
+                    const res = await fetch(url, {
+                        headers: {
+                            'Authorization': `token ${ghConfig.token}`,
+                            'Accept': 'application/vnd.github.v3.raw'
+                        }
+                    });
+                    if (res.ok) {
+                        readmeText = await res.text();
+                    }
+                } catch (e) {
+                    console.warn('Gagal memuat README dari GitHub, mencoba lokal...', e);
+                }
+            }
+
+            // Fallback to local fetch if GitHub fetch failed or not connected
+            if (!readmeText) {
+                try {
+                    const res = await fetch('../README.md');
+                    if (res.ok) {
+                        readmeText = await res.text();
+                    }
+                } catch (e) {
+                    console.error('Gagal memuat README lokal:', e);
+                }
+            }
+
+            loadingEl.classList.add('hidden');
+
+            if (!readmeText) {
+                contentEl.innerHTML = `<p class="text-red-500 italic">Gagal memuat berkas README.md.</p>`;
+                return;
+            }
+
+            // Extract the Changelog section
+            const headerRegex = /##\s+.*?Changelog|##\s+.*?Riwayat\s+Perubahan/i;
+            const match = readmeText.match(headerRegex);
+            
+            let changelogMd = '';
+            if (match) {
+                const startIndex = match.index;
+                changelogMd = readmeText.substring(startIndex);
+            } else {
+                changelogMd = readmeText;
+            }
+
+            // Use marked.js library if loaded
+            if (typeof marked !== 'undefined') {
+                contentEl.innerHTML = marked.parse(changelogMd);
+            } else {
+                contentEl.innerHTML = `<pre class="whitespace-pre-wrap font-sans text-xs">${changelogMd}</pre>`;
+            }
+        }
+
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+
+        async function verifyGatePassword() {
+            const pwdInput = document.getElementById('gate-password');
+            const pwd = pwdInput.value;
+            if (!pwd) {
+                showToast('Harap masukkan kata sandi!', 'warning');
+                return;
+            }
+
+            const hash = await sha256(pwd);
+            const targetHash = "013c6f85afa67b87fb487684c0b4c6ecdc4c63512286b760008ac7539c75eb2e";
+
+            if (hash === targetHash) {
+                sessionStorage.setItem('admin_authenticated', 'true');
+                
+                const gate = document.getElementById('login-gate');
+                gate.classList.add('opacity-0', 'transition-all', 'duration-500');
+                setTimeout(() => {
+                    gate.remove();
+                    document.getElementById('admin-dashboard-container').classList.remove('hidden');
+                }, 500);
+                
+                showToast('Akses Diberikan! Selamat Datang di Dashboard.');
+            } else {
+                showToast('Kata sandi salah! Akses ditolak.', 'error');
+                pwdInput.value = '';
+                pwdInput.classList.add('border-red-500', 'animate-pulse');
+                setTimeout(() => {
+                    pwdInput.classList.remove('border-red-500', 'animate-pulse');
+                }, 1000);
+            }
+        }
+
+        function disconnectGitHub() {
+            if (confirm("Apakah Anda yakin ingin memutuskan koneksi dari GitHub? Token PAT dan data repositori akan dihapus dari memori penyimpanan lokal browser Anda.")) {
+                localStorage.removeItem('gh_token');
+                localStorage.removeItem('gh_owner');
+                localStorage.removeItem('gh_repo');
+                localStorage.removeItem('gh_branch');
+                
+                showToast('Koneksi GitHub diputuskan!', 'info');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 800);
+            }
+        }
+
+        // Initialize Kredensial from localStorage, Auth State & Theme Setup
+        window.addEventListener('DOMContentLoaded', async () => {
+            // Check authentication
+            const isAuthenticated = sessionStorage.getItem('admin_authenticated') === 'true';
+            const loginGate = document.getElementById('login-gate');
+            const dashboardContainer = document.getElementById('admin-dashboard-container');
+
+            if (isAuthenticated) {
+                if (loginGate) loginGate.remove();
+                if (dashboardContainer) dashboardContainer.classList.remove('hidden');
+            } else {
+                if (dashboardContainer) dashboardContainer.classList.add('hidden');
+                if (loginGate) loginGate.classList.remove('hidden');
+            }
+
+            // Load initial site config (header logo, title, favicon) before connection
+            try {
+                const res = await fetch('../data/site_config.json');
+                if (res.ok) {
+                    const localConfig = await res.json();
+                    
+                    // Update Login Gate Logo
+                    const gateLogo = document.getElementById('gate-logo');
+                    const gateLogoImg = document.getElementById('gate-logo-img');
+                    if (localConfig.contact?.headerLogo) {
+                        gateLogoImg.src = localConfig.contact.headerLogo;
+                        gateLogoImg.classList.remove('hidden');
+                        if (gateLogo) gateLogo.classList.add('hidden');
+                    }
+                    
+                    // Update Main Header Logo
+                    const logoImg = document.getElementById('header-logo-img');
+                    const logoFallback = document.getElementById('header-logo-fallback');
+                    if (localConfig.contact?.headerLogo) {
+                        logoImg.src = localConfig.contact.headerLogo;
+                        logoImg.classList.remove('hidden');
+                        if (logoFallback) logoFallback.classList.add('hidden');
+                    }
+                    
+                    // Update dynamic favicon
+                    const faviconEl = document.getElementById('dynamic-favicon');
+                    if (faviconEl && localConfig.site?.favicon) {
+                        faviconEl.href = localConfig.site.favicon;
+                    }
+                }
+            } catch (e) {
+                console.warn('Gagal memuat logo gate lokal:', e);
+            }
             // Theme Setup
             const savedTheme = localStorage.getItem('admin_theme');
             const themeIcon = document.getElementById('theme-icon');
@@ -1218,6 +1572,9 @@
 
             updateGhConfigFromDom();
 
+            // Load Changelog initially
+            loadChangelogFromReadme();
+
             if (ghConfig.token) {
                 saveAndConnectGitHub();
             }
@@ -1226,23 +1583,25 @@
             const dropzone = document.getElementById('dropzone');
             const fileInput = document.getElementById('media-file-input');
 
-            dropzone.addEventListener('click', () => fileInput.click());
-            dropzone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                dropzone.classList.add('border-red-500', 'bg-slate-900/40');
-            });
-            dropzone.addEventListener('dragleave', () => {
-                dropzone.classList.remove('border-red-500', 'bg-slate-900/20');
-            });
-            dropzone.addEventListener('drop', (e) => {
-                e.preventDefault();
-                dropzone.classList.remove('border-red-500', 'bg-slate-900/20');
-                if (e.dataTransfer.files.length) {
-                    fileInput.files = e.dataTransfer.files;
-                    handleFileSelect();
-                }
-            });
-            fileInput.addEventListener('change', handleFileSelect);
+            if (dropzone && fileInput) {
+                dropzone.addEventListener('click', () => fileInput.click());
+                dropzone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    dropzone.classList.add('border-red-500', 'bg-slate-900/40');
+                });
+                dropzone.addEventListener('dragleave', () => {
+                    dropzone.classList.remove('border-red-500', 'bg-slate-900/20');
+                });
+                dropzone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    dropzone.classList.remove('border-red-500', 'bg-slate-900/20');
+                    if (e.dataTransfer.files.length) {
+                        fileInput.files = e.dataTransfer.files;
+                        handleFileSelect();
+                    }
+                });
+                fileInput.addEventListener('change', handleFileSelect);
+            }
         });
 
         // Theme Toggle
@@ -1287,6 +1646,9 @@
 
             if (tabId === 'media' && ghConfig.token) {
                 fetchMediaLibrary();
+            }
+            if (tabId === 'changelog') {
+                loadChangelogFromReadme();
             }
         }
 
@@ -1338,6 +1700,7 @@
                 statusLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Terkoneksi: ${ghConfig.owner}/${ghConfig.repo}`;
                 
                 document.getElementById('fetch-all-btn').classList.remove('hidden');
+                document.getElementById('disconnect-btn').classList.remove('hidden');
 
                 // Pull all JSON files immediately
                 await fetchDataFromGitHub();
@@ -1345,6 +1708,7 @@
                 showToast(err.message, 'error');
                 statusLabel.className = "flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-red-500/10 text-red-500 border border-red-500/20 h-10";
                 statusLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500"></span> Gagal Terkoneksi`;
+                document.getElementById('disconnect-btn').classList.add('hidden');
             }
         }
 
@@ -1904,6 +2268,10 @@
 
             // --- SUBTAB: NAVIGASI & TAUTAN ---
             document.getElementById('cfg-site-favicon').value = config.site?.favicon || '';
+            const faviconEl = document.getElementById('dynamic-favicon');
+            if (faviconEl) {
+                faviconEl.href = config.site?.favicon || '';
+            }
             document.getElementById('cfg-site-news-api').value = config.site?.newsApiUrl || '';
             document.getElementById('cfg-site-news-url').value = config.site?.allNewsUrl || '';
             document.getElementById('cfg-site-news-title').value = config.site?.newsTitle || '';
@@ -2008,6 +2376,10 @@
             // --- SUBTAB: NAVIGASI & TAUTAN ---
             if (!config.site) config.site = {};
             config.site.favicon = document.getElementById('cfg-site-favicon').value.trim();
+            const faviconEl = document.getElementById('dynamic-favicon');
+            if (faviconEl) {
+                faviconEl.href = config.site.favicon;
+            }
             config.site.newsApiUrl = document.getElementById('cfg-site-news-api').value.trim();
             config.site.allNewsUrl = document.getElementById('cfg-site-news-url').value.trim();
             config.site.newsTitle = document.getElementById('cfg-site-news-title').value.trim();

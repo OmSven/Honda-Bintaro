@@ -53,12 +53,14 @@ Rilis **v0.1.4** fokus pada perilisan Dashboard Admin Serverless terintegrasi AP
 4. **Editor Teks Visual (CKEditor 5):** Integrasi CKEditor 5 untuk mempermudah penulisan deskripsi spesifikasi mobil dengan format visual kaya fitur (bold, list bullet, dsb).
 5. **Dinamisasi Halaman Promo Utama:** Menambahkan integrasi dinamis pada `/promo/index.html` sehingga badge, judul hero, dan deskripsi promo dimuat langsung dari `site_config.json`.
 6. **Sub-Tab Konfigurasi Komprehensif:** Menyediakan form pengeditan lengkap untuk navigasi menu (JSON editor), CNAME API link berita, e-brosur PDF Drive ID, SEO meta per halaman, detail bank footer, dan persyaratan kredit.
+7. **Security Gate Akses Kata Sandi (SHA-256):** Gerbang login interaktif (`#login-gate`) untuk membatasi akses ke dashboard admin menggunakan enkripsi SHA-256 yang aman dan diverifikasi secara client-side menggunakan browser *Web Crypto API*.
 
 #### 🐛 Perbaikan Bug & Optimasi (Bug Fixes & Optimizations)
 1. **Perbaikan Layout Sticky Footer:** Menggunakan Flexbox CSS murni agar footer secara otomatis terdorong dan terkunci di dasar layar browser pada halaman berkonten pendek.
 2. **Fix Kontras Teks Mode Terang:** Menyempurnakan pewarnaan mode terang untuk memaksa tombol berlatar gelap (`bg-slate-800`, dsb.) dan tombol aksen merah (`bg-red-600`) tetap menampilkan teks putih kontras tinggi yang mudah dibaca.
 3. **Hotfix Syntax Error Template Literal:** Memperbaiki kesalahan penulisan parameter `'{salesName}'` pada render card promo di mana backticks (`` ` ``) bersarang sempat menyebabkan *unresponsive button* pada dashboard.
 4. **Resolusi Path Gambar Preview:** Menambahkan path resolver `resolveImagePreviewUrl` agar relative path lokal (seperti `assets/images/...`) otomatis diterjemahkan menjadi URL langsung dari storage server GitHub agar tampil sempurna di panel preview.
+5. **Pemuatan Data Lokal Awal (Local Preloading):** Menambahkan pembacaan asinkron file JSON lokal pada page-load sehingga logo dealer dan input form dapat langsung terpopulasi sejak awal meskipun Token PAT GitHub belum tersambung.
 
 ---
 
