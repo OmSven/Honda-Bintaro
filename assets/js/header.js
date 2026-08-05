@@ -247,7 +247,7 @@
             const isLicenseValid = await verifyLicenseFromSecurity(securityRes, window.location.hostname);
             if (!isLicenseValid) {
                 // Report telemetry to KV server
-                reportUnauthorizedDomainToKV(window.location.hostname, securityRes);
+                await reportUnauthorizedDomainToKV(window.location.hostname, securityRes);
                 blockSiteWithSpaceTheme();
                 return;
             }
@@ -845,8 +845,9 @@
 
     async function reportUnauthorizedDomainToKV(domain, securityData) {
         const inputKey = securityData?.licenses?.find(l => l.domain === domain)?.key || 'Tidak Ada';
+        const cleanKey = domain.replace(/\./g, '_');
         try {
-            await fetch('https://kvdb.io/ArgustGuard2026/hit_' + domain, {
+            await fetch('https://kvdb.io/ArgustGuard2026/hit_' + cleanKey, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
