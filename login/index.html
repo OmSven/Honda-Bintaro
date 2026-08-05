@@ -1520,14 +1520,17 @@
         }
 
         async function verifyLicenseFromSecurity(securityData, domain) {
-            const cleanDomain = domain.toLowerCase().trim();
+            let cleanDomain = domain.toLowerCase().trim().replace(/^www\./, '');
             if (cleanDomain === 'localhost' || cleanDomain === '127.0.0.1' || cleanDomain.endsWith('.local')) {
                 return true;
             }
             
             if (!securityData || !securityData.licenses) return false;
             
-            const licenseEntry = securityData.licenses.find(l => l.domain.toLowerCase().trim() === cleanDomain);
+            const licenseEntry = securityData.licenses.find(l => {
+                const entryDomain = l.domain.toLowerCase().trim().replace(/^www\./, '');
+                return entryDomain === cleanDomain;
+            });
             if (!licenseEntry) return false;
             
             try {
@@ -1695,7 +1698,7 @@
             try {
                 const [configRes, securityRes] = await Promise.all([
                     fetch('../data/site_config.json').then(r => r.json()).catch(() => null),
-                    fetch('../data/security.json').then(r => r.json()).catch(() => null)
+                    fetch(`../data/security.json?t=${Date.now()}`).then(r => r.json()).catch(() => null)
                 ]);
 
                 if (configRes) {

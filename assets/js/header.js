@@ -238,7 +238,7 @@
             const [productsRes, configRes, securityRes] = await Promise.all([
                 fetch(`${basePath}data/products.json`),
                 fetch(`${basePath}data/site_config.json`),
-                fetch(`${basePath}data/security.json`).then(r => r.json()).catch(() => null)
+                fetch(`${basePath}data/security.json?t=${Date.now()}`).then(r => r.json()).catch(() => null)
             ]);
             productsList = await productsRes.json();
             siteConfig = await configRes.json();
@@ -860,14 +860,17 @@
     }
 
     async function verifyLicenseFromSecurity(securityData, domain) {
-        const cleanDomain = domain.toLowerCase().trim();
+        let cleanDomain = domain.toLowerCase().trim().replace(/^www\./, '');
         if (cleanDomain === 'localhost' || cleanDomain === '127.0.0.1' || cleanDomain.endsWith('.local')) {
             return true;
         }
         
         if (!securityData || !securityData.licenses) return false;
         
-        const licenseEntry = securityData.licenses.find(l => l.domain.toLowerCase().trim() === cleanDomain);
+        const licenseEntry = securityData.licenses.find(l => {
+            const entryDomain = l.domain.toLowerCase().trim().replace(/^www\./, '');
+            return entryDomain === cleanDomain;
+        });
         if (!licenseEntry) return false;
         
         try {
