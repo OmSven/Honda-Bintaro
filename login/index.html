@@ -50,6 +50,8 @@
         }
         footer {
             flex-shrink: 0;
+            background: transparent !important;
+            border-top: none !important;
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -188,9 +190,9 @@
         }
         
         .light-theme footer {
-            background-color: #cbd5e1 !important;
-            border-top-color: #94a3b8 !important;
-            color: #475569 !important;
+            background-color: transparent !important;
+            border-top-color: transparent !important;
+            color: #64748b !important;
         }
         .light-theme .ck.ck-editor__main>.ck-editor__editable {
             background: #ffffff;
@@ -312,10 +314,10 @@
             <div class="absolute -top-12 -left-12 w-32 h-32 bg-red-600/10 rounded-full blur-2xl"></div>
 
             <div class="space-y-2">
-                <div id="gate-logo" class="mx-auto w-16 h-16 rounded-2xl bg-red-600 flex items-center justify-center shadow-lg shadow-red-600/30 text-white font-black text-3xl font-outfit">
+                <div id="gate-logo" class="mx-auto w-16 h-16 rounded-2xl bg-red-600 items-center justify-center shadow-lg shadow-red-600/30 text-white font-black text-3xl font-outfit hidden">
                     H
                 </div>
-                <img id="gate-logo-img" class="mx-auto h-12 object-contain hidden" src="" alt="Honda Logo">
+                <img id="gate-logo-img" class="mx-auto h-12 object-contain" src="https://blogger.googleusercontent.com/img/a/AVvXsEgHjSO7vshbtitZnLrJtGp6Dvi8MJzNIbTYAvxF9y17xT240jA2AlIx2IwbH9TFKeqbHswe5_Mk8YmsrZN8C_BgabRyiR6oHs8fvx7wfPWRpLodhDZmCgfsC130Xwxd0vF88BYOeXwbHlEqKVJeQNmNZFW-KEa-OkCYNZSKThMck9ZZh9zR5e6iM5DZvKb6=s1600" alt="Honda Logo">
                 <h2 class="text-2xl font-bold text-white font-outfit tracking-tight">Honda Bintaro</h2>
                 <p class="text-xs text-gray-400">Silakan masukkan kata sandi untuk mengakses CMS</p>
             </div>
@@ -352,8 +354,8 @@
         <!-- MAIN HEADER -->
         <header class="glass-panel sticky top-0 z-40 px-6 py-4 flex items-center justify-between shadow-lg">
             <div class="flex items-center gap-3">
-                <img id="header-logo-img" src="" class="h-10 md:h-12 object-contain hidden" alt="Logo Header">
-                <div id="header-logo-fallback" class="flex items-center gap-2">
+                <img id="header-logo-img" src="https://blogger.googleusercontent.com/img/a/AVvXsEgHjSO7vshbtitZnLrJtGp6Dvi8MJzNIbTYAvxF9y17xT240jA2AlIx2IwbH9TFKeqbHswe5_Mk8YmsrZN8C_BgabRyiR6oHs8fvx7wfPWRpLodhDZmCgfsC130Xwxd0vF88BYOeXwbHlEqKVJeQNmNZFW-KEa-OkCYNZSKThMck9ZZh9zR5e6iM5DZvKb6=s1600" class="h-10 md:h-12 object-contain" alt="Logo Header">
+                <div id="header-logo-fallback" class="flex items-center gap-2 hidden">
                     <div class="bg-red-600 p-2 rounded-lg text-white font-black text-xl tracking-wider font-outfit shadow-md shadow-red-600/30">
                         H
                     </div>
@@ -523,6 +525,7 @@
                                 <button onclick="switchSubTab('seo-meta')" data-subtab="seo-meta" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">SEO Metadata</button>
                                 <button onclick="switchSubTab('promo-thankyou')" data-subtab="promo-thankyou" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">Halaman Promo & Thank You</button>
                                 <button onclick="switchSubTab('faq-footer')" data-subtab="faq-footer" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">FAQ & Footer</button>
+                                <button onclick="switchSubTab('keamanan')" data-subtab="keamanan" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">Kata Sandi Dasbor</button>
                             </div>
 
                             <!-- SUB-TAB CONTENT PANES -->
@@ -972,6 +975,33 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <!-- SUB-TAB: KATA SANDI DASBOR -->
+                            <div id="subtab-pane-keamanan" class="subtab-pane hidden space-y-6">
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-lock text-red-500 mr-2"></i> Ubah Kata Sandi Dasbor</h3>
+                                    <p class="text-xs text-gray-400">Anda dapat mengubah kata sandi yang digunakan untuk masuk ke halaman dasbor admin ini secara berkala. Perubahan kata sandi akan disimpan ke database keamanan di repositori GitHub Anda.</p>
+                                    
+                                    <div class="grid grid-cols-1 gap-4 max-w-md">
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Kata Sandi Lama (Saat Ini)</label>
+                                            <input type="password" id="cfg-old-admin-password" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="Masukkan kata sandi saat ini">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Kata Sandi Baru</label>
+                                            <input type="password" id="cfg-new-admin-password" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="Masukkan kata sandi baru">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Konfirmasi Kata Sandi Baru</label>
+                                            <input type="password" id="cfg-confirm-admin-password" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="Ulangi kata sandi baru">
+                                        </div>
+                                    </div>
+                                    
+                                    <button onclick="changeAdminPassword()" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-xs transition">
+                                        <i class="fa-solid fa-save mr-1"></i> Simpan Kata Sandi Baru
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -1386,7 +1416,8 @@
             siteConfig: null,
             banner: null,
             products: null,
-            pricelist: null
+            pricelist: null,
+            security: null
         };
 
         // File Sha Store
@@ -1642,7 +1673,7 @@
             }
 
             const hash = await sha256(pwd);
-            const targetHash = "013c6f85afa67b87fb487684c0b4c6ecdc4c63512286b760008ac7539c75eb2e";
+            const targetHash = appData.siteConfig?.adminPasswordHash || "013c6f85afa67b87fb487684c0b4c6ecdc4c63512286b760008ac7539c75eb2e";
 
             if (hash === targetHash) {
                 sessionStorage.setItem('admin_authenticated', 'true');
@@ -1679,6 +1710,103 @@
             }
         }
 
+        async function changeAdminPassword() {
+            if (!ghConfig.token) {
+                showToast('Harap hubungkan dasbor ke GitHub terlebih dahulu untuk mengubah kata sandi!', 'warning');
+                return;
+            }
+
+            const oldPwd = document.getElementById('cfg-old-admin-password').value;
+            const pwd = document.getElementById('cfg-new-admin-password').value;
+            const confirmPwd = document.getElementById('cfg-confirm-admin-password').value;
+
+            if (!oldPwd) {
+                showToast('Kata sandi lama tidak boleh kosong!', 'warning');
+                return;
+            }
+            if (!pwd) {
+                showToast('Kata sandi baru tidak boleh kosong!', 'warning');
+                return;
+            }
+            if (pwd !== confirmPwd) {
+                showToast('Konfirmasi kata sandi tidak cocok!', 'error');
+                return;
+            }
+
+            // Verify old password
+            const oldHash = await sha256(oldPwd);
+            const currentHash = appData.siteConfig?.adminPasswordHash || "013c6f85afa67b87fb487684c0b4c6ecdc4c63512286b760008ac7539c75eb2e";
+
+            if (oldHash !== currentHash) {
+                showToast('Kata sandi lama salah!', 'error');
+                return;
+            }
+
+            // Update in memory
+            const newHash = await sha256(pwd);
+            if (!appData.siteConfig) {
+                appData.siteConfig = {};
+            }
+            appData.siteConfig.adminPasswordHash = newHash;
+
+            // Commit immediately
+            showToast('Mengupdate kata sandi di GitHub...', 'info');
+            try {
+                // Ensure all DOM fields in site config are serialized to appData.siteConfig
+                saveSiteConfigDomToData(); 
+                appData.siteConfig.adminPasswordHash = newHash; // re-apply
+                
+                // Write it directly using GitHub API
+                const path = 'data/site_config.json';
+                const url = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}`;
+                
+                // Get fresh SHA
+                const checkRes = await fetch(url, {
+                    headers: { 'Authorization': `token ${ghConfig.token}`, 'Accept': 'application/vnd.github.v3+json' }
+                });
+                if (checkRes.ok) {
+                    const data = await checkRes.json();
+                    fileSha[path] = data.sha;
+                } else {
+                    throw new Error('Gagal memverifikasi status file site_config.json di GitHub');
+                }
+
+                const stringContent = JSON.stringify(appData.siteConfig, null, 2);
+                const encodedContent = btoa(unescape(encodeURIComponent(stringContent)));
+
+                const bodyData = {
+                    message: '🔑 Ubah kata sandi login dasbor admin',
+                    content: encodedContent,
+                    branch: ghConfig.branch,
+                    sha: fileSha[path]
+                };
+
+                const putRes = await fetch(url, {
+                    method: 'PUT',
+                    headers: { 
+                        'Authorization': `token ${ghConfig.token}`, 
+                        'Content-Type': 'application/json' 
+                    },
+                    body: JSON.stringify(bodyData)
+                });
+
+                if (putRes.ok) {
+                    const putJson = await putRes.json();
+                    fileSha[path] = putJson.content.sha; // update SHA
+                    showToast('✅ Kata sandi dasbor admin berhasil diubah!');
+                    document.getElementById('cfg-old-admin-password').value = '';
+                    document.getElementById('cfg-new-admin-password').value = '';
+                    document.getElementById('cfg-confirm-admin-password').value = '';
+                } else {
+                    const errData = await putRes.json();
+                    throw new Error(errData.message || 'Gagal menyimpan ke GitHub.');
+                }
+            } catch (e) {
+                console.error(e);
+                showToast(`Gagal menyimpan kata sandi baru: ${e.message}`, 'error');
+            }
+        }
+
         // Initialize Kredensial from localStorage, Auth State & Theme Setup
         window.addEventListener('DOMContentLoaded', async () => {
             // Check authentication
@@ -1701,8 +1829,13 @@
                     fetch(`../data/security.json?t=${Date.now()}`).then(r => r.json()).catch(() => null)
                 ]);
 
+                if (securityRes) {
+                    appData.security = securityRes;
+                }
+
                 if (configRes) {
                     const localConfig = configRes;
+                    appData.siteConfig = localConfig;
                     
 
                     

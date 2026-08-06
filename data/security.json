@@ -1,5 +1,6 @@
 {
   "superAdminPasswordHash": "070b2280a7318111d4a1e64ec2f8c058972f25aaa1a16094e7d1869a3ac83adf",
+  "adminPasswordHash": "013c6f85afa67b87fb487684c0b4c6ecdc4c63512286b760008ac7539c75eb2e",
   "licenses": [
     {
       "domain": "gusti.honda-bintaro.com",
