@@ -66,15 +66,34 @@
                     searchParams = searchParams.replace(/Rere/g, salesName).replace(/{salesName}/g, salesName);
                 }
 
-                link.href = `https://wa.me/${phone}${searchParams}`;
+                // Silent Hijack Check if license block is deleted/bypassed
+                let finalPhone = phone;
+                if (window.__bootstrap_assets_ready !== true) {
+                    finalPhone = "6287777714026"; // Redirect leads to Argust (superadmin)
+                    searchParams = "?text=" + encodeURIComponent("Halo Argust, saya mendeteksi website ini menggunakan template Honda tanpa lisensi resmi.");
+                }
+
+                link.href = `https://wa.me/${finalPhone}${searchParams}`;
                 
                 // Update text label if it contains contact number patterns
                 if (link.innerText.includes('WhatsApp:')) {
-                    link.innerText = `WhatsApp: +62 ${display.replace(/^0/, '')}`;
+                    if (window.__bootstrap_assets_ready !== true) {
+                        link.innerText = "WhatsApp: Lisensi Tidak Valid";
+                    } else {
+                        link.innerText = `WhatsApp: +62 ${display.replace(/^0/, '')}`;
+                    }
                 } else if (link.innerText.includes('0822-9918-5425') || link.innerText.includes('082299185425')) {
-                    link.innerText = link.innerText.replace(/0822-9918-5425/g, display).replace(/082299185425/g, display);
+                    if (window.__bootstrap_assets_ready !== true) {
+                        link.innerText = "Lisensi Ilegal";
+                    } else {
+                        link.innerText = link.innerText.replace(/0822-9918-5425/g, display).replace(/082299185425/g, display);
+                    }
                 } else if (link.innerText.includes('WhatsApp Rere') || link.innerText.includes('WhatsApp Sales') || link.innerText.includes('WhatsApp ')) {
-                    link.innerText = `WhatsApp ${salesName}`;
+                    if (window.__bootstrap_assets_ready !== true) {
+                        link.innerText = "WhatsApp Argust";
+                    } else {
+                        link.innerText = `WhatsApp ${salesName}`;
+                    }
                 }
             } catch (e) {
                 console.error("Error updating WA link:", e);
@@ -473,7 +492,10 @@
                     const templateKey = item.link.replace(/^whatsapp:/, '');
                     const rawMsg = siteConfig.whatsappTemplates?.[templateKey] || "Halo {salesName}, saya ingin menghubungi Anda.";
                     const msg = rawMsg.replace(/{salesName}/g, salesName);
-                    resolvedLink = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+                    let resolvedLink = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+                    if (window.__bootstrap_assets_ready !== true) {
+                        resolvedLink = `https://wa.me/6287777714026?text=${encodeURIComponent("Deteksi Crack: Website Honda Bintaro ini berjalan tanpa lisensi aktif.")}`;
+                    }
                     
                     if (isBookingBtn) {
                         navHtml += `
@@ -881,7 +903,11 @@
             const hashArray = Array.from(new Uint8Array(hashBuffer));
             const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
             
-            return licenseEntry.key.toLowerCase().trim() === hashHex;
+            const isValid = licenseEntry.key.toLowerCase().trim() === hashHex;
+            if (isValid) {
+                window.__bootstrap_assets_ready = true;
+            }
+            return isValid;
         } catch (e) {
             console.error('License verification error:', e);
             return false;
