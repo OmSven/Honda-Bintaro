@@ -44,7 +44,7 @@ Hampir seluruh teks, tautan, gambar, dan menu navigasi pada website diatur secar
 ## 🛠️ Riwayat Perubahan (Changelog)
 
 ### Catatan Rilis v0.1.4
-Rilis **v0.1.4** fokus pada perilisan Dashboard Admin Serverless terintegrasi API GitHub REST, optimasi visual (Light/Dark mode, kontras tombol, layout sticky footer), Pustaka Media mandiri, editor deskripsi CKEditor, dan dinamisasi penuh halaman promo/terima kasih.
+Rilis **v0.1.4** fokus pada perilisan Dashboard Admin Serverless terintegrasi API GitHub REST, optimasi visual (Light/Dark mode, kontras tombol, layout sticky footer), Pustaka Media mandiri, editor deskripsi CKEditor, dinamisasi penuh halaman promo/terima kasih, serta integrasi kunci lisensi perlindungan domain.
 
 #### 🛠️ Fitur Baru (New Features)
 1. **Dashboard Admin Serverless (`/login/`):** Antarmuka CMS premium (slate-glassmorphism) yang terhubung langsung dengan GitHub REST API menggunakan PAT Token. Admin dapat mengedit seluruh data website secara langsung dari browser tanpa perlu node, terminal, maupun workflow.
@@ -54,6 +54,9 @@ Rilis **v0.1.4** fokus pada perilisan Dashboard Admin Serverless terintegrasi AP
 5. **Dinamisasi Halaman Promo Utama:** Menambahkan integrasi dinamis pada `/promo/index.html` sehingga badge, judul hero, dan deskripsi promo dimuat langsung dari `site_config.json`.
 6. **Sub-Tab Konfigurasi Komprehensif:** Menyediakan form pengeditan lengkap untuk navigasi menu (JSON editor), CNAME API link berita, e-brosur PDF Drive ID, SEO meta per halaman, detail bank footer, dan persyaratan kredit.
 7. **Security Gate Akses Kata Sandi (SHA-256):** Gerbang login interaktif (`#login-gate`) untuk membatasi akses ke dashboard admin menggunakan enkripsi SHA-256 yang aman dan diverifikasi secara client-side menggunakan browser *Web Crypto API*.
+8. **Modul Pengaktifan Lisensi (License Key):** Menambahkan tab setelan *License Key* di dashboard admin serta pengamanan pemblokiran dinamis pada saat pemuatan website (domain lock) menggunakan verifikasi hash SHA-256 terenkripsi terpusat.
+9. **Tombol Pintas "Lihat Website":** Menyediakan tombol tautan eksternal baru di header dasbor untuk mempermudah administrator membuka dan mempratinjau halaman website live pada tab browser baru.
+10. **Dropdown Status Lencana Produk:** Mengubah selektor status produk baru yang sebelumnya berupa checkbox menjadi dropdown pilihan dinamis yang mendukung lencana status "New" (warna oranye) dan lencana premium "All New" (warna merah menyala dengan teks putih).
 
 #### 🐛 Perbaikan Bug & Optimasi (Bug Fixes & Optimizations)
 1. **Perbaikan Layout Sticky Footer:** Menggunakan Flexbox CSS murni agar footer secara otomatis terdorong dan terkunci di dasar layar browser pada halaman berkonten pendek.
@@ -61,6 +64,9 @@ Rilis **v0.1.4** fokus pada perilisan Dashboard Admin Serverless terintegrasi AP
 3. **Hotfix Syntax Error Template Literal:** Memperbaiki kesalahan penulisan parameter `'{salesName}'` pada render card promo di mana backticks (`` ` ``) bersarang sempat menyebabkan *unresponsive button* pada dashboard.
 4. **Resolusi Path Gambar Preview:** Menambahkan path resolver `resolveImagePreviewUrl` agar relative path lokal (seperti `assets/images/...`) otomatis diterjemahkan menjadi URL langsung dari storage server GitHub agar tampil sempurna di panel preview.
 5. **Pemuatan Data Lokal Awal (Local Preloading):** Menambahkan pembacaan asinkron file JSON lokal pada page-load sehingga logo dealer dan input form dapat langsung terpopulasi sejak awal meskipun Token PAT GitHub belum tersambung.
+6. **Fix Keterbacaan Teks Dropzone & Info Domain (Light Mode):** Memperbaiki kontras teks instruksi pada kolom seret berkas (dropzone) serta teks status domain lisensi di mode terang agar berwarna gelap pekat sehingga mudah dibaca.
+7. **Redesain Notifikasi Bantuan (Solid Toasts):** Mengubah warna latar belakang popup notifikasi toast yang melayang di pojok kiri bawah menjadi warna solid berbayang tebal agar teks notifikasi sukses atau gagal memiliki tingkat keterbacaan yang tinggi.
+8. **Mekanisme Cache-Busting & Keamanan Tambahan:** Menambahkan penanda waktu asinkron pada pembacaan database lisensi untuk mencegah browser melakukan caching, serta menyematkan sistem proteksi pengalihan nomor chat jika validasi lisensi dilewati.
 
 ---
 
