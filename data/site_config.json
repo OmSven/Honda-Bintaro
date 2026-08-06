@@ -382,5 +382,6 @@
     "badge": "Promo Eksklusif Honda Jabodetabek {year}",
     "title": "Miliki Mobil Honda Impian Anda <br class=\"hidden sm:inline\"><span class=\"text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-400\">DP Termurah & Bunga 0%</span>",
     "description": "Dapatkan diskon OTR besar-besaran, gratis biaya service berkala s.d. 4 tahun, dan pengajuan kredit dibantu sampai 100% disetujui. Hubungi Sales Counter Resmi sekarang juga!"
-  }
+  },
+  "adminPasswordHash": "6f6769327073a214d4c50b56780f8bd382988e1d1acdcacbfde5797b437f8bf0"
 }
