@@ -1,0 +1,60 @@
+{
+  "pricelist": {
+    "title": "Pricelist Mobil Honda",
+    "slug": "pricelist",
+    "subtitle": "Daftar harga OTR mobil Honda terbaru resmi untuk wilayah Jabodetabek & sekitarnya",
+    "updatedAt": "2026-08-08",
+    "isSystemPage": true,
+    "routeUrl": "../pricelist/",
+    "seo": {
+      "title": "Daftar Harga OTR Mobil Honda Terbaru {year} | Honda Bintaro",
+      "description": "Cek daftar harga OTR mobil Honda terbaru untuk wilayah Jabodetabek. Promo harga spesial Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord.",
+      "keywords": "harga otr honda, pricelist honda bintaro, harga honda brio, harga hr-v bintaro, kredit honda",
+      "image": "../assets/images/logo.png"
+    }
+  },
+  "brochure": {
+    "title": "e-Brochure Mobil Honda",
+    "slug": "brochure",
+    "subtitle": "Silakan lihat langsung spesifikasi lengkap secara online atau unduh brosur resmi mobil Honda pilihan Anda.",
+    "updatedAt": "2026-08-08",
+    "isSystemPage": true,
+    "routeUrl": "../brochure/",
+    "seo": {
+      "title": "Unduh Brosur Resmi Mobil Honda Terbaru {year} | e-Brochure Honda Bintaro",
+      "description": "Cek spesifikasi lengkap dan fitur unggulan mobil Honda pilihan Anda. Unduh e-Brochure resmi Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord langsung.",
+      "keywords": "brosur honda, e-brochure honda, spesifikasi honda brio, download brosur honda",
+      "image": "../assets/images/logo.png"
+    }
+  },
+  "privacy-policy": {
+    "title": "Kebijakan Privasi",
+    "slug": "privacy-policy",
+    "subtitle": "Komitmen kami dalam melindungi dan menjaga privasi data Anda",
+    "updatedAt": "2026-08-08",
+    "isSystemPage": false,
+    "routeUrl": "../page/?id=privacy-policy",
+    "content": "<h2>1. Pengumpulan Informasi</h2><p>Kami menghormati privasi pengunjung website kami. Informasi pribadi yang Anda berikan melalui formulir kontak atau WhatsApp (seperti nama, nomor telepon, dan lokasi domisili) hanya digunakan untuk keperluan konsultasi simulasi kredit, penawaran harga OTR, dan proses pemesanan unit mobil Honda.</p><h2>2. Penggunaan Data</h2><p>Data Anda tidak akan pernah kami perjualbelikan atau sebarkan kepada pihak ketiga di luar dealer resmi dan lembaga pembiayaan (leasing) rekanan yang Anda pilih untuk pengajuan kredit.</p><h2>3. Keamanan Informasi</h2><p>Kami menerapkan standar keamanan terbaik untuk melindungi informasi pribadi Anda baik saat transmisi maupun setelah kami menerimanya.</p><h2>4. Hubungi Kami</h2><p>Jika Anda memiliki pertanyaan mengenai kebijakan privasi ini, silakan hubungi Sales Counter resmi kami melalui nomor WhatsApp yang tertera di website.</p>",
+    "seo": {
+      "title": "Kebijakan Privasi | Dealer & Sales Counter Resmi Honda",
+      "description": "Kebijakan privasi dan perlindungan data pengunjung website resmi penjualan mobil Honda.",
+      "keywords": "kebijakan privasi, privacy policy honda",
+      "image": "../assets/images/logo.png"
+    }
+  },
+  "syarat-ketentuan": {
+    "title": "Syarat & Ketentuan Pemesanan",
+    "slug": "syarat-ketentuan",
+    "subtitle": "Informasi prosedur pemesanan unit (SPK) dan pengajuan kredit mobil Honda",
+    "updatedAt": "2026-08-08",
+    "isSystemPage": false,
+    "routeUrl": "../page/?id=syarat-ketentuan",
+    "content": "<h2>1. Pemesanan Unit (SPK)</h2><p>Pemesanan unit mobil Honda dilakukan melalui penerbitan Surat Pemesanan Kendaraan (SPK) resmi dengan menyertakan tanda jadi (booking fee) yang disetorkan langsung ke rekening resmi dealer.</p><h2>2. Harga & Promo</h2><p>Harga OTR yang tertera di website merupakan harga acuan wilayah Jabodetabek dan dapat berubah sewaktu-waktu sesuai kebijakan ATPM Honda Prospect Motor.</p><h2>3. Pengajuan Kredit Leasing</h2><p>Persetujuan kredit sepenuhnya merupakan wewenang dari pihak lembaga pembiayaan (Leasing / Bank rekanan). Tim sales kami akan mendampingi dan membantu kelengkapan berkas Anda hingga disetujui 100%.</p>",
+    "seo": {
+      "title": "Syarat & Ketentuan Pemesanan Mobil Honda Resmi",
+      "description": "Informasi lengkap mengenai prosedur pemesanan unit dan syarat pengajuan kredit mobil Honda.",
+      "keywords": "syarat ketentuan kredit honda, spk mobil honda",
+      "image": "../assets/images/logo.png"
+    }
+  }
+}

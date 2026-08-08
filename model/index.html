@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <!-- Dynamic Primary SEO Metadata -->
+    <title id="meta-title">Detail Model Mobil Honda - Spesifikasi, Harga OTR & Promo</title>
+    <meta name="description" id="meta-desc" content="Dapatkan penawaran terbaik mobil Honda di Dealer Resmi. Promo DP murah, cicilan ringan, dan diskon menarik.">
+    <meta name="keywords" id="meta-keywords" content="honda bintaro, promo honda, harga honda, kredit honda">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" id="og-title" content="Detail Model Mobil Honda - Spesifikasi, Harga OTR & Promo">
+    <meta property="og:description" id="og-desc" content="Dapatkan penawaran terbaik mobil Honda di Dealer Resmi. Promo DP murah, cicilan ringan, dan diskon menarik.">
+    <meta property="og:image" id="og-image" content="../assets/images/logo.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitter-title" content="Detail Model Mobil Honda - Spesifikasi, Harga OTR & Promo">
+    <meta name="twitter:description" id="twitter-desc" content="Dapatkan penawaran terbaik mobil Honda di Dealer Resmi. Promo DP murah, cicilan ringan, dan diskon menarik.">
+    <meta name="twitter:image" id="twitter-image" content="../assets/images/logo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" id="dynamic-favicon" href="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        honda: '#cc0000',
+                        'honda-dark': '#990000',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+        }
+        .mega-menu-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sidebar-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+
+    <!-- Shared Components Scripts -->
+    <script src="../assets/js/header.js" defer></script>
+    <script src="../assets/js/footer.js" defer></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <!-- SHARED NAVBAR HEADER -->
+    <div id="shared-header" data-page="model" data-base-path="../"></div>
+
+    <!-- BREADCRUMBS -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-6">
+        <nav class="flex text-xs font-medium text-gray-500 gap-2 items-center">
+            <a href="../" class="hover:text-honda transition">Home</a>
+            <span>/</span>
+            <a href="../#model-list-section" id="breadcrumb-category" class="hover:text-honda transition">Katalog Mobil</a>
+            <span>/</span>
+            <span class="text-gray-900 font-semibold" id="breadcrumb-model">Memuat Model...</span>
+        </nav>
+    </section>
+
+    <!-- 404 NOT FOUND CONTAINER (Hidden by default) -->
+    <div id="model-not-found" class="hidden max-w-3xl mx-auto w-full px-4 py-16 text-center space-y-6 flex-1">
+        <div class="w-20 h-20 mx-auto rounded-full bg-red-50 text-honda flex items-center justify-center text-3xl font-bold">
+            !
+        </div>
+        <div class="space-y-2">
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Model Mobil Tidak Ditemukan</h1>
+            <p class="text-sm text-gray-500 max-w-md mx-auto">Model mobil yang Anda cari tidak tersedia atau ID URL salah. Silakan pilih dari model mobil yang tersedia di bawah.</p>
+        </div>
+        <div id="fallback-models-list" class="flex flex-wrap justify-center gap-2 pt-2">
+            <!-- Dynamic available cars badges -->
+        </div>
+        <div class="pt-4">
+            <a href="../" class="inline-block bg-honda hover:bg-honda-dark text-white font-bold text-xs px-6 py-3 rounded-full transition shadow-sm">
+                Kembali ke Beranda
+            </a>
+        </div>
+    </div>
+
+    <!-- DETAILED VEHICLE LAYOUT -->
+    <main id="model-detail-main" class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex-1">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+
+            <!-- LEFT COLUMN: MEDIA & BADGES -->
+            <div class="lg:col-span-6 space-y-4">
+                <!-- Large Image Box with Multi-Image Slider Controls -->
+                <div class="bg-white border border-gray-100 rounded-3xl p-6 sm:p-8 flex items-center justify-center shadow-sm relative aspect-square overflow-hidden group">
+                    <img id="detail-main-img" src="" alt="Mobil Honda"
+                        class="max-h-[95%] max-w-[95%] object-contain transition-all duration-300 group-hover:scale-105">
+                    
+                    <!-- Image Index Counter Badge -->
+                    <div id="image-counter-badge" class="hidden absolute top-4 left-4 bg-slate-900/75 backdrop-blur-sm text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-sm">
+                        <span id="current-img-idx">1</span> / <span id="total-img-count">1</span> Foto
+                    </div>
+
+                    <!-- Prev & Next Arrows (Visible if images > 1) -->
+                    <button type="button" id="prev-img-btn" onclick="prevMainImage()" class="hidden absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-md border border-gray-100 flex items-center justify-center transition hover:scale-110 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor font-bold">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button type="button" id="next-img-btn" onclick="nextMainImage()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-md border border-gray-100 flex items-center justify-center transition hover:scale-110 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor font-bold">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Gallery & Color Thumbnails Selector -->
+                <div id="detail-thumbnails-container" class="space-y-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-gray-400 block">Galeri Foto & Tampilan</span>
+                    <div id="detail-thumbnails-grid" class="flex flex-wrap gap-2.5">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: PRICING, CONFIGURATOR, TABS & CTA -->
+            <div class="lg:col-span-6 space-y-6">
+
+                <!-- Main Header Details -->
+                <div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold font-outfit text-gray-900 tracking-tight leading-none mb-2"
+                        id="detail-model-name">Memuat Data Model...</h1>
+                    <div class="flex gap-2 flex-wrap items-center">
+                        <span id="detail-tag-seats"
+                            class="bg-gray-100 text-gray-600 font-bold text-[10px] tracking-wide uppercase px-3 py-1 rounded-full"># Kursi</span>
+                        <span id="detail-tag-engine"
+                            class="bg-gray-100 text-gray-600 font-bold text-[10px] tracking-wide uppercase px-3 py-1 rounded-full"># Mesin</span>
+                        <span id="detail-tag-category"
+                            class="bg-red-50 text-honda font-bold text-[10px] tracking-wide uppercase px-3 py-1 rounded-full"># Kategori</span>
+                    </div>
+                </div>
+
+                <!-- Price & Installments -->
+                <div class="border-t border-b border-gray-200 py-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <span class="text-xs text-gray-400 uppercase tracking-widest font-semibold block mb-0.5">Harga OTR Mulai</span>
+                        <h2 class="text-2xl sm:text-3xl font-black font-outfit text-honda leading-none" id="detail-price">Rp. 0</h2>
+                    </div>
+                    <div class="flex gap-3 items-center">
+                        <div class="bg-red-50/50 border border-red-100 rounded-xl p-2.5 px-4 text-center shadow-sm">
+                            <span class="text-[9px] text-gray-400 uppercase tracking-widest block mb-0.5">Angsuran Mulai</span>
+                            <span class="font-extrabold text-xs sm:text-sm text-honda block" id="detail-cicilan">-</span>
+                        </div>
+                        <div class="bg-gray-50 border border-gray-100 rounded-xl p-2.5 px-4 text-center shadow-sm">
+                            <span class="text-[9px] text-gray-400 uppercase tracking-widest block mb-0.5">DP Mulai</span>
+                            <span class="font-extrabold text-xs sm:text-sm text-gray-800 block" id="detail-dp">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Variant Selector configurator buttons -->
+                <div id="variant-selector-wrapper">
+                    <h3 class="font-bold text-xs uppercase tracking-wider text-gray-500 mb-3">Pilih Varian & Tipe</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="variant-selector-grid">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons: WhatsApp CTA & Download Brochure -->
+                <div class="space-y-2.5 pt-2">
+                    <a id="detail-wa-cta" href="#" target="_blank"
+                        class="flex items-center justify-center gap-3 w-full bg-honda hover:bg-honda-dark text-white py-3.5 sm:py-4 rounded-full hover:shadow-lg font-bold text-sm sm:text-base transition-all duration-300 text-center shadow-sm">
+                        <!-- WhatsApp Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.458L0 24zm5.835-3.32c1.629.967 3.39 1.48 5.206 1.481 5.485 0 9.95-4.466 9.954-9.953.002-2.657-1.03-5.155-2.906-7.03C16.27 3.299 13.774 2.26 11.121 2.26c-5.495 0-9.96 4.465-9.964 9.954-.001 1.892.493 3.738 1.433 5.345L1.5 21.5l4.392-1.153zM16.621 13.62c-.27-.135-1.597-.788-1.845-.878-.247-.09-.427-.135-.607.135-.18.27-.697.878-.855 1.058-.158.18-.315.202-.585.067-.27-.135-1.14-.42-2.172-1.341-.803-.715-1.344-1.602-1.502-1.872-.158-.27-.017-.417.118-.552.122-.122.27-.315.405-.473.135-.158.18-.27.27-.45.09-.18.045-.338-.022-.473-.068-.135-.608-1.464-.833-2.008-.22-.527-.44-.455-.608-.464-.158-.008-.338-.009-.518-.009-.18 0-.473.067-.72.338-.248.27-.945.923-.945 2.25s.968 2.61 1.103 2.79c.135.18 1.905 2.91 4.613 4.08.645.278 1.148.445 1.54.57.647.206 1.237.177 1.702.107.518-.077 1.597-.653 1.822-1.283.225-.63.225-1.17.158-1.283-.068-.113-.248-.18-.518-.315z" />
+                        </svg>
+                        <span>Pesan Sekarang via WhatsApp</span>
+                    </a>
+
+                    <a id="detail-brochure-btn" href="#" target="_blank"
+                        class="flex items-center justify-center gap-2 w-full bg-white hover:bg-gray-50 text-gray-700 py-3 rounded-full border border-gray-200 font-bold text-xs sm:text-sm transition-all text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-honda" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>Unduh e-Brochure (PDF Resmi)</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TABS DETAIL MODULE: DESKRIPSI & SPESIFIKASI -->
+        <div class="mt-12 border border-gray-100 rounded-3xl bg-white overflow-hidden shadow-sm">
+            <!-- Tab Headers -->
+            <div class="flex border-b border-gray-100 bg-gray-50/50">
+                <button id="tab-desc-btn"
+                    class="flex-1 py-4 text-center text-sm font-bold font-outfit border-b-2 border-honda text-honda hover:text-honda transition focus:outline-none">Deskripsi</button>
+                <button id="tab-spec-btn"
+                    class="flex-1 py-4 text-center text-sm font-bold font-outfit border-b-2 border-transparent text-gray-500 hover:text-gray-700 transition focus:outline-none">Spesifikasi</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="p-6 sm:p-8">
+                <!-- Description Tab content -->
+                <div id="tab-content-desc" class="space-y-6 text-xs sm:text-sm leading-relaxed text-gray-600">
+                    <div id="detail-description">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Specifications Tab content -->
+                <div id="tab-content-spec" class="hidden space-y-4">
+                    <table class="w-full text-xs sm:text-sm border-collapse">
+                        <tbody>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-3 font-semibold text-gray-500 w-1/3">Kapasitas Kursi</td>
+                                <td class="py-3 text-gray-800 font-medium" id="spec-seats">-</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-3 font-semibold text-gray-500">Mesin</td>
+                                <td class="py-3 text-gray-800 font-medium" id="spec-engine">-</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-3 font-semibold text-gray-500">Transmisi</td>
+                                <td class="py-3 text-gray-800 font-medium" id="spec-transmission">-</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-3 font-semibold text-gray-500">Dimensi (P x L x T)</td>
+                                <td class="py-3 text-gray-800 font-medium" id="spec-dimensions">-</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-3 font-semibold text-gray-500">Fitur Utama & Keamanan</td>
+                                <td class="py-3 text-gray-800 font-medium" id="spec-features">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- RELATED MODELS SLIDER GRID -->
+        <section class="mt-16 scroll-mt-20">
+            <div class="flex justify-between items-center mb-8 border-b border-gray-100 pb-4">
+                <h3 class="text-xl sm:text-2xl font-bold font-outfit text-gray-900 leading-tight">Model Terkait!</h3>
+                <a href="../#model-list-section"
+                    class="text-xs font-semibold text-honda hover:text-honda-dark flex items-center gap-1 transition">
+                    <span id="related-category-link-text">Katalog Mobil</span>
+                    <span>&rarr;</span>
+                </a>
+            </div>
+
+            <div id="related-cars-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- TRUST USP BLOCK -->
+    <section class="bg-white border-t border-gray-100 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="flex flex-col items-center">
+                    <span class="text-3xl text-honda mb-3">✓</span>
+                    <h5 class="font-bold text-sm text-gray-900 font-outfit uppercase">Pesan Mobil Lebih Mudah via WhatsApp</h5>
+                    <p class="text-xs text-gray-400 max-w-xs mt-1">Konsultasi unit, brosur, simulasi hitungan kredit, hingga pemesanan SPK dapat dilakukan secara online melalui WhatsApp.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-3xl text-honda mb-3">⏰</span>
+                    <h5 class="font-bold text-sm text-gray-900 font-outfit uppercase">Layanan Cepat & Responsif</h5>
+                    <p class="text-xs text-gray-400 max-w-xs mt-1">Kami berkomitmen memberikan respon chat yang cepat serta estimasi pengiriman unit mobil secara tepat waktu.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-3xl text-honda mb-3">🏠</span>
+                    <h5 class="font-bold text-sm text-gray-900 font-outfit uppercase">Kepuasan Pelanggan Prioritas Kami</h5>
+                    <p class="text-xs text-gray-400 max-w-xs mt-1">Sales Counter kami akan mendampingi Anda di setiap tahap pemesanan mulai dari pengiriman data hingga serah terima unit di rumah.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHARED FOOTER -->
+    <div id="shared-footer" data-base-path="../"></div>
+
+    <!-- MAIN CORE DETAIL PAGE JAVASCRIPT LOGIC -->
+    <script>
+        // Read target model id from URL query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        let modelId = (urlParams.get('id') || urlParams.get('model') || 'brio').toLowerCase().trim();
+
+        let carsData = {};
+        let siteConfig = {};
+        let activeVariantName = "";
+        let currentImageIndex = 0;
+
+        // Resolve Image Path relative to root
+        function resolveImgPath(path) {
+            if (!path) return '';
+            if (/^https?:\/\//i.test(path)) return path;
+            const clean = path.replace(/^\.\.\//, '').replace(/^\.\//, '');
+            return `../${clean}`;
+        }
+
+        // ================= FETCH AND POPULATE PRODUCTS DATABASE =================
+        async function fetchProducts() {
+            try {
+                const [productsRes, configRes] = await Promise.all([
+                    fetch('../data/products.json'),
+                    fetch('../data/site_config.json')
+                ]);
+                carsData = await productsRes.json();
+                siteConfig = await configRes.json();
+
+                // Apply dynamic theme configuration if loaded
+                if (siteConfig.theme && window.applyThemeConfig) {
+                    window.applyThemeConfig(siteConfig.theme);
+                }
+
+                // Check if requested model exists
+                if (!carsData[modelId]) {
+                    const availableKeys = Object.keys(carsData).filter(k => k !== '_config');
+                    const match = availableKeys.find(k => k.toLowerCase() === modelId);
+                    if (match) {
+                        modelId = match;
+                    } else {
+                        renderModelNotFound(availableKeys);
+                        return;
+                    }
+                }
+
+                populateModelDetails();
+                populateRelatedCars();
+            } catch (err) {
+                console.error("Gagal memuat data produk:", err);
+            }
+        }
+
+        function renderModelNotFound(availableKeys) {
+            document.getElementById('model-detail-main').classList.add('hidden');
+            const notFoundEl = document.getElementById('model-not-found');
+            notFoundEl.classList.remove('hidden');
+
+            const listEl = document.getElementById('fallback-models-list');
+            listEl.innerHTML = '';
+            availableKeys.forEach(k => {
+                const car = carsData[k];
+                const btn = `
+                    <a href="./?id=${k}" class="bg-white hover:bg-red-50 text-gray-700 hover:text-honda border border-gray-200 hover:border-red-300 font-semibold text-xs px-3.5 py-1.5 rounded-full transition shadow-sm">
+                        ${car.name || k}
+                    </a>
+                `;
+                listEl.insertAdjacentHTML('beforeend', btn);
+            });
+        }
+
+        // Populate Main Model specification details
+        function populateModelDetails() {
+            const car = carsData[modelId];
+            if (!car) return;
+
+            const currentYear = new Date().getFullYear().toString();
+            const formatYear = (s) => s ? s.replace(/{year}/g, currentYear) : '';
+
+            // 1. Dynamic SEO Metadata Update
+            const seoConf = siteConfig.seo?.models?.[modelId] || {};
+            const pageTitle = formatYear(seoConf.title) || `${car.name} - Spesifikasi, Harga OTR & Promo ${siteConfig.contact?.dealerName || 'Honda'}`;
+            const pageDesc = formatYear(seoConf.description) || `Promo harga OTR dan spesifikasi ${car.name} terbaru. DP ringan, angsuran terjangkau, bonus aksesoris resmi.`;
+            const mainImgUrl = car.images?.[0]?.full ? resolveImgPath(car.images[0].full) : (seoConf.image || '../assets/images/logo.png');
+
+            document.title = pageTitle;
+            const metaDescEl = document.getElementById('meta-desc');
+            if (metaDescEl) metaDescEl.setAttribute('content', pageDesc);
+
+            const ogTitle = document.getElementById('og-title');
+            if (ogTitle) ogTitle.setAttribute('content', pageTitle);
+            const ogDesc = document.getElementById('og-desc');
+            if (ogDesc) ogDesc.setAttribute('content', pageDesc);
+            const ogImg = document.getElementById('og-image');
+            if (ogImg) ogImg.setAttribute('content', mainImgUrl);
+
+            // 2. Breadcrumbs & Titles
+            document.getElementById('detail-model-name').innerText = car.name;
+            document.getElementById('breadcrumb-model').innerText = car.name;
+            document.getElementById('breadcrumb-category').innerText = car.category || 'Katalog Mobil';
+            document.getElementById('breadcrumb-category').href = `../#model-list-section`;
+
+            // 3. Set Spec Tags
+            document.getElementById('detail-tag-seats').innerText = `# ${car.seats || '5 Penumpang'}`;
+            document.getElementById('detail-tag-engine').innerText = `# ${car.engine || 'i-VTEC'}`;
+            document.getElementById('detail-tag-category').innerText = `# ${car.category || 'SUV'}`;
+
+            // 4. Set Spec Table
+            document.getElementById('spec-seats').innerText = car.seats || '-';
+            document.getElementById('spec-engine').innerText = car.engine || '-';
+            document.getElementById('spec-transmission').innerText = car.transmission || '-';
+            document.getElementById('spec-dimensions').innerText = car.dimensions || '-';
+            document.getElementById('spec-features').innerText = car.features || '-';
+
+            // 5. Setup Multi-Image Gallery & Color Switcher
+            setupImageGallery(car);
+
+            // 6. Dynamic Prices
+            const priceFormatted = car.price ? 'Rp ' + car.price.toLocaleString('id-ID') : 'Hubungi Dealer';
+            document.getElementById('detail-price').innerText = priceFormatted;
+            document.getElementById('detail-cicilan').innerText = car.angsuran || 'Hubungi Kami';
+            document.getElementById('detail-dp').innerText = car.dp || 'Hubungi Kami';
+
+            // 7. Description HTML
+            document.getElementById('detail-description').innerHTML = car.description || '<p class="text-gray-400">Deskripsi unit belum diatur.</p>';
+
+            // 8. Brochure Button Direct Link
+            const brochureId = siteConfig.brochures?.[modelId] || '';
+            const brochureBtn = document.getElementById('detail-brochure-btn');
+            if (brochureId) {
+                brochureBtn.href = `https://drive.google.com/file/d/${brochureId}/view`;
+                brochureBtn.classList.remove('hidden');
+            } else {
+                brochureBtn.href = `../brochure/`;
+            }
+
+            // 9. Populate Configurator Variants grid list
+            const varGrid = document.getElementById('variant-selector-grid');
+            varGrid.innerHTML = '';
+
+            const variants = car.variants || [`${car.name} OTR: ${priceFormatted}`];
+            variants.forEach((v, idx) => {
+                const parts = v.split(':');
+                const vName = parts[0].trim();
+                const vPrice = parts[1] ? parts[1].trim() : priceFormatted;
+                const cleanVName = vName.replace(/\s+OTR\s*$/i, '').trim();
+
+                const isActive = idx === 0;
+                if (isActive) {
+                    activeVariantName = cleanVName;
+                    updateWhatsAppLink(cleanVName, vPrice);
+                }
+
+                const borderClass = isActive ? 'border-honda bg-red-50/20' : 'border-gray-200 hover:border-honda hover:bg-gray-50/30';
+                const checkClass = isActive ? 'block' : 'hidden';
+
+                varGrid.innerHTML += `
+                    <button type="button" data-index="${idx}" data-name="${cleanVName}" data-price="${vPrice}" 
+                            class="var-select-btn text-left p-3.5 border rounded-2xl flex justify-between items-center transition duration-300 relative focus:outline-none ${borderClass}">
+                        <div>
+                            <h4 class="font-bold text-xs sm:text-sm text-gray-900">${cleanVName}</h4>
+                            <span class="text-[11px] font-bold text-honda mt-0.5 block">${vPrice}</span>
+                        </div>
+                        <span class="var-check-icon text-honda ${checkClass}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </button>
+                `;
+            });
+
+            // Set click listeners for Configurator Variant selectors
+            const varBtns = document.querySelectorAll('.var-select-btn');
+            varBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    varBtns.forEach(b => {
+                        b.classList.remove('border-honda', 'bg-red-50/20');
+                        b.classList.add('border-gray-200', 'hover:bg-gray-50/30');
+                        b.querySelector('.var-check-icon').classList.replace('block', 'hidden');
+                    });
+
+                    btn.classList.add('border-honda', 'bg-red-50/20');
+                    btn.classList.remove('border-gray-200', 'hover:bg-gray-50/30');
+                    btn.querySelector('.var-check-icon').classList.replace('hidden', 'block');
+
+                    const vName = btn.getAttribute('data-name');
+                    const vPrice = btn.getAttribute('data-price');
+                    activeVariantName = vName;
+
+                    document.getElementById('detail-price').innerText = vPrice;
+                    updateWhatsAppLink(vName, vPrice);
+                });
+            });
+        }
+
+        // Setup Multi-Image Slider, Counter & Thumbnails
+        function setupImageGallery(car) {
+            const images = car.images || [];
+            currentImageIndex = 0;
+
+            const mainImgEl = document.getElementById('detail-main-img');
+            const counterEl = document.getElementById('image-counter-badge');
+            const prevBtn = document.getElementById('prev-img-btn');
+            const nextBtn = document.getElementById('next-img-btn');
+            const thumbsContainer = document.getElementById('detail-thumbnails-container');
+            const thumbsGrid = document.getElementById('detail-thumbnails-grid');
+
+            if (images.length > 0) {
+                mainImgEl.src = resolveImgPath(images[0].full);
+                mainImgEl.alt = car.name;
+            }
+
+            if (images.length > 1) {
+                counterEl.classList.remove('hidden');
+                prevBtn.classList.remove('hidden');
+                nextBtn.classList.remove('hidden');
+                thumbsContainer.classList.remove('hidden');
+
+                document.getElementById('total-img-count').innerText = images.length;
+                document.getElementById('current-img-idx').innerText = 1;
+
+                thumbsGrid.innerHTML = '';
+                images.forEach((img, idx) => {
+                    const thumbUrl = resolveImgPath(img.thumb || img.full);
+                    const isActive = idx === 0 ? 'border-honda ring-2 ring-red-100' : 'border-gray-200 hover:border-gray-400';
+                    const thumbBtn = `
+                        <button type="button" onclick="switchMainImageByIndex(${idx})" class="thumb-btn w-14 h-14 rounded-xl border p-1 bg-white transition overflow-hidden ${isActive}">
+                            <img src="${thumbUrl}" class="w-full h-full object-contain" alt="${car.name} - ${idx+1}">
+                        </button>
+                    `;
+                    thumbsGrid.insertAdjacentHTML('beforeend', thumbBtn);
+                });
+            } else {
+                counterEl.classList.add('hidden');
+                prevBtn.classList.add('hidden');
+                nextBtn.classList.add('hidden');
+                thumbsContainer.classList.add('hidden');
+            }
+        }
+
+        function switchMainImageByIndex(idx) {
+            const car = carsData[modelId];
+            if (!car || !car.images || !car.images[idx]) return;
+
+            currentImageIndex = idx;
+            const fullUrl = resolveImgPath(car.images[idx].full);
+            document.getElementById('detail-main-img').src = fullUrl;
+            document.getElementById('current-img-idx').innerText = idx + 1;
+
+            const allThumbs = document.querySelectorAll('.thumb-btn');
+            allThumbs.forEach((b, i) => {
+                if (i === idx) {
+                    b.className = 'thumb-btn w-14 h-14 rounded-xl border border-honda ring-2 ring-red-100 p-1 bg-white transition overflow-hidden';
+                } else {
+                    b.className = 'thumb-btn w-14 h-14 rounded-xl border border-gray-200 hover:border-gray-400 p-1 bg-white transition overflow-hidden';
+                }
+            });
+        }
+
+        function prevMainImage() {
+            const car = carsData[modelId];
+            if (!car || !car.images || car.images.length <= 1) return;
+            let newIdx = currentImageIndex - 1;
+            if (newIdx < 0) newIdx = car.images.length - 1;
+            switchMainImageByIndex(newIdx);
+        }
+
+        function nextMainImage() {
+            const car = carsData[modelId];
+            if (!car || !car.images || car.images.length <= 1) return;
+            let newIdx = currentImageIndex + 1;
+            if (newIdx >= car.images.length) newIdx = 0;
+            switchMainImageByIndex(newIdx);
+        }
+
+        // WhatsApp redirect click generator with auto message template
+        function updateWhatsAppLink(vName, vPrice) {
+            const config = siteConfig.contact || {};
+            const rawPhone = config.phoneNumber || "6282299185425";
+            const phoneNumber = rawPhone.replace(/^\+/, '').replace(/^0/, '62');
+            const salesName = config.salesName || "Sales Counter";
+            const car = carsData[modelId];
+            
+            const rawTemplate = siteConfig.whatsappTemplates?.modelDetail || "Halo {salesName}, saya tertarik memesan unit mobil *{carName}* tipe *{variantName}* dengan harga OTR *{variantPrice}*. Mohon informasi simulasi hitungan cicilan DP dan bonus aksesoris terbarunya.";
+            const message = rawTemplate
+                .replace(/{salesName}/g, salesName)
+                .replace(/{carName}/g, car?.name || modelId)
+                .replace(/{variantName}/g, vName || '')
+                .replace(/{variantPrice}/g, vPrice || '');
+                
+            const encodedMsg = encodeURIComponent(message);
+            document.getElementById('detail-wa-cta').href = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+        }
+
+        // Populate Related Cars (Matches category, full banner images, no promo label)
+        function populateRelatedCars() {
+            const car = carsData[modelId];
+            if (!car) return;
+
+            const grid = document.getElementById('related-cars-grid');
+            grid.innerHTML = '';
+
+            const categoryLinkText = document.getElementById('related-category-link-text');
+            if (categoryLinkText) {
+                categoryLinkText.innerText = car.category || 'Katalog Mobil';
+            }
+
+            // Gather candidate cars: same category first, then others
+            const sameCategory = [];
+            const otherCategory = [];
+
+            for (const [id, c] of Object.entries(carsData)) {
+                if (id === '_config' || id === modelId) continue;
+                if (c.category === car.category) {
+                    sameCategory.push({ id, ...c });
+                } else {
+                    otherCategory.push({ id, ...c });
+                }
+            }
+
+            const candidates = [...sameCategory, ...otherCategory].slice(0, 4);
+
+            candidates.forEach(related => {
+                const priceFormatted = related.price ? 'Rp ' + related.price.toLocaleString('id-ID') : 'Hubungi Dealer';
+                const detailUrl = `./?id=${related.id}`;
+                const imgUrl = related.images?.[0]?.full ? resolveImgPath(related.images[0].full) : '../assets/images/logo.png';
+
+                grid.innerHTML += `
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col overflow-hidden relative group">
+                        
+                        <!-- Full Top Image Box (Aspect Square Cover) -->
+                        <div class="w-full aspect-square overflow-hidden bg-gray-100">
+                            <img src="${imgUrl}" alt="${related.name}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-bold text-base font-outfit text-gray-800 hover:text-honda transition leading-snug mb-1 truncate">${related.name}</h4>
+                                
+                                <!-- Premium Spec Capsules -->
+                                <div class="flex flex-wrap gap-1.5 text-[10px] text-gray-500 font-semibold mb-4">
+                                    <div class="bg-gray-50 border border-gray-100 rounded-full py-1 px-2.5 flex items-center justify-center gap-1.5">
+                                        <span>👤</span>
+                                        <span>${related.seats || '5-Seater'}</span>
+                                    </div>
+                                    <div class="bg-gray-50 border border-gray-100 rounded-full py-1 px-2.5 flex items-center justify-center gap-1.5">
+                                        <span>⚙️</span>
+                                        <span>${related.engine || 'i-VTEC'}</span>
+                                    </div>
+                                </div>
+
+                                <div class="pt-3 border-t border-gray-50 text-center">
+                                    <p class="text-[9px] text-gray-400 uppercase tracking-wider mb-0.5">Harga OTR</p>
+                                    <p class="text-base font-bold font-outfit text-honda leading-none">${priceFormatted}</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-5 space-y-3">
+                                <a href="${detailUrl}" class="block w-full text-center bg-honda hover:bg-honda-dark text-white py-2 rounded-full text-xs font-bold transition shadow-sm">Detail</a>
+                                <div class="flex justify-between items-center text-[9px] text-gray-500 font-semibold px-1 pt-1">
+                                    <span>DP: <span class="text-gray-900">${related.dp || 'Hubungi Kami'}</span></span>
+                                    <span>Cicilan: <span class="text-honda">${related.angsuran || 'Hubungi Kami'}</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // ================= TABS DETAIL ACTION TACTICS =================
+        const tabDescBtn = document.getElementById('tab-desc-btn');
+        const tabSpecBtn = document.getElementById('tab-spec-btn');
+        const tabContentDesc = document.getElementById('tab-content-desc');
+        const tabContentSpec = document.getElementById('tab-content-spec');
+
+        tabDescBtn.addEventListener('click', () => {
+            tabDescBtn.classList.replace('border-transparent', 'border-honda');
+            tabDescBtn.classList.replace('text-gray-500', 'text-honda');
+
+            tabSpecBtn.classList.replace('border-honda', 'border-transparent');
+            tabSpecBtn.classList.replace('text-honda', 'text-gray-500');
+
+            tabContentDesc.classList.remove('hidden');
+            tabContentSpec.classList.add('hidden');
+        });
+
+        tabSpecBtn.addEventListener('click', () => {
+            tabSpecBtn.classList.replace('border-transparent', 'border-honda');
+            tabSpecBtn.classList.replace('text-gray-500', 'text-honda');
+
+            tabDescBtn.classList.replace('border-honda', 'border-transparent');
+            tabDescBtn.classList.replace('text-honda', 'text-gray-500');
+
+            tabContentSpec.classList.remove('hidden');
+            tabContentDesc.classList.add('hidden');
+        });
+
+        // Initialize Page
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchProducts();
+        });
+    </script>
+</body>
+
+</html>

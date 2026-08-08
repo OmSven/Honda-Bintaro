@@ -701,6 +701,9 @@
                 if (siteConfig.contact && window.applyContactConfig) {
                     window.applyContactConfig(siteConfig.contact);
                 }
+                if (siteConfig.theme && window.applyThemeConfig) {
+                    window.applyThemeConfig(siteConfig.theme);
+                }
 
                 // Render dynamic elements
                 renderUSPCards();
@@ -787,7 +790,7 @@
 
                 renderedCount++;
                 const priceFormatted = car.price ? 'Rp ' + car.price.toLocaleString('id-ID') : 'Hubungi Dealer';
-                const detailUrl = `model/${id}/`;
+                const detailUrl = `model/?id=${id}`;
 
                 grid.innerHTML += `
                     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col overflow-hidden relative group">

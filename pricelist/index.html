@@ -2,25 +2,25 @@
 <html lang="id">
 
 <head>
-    <!-- Primary SEO Metadata -->
-    <title>Daftar Harga OTR Mobil Honda Terbaru 2026 | Honda Bintaro</title>
-    <meta name="description" content="Cek daftar harga OTR mobil Honda terbaru untuk wilayah Bintaro & Jabodetabek. Promo harga spesial Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord.">
-    <meta name="keywords" content="harga otr honda, pricelist honda bintaro, harga honda brio, harga hr-v bintaro, harga cr-v bintaro">
+    <!-- Dynamic SEO Metadata -->
+    <title id="meta-title">Daftar Harga OTR Mobil Honda Terbaru | Honda Bintaro</title>
+    <meta name="description" id="meta-desc" content="Cek daftar harga OTR mobil Honda terbaru untuk wilayah Bintaro & Jabodetabek. Promo harga spesial Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord.">
+    <meta name="keywords" id="meta-keywords" content="harga otr honda, pricelist honda bintaro, harga honda brio, harga hr-v bintaro, harga cr-v bintaro">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Daftar Harga OTR Mobil Honda Terbaru 2026 | Honda Bintaro">
-    <meta property="og:description" content="Cek daftar harga OTR mobil Honda terbaru untuk wilayah Bintaro & Jabodetabek. Promo harga spesial Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord.">
-    <meta property="og:image" content="../assets/images/logo.png">
+    <meta property="og:title" id="og-title" content="Daftar Harga OTR Mobil Honda Terbaru | Honda Bintaro">
+    <meta property="og:description" id="og-desc" content="Cek daftar harga OTR mobil Honda terbaru untuk wilayah Bintaro & Jabodetabek. Promo harga spesial Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord.">
+    <meta property="og:image" id="og-image" content="../assets/images/logo.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Daftar Harga OTR Mobil Honda Terbaru 2026 | Honda Bintaro">
-    <meta name="twitter:description" content="Cek daftar harga OTR mobil Honda terbaru untuk wilayah Bintaro & Jabodetabek. Promo harga spesial Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord.">
-    <meta name="twitter:image" content="../assets/images/logo.png">
+    <meta name="twitter:title" id="twitter-title" content="Daftar Harga OTR Mobil Honda Terbaru | Honda Bintaro">
+    <meta name="twitter:description" id="twitter-desc" content="Cek daftar harga OTR mobil Honda terbaru untuk wilayah Bintaro & Jabodetabek. Promo harga spesial Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord.">
+    <meta name="twitter:image" id="twitter-image" content="../assets/images/logo.png">
 
     <!-- Favicon -->
-    <link rel="icon" href="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" type="image/x-icon">
+    <link rel="icon" id="dynamic-favicon" href="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Fonts -->
@@ -60,8 +60,9 @@
         
         <!-- Page Title Header -->
         <div class="text-center mb-10">
-            <h1 class="text-2xl sm:text-4xl font-extrabold font-outfit text-gray-900 mb-4 tracking-tight">Pricelist Mobil Honda</h1>
-            <div class="h-1 w-16 bg-honda mx-auto rounded-full"></div>
+            <h1 id="pricelist-page-title" class="text-2xl sm:text-4xl font-extrabold font-outfit text-gray-900 mb-3 tracking-tight">Pricelist Mobil Honda</h1>
+            <div class="h-1 w-16 bg-honda mx-auto rounded-full mb-3"></div>
+            <p id="pricelist-page-subtitle" class="text-xs sm:text-sm text-gray-400 max-w-md mx-auto"></p>
         </div>
 
         <!-- Dynamic Loader & Content Containers -->
@@ -125,19 +126,25 @@
             const fallbackUrl = '../data/pricelist.json';
             
             let data = null;
+            let pagesData = null;
+            let siteConfig = null;
             
             try {
-                const response = await fetch(apiUrl);
-                if (!response.ok) throw new Error('Network response was not ok');
-                data = await response.json();
-            } catch (err) {
-                console.warn('Gagal memuat API utama, menggunakan fallback lokal:', err);
-                try {
-                    const fallbackResponse = await fetch(fallbackUrl);
-                    data = await fallbackResponse.json();
-                } catch (fallbackErr) {
-                    console.error('Semua pemuatan data pricelist gagal:', fallbackErr);
+                const [plRes, pagesRes, cfgRes] = await Promise.all([
+                    fetch(fallbackUrl).then(r => r.json()).catch(() => null),
+                    fetch('../data/pages.json').then(r => r.json()).catch(() => null),
+                    fetch('../data/site_config.json').then(r => r.json()).catch(() => null)
+                ]);
+                data = plRes;
+                pagesData = pagesRes;
+                siteConfig = cfgRes;
+
+                // Theme apply if available
+                if (siteConfig?.theme && window.applyThemeConfig) {
+                    window.applyThemeConfig(siteConfig.theme);
                 }
+            } catch (err) {
+                console.warn('Gagal memuat file lokal:', err);
             }
             
             if (!data) {
@@ -149,6 +156,33 @@
                 `;
                 return;
             }
+
+            // Apply dynamic Title, Subtitle and SEO from pages.json
+            const pageConfig = pagesData?.pricelist || {};
+            const currentYear = new Date().getFullYear().toString();
+            const formatYear = (s) => s ? s.replace(/{year}/g, currentYear) : '';
+
+            if (pageConfig.title) {
+                document.getElementById('pricelist-page-title').innerText = pageConfig.title;
+            }
+            if (pageConfig.subtitle) {
+                document.getElementById('pricelist-page-subtitle').innerText = pageConfig.subtitle;
+            }
+
+            const seo = pageConfig.seo || {};
+            const pageTitle = formatYear(seo.title) || `Daftar Harga OTR Mobil Honda Terbaru ${currentYear} | ${siteConfig?.contact?.dealerName || 'Honda'}`;
+            const pageDesc = formatYear(seo.description) || pageConfig.subtitle || `Daftar harga OTR mobil Honda terbaru resmi.`;
+            const ogImage = seo.image || '../assets/images/logo.png';
+
+            document.title = pageTitle;
+            document.getElementById('meta-desc')?.setAttribute('content', pageDesc);
+            document.getElementById('meta-keywords')?.setAttribute('content', seo.keywords || 'harga otr honda');
+            document.getElementById('og-title')?.setAttribute('content', pageTitle);
+            document.getElementById('og-desc')?.setAttribute('content', pageDesc);
+            document.getElementById('og-image')?.setAttribute('content', ogImage);
+            document.getElementById('twitter-title')?.setAttribute('content', pageTitle);
+            document.getElementById('twitter-desc')?.setAttribute('content', pageDesc);
+            document.getElementById('twitter-image')?.setAttribute('content', ogImage);
             
             renderDesktopTable(data.models);
             renderMobileCards(data.models);

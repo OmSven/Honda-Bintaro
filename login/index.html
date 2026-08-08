@@ -412,6 +412,9 @@
                     <button onclick="switchTab('pricelist')" data-tab="pricelist" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
                         <i class="fa-solid fa-tags w-5 text-center"></i> Pricelist OTR
                     </button>
+                    <button onclick="switchTab('pages')" data-tab="pages" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
+                        <i class="fa-solid fa-file-lines w-5 text-center"></i> Halaman Kustom
+                    </button>
                     <button onclick="switchTab('media')" data-tab="media" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
                         <i class="fa-solid fa-cloud-arrow-up w-5 text-center"></i> Upload Media
                     </button>
@@ -519,6 +522,7 @@
                             <!-- SUB-TAB NAVIGATION -->
                             <div class="flex overflow-x-auto gap-1.5 p-1 bg-slate-950/40 border border-slate-800 rounded-xl mb-6">
                                 <button onclick="switchSubTab('profil')" data-subtab="profil" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-white bg-red-600 transition">Profil & Logo</button>
+                                <button onclick="switchSubTab('tema')" data-subtab="tema" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition"><i class="fa-solid fa-palette mr-1 text-red-500"></i> Tema & Warna</button>
                                 <button onclick="switchSubTab('wa-template')" data-subtab="wa-template" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">WhatsApp Template</button>
                                 <button onclick="switchSubTab('nav-tautan')" data-subtab="nav-tautan" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">Navigasi & Tautan</button>
                                 <button onclick="switchSubTab('kredit-req')" data-subtab="kredit-req" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">Persyaratan Kredit</button>
@@ -637,6 +641,189 @@
                                 </div>
                             </div>
 
+                            <!-- SUB-TAB: TEMA & WARNA -->
+                            <div id="subtab-pane-tema" class="subtab-pane hidden space-y-6">
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-6">
+                                    <div class="border-b border-slate-800 pb-3">
+                                        <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                            <i class="fa-solid fa-palette text-red-500"></i> Kustomisasi Tema & Warna Website
+                                        </h3>
+                                        <p class="text-xs text-gray-400 mt-1">Ubah palet warna website secara dinamis untuk menyesuaikan identitas merek dealer / sales konsultan.</p>
+                                    </div>
+
+                                    <!-- Quick Presets -->
+                                    <div class="space-y-2">
+                                        <label class="text-xs font-bold text-gray-300 uppercase tracking-wider block">Pilihan Preset Warna Cepat (One-Click Presets)</label>
+                                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                                            <button type="button" onclick="applyThemePreset('honda-red', '#cc0000', '#990000', '#fee2e2', '#f97316')" class="p-3 rounded-xl border border-red-500/30 bg-red-950/20 hover:bg-red-950/40 text-left transition flex items-center gap-2.5">
+                                                <span class="w-5 h-5 rounded-full bg-[#cc0000] shadow-sm shrink-0 border border-white/20"></span>
+                                                <div>
+                                                    <div class="text-xs font-bold text-white">Honda Crimson</div>
+                                                    <div class="text-[10px] text-gray-400">#cc0000 (Default)</div>
+                                                </div>
+                                            </button>
+                                            <button type="button" onclick="applyThemePreset('modern-blue', '#0047bb', '#002f80', '#e0f2fe', '#0ea5e9')" class="p-3 rounded-xl border border-blue-500/30 bg-blue-950/20 hover:bg-blue-950/40 text-left transition flex items-center gap-2.5">
+                                                <span class="w-5 h-5 rounded-full bg-[#0047bb] shadow-sm shrink-0 border border-white/20"></span>
+                                                <div>
+                                                    <div class="text-xs font-bold text-white">Modern Blue</div>
+                                                    <div class="text-[10px] text-gray-400">#0047bb (Hyundai/Ford)</div>
+                                                </div>
+                                            </button>
+                                            <button type="button" onclick="applyThemePreset('toyota-red', '#d9251d', '#a8130d', '#fee2e2', '#ea580c')" class="p-3 rounded-xl border border-rose-500/30 bg-rose-950/20 hover:bg-rose-950/40 text-left transition flex items-center gap-2.5">
+                                                <span class="w-5 h-5 rounded-full bg-[#d9251d] shadow-sm shrink-0 border border-white/20"></span>
+                                                <div>
+                                                    <div class="text-xs font-bold text-white">Toyota Sport Red</div>
+                                                    <div class="text-[10px] text-gray-400">#d9251d</div>
+                                                </div>
+                                            </button>
+                                            <button type="button" onclick="applyThemePreset('luxury-gold', '#c5a059', '#96742f', '#fef3c7', '#f59e0b')" class="p-3 rounded-xl border border-amber-500/30 bg-amber-950/20 hover:bg-amber-950/40 text-left transition flex items-center gap-2.5">
+                                                <span class="w-5 h-5 rounded-full bg-[#c5a059] shadow-sm shrink-0 border border-white/20"></span>
+                                                <div>
+                                                    <div class="text-xs font-bold text-white">Luxury Gold</div>
+                                                    <div class="text-[10px] text-gray-400">#c5a059 (Premium)</div>
+                                                </div>
+                                            </button>
+                                            <button type="button" onclick="applyThemePreset('mitsubishi-red', '#e60012', '#ad000d', '#fee2e2', '#f97316')" class="p-3 rounded-xl border border-red-500/20 bg-slate-900/60 hover:bg-slate-800 text-left transition flex items-center gap-2.5">
+                                                <span class="w-5 h-5 rounded-full bg-[#e60012] shadow-sm shrink-0 border border-white/20"></span>
+                                                <div>
+                                                    <div class="text-xs font-bold text-white">Diamond Red</div>
+                                                    <div class="text-[10px] text-gray-400">#e60012 (Mitsubishi)</div>
+                                                </div>
+                                            </button>
+                                            <button type="button" onclick="applyThemePreset('emerald-green', '#059669', '#047857', '#d1fae5', '#10b981')" class="p-3 rounded-xl border border-emerald-500/20 bg-slate-900/60 hover:bg-slate-800 text-left transition flex items-center gap-2.5">
+                                                <span class="w-5 h-5 rounded-full bg-[#059669] shadow-sm shrink-0 border border-white/20"></span>
+                                                <div>
+                                                    <div class="text-xs font-bold text-white">Emerald Eco</div>
+                                                    <div class="text-[10px] text-gray-400">#059669 (Hybrid/EV)</div>
+                                                </div>
+                                            </button>
+                                            <button type="button" onclick="applyThemePreset('suzuki-blue', '#005baa', '#003d75', '#e0f2fe', '#0284c7')" class="p-3 rounded-xl border border-cyan-500/20 bg-slate-900/60 hover:bg-slate-800 text-left transition flex items-center gap-2.5">
+                                                <span class="w-5 h-5 rounded-full bg-[#005baa] shadow-sm shrink-0 border border-white/20"></span>
+                                                <div>
+                                                    <div class="text-xs font-bold text-white">Ocean Blue</div>
+                                                    <div class="text-[10px] text-gray-400">#005baa (Suzuki)</div>
+                                                </div>
+                                            </button>
+                                            <button type="button" onclick="applyThemePreset('midnight-dark', '#2563eb', '#1d4ed8', '#f1f5f9', '#3b82f6')" class="p-3 rounded-xl border border-blue-500/20 bg-slate-900/60 hover:bg-slate-800 text-left transition flex items-center gap-2.5">
+                                                <span class="w-5 h-5 rounded-full bg-[#2563eb] shadow-sm shrink-0 border border-white/20"></span>
+                                                <div>
+                                                    <div class="text-xs font-bold text-white">Royal Sapphire</div>
+                                                    <div class="text-[10px] text-gray-400">#2563eb</div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Custom Color Inputs & Live Preview -->
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
+                                        <!-- Color Pickers Form -->
+                                        <div class="space-y-4 bg-slate-950/40 p-4 rounded-xl border border-slate-800">
+                                            <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider">Custom Palet Warna</h4>
+                                            
+                                            <!-- Primary Color -->
+                                            <div class="space-y-1.5">
+                                                <label class="text-xs text-gray-400 font-semibold flex items-center justify-between">
+                                                    <span>Warna Utama (Primary Color)</span>
+                                                    <span class="text-[10px] text-gray-500">Tombol, Header & Highlight</span>
+                                                </label>
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="color" id="cfg-theme-primary-picker" class="w-10 h-10 rounded-lg cursor-pointer bg-transparent border-0" oninput="syncColorInput('primary', this.value)">
+                                                    <input type="text" id="cfg-theme-primary" class="glass-input flex-1 px-3 py-2 rounded-lg text-xs font-mono" placeholder="#cc0000" oninput="syncColorPicker('primary', this.value)">
+                                                </div>
+                                            </div>
+
+                                            <!-- Primary Dark (Hover) -->
+                                            <div class="space-y-1.5">
+                                                <label class="text-xs text-gray-400 font-semibold flex items-center justify-between">
+                                                    <span>Warna Gelap Hover (Dark State)</span>
+                                                    <span class="text-[10px] text-gray-500">Saat Tombol Ditekan/Disorot</span>
+                                                </label>
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="color" id="cfg-theme-dark-picker" class="w-10 h-10 rounded-lg cursor-pointer bg-transparent border-0" oninput="syncColorInput('dark', this.value)">
+                                                    <input type="text" id="cfg-theme-dark" class="glass-input flex-1 px-3 py-2 rounded-lg text-xs font-mono" placeholder="#990000" oninput="syncColorPicker('dark', this.value)">
+                                                </div>
+                                            </div>
+
+                                            <!-- Primary Light Tint -->
+                                            <div class="space-y-1.5">
+                                                <label class="text-xs text-gray-400 font-semibold flex items-center justify-between">
+                                                    <span>Warna Latar Aksen Ringan (Light Tint)</span>
+                                                    <span class="text-[10px] text-gray-500">Badge & Kotak Fitur</span>
+                                                </label>
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="color" id="cfg-theme-light-picker" class="w-10 h-10 rounded-lg cursor-pointer bg-transparent border-0" oninput="syncColorInput('light', this.value)">
+                                                    <input type="text" id="cfg-theme-light" class="glass-input flex-1 px-3 py-2 rounded-lg text-xs font-mono" placeholder="#fee2e2" oninput="syncColorPicker('light', this.value)">
+                                                </div>
+                                            </div>
+
+                                            <!-- Accent CTA Color -->
+                                            <div class="space-y-1.5">
+                                                <label class="text-xs text-gray-400 font-semibold flex items-center justify-between">
+                                                    <span>Warna Aksen CTA (Secondary Accent)</span>
+                                                    <span class="text-[10px] text-gray-500">Badge New & Promo Spesial</span>
+                                                </label>
+                                                <div class="flex items-center gap-2.5">
+                                                    <input type="color" id="cfg-theme-accent-picker" class="w-10 h-10 rounded-lg cursor-pointer bg-transparent border-0" oninput="syncColorInput('accent', this.value)">
+                                                    <input type="text" id="cfg-theme-accent" class="glass-input flex-1 px-3 py-2 rounded-lg text-xs font-mono" placeholder="#f97316" oninput="syncColorPicker('accent', this.value)">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Live Interactive Theme Component Preview -->
+                                        <div class="space-y-3 bg-slate-950/40 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+                                            <div>
+                                                <div class="flex items-center justify-between mb-3 border-b border-slate-800 pb-2">
+                                                    <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
+                                                        <i class="fa-solid fa-eye text-emerald-400"></i> Pratinjau Komponen Live
+                                                    </h4>
+                                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-semibold border border-emerald-500/20">Real-time</span>
+                                                </div>
+
+                                                <!-- Mock Components Box -->
+                                                <div class="bg-white p-4 rounded-xl text-gray-800 space-y-4 shadow-inner">
+                                                    <!-- Mock Header & Badge -->
+                                                    <div class="flex items-center justify-between border-b border-gray-100 pb-2">
+                                                        <div class="font-extrabold text-sm font-outfit text-gray-900 flex items-center gap-1.5">
+                                                            <span id="preview-logo-dot" class="w-2.5 h-2.5 rounded-full bg-[#cc0000]"></span>
+                                                            <span id="preview-brand-text">Website Sales Dealer</span>
+                                                        </div>
+                                                        <span id="preview-badge" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#fee2e2] text-[#cc0000]">
+                                                            Promo Eksklusif
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- Mock Car Card Snippet -->
+                                                    <div class="border border-gray-100 rounded-lg p-3 bg-gray-50 flex items-center justify-between gap-3">
+                                                        <div>
+                                                            <div class="text-xs font-bold text-gray-900">Honda HR-V RS Turbo</div>
+                                                            <div class="text-[10px] text-gray-500">Mulai dari <b id="preview-car-price" class="text-[#cc0000]">Rp 390.000.000</b></div>
+                                                        </div>
+                                                        <span id="preview-accent-tag" class="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-[#f97316] text-white">
+                                                            ALL NEW
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- Mock Action Buttons -->
+                                                    <div class="flex flex-wrap gap-2 pt-1">
+                                                        <button type="button" id="preview-btn-primary" class="px-4 py-2 rounded-lg text-white font-bold text-xs shadow-md transition bg-[#cc0000]">
+                                                            <i class="fa-brands fa-whatsapp mr-1"></i> Hubungi Konsultan
+                                                        </button>
+                                                        <button type="button" id="preview-btn-outline" class="px-3.5 py-2 rounded-lg font-bold text-xs border transition border-[#cc0000] text-[#cc0000] bg-white">
+                                                            Lihat Pricelist
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="text-[11px] text-gray-400 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800/80">
+                                                <i class="fa-solid fa-circle-info text-blue-400 mr-1"></i> 
+                                                Warna tema ini langsung diterapkan ke seluruh halaman website pengunjung secara instan saat disimpan.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- SUB-TAB: WHATSAPP TEMPLATE -->
                             <div id="subtab-pane-wa-template" class="subtab-pane hidden space-y-6">
                                 <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
@@ -668,71 +855,95 @@
 
                             <!-- SUB-TAB: NAVIGASI & TAUTAN -->
                             <div id="subtab-pane-nav-tautan" class="subtab-pane hidden space-y-6">
-                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                    <!-- Global Links & CNAME Settings -->
-                                    <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
-                                        <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-link text-red-500 mr-2"></i> Tautan & API Sistem</h3>
-                                        <div class="space-y-3">
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Favicon URL</label>
-                                                <input type="text" id="cfg-site-favicon" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Kunci Lisensi Website (License Key)</label>
-                                                <input type="text" id="cfg-site-license" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="Masukkan kunci lisensi untuk mengaktifkan website di domain live">
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Link API Berita/Informasi (WordPress JSON API)</label>
-                                                <input type="text" id="cfg-site-news-api" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Tautan Seluruh Berita (Tombol Selengkapnya)</label>
-                                                <input type="text" id="cfg-site-news-url" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Judul Section Berita</label>
-                                                <input type="text" id="cfg-site-news-title" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Subtitle Section Berita</label>
-                                                <input type="text" id="cfg-site-news-subtitle" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                            </div>
-                                            <!-- Dynamic warning fraud popup image url with Double Preview and Auto Replace -->
-                                            <div class="space-y-2 image-upload-group" data-field-id="cfg-site-fraud-image">
-                                                <label class="text-xs text-gray-400 font-semibold block">Warning Fraud Image URL (Popup Transfer Aman)</label>
-                                                <div class="flex gap-2">
-                                                    <input type="text" id="cfg-site-fraud-image" class="glass-input flex-1 px-3 py-2 rounded-lg text-sm" oninput="updateImagePreview('cfg-site-fraud-image')">
-                                                    <input type="file" id="cfg-site-fraud-image-file" class="hidden" accept="image/*" onchange="handleImageSelect('cfg-site-fraud-image', this)">
-                                                    <button onclick="document.getElementById('cfg-site-fraud-image-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1.5">
-                                                        <i class="fa-solid fa-image"></i> Ganti Gambar
-                                                    </button>
-                                                </div>
-                                                <div class="image-preview-panel hidden flex flex-col sm:flex-row gap-4 p-3 bg-slate-950/40 border border-slate-800 rounded-lg">
-                                                    <div class="current-preview-box flex-1">
-                                                        <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Sebelum (Di GitHub)</p>
-                                                        <img class="current-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
-                                                    </div>
-                                                    <div class="new-preview-box flex-grow flex-1 hidden">
-                                                        <p class="text-[10px] text-emerald-500 font-bold uppercase mb-1">Sesudah (Pratinjau Unggahan)</p>
-                                                        <img class="new-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
-                                                        <div class="flex gap-1.5 mt-2">
-                                                            <button onclick="cancelImageSelect('cfg-site-fraud-image')" class="bg-slate-900 hover:bg-slate-800 text-[10px] text-gray-400 font-semibold px-2.5 py-1 border border-slate-700 rounded transition">Batal</button>
-                                                            <button onclick="confirmImageReplace('cfg-site-fraud-image')" class="confirm-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[10px] text-white font-semibold px-2.5 py-1 rounded flex items-center gap-1 shadow-sm transition">Upload & Replace</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                
+                                <!-- Visual Navigation Menu Manager -->
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-3 border-b border-slate-800 gap-3">
+                                        <div>
+                                            <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                                <i class="fa-solid fa-compass text-red-500"></i> Pengelola Menu Navigasi Website (Visual Menu Builder)
+                                            </h3>
+                                            <p class="text-xs text-gray-400 mt-0.5">Tambah, ubah nama, atur urutan, atau hapus menu navigasi navbar & drawer secara visual.</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button type="button" onclick="openAddNavModal()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-3.5 py-2 rounded-lg shadow-sm transition flex items-center gap-1.5">
+                                                <i class="fa-solid fa-plus"></i> Tambah Menu
+                                            </button>
+                                            <button type="button" onclick="toggleNavEditorMode()" id="toggle-nav-mode-btn" class="bg-slate-800 hover:bg-slate-700 text-gray-300 font-semibold text-xs px-3 py-2 rounded-lg border border-slate-700 transition flex items-center gap-1.5">
+                                                <i class="fa-solid fa-code"></i> Mode JSON
+                                            </button>
                                         </div>
                                     </div>
 
-                                    <!-- Navigation JSON Editor -->
-                                    <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-3 flex flex-col">
-                                        <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2 flex items-center gap-1">
-                                            <i class="fa-solid fa-compass text-red-500"></i> Navigasi Menu (JSON Editor)
-                                        </h3>
-                                        <p class="text-xs text-gray-400">Edit menu navigasi header/sidebar dalam format JSON mentah agar leluasa menyusun sub-menu / dropdown.</p>
-                                        <textarea id="cfg-navigation-json" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-mono h-64 flex-1" placeholder="[ ... ]"></textarea>
+                                    <!-- Visual Menu List Container -->
+                                    <div id="nav-visual-container" class="space-y-2.5">
+                                        <div id="nav-visual-list" class="space-y-2">
+                                            <!-- Dynamic Visual Menu Items -->
+                                        </div>
+                                    </div>
+
+                                    <!-- Raw JSON Editor (Toggled) -->
+                                    <div id="nav-json-container" class="hidden space-y-2">
+                                        <p class="text-xs text-amber-400"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Mode Lanjutan: Edit array menu dalam format JSON mentah.</p>
+                                        <textarea id="cfg-navigation-json" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-mono h-64" placeholder="[ ... ]" oninput="syncNavFromRawJson()"></textarea>
                                         <div id="cfg-nav-json-error" class="text-xs text-red-500 font-semibold hidden">Format JSON tidak valid! Periksa kurung dan tanda koma.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Global Links & CNAME Settings -->
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-link text-red-500 mr-2"></i> Tautan & API Sistem</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Favicon URL</label>
+                                            <input type="text" id="cfg-site-favicon" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Kunci Lisensi Website (License Key)</label>
+                                            <input type="text" id="cfg-site-license" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="Masukkan kunci lisensi untuk mengaktifkan website di domain live">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Link API Berita/Informasi (WordPress JSON API)</label>
+                                            <input type="text" id="cfg-site-news-api" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Tautan Seluruh Berita (Tombol Selengkapnya)</label>
+                                            <input type="text" id="cfg-site-news-url" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Judul Section Berita</label>
+                                            <input type="text" id="cfg-site-news-title" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                        <div class="space-y-1">
+                                            <label class="text-xs text-gray-400 font-semibold">Subtitle Section Berita</label>
+                                            <input type="text" id="cfg-site-news-subtitle" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+                                    </div>
+
+                                    <!-- Dynamic warning fraud popup image url with Double Preview and Auto Replace -->
+                                    <div class="space-y-2 image-upload-group pt-2" data-field-id="cfg-site-fraud-image">
+                                        <label class="text-xs text-gray-400 font-semibold block">Warning Fraud Image URL (Popup Transfer Aman)</label>
+                                        <div class="flex gap-2">
+                                            <input type="text" id="cfg-site-fraud-image" class="glass-input flex-1 px-3 py-2 rounded-lg text-sm" oninput="updateImagePreview('cfg-site-fraud-image')">
+                                            <input type="file" id="cfg-site-fraud-image-file" class="hidden" accept="image/*" onchange="handleImageSelect('cfg-site-fraud-image', this)">
+                                            <button onclick="document.getElementById('cfg-site-fraud-image-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1.5">
+                                                <i class="fa-solid fa-image"></i> Ganti Gambar
+                                            </button>
+                                        </div>
+                                        <div class="image-preview-panel hidden flex flex-col sm:flex-row gap-4 p-3 bg-slate-950/40 border border-slate-800 rounded-lg">
+                                            <div class="current-preview-box flex-1">
+                                                <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Sebelum (Di GitHub)</p>
+                                                <img class="current-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                            </div>
+                                            <div class="new-preview-box flex-grow flex-1 hidden">
+                                                <p class="text-[10px] text-emerald-500 font-bold uppercase mb-1">Sesudah (Pratinjau Unggahan)</p>
+                                                <img class="new-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                <div class="flex gap-1.5 mt-2">
+                                                    <button onclick="cancelImageSelect('cfg-site-fraud-image')" class="bg-slate-900 hover:bg-slate-800 text-[10px] text-gray-400 font-semibold px-2.5 py-1 border border-slate-700 rounded transition">Batal</button>
+                                                    <button onclick="confirmImageReplace('cfg-site-fraud-image')" class="confirm-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[10px] text-white font-semibold px-2.5 py-1 rounded flex items-center gap-1 shadow-sm transition">Upload & Replace</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -790,44 +1001,118 @@
 
                             <!-- SUB-TAB: SEO METADATA -->
                             <div id="subtab-pane-seo-meta" class="subtab-pane hidden space-y-6">
-                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
-                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-magnifying-glass text-red-500 mr-2"></i> Konfigurasi SEO Halaman</h3>
+                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-5">
+                                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-3 border-b border-slate-800 gap-3">
+                                        <div>
+                                            <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                                <i class="fa-solid fa-magnifying-glass text-red-500"></i> Manajemen SEO Per-Halaman & Snippet Google
+                                            </h3>
+                                            <p class="text-xs text-gray-400 mt-0.5">Optimasi judul, deskripsi pencarian Google, kata kunci, dan gambar OpenGraph untuk setiap halaman.</p>
+                                        </div>
+                                        <button type="button" onclick="openAddCustomSeoPageModal()" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs px-3.5 py-2 rounded-lg border border-slate-700 transition flex items-center gap-1.5 self-start">
+                                            <i class="fa-solid fa-plus text-emerald-400"></i> Target Halaman Baru
+                                        </button>
+                                    </div>
                                     
-                                    <div class="flex items-center gap-3 bg-slate-950/40 p-4 rounded-xl border border-slate-800">
-                                        <div class="space-y-1">
-                                            <label class="text-xs text-gray-400 font-semibold block">Pilih Halaman SEO</label>
-                                            <select id="seo-page-select" onchange="loadSelectedSeoPage()" class="glass-input px-3 py-2 rounded-lg text-sm bg-slate-950 min-w-[220px]">
-                                                <option value="default">Default (Fallback)</option>
-                                                <option value="home">Halaman Beranda</option>
-                                                <option value="pricelist">Halaman Daftar Harga</option>
-                                                <option value="brochure">Halaman e-Brosur</option>
-                                                <option value="promo">Halaman Promo Utama</option>
-                                                <option value="thank-you">Halaman Terima Kasih</option>
+                                    <!-- Page Selector -->
+                                    <div class="bg-slate-950/50 p-3.5 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                        <div class="space-y-1 flex-1">
+                                            <label class="text-xs font-bold text-gray-300 uppercase tracking-wider block">Pilih Halaman yang Ingin Diatur SEO-nya</label>
+                                            <select id="seo-page-select" onchange="loadSelectedSeoPage()" class="glass-input w-full px-3 py-2 rounded-lg text-xs bg-slate-950 font-medium">
+                                                <optgroup label="Halaman Statis Utama" id="seo-static-optgroup">
+                                                    <option value="default">Default / Fallback Global</option>
+                                                    <option value="home">Beranda (Homepage)</option>
+                                                    <option value="pricelist">Daftar Harga OTR (Pricelist)</option>
+                                                    <option value="brochure">e-Brochure (Unduh Brosur)</option>
+                                                    <option value="promo">Halaman Promo Spesial</option>
+                                                    <option value="thank-you">Halaman Terima Kasih</option>
+                                                </optgroup>
+                                                <optgroup label="Halaman Katalog Model Mobil" id="seo-models-optgroup">
+                                                    <!-- Dynamic Car Model options -->
+                                                </optgroup>
+                                                <optgroup label="Halaman Kustom Tambahan" id="seo-custom-optgroup">
+                                                    <!-- Dynamic Custom Page options -->
+                                                </optgroup>
                                             </select>
+                                        </div>
+                                        <div class="text-right shrink-0">
+                                            <span id="seo-active-target-badge" class="inline-block text-[11px] font-mono px-3 py-1.5 rounded-lg bg-red-600/10 text-red-400 border border-red-500/20 font-bold">
+                                                Target: home
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- GOOGLE SEARCH SERP LIVE PREVIEW BOX -->
+                                    <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 space-y-2">
+                                        <div class="flex items-center justify-between">
+                                            <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
+                                                <i class="fa-brands fa-google text-blue-400"></i> Google SERP Live Snippet Preview
+                                            </h4>
+                                            <span class="text-[10px] text-gray-500 font-semibold">Tampilan Hasil Pencarian Google</span>
+                                        </div>
+
+                                        <!-- Google SERP Card Simulation -->
+                                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm space-y-1 select-none">
+                                            <div class="flex items-center gap-2 text-xs text-gray-700">
+                                                <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center p-1 border border-gray-200 shrink-0">
+                                                    <img id="serp-preview-favicon" src="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" class="w-4 h-4 object-contain" alt="Favicon">
+                                                </div>
+                                                <div class="flex flex-col min-w-0">
+                                                    <span id="serp-preview-sitename" class="font-semibold text-[12px] text-gray-900 truncate leading-tight">Honda Bintaro</span>
+                                                    <span id="serp-preview-url" class="text-[10px] text-gray-500 font-mono truncate leading-tight">https://www.hondabintaro.com</span>
+                                                </div>
+                                            </div>
+                                            <div class="pt-1">
+                                                <h4 id="serp-preview-title" class="text-[#1a0dab] hover:underline text-base sm:text-lg font-medium cursor-pointer leading-snug line-clamp-1">
+                                                    Honda Bintaro - Dealer & Sales Counter Resmi Honda Jabodetabek
+                                                </h4>
+                                                <p id="serp-preview-desc" class="text-[13px] text-[#4d5156] leading-relaxed line-clamp-2 mt-0.5">
+                                                    Sales resmi Honda Bintaro. Temukan harga OTR terbaru, paket kredit DP murah, cicilan ringan, serta diskon spesial untuk mobil Honda Brio, HR-V, WR-V, BR-V...
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <!-- SEO Editor Form -->
-                                    <div id="seo-editor-form" class="space-y-4 pt-2">
+                                    <div id="seo-editor-form" class="space-y-4 pt-1">
                                         <div class="grid grid-cols-1 gap-4">
+                                            <!-- Meta Title Input & Counter -->
                                             <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">SEO Title</label>
-                                                <input type="text" id="seo-inp-title" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                                <div class="flex items-center justify-between">
+                                                    <label class="text-xs text-gray-300 font-semibold">Meta Title (Judul Halaman)</label>
+                                                    <span id="seo-title-counter" class="text-[11px] font-mono font-bold text-gray-400">0 / 60 karakter</span>
+                                                </div>
+                                                <input type="text" id="seo-inp-title" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Judul halaman SEO..." oninput="updateSeoPreviewAndCounters()">
+                                                <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
+                                                    <div id="seo-title-bar" class="h-full bg-emerald-500 transition-all duration-200" style="width: 0%;"></div>
+                                                </div>
+                                                <p class="text-[10px] text-gray-500">Panjang optimal Google: 50 - 60 karakter. Gunakan kata kunci utama di depan.</p>
                                             </div>
+
+                                            <!-- Meta Description Input & Counter -->
                                             <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">SEO Description</label>
-                                                <textarea id="seo-inp-desc" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-20"></textarea>
+                                                <div class="flex items-center justify-between">
+                                                    <label class="text-xs text-gray-300 font-semibold">Meta Description (Ringkasan Cuplikan Snippet)</label>
+                                                    <span id="seo-desc-counter" class="text-[11px] font-mono font-bold text-gray-400">0 / 160 karakter</span>
+                                                </div>
+                                                <textarea id="seo-inp-desc" class="glass-input w-full px-3 py-2 rounded-lg text-xs h-20" placeholder="Deskripsi menarik yang mengundang klik di hasil pencarian..." oninput="updateSeoPreviewAndCounters()"></textarea>
+                                                <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
+                                                    <div id="seo-desc-bar" class="h-full bg-emerald-500 transition-all duration-200" style="width: 0%;"></div>
+                                                </div>
+                                                <p class="text-[10px] text-gray-500">Panjang optimal Google: 140 - 160 karakter. Sertakan nama sales/promo/kontak.</p>
                                             </div>
+
+                                            <!-- Meta Keywords -->
                                             <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">SEO Keywords (Pisahkan dengan koma)</label>
-                                                <input type="text" id="seo-inp-keywords" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                                <label class="text-xs text-gray-300 font-semibold">SEO Keywords (Pisahkan dengan koma)</label>
+                                                <input type="text" id="seo-inp-keywords" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="honda bintaro, promo honda, harga otr honda">
                                             </div>
                                             
                                             <!-- SEO Image with upload-replace support -->
                                             <div class="space-y-2 image-upload-group" data-field-id="seo-inp-image">
-                                                <label class="text-xs text-gray-400 font-semibold block">SEO Share Image URL</label>
+                                                <label class="text-xs text-gray-300 font-semibold block">Social Share OG Image URL (Gambar Thumbnail WhatsApp/Facebook/Twitter)</label>
                                                 <div class="flex gap-2">
-                                                    <input type="text" id="seo-inp-image" class="glass-input flex-1 px-3 py-2 rounded-lg text-sm" oninput="updateImagePreview('seo-inp-image')">
+                                                    <input type="text" id="seo-inp-image" class="glass-input flex-1 px-3 py-2 rounded-lg text-xs" oninput="updateImagePreview('seo-inp-image')">
                                                     <input type="file" id="seo-inp-image-file" class="hidden" accept="image/*" onchange="handleImageSelect('seo-inp-image', this)">
                                                     <button onclick="document.getElementById('seo-inp-image-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1.5">
                                                         <i class="fa-solid fa-image"></i> Ganti Gambar
@@ -849,9 +1134,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button onclick="saveCurrentSeoPage()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md transition mt-2">
-                                            Simpan SEO Halaman Ini
-                                        </button>
+
+                                        <div class="flex items-center justify-between pt-2 border-t border-slate-800">
+                                            <button onclick="saveCurrentSeoPage()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md transition flex items-center gap-1.5">
+                                                <i class="fa-solid fa-floppy-disk"></i> Simpan SEO Halaman Ini
+                                            </button>
+                                            <span class="text-[11px] text-gray-500 italic">Tekan "Commit Perubahan" di atas untuk deploy ke GitHub</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1256,6 +1545,152 @@
                         </div>
                     </div>
 
+                    <!-- TAB: CUSTOM PAGES CMS (pages.json) -->
+                    <div id="tab-pages" class="tab-pane hidden space-y-6">
+                        <div class="glass-panel rounded-2xl p-6 shadow-xl space-y-6">
+                            <div class="border-b border-slate-800 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                                <div>
+                                    <h2 class="text-xl font-bold text-white font-outfit flex items-center gap-2">
+                                        <i class="fa-solid fa-file-lines text-red-500"></i> Manajemen Halaman Kustom (`pages.json`)
+                                    </h2>
+                                    <p class="text-sm text-gray-400">Buat dan kelola artikel, kebijakan privasi, syarat ketentuan, atau landing page promosi dinamis seperti di WordPress/Blogger.</p>
+                                </div>
+                                <button onclick="commitFileToGitHub('data/pages.json')" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg shadow-lg shadow-red-600/20 transition-all flex items-center gap-2">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i> Commit Perubahan Halaman
+                                </button>
+                            </div>
+
+                            <!-- Two Columns Layout -->
+                            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                                
+                                <!-- Left Column: Pages List -->
+                                <div class="md:col-span-4 glass-panel rounded-xl p-4 border border-slate-800 space-y-3">
+                                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Daftar Halaman</span>
+                                        <button onclick="openAddPageModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg flex items-center gap-1 shadow-sm transition">
+                                            <i class="fa-solid fa-plus"></i> Halaman Baru
+                                        </button>
+                                    </div>
+                                    <div id="custom-pages-list" class="space-y-1.5 max-h-[600px] overflow-y-auto pr-1">
+                                        <!-- Dynamic pages list -->
+                                    </div>
+                                </div>
+
+                                <!-- Right Column: Page Editor Form -->
+                                <div class="md:col-span-8 glass-panel rounded-xl p-6 border border-slate-800 relative">
+                                    <div id="page-editor-empty" class="text-center py-20 text-gray-500 space-y-2">
+                                        <i class="fa-solid fa-file-circle-question text-4xl text-slate-700"></i>
+                                        <p class="text-xs">Pilih salah satu halaman di samping kiri untuk mengedit konten dan SEO.</p>
+                                    </div>
+
+                                    <div id="page-editor-form" class="hidden space-y-5">
+                                        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-800 gap-2">
+                                            <h3 class="text-base font-bold text-white font-outfit" id="edit-page-header">Edit Halaman</h3>
+                                            <a id="edit-page-preview-link" href="#" target="_blank" class="text-xs text-red-400 hover:text-red-300 font-semibold flex items-center gap-1">
+                                                <span>Lihat di Website</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                            </a>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <div class="space-y-1">
+                                                <label class="text-xs font-semibold text-gray-300">ID / Slug URL (Huruf kecil & tanda hubung)</label>
+                                                <input type="text" id="edit-page-slug" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-mono bg-slate-950/80" readonly>
+                                            </div>
+                                            <div class="space-y-1">
+                                                <label class="text-xs font-semibold text-gray-300">Judul Halaman (H1)</label>
+                                                <input type="text" id="edit-page-title" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-bold" placeholder="Kebijakan Privasi">
+                                            </div>
+                                        </div>
+
+                                        <div class="space-y-1">
+                                            <label class="text-xs font-semibold text-gray-300">Ringkasan / Subtitle Singkat</label>
+                                            <input type="text" id="edit-page-subtitle" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Ringkasan tentang isi halaman ini...">
+                                        </div>
+
+                                        <!-- System Page Helper Notice (For Pricelist & e-Brochure) -->
+                                        <div id="page-system-note" class="hidden p-4 rounded-xl bg-blue-950/30 border border-blue-800/50 text-blue-300 text-xs space-y-1.5">
+                                            <div class="flex items-center gap-2 font-bold text-blue-400">
+                                                <i class="fa-solid fa-circle-info"></i>
+                                                <span>Halaman Sistem Otomatis</span>
+                                            </div>
+                                            <p class="leading-relaxed text-[11px] text-gray-300">Halaman ini menggunakan engine katalog/tabel otomatis. Anda dapat mengubah <strong>Judul Halaman (H1)</strong>, <strong>Ringkasan/Subtitle</strong>, dan seluruh <strong>Pengaturan SEO Google (Meta Title, Description, OG Image)</strong> secara dinamis melalui form ini.</p>
+                                        </div>
+
+                                        <!-- Page Body (Rich Text CKEditor for custom pages) -->
+                                        <div id="page-body-container" class="space-y-2">
+                                            <div class="flex items-center justify-between">
+                                                <label class="text-xs font-bold uppercase tracking-wider text-gray-300">Konten Isi Halaman</label>
+                                                <span class="text-[10px] text-gray-500">Mendukung heading, list, link, dan format tebal/miring</span>
+                                            </div>
+                                            <div class="ckeditor-custom-wrapper text-slate-900">
+                                                <textarea id="edit-page-content" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-64 text-slate-900"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <!-- SEO Settings Box -->
+                                        <div class="bg-slate-950/50 p-4 rounded-xl border border-slate-800 space-y-4">
+                                            <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5">
+                                                <i class="fa-solid fa-magnifying-glass"></i> Pengaturan SEO Halaman Ini
+                                            </h4>
+
+                                            <div class="grid grid-cols-1 gap-3 text-xs">
+                                                <div class="space-y-1">
+                                                    <label class="text-gray-300 font-semibold">SEO Meta Title (Judul Google)</label>
+                                                    <input type="text" id="edit-page-seo-title" class="glass-input w-full px-3 py-2 rounded-lg" placeholder="Judul untuk mesin pencari Google...">
+                                                </div>
+                                                <div class="space-y-1">
+                                                    <label class="text-gray-300 font-semibold">SEO Meta Description (Ringkasan Google Snippet)</label>
+                                                    <textarea id="edit-page-seo-desc" class="glass-input w-full px-3 py-2 rounded-lg h-16" placeholder="Deskripsi cuplikan yang muncul di Google..."></textarea>
+                                                </div>
+                                                <div class="space-y-1">
+                                                    <label class="text-gray-300 font-semibold">SEO Keywords (Pisahkan dengan koma)</label>
+                                                    <input type="text" id="edit-page-seo-keywords" class="glass-input w-full px-3 py-2 rounded-lg" placeholder="kebijakan privasi, syarat ketentuan honda">
+                                                </div>
+                                                
+                                                <!-- SEO Image with upload-replace support -->
+                                                <div class="space-y-2 image-upload-group" data-field-id="edit-page-seo-image">
+                                                    <label class="text-gray-300 font-semibold block">Social Share OG Image URL</label>
+                                                    <div class="flex gap-2">
+                                                        <input type="text" id="edit-page-seo-image" class="glass-input flex-1 px-3 py-2 rounded-lg text-xs" oninput="updateImagePreview('edit-page-seo-image')">
+                                                        <input type="file" id="edit-page-seo-image-file" class="hidden" accept="image/*" onchange="handleImageSelect('edit-page-seo-image', this)">
+                                                        <button type="button" onclick="document.getElementById('edit-page-seo-image-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1">
+                                                            <i class="fa-solid fa-image"></i> Ganti
+                                                        </button>
+                                                    </div>
+                                                    <div class="image-preview-panel hidden flex flex-col sm:flex-row gap-4 p-3 bg-slate-950/40 border border-slate-800 rounded-lg">
+                                                        <div class="current-preview-box flex-1">
+                                                            <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Di GitHub</p>
+                                                            <img class="current-img-preview h-20 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                        </div>
+                                                        <div class="new-preview-box flex-grow flex-1 hidden">
+                                                            <p class="text-[10px] text-emerald-500 font-bold uppercase mb-1">Pratinjau Unggahan</p>
+                                                            <img class="new-img-preview h-20 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                            <div class="flex gap-1.5 mt-2">
+                                                                <button type="button" onclick="cancelImageSelect('edit-page-seo-image')" class="bg-slate-900 hover:bg-slate-800 text-[10px] text-gray-400 font-semibold px-2.5 py-1 border border-slate-700 rounded transition">Batal</button>
+                                                                <button type="button" onclick="confirmImageReplace('edit-page-seo-image')" class="confirm-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[10px] text-white font-semibold px-2.5 py-1 rounded flex items-center gap-1 shadow-sm transition">Upload</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Save & Delete Action Buttons -->
+                                        <div class="flex items-center justify-between pt-3 border-t border-slate-800">
+                                            <button type="button" id="btn-delete-page" onclick="deleteCurrentPage()" class="text-xs text-red-500 hover:text-red-400 font-semibold flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-red-500/10 transition">
+                                                <i class="fa-solid fa-trash-can"></i> Hapus Halaman
+                                            </button>
+                                            <div class="flex-1"></div>
+                                            <button type="button" onclick="saveCurrentPageDetails()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-6 py-2.5 rounded-lg shadow-md transition flex items-center gap-1.5">
+                                                <i class="fa-solid fa-floppy-disk"></i> Simpan Halaman Ini
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- TAB: MEDIA (MEDIA LIBRARY WITH DELETE) -->
                     <div id="tab-media" class="tab-pane hidden space-y-6">
                         <div class="glass-panel rounded-2xl p-6 shadow-xl space-y-6">
@@ -1409,6 +1844,126 @@
         </div>
     </div>
 
+    <!-- ADD / EDIT NAVIGATION MENU MODAL -->
+    <div id="add-nav-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 hidden px-4">
+        <div class="glass-panel w-full max-w-lg p-6 rounded-2xl shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 class="text-base font-bold text-white flex items-center gap-2" id="nav-modal-title">
+                    <i class="fa-solid fa-compass text-red-500"></i> Tambah Menu Navigasi
+                </h3>
+                <button type="button" onclick="closeNavModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <input type="hidden" id="nav-modal-edit-index" value="-1">
+
+            <div class="space-y-3 text-xs">
+                <div class="space-y-1">
+                    <label class="text-gray-300 font-semibold">Tipe Menu</label>
+                    <select id="nav-modal-type" class="glass-input w-full px-3 py-2 rounded-lg bg-slate-950 text-white" onchange="handleNavModalTypeChange()">
+                        <option value="link">Tautan Halaman Biasa (Link)</option>
+                        <option value="dropdown">Dropdown Menu (Koleksi Sub-Menu)</option>
+                        <option value="whatsapp">Tombol WhatsApp CTA (Direct Chat)</option>
+                    </select>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-gray-300 font-semibold">Label Menu (Nama Tampil di Navbar)</label>
+                    <input type="text" id="nav-modal-label" class="glass-input w-full px-3 py-2 rounded-lg" placeholder="Contoh: Promo Spesial 2026">
+                </div>
+
+                <div id="nav-modal-link-group" class="space-y-1">
+                    <div class="flex items-center justify-between">
+                        <label class="text-gray-300 font-semibold">Tautan / URL Tujuan</label>
+                        <span class="text-[10px] text-gray-500">Gunakan {basePath} untuk path relatif</span>
+                    </div>
+                    <div class="space-y-1.5">
+                        <input type="text" id="nav-modal-link" class="glass-input w-full px-3 py-2 rounded-lg font-mono" placeholder="{basePath}promo/">
+                        <div class="flex flex-wrap gap-1 pt-1">
+                            <span class="text-[10px] text-gray-400 self-center mr-1">Tautan Cepat:</span>
+                            <button type="button" onclick="setQuickNavLink('{basePath}')" class="text-[10px] px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-gray-300 font-mono">Beranda</button>
+                            <button type="button" onclick="setQuickNavLink('{basePath}pricelist/')" class="text-[10px] px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-gray-300 font-mono">Pricelist</button>
+                            <button type="button" onclick="setQuickNavLink('{basePath}brochure/')" class="text-[10px] px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-gray-300 font-mono">Brosur</button>
+                            <button type="button" onclick="setQuickNavLink('{basePath}promo/')" class="text-[10px] px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-gray-300 font-mono">Promo</button>
+                            <button type="button" onclick="setQuickNavLink('{basePath}#faq-section')" class="text-[10px] px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-gray-300 font-mono">#FAQ</button>
+                            <button type="button" onclick="setQuickNavLink('{basePath}#kredit-section')" class="text-[10px] px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-gray-300 font-mono">#Kredit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="nav-modal-wa-group" class="space-y-1 hidden">
+                    <label class="text-gray-300 font-semibold">Template Pesan WhatsApp</label>
+                    <select id="nav-modal-wa-template" class="glass-input w-full px-3 py-2 rounded-lg bg-slate-950 text-white">
+                        <option value="whatsapp:salesBanner">Sales Banner (Konsultasi Utama)</option>
+                        <option value="whatsapp:testDrive">Booking Test Drive</option>
+                        <option value="whatsapp:general">Konsultasi Umum</option>
+                    </select>
+                </div>
+
+                <!-- Sub items editor for Dropdown type -->
+                <div id="nav-modal-dropdown-group" class="space-y-2 hidden pt-2 border-t border-slate-800">
+                    <div class="flex items-center justify-between">
+                        <label class="text-gray-300 font-bold uppercase tracking-wider text-[11px]">Daftar Sub-Menu Dropdown</label>
+                        <button type="button" onclick="addNavSubItemRow()" class="text-[10px] text-emerald-400 font-semibold hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> Tambah Sub-Menu
+                        </button>
+                    </div>
+                    <div id="nav-modal-subitems-list" class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                        <!-- Dynamic sub-item rows -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end gap-3 pt-3 border-t border-slate-800">
+                <button type="button" onclick="closeNavModal()" class="text-xs font-semibold px-4 py-2 hover:bg-slate-800 text-gray-400 rounded-lg">Batal</button>
+                <button type="button" onclick="saveNavModalConfirm()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-lg shadow-md">Simpan Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD CUSTOM SEO TARGET MODAL -->
+    <div id="add-custom-seo-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 hidden px-4">
+        <div class="glass-panel w-full max-w-md p-6 rounded-2xl shadow-2xl space-y-4">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-file-circle-plus text-emerald-400"></i> Tambah Target Halaman Kustom SEO
+            </h3>
+            <p class="text-xs text-gray-400">Buat target SEO baru untuk halaman promosi, landing page khusus, atau rute kustom website Anda.</p>
+            <div class="space-y-3 text-xs">
+                <div class="space-y-1">
+                    <label class="text-gray-300 font-semibold">Key Identitas Halaman (Huruf kecil & tanda hubung, contoh: <code>promo-lebaran</code> atau <code>test-drive</code>)</label>
+                    <input type="text" id="custom-seo-page-key" class="glass-input w-full px-3 py-2 rounded-lg font-mono" placeholder="promo-spesial-2026">
+                </div>
+            </div>
+            <div class="flex justify-end gap-3 pt-2">
+                <button type="button" onclick="closeAddCustomSeoPageModal()" class="text-xs font-semibold px-4 py-2 hover:bg-slate-800 text-gray-400 rounded-lg">Batal</button>
+                <button type="button" onclick="confirmAddCustomSeoPage()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2 rounded-lg">Buat Target SEO</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD CUSTOM PAGE MODAL -->
+    <div id="add-page-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 hidden px-4">
+        <div class="glass-panel w-full max-w-md p-6 rounded-2xl shadow-2xl space-y-4">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-file-circle-plus text-emerald-400"></i> Buat Halaman Kustom Baru
+            </h3>
+            <p class="text-xs text-gray-400">Buat artikel baru, halaman promosi, kebijakan privasi, atau panduan kredit.</p>
+            <div class="space-y-3 text-xs">
+                <div class="space-y-1">
+                    <label class="text-gray-300 font-semibold">Judul Halaman</label>
+                    <input type="text" id="new-page-title" class="glass-input w-full px-3 py-2 rounded-lg font-bold" placeholder="Panduan Trade-In Mobil" oninput="autoGeneratePageSlug(this.value)">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-gray-300 font-semibold">ID / Slug URL (Akan diakses di <code>/page/?id=slug</code>)</label>
+                    <input type="text" id="new-page-slug" class="glass-input w-full px-3 py-2 rounded-lg font-mono" placeholder="panduan-trade-in">
+                </div>
+            </div>
+            <div class="flex justify-end gap-3 pt-2">
+                <button type="button" onclick="closeAddPageModal()" class="text-xs font-semibold px-4 py-2 hover:bg-slate-800 text-gray-400 rounded-lg">Batal</button>
+                <button type="button" onclick="createNewPageConfirm()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2 rounded-lg">Buat Halaman</button>
+            </div>
+        </div>
+    </div>
+
     <!-- CORE JAVASCRIPT LOGIC -->
     <script>
         // Data Store
@@ -1417,6 +1972,7 @@
             banner: null,
             products: null,
             pricelist: null,
+            pages: null,
             security: null
         };
 
@@ -1434,9 +1990,11 @@
         // Active State
         let selectedProductId = '';
         let selectedPricelistModelId = '';
+        let selectedPageSlug = '';
         let selectedSeoPage = 'default';
         let pendingUploads = {}; 
         let ckEditorInstance = null; 
+        let pageCkEditorInstance = null; 
 
         // Toast Messages
         function showToast(message, type = 'success') {
@@ -2034,7 +2592,8 @@
                 { key: 'siteConfig', path: 'data/site_config.json' },
                 { key: 'banner', path: 'data/banner.json' },
                 { key: 'products', path: 'data/products.json' },
-                { key: 'pricelist', path: 'data/pricelist.json' }
+                { key: 'pricelist', path: 'data/pricelist.json' },
+                { key: 'pages', path: 'data/pages.json' }
             ];
 
             let successCount = 0;
@@ -2081,6 +2640,7 @@
                 populateBannersForm();
                 populateProductsForm();
                 populatePricelistForm();
+                populatePagesForm();
             }
         }
 
@@ -2089,10 +2649,11 @@
             const countDesktop = appData.banner?.banners?.desktop?.length || 0;
             const countMobile = appData.banner?.banners?.mobile?.length || 0;
             const countProducts = Object.keys(appData.products || {}).length;
+            const countPages = Object.keys(appData.pages || {}).length;
             const salesName = appData.siteConfig?.contact?.salesName || '-';
 
             document.getElementById('stat-banners').innerText = `${countDesktop} Desktop / ${countMobile} Mobile`;
-            document.getElementById('stat-products').innerText = countProducts;
+            document.getElementById('stat-products').innerText = `${countProducts} Mobil / ${countPages} Halaman`;
             document.getElementById('stat-sales-name').innerText = salesName;
         }
 
@@ -2122,6 +2683,11 @@
                     saveCurrentPricelistDetails();
                 }
                 jsonPayload = appData.pricelist;
+            } else if (path === 'data/pages.json') {
+                if (selectedPageSlug) {
+                    saveCurrentPageDetails();
+                }
+                jsonPayload = appData.pages;
             }
 
             if (!jsonPayload) {
@@ -2574,6 +3140,9 @@
             updateImagePreview('cfg-logo-header');
             updateImagePreview('cfg-logo-footer');
 
+            // --- SUBTAB: TEMA & WARNA ---
+            populateThemeForm();
+
             // --- SUBTAB: WHATSAPP TEMPLATE ---
             document.getElementById('cfg-wa-salesbanner').value = config.whatsappTemplates?.salesBanner || '';
             document.getElementById('cfg-wa-testdrive').value = config.whatsappTemplates?.testDrive || '';
@@ -2597,7 +3166,7 @@
             document.getElementById('cfg-site-fraud-image').value = config.site?.fraudModalImage || '';
             updateImagePreview('cfg-site-fraud-image');
 
-            document.getElementById('cfg-navigation-json').value = JSON.stringify(config.navigation || [], null, 2);
+            renderVisualNavList();
 
             // --- SUBTAB: PERSYARATAN KREDIT ---
             const cred = config.creditRequirements || {};
@@ -2651,6 +3220,7 @@
             promosList.forEach((promo, idx) => renderPromoCardItem(promo, idx));
 
             // --- SUBTAB: SEO METADATA ---
+            populateSeoPageDropdown();
             loadSelectedSeoPage();
 
             // --- SUBTAB: FAQ & FOOTER ---
@@ -2665,7 +3235,7 @@
             document.getElementById('cfg-foot-address').value = config.footer?.address || '';
             document.getElementById('cfg-foot-copyright').value = config.footer?.copyright || '';
             
-            // Payment fields (described under faq-footer as requested)
+            // Payment fields
             document.getElementById('cfg-payment-desc').value = config.footer?.paymentDesc || '';
             document.getElementById('cfg-payment-banks').value = (config.footer?.paymentBanks || []).join(', ');
         }
@@ -2683,6 +3253,13 @@
             config.contact.salesPhoto = document.getElementById('cfg-sales-photo').value.trim();
             config.contact.headerLogo = document.getElementById('cfg-logo-header').value.trim();
             config.contact.footerLogo = document.getElementById('cfg-logo-footer').value.trim();
+
+            // --- SUBTAB: TEMA & WARNA ---
+            if (!config.theme) config.theme = {};
+            config.theme.primaryColor = document.getElementById('cfg-theme-primary').value.trim() || '#cc0000';
+            config.theme.primaryDark = document.getElementById('cfg-theme-dark').value.trim() || '#990000';
+            config.theme.primaryLight = document.getElementById('cfg-theme-light').value.trim() || '#fee2e2';
+            config.theme.accentColor = document.getElementById('cfg-theme-accent').value.trim() || '#f97316';
 
             // --- SUBTAB: WHATSAPP TEMPLATE ---
             config.whatsappTemplates.salesBanner = document.getElementById('cfg-wa-salesbanner').value.trim();
@@ -2705,14 +3282,12 @@
             config.site.newsSubtitle = document.getElementById('cfg-site-news-subtitle').value.trim();
             config.site.fraudModalImage = document.getElementById('cfg-site-fraud-image').value.trim();
 
-            // Navigation JSON
-            const navJson = document.getElementById('cfg-navigation-json').value.trim();
-            try {
-                config.navigation = JSON.parse(navJson);
-                document.getElementById('cfg-nav-json-error').classList.add('hidden');
-            } catch (e) {
-                document.getElementById('cfg-nav-json-error').classList.remove('hidden');
-                showToast('JSON Navigasi tidak valid, perubahan menu dilewati.', 'error');
+            // Navigation is kept in sync via config.navigation & visual builder
+            const navJson = document.getElementById('cfg-navigation-json')?.value?.trim();
+            if (navJson) {
+                try {
+                    config.navigation = JSON.parse(navJson);
+                } catch (e) {}
             }
 
             // --- SUBTAB: PERSYARATAN KREDIT ---
@@ -2792,36 +3367,6 @@
             
             const banksVal = document.getElementById('cfg-payment-banks').value.trim();
             config.footer.paymentBanks = banksVal ? banksVal.split(',').map(b => b.trim()).filter(b => b) : [];
-        }
-
-        // --- SUBTAB: SEO METADATA JS HANDLER ---
-        function loadSelectedSeoPage() {
-            selectedSeoPage = document.getElementById('seo-page-select').value;
-            const config = appData.siteConfig;
-            if (!config || !config.seo) return;
-
-            const seoData = config.seo[selectedSeoPage] || {};
-
-            document.getElementById('seo-inp-title').value = seoData.title || '';
-            document.getElementById('seo-inp-desc').value = seoData.description || '';
-            document.getElementById('seo-inp-keywords').value = seoData.keywords || '';
-            document.getElementById('seo-inp-image').value = seoData.image || '';
-
-            updateImagePreview('seo-inp-image');
-        }
-
-        function saveCurrentSeoPage() {
-            const config = appData.siteConfig;
-            if (!config || !config.seo) return;
-
-            if (!config.seo[selectedSeoPage]) config.seo[selectedSeoPage] = {};
-
-            config.seo[selectedSeoPage].title = document.getElementById('seo-inp-title').value.trim();
-            config.seo[selectedSeoPage].description = document.getElementById('seo-inp-desc').value.trim();
-            config.seo[selectedSeoPage].keywords = document.getElementById('seo-inp-keywords').value.trim();
-            config.seo[selectedSeoPage].image = document.getElementById('seo-inp-image').value.trim();
-
-            showToast(`Pengaturan SEO untuk halaman "${selectedSeoPage}" berhasil diperbarui secara lokal!`);
         }
 
         // --- PROMO CARD LIST INJECTOR ---
@@ -3007,6 +3552,617 @@
             });
         }
 
+        // ==========================================
+        // THEME & COLOR CUSTOMIZER JS HANDLERS
+        // ==========================================
+        function populateThemeForm() {
+            const config = appData.siteConfig;
+            if (!config) return;
+            const theme = config.theme || {
+                primaryColor: '#cc0000',
+                primaryDark: '#990000',
+                primaryLight: '#fee2e2',
+                accentColor: '#f97316',
+                preset: 'honda-red'
+            };
+
+            const primary = theme.primaryColor || '#cc0000';
+            const dark = theme.primaryDark || '#990000';
+            const light = theme.primaryLight || '#fee2e2';
+            const accent = theme.accentColor || '#f97316';
+
+            if (document.getElementById('cfg-theme-primary')) document.getElementById('cfg-theme-primary').value = primary;
+            if (document.getElementById('cfg-theme-primary-picker')) document.getElementById('cfg-theme-primary-picker').value = primary;
+            if (document.getElementById('cfg-theme-dark')) document.getElementById('cfg-theme-dark').value = dark;
+            if (document.getElementById('cfg-theme-dark-picker')) document.getElementById('cfg-theme-dark-picker').value = dark;
+            if (document.getElementById('cfg-theme-light')) document.getElementById('cfg-theme-light').value = light;
+            if (document.getElementById('cfg-theme-light-picker')) document.getElementById('cfg-theme-light-picker').value = light;
+            if (document.getElementById('cfg-theme-accent')) document.getElementById('cfg-theme-accent').value = accent;
+            if (document.getElementById('cfg-theme-accent-picker')) document.getElementById('cfg-theme-accent-picker').value = accent;
+
+            updateThemeLivePreview();
+        }
+
+        function applyThemePreset(preset, primary, dark, light, accent) {
+            document.getElementById('cfg-theme-primary').value = primary;
+            document.getElementById('cfg-theme-primary-picker').value = primary;
+            document.getElementById('cfg-theme-dark').value = dark;
+            document.getElementById('cfg-theme-dark-picker').value = dark;
+            document.getElementById('cfg-theme-light').value = light;
+            document.getElementById('cfg-theme-light-picker').value = light;
+            document.getElementById('cfg-theme-accent').value = accent;
+            document.getElementById('cfg-theme-accent-picker').value = accent;
+
+            if (!appData.siteConfig.theme) appData.siteConfig.theme = {};
+            appData.siteConfig.theme.preset = preset;
+            appData.siteConfig.theme.primaryColor = primary;
+            appData.siteConfig.theme.primaryDark = dark;
+            appData.siteConfig.theme.primaryLight = light;
+            appData.siteConfig.theme.accentColor = accent;
+
+            updateThemeLivePreview();
+            showToast(`Preset tema "${preset}" diterapkan!`, 'info');
+        }
+
+        function syncColorInput(type, colorVal) {
+            const textInput = document.getElementById(`cfg-theme-${type}`);
+            if (textInput) textInput.value = colorVal;
+            updateThemeLivePreview();
+        }
+
+        function syncColorPicker(type, textVal) {
+            if (/^#[0-9A-F]{6}$/i.test(textVal)) {
+                const picker = document.getElementById(`cfg-theme-${type}-picker`);
+                if (picker) picker.value = textVal;
+            }
+            updateThemeLivePreview();
+        }
+
+        function updateThemeLivePreview() {
+            const primary = document.getElementById('cfg-theme-primary')?.value || '#cc0000';
+            const dark = document.getElementById('cfg-theme-dark')?.value || '#990000';
+            const light = document.getElementById('cfg-theme-light')?.value || '#fee2e2';
+            const accent = document.getElementById('cfg-theme-accent')?.value || '#f97316';
+
+            const dot = document.getElementById('preview-logo-dot');
+            if (dot) dot.style.backgroundColor = primary;
+
+            const badge = document.getElementById('preview-badge');
+            if (badge) {
+                badge.style.backgroundColor = light;
+                badge.style.color = primary;
+            }
+
+            const price = document.getElementById('preview-car-price');
+            if (price) price.style.color = primary;
+
+            const accentTag = document.getElementById('preview-accent-tag');
+            if (accentTag) accentTag.style.backgroundColor = accent;
+
+            const btnPrimary = document.getElementById('preview-btn-primary');
+            if (btnPrimary) btnPrimary.style.backgroundColor = primary;
+
+            const btnOutline = document.getElementById('preview-btn-outline');
+            if (btnOutline) {
+                btnOutline.style.borderColor = primary;
+                btnOutline.style.color = primary;
+            }
+        }
+
+        // ==========================================
+        // VISUAL NAVIGATION MENU BUILDER JS HANDLERS
+        // ==========================================
+        let navEditorMode = 'visual';
+
+        function renderVisualNavList() {
+            const listContainer = document.getElementById('nav-visual-list');
+            if (!listContainer) return;
+            listContainer.innerHTML = '';
+
+            const navList = appData.siteConfig?.navigation || [];
+            if (navList.length === 0) {
+                listContainer.innerHTML = `<div class="text-xs text-gray-500 p-4 border border-dashed border-slate-800 rounded-xl text-center">Belum ada menu navigasi. Klik <b>Tambah Menu</b> untuk mulai.</div>`;
+                return;
+            }
+
+            navList.forEach((item, idx) => {
+                let typeBadge = '';
+                if (item.type === 'dropdown') {
+                    const subCount = item.items?.length || 0;
+                    typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20"><i class="fa-solid fa-layer-group mr-1"></i>Dropdown (${subCount} item)</span>`;
+                } else if (item.type === 'whatsapp') {
+                    typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><i class="fa-brands fa-whatsapp mr-1"></i>WhatsApp CTA</span>`;
+                } else {
+                    typeBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20"><i class="fa-solid fa-link mr-1"></i>Link</span>`;
+                }
+
+                let linkDisplay = item.link || (item.type === 'dropdown' ? '(Daftar Submenu)' : '');
+
+                const rowHtml = `
+                    <div class="nav-item-card bg-slate-950/60 p-3 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-700 transition">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <span class="w-6 h-6 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-xs font-mono font-bold text-gray-400 shrink-0">${idx + 1}</span>
+                            <div class="min-w-0">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="font-bold text-xs text-white">${item.label}</span>
+                                    ${typeBadge}
+                                </div>
+                                <div class="text-[11px] text-gray-500 font-mono truncate mt-0.5">${linkDisplay}</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1 shrink-0 self-end sm:self-center">
+                            <button type="button" onclick="moveNavMenuItem(${idx}, -1)" class="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-slate-800 text-xs transition" title="Pindah ke Atas" ${idx === 0 ? 'disabled class="opacity-30 p-1.5 text-xs"' : ''}>
+                                <i class="fa-solid fa-arrow-up"></i>
+                            </button>
+                            <button type="button" onclick="moveNavMenuItem(${idx}, 1)" class="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-slate-800 text-xs transition" title="Pindah ke Bawah" ${idx === navList.length - 1 ? 'disabled class="opacity-30 p-1.5 text-xs"' : ''}>
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </button>
+                            <button type="button" onclick="openAddNavModal(${idx})" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-gray-300 hover:text-white text-xs font-semibold transition flex items-center gap-1">
+                                <i class="fa-solid fa-pen"></i> Edit
+                            </button>
+                            <button type="button" onclick="deleteNavMenuItem(${idx})" class="p-1.5 rounded-lg text-red-500 hover:text-red-400 hover:bg-red-500/10 text-xs transition" title="Hapus Menu">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                listContainer.insertAdjacentHTML('beforeend', rowHtml);
+            });
+
+            // Keep raw JSON textarea in sync
+            const jsonTextarea = document.getElementById('cfg-navigation-json');
+            if (jsonTextarea) {
+                jsonTextarea.value = JSON.stringify(navList, null, 2);
+            }
+        }
+
+        function toggleNavEditorMode() {
+            const visualBox = document.getElementById('nav-visual-container');
+            const jsonBox = document.getElementById('nav-json-container');
+            const btn = document.getElementById('toggle-nav-mode-btn');
+
+            if (navEditorMode === 'visual') {
+                navEditorMode = 'json';
+                visualBox.classList.add('hidden');
+                jsonBox.classList.remove('hidden');
+                btn.innerHTML = `<i class="fa-solid fa-eye"></i> Mode Visual`;
+            } else {
+                navEditorMode = 'visual';
+                syncNavFromRawJson();
+                jsonBox.classList.add('hidden');
+                visualBox.classList.remove('hidden');
+                btn.innerHTML = `<i class="fa-solid fa-code"></i> Mode JSON`;
+            }
+        }
+
+        function syncNavFromRawJson() {
+            const raw = document.getElementById('cfg-navigation-json').value.trim();
+            const errEl = document.getElementById('cfg-nav-json-error');
+            try {
+                const parsed = JSON.parse(raw);
+                if (Array.isArray(parsed)) {
+                    appData.siteConfig.navigation = parsed;
+                    if (errEl) errEl.classList.add('hidden');
+                    renderVisualNavList();
+                }
+            } catch (e) {
+                if (errEl) errEl.classList.remove('hidden');
+            }
+        }
+
+        function openAddNavModal(editIndex = -1) {
+            document.getElementById('nav-modal-edit-index').value = editIndex;
+            const titleEl = document.getElementById('nav-modal-title');
+            const subitemsList = document.getElementById('nav-modal-subitems-list');
+            subitemsList.innerHTML = '';
+
+            if (editIndex >= 0 && appData.siteConfig?.navigation?.[editIndex]) {
+                const item = appData.siteConfig.navigation[editIndex];
+                titleEl.innerHTML = `<i class="fa-solid fa-pen text-red-500"></i> Edit Menu Navigasi`;
+                document.getElementById('nav-modal-type').value = item.type || 'link';
+                document.getElementById('nav-modal-label').value = item.label || '';
+                document.getElementById('nav-modal-link').value = item.link || '';
+                
+                if (item.type === 'whatsapp') {
+                    document.getElementById('nav-modal-wa-template').value = item.link || 'whatsapp:salesBanner';
+                }
+
+                if (item.type === 'dropdown' && item.items) {
+                    item.items.forEach(sub => addNavSubItemRow(sub.label, sub.link));
+                }
+            } else {
+                titleEl.innerHTML = `<i class="fa-solid fa-compass text-red-500"></i> Tambah Menu Navigasi Baru`;
+                document.getElementById('nav-modal-type').value = 'link';
+                document.getElementById('nav-modal-label').value = '';
+                document.getElementById('nav-modal-link').value = '{basePath}';
+                document.getElementById('nav-modal-wa-template').value = 'whatsapp:salesBanner';
+            }
+
+            handleNavModalTypeChange();
+            document.getElementById('add-nav-modal').classList.remove('hidden');
+        }
+
+        function closeNavModal() {
+            document.getElementById('add-nav-modal').classList.add('hidden');
+        }
+
+        function setQuickNavLink(url) {
+            document.getElementById('nav-modal-link').value = url;
+        }
+
+        function handleNavModalTypeChange() {
+            const type = document.getElementById('nav-modal-type').value;
+            const linkGroup = document.getElementById('nav-modal-link-group');
+            const waGroup = document.getElementById('nav-modal-wa-group');
+            const dropdownGroup = document.getElementById('nav-modal-dropdown-group');
+
+            if (type === 'whatsapp') {
+                linkGroup.classList.add('hidden');
+                waGroup.classList.remove('hidden');
+                dropdownGroup.classList.add('hidden');
+            } else if (type === 'dropdown') {
+                linkGroup.classList.add('hidden');
+                waGroup.classList.add('hidden');
+                dropdownGroup.classList.remove('hidden');
+            } else {
+                linkGroup.classList.remove('hidden');
+                waGroup.classList.add('hidden');
+                dropdownGroup.classList.add('hidden');
+            }
+        }
+
+        function addNavSubItemRow(label = '', link = '') {
+            const container = document.getElementById('nav-modal-subitems-list');
+            const html = `
+                <div class="nav-subitem-row grid grid-cols-5 gap-2 bg-slate-950/40 p-2 rounded-lg border border-slate-800 items-center">
+                    <input type="text" class="sub-label glass-input col-span-2 px-2 py-1 rounded text-xs" placeholder="Nama Submenu" value="${label}">
+                    <input type="text" class="sub-link glass-input col-span-2 px-2 py-1 rounded text-xs font-mono" placeholder="{basePath}model/brio/" value="${link}">
+                    <button type="button" onclick="this.closest('.nav-subitem-row').remove()" class="col-span-1 text-red-500 hover:text-red-400 text-xs p-1 text-center"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        function saveNavModalConfirm() {
+            const editIndex = parseInt(document.getElementById('nav-modal-edit-index').value, 10);
+            const type = document.getElementById('nav-modal-type').value;
+            const label = document.getElementById('nav-modal-label').value.trim();
+
+            if (!label) {
+                showToast('Label menu tidak boleh kosong!', 'error');
+                return;
+            }
+
+            if (!appData.siteConfig.navigation) appData.siteConfig.navigation = [];
+
+            const navItem = { label, type };
+
+            if (type === 'whatsapp') {
+                navItem.link = document.getElementById('nav-modal-wa-template').value;
+            } else if (type === 'dropdown') {
+                const subRows = document.querySelectorAll('#nav-modal-subitems-list .nav-subitem-row');
+                navItem.items = [];
+                subRows.forEach(row => {
+                    const subLabel = row.querySelector('.sub-label').value.trim();
+                    const subLink = row.querySelector('.sub-link').value.trim();
+                    if (subLabel) {
+                        navItem.items.push({ label: subLabel, link: subLink });
+                    }
+                });
+            } else {
+                navItem.link = document.getElementById('nav-modal-link').value.trim() || '{basePath}';
+            }
+
+            if (editIndex >= 0) {
+                appData.siteConfig.navigation[editIndex] = navItem;
+                showToast(`Menu "${label}" berhasil diperbarui!`);
+            } else {
+                appData.siteConfig.navigation.push(navItem);
+                showToast(`Menu baru "${label}" berhasil ditambahkan!`);
+            }
+
+            closeNavModal();
+            renderVisualNavList();
+        }
+
+        function deleteNavMenuItem(idx) {
+            if (!confirm(`Hapus menu "${appData.siteConfig.navigation[idx]?.label}"?`)) return;
+            appData.siteConfig.navigation.splice(idx, 1);
+            renderVisualNavList();
+            showToast('Menu berhasil dihapus!');
+        }
+
+        function moveNavMenuItem(idx, direction) {
+            const list = appData.siteConfig.navigation;
+            const targetIdx = idx + direction;
+            if (targetIdx < 0 || targetIdx >= list.length) return;
+            const temp = list[idx];
+            list[idx] = list[targetIdx];
+            list[targetIdx] = temp;
+            renderVisualNavList();
+        }
+
+        // ==========================================
+        // SEO MANAGEMENT & GOOGLE SERP PREVIEW JS HANDLERS
+        // ==========================================
+        function populateSeoPageDropdown() {
+            const modelsOptgroup = document.getElementById('seo-models-optgroup');
+            const customOptgroup = document.getElementById('seo-custom-optgroup');
+            if (modelsOptgroup) modelsOptgroup.innerHTML = '';
+            if (customOptgroup) customOptgroup.innerHTML = '';
+
+            const config = appData.siteConfig;
+            const products = appData.products || {};
+            const seo = config?.seo || {};
+
+            // 1. Populate Model Pages
+            const productKeys = Object.keys(products);
+            productKeys.forEach(modelId => {
+                const modelName = products[modelId]?.name || modelId;
+                const opt = document.createElement('option');
+                opt.value = `model:${modelId}`;
+                opt.textContent = `Model Mobil: ${modelName} (${modelId})`;
+                if (modelsOptgroup) modelsOptgroup.appendChild(opt);
+            });
+
+            // 2. Populate Custom Pages in seo
+            const standardKeys = ['default', 'home', 'pricelist', 'brochure', 'promo', 'thank-you', 'models'];
+            Object.keys(seo).forEach(key => {
+                if (!standardKeys.includes(key)) {
+                    const opt = document.createElement('option');
+                    opt.value = key;
+                    opt.textContent = `Halaman Kustom: ${key}`;
+                    if (customOptgroup) customOptgroup.appendChild(opt);
+                }
+            });
+        }
+
+        function loadSelectedSeoPage() {
+            const selectEl = document.getElementById('seo-page-select');
+            selectedSeoPage = selectEl ? selectEl.value : 'default';
+            const config = appData.siteConfig;
+            if (!config || !config.seo) return;
+
+            let seoData = {};
+            if (selectedSeoPage.startsWith('model:')) {
+                const modelId = selectedSeoPage.replace('model:', '');
+                seoData = config.seo.models?.[modelId] || {};
+            } else {
+                seoData = config.seo[selectedSeoPage] || {};
+            }
+
+            document.getElementById('seo-inp-title').value = seoData.title || '';
+            document.getElementById('seo-inp-desc').value = seoData.description || '';
+            document.getElementById('seo-inp-keywords').value = seoData.keywords || '';
+            document.getElementById('seo-inp-image').value = seoData.image || '';
+
+            updateImagePreview('seo-inp-image');
+            updateSeoPreviewAndCounters();
+        }
+
+        function updateSeoPreviewAndCounters() {
+            const titleVal = document.getElementById('seo-inp-title')?.value || '';
+            const descVal = document.getElementById('seo-inp-desc')?.value || '';
+            const currentYear = new Date().getFullYear().toString();
+            const formatStr = (s) => s ? s.replace(/{year}/g, currentYear) : '';
+
+            const finalTitle = formatStr(titleVal) || 'Judul Halaman Belum Diatur | Nama Dealer';
+            const finalDesc = formatStr(descVal) || 'Deskripsi cuplikan belum diatur. Masukkan ringkasan halaman yang menarik untuk pengunjung di hasil pencarian Google.';
+
+            // 1. Update SERP Simulation Card
+            const serpTitle = document.getElementById('serp-preview-title');
+            const serpDesc = document.getElementById('serp-preview-desc');
+            const serpUrl = document.getElementById('serp-preview-url');
+            const targetBadge = document.getElementById('seo-active-target-badge');
+
+            if (serpTitle) serpTitle.innerText = finalTitle;
+            if (serpDesc) serpDesc.innerText = finalDesc;
+
+            let pathPart = '';
+            if (selectedSeoPage === 'home' || selectedSeoPage === 'default') pathPart = '';
+            else if (selectedSeoPage.startsWith('model:')) pathPart = ` › model › ${selectedSeoPage.replace('model:', '')}`;
+            else pathPart = ` › ${selectedSeoPage}`;
+
+            if (serpUrl) serpUrl.innerText = `https://www.hondabintaro.com${pathPart}`;
+            if (targetBadge) targetBadge.innerText = `Target: ${selectedSeoPage}`;
+
+            // 2. Character Length Counters & Progress Bars
+            const titleLen = titleVal.length;
+            const titleCounter = document.getElementById('seo-title-counter');
+            const titleBar = document.getElementById('seo-title-bar');
+            if (titleCounter) titleCounter.innerText = `${titleLen} / 60 karakter`;
+            if (titleBar) {
+                const titlePct = Math.min(100, Math.round((titleLen / 60) * 100));
+                titleBar.style.width = `${titlePct}%`;
+                if (titleLen >= 45 && titleLen <= 65) {
+                    titleBar.className = "h-full bg-emerald-500 transition-all duration-200";
+                } else if (titleLen > 65) {
+                    titleBar.className = "h-full bg-amber-500 transition-all duration-200";
+                } else {
+                    titleBar.className = "h-full bg-blue-500 transition-all duration-200";
+                }
+            }
+
+            const descLen = descVal.length;
+            const descCounter = document.getElementById('seo-desc-counter');
+            const descBar = document.getElementById('seo-desc-bar');
+            if (descCounter) descCounter.innerText = `${descLen} / 160 karakter`;
+            if (descBar) {
+                const descPct = Math.min(100, Math.round((descLen / 160) * 100));
+                descBar.style.width = `${descPct}%`;
+                if (descLen >= 120 && descLen <= 165) {
+                    descBar.className = "h-full bg-emerald-500 transition-all duration-200";
+                } else if (descLen > 165) {
+                    descBar.className = "h-full bg-amber-500 transition-all duration-200";
+                } else {
+                    descBar.className = "h-full bg-blue-500 transition-all duration-200";
+                }
+            }
+        }
+
+        function saveCurrentSeoPage() {
+            const config = appData.siteConfig;
+            if (!config || !config.seo) return;
+
+            const title = document.getElementById('seo-inp-title').value.trim();
+            const description = document.getElementById('seo-inp-desc').value.trim();
+            const keywords = document.getElementById('seo-inp-keywords').value.trim();
+            const image = document.getElementById('seo-inp-image').value.trim();
+
+            if (selectedSeoPage.startsWith('model:')) {
+                const modelId = selectedSeoPage.replace('model:', '');
+                if (!config.seo.models) config.seo.models = {};
+                if (!config.seo.models[modelId]) config.seo.models[modelId] = {};
+                config.seo.models[modelId] = { title, description, keywords, image };
+            } else {
+                if (!config.seo[selectedSeoPage]) config.seo[selectedSeoPage] = {};
+                config.seo[selectedSeoPage] = { title, description, keywords, image };
+            }
+
+            showToast(`Pengaturan SEO untuk target "${selectedSeoPage}" berhasil disimpan secara lokal!`);
+        }
+
+        function openAddCustomSeoPageModal() {
+            document.getElementById('custom-seo-page-key').value = '';
+            document.getElementById('add-custom-seo-modal').classList.remove('hidden');
+        }
+
+        function closeAddCustomSeoPageModal() {
+            document.getElementById('add-custom-seo-modal').classList.add('hidden');
+        }
+
+        function confirmAddCustomSeoPage() {
+            const key = document.getElementById('custom-seo-page-key').value.trim().toLowerCase().replace(/[^a-z0-9-_]/g, '-');
+            if (!key) {
+                showToast('Key halaman tidak boleh kosong!', 'error');
+                return;
+            }
+
+            if (!appData.siteConfig.seo) appData.siteConfig.seo = {};
+            if (!appData.siteConfig.seo[key]) {
+                appData.siteConfig.seo[key] = {
+                    title: '',
+                    description: '',
+                    keywords: '',
+                    image: ''
+                };
+            }
+
+            closeAddCustomSeoPageModal();
+            populateSeoPageDropdown();
+            document.getElementById('seo-page-select').value = key;
+            loadSelectedSeoPage();
+            showToast(`Target SEO "${key}" siap dikonfigurasi!`);
+        }
+
+        // ==========================================
+        // CAR DRAG & DROP REORDERING HANDLERS
+        // ==========================================
+        let draggedCarId = null;
+
+        function handleCarDragStart(e, id) {
+            draggedCarId = id;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', id);
+            e.currentTarget.classList.add('opacity-40', 'border-red-500');
+        }
+
+        function handleCarDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            e.currentTarget.classList.add('bg-slate-800', 'border-red-500/80');
+        }
+
+        function handleCarDragLeave(e) {
+            e.currentTarget.classList.remove('bg-slate-800', 'border-red-500/80');
+        }
+
+        function handleCarDrop(e, targetId) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('bg-slate-800', 'border-red-500/80');
+            if (!draggedCarId || draggedCarId === targetId) return;
+
+            reorderCarList(draggedCarId, targetId);
+        }
+
+        function handleCarDragEnd(e) {
+            e.currentTarget.classList.remove('opacity-40', 'border-red-500');
+            draggedCarId = null;
+        }
+
+        function reorderCarList(fromId, toId) {
+            const products = appData.products || {};
+            let order = appData.siteConfig?.site?.productOrder || Object.keys(products);
+            
+            // Ensure all existing product keys are present in order
+            Object.keys(products).forEach(k => {
+                if (!order.includes(k)) order.push(k);
+            });
+
+            const fromIndex = order.indexOf(fromId);
+            const toIndex = order.indexOf(toId);
+
+            if (fromIndex === -1 || toIndex === -1) return;
+
+            // Remove from current position and insert at new position
+            order.splice(fromIndex, 1);
+            order.splice(toIndex, 0, fromId);
+
+            if (!appData.siteConfig.site) appData.siteConfig.site = {};
+            appData.siteConfig.site.productOrder = order;
+
+            // Also re-order keys in appData.products
+            const reorderedProducts = {};
+            order.forEach(k => {
+                if (products[k]) reorderedProducts[k] = products[k];
+            });
+            Object.keys(products).forEach(k => {
+                if (!reorderedProducts[k]) reorderedProducts[k] = products[k];
+            });
+            appData.products = reorderedProducts;
+
+            showToast(`Urutan mobil diperbarui! (${fromId} dipindah ke posisi #${toIndex + 1})`, 'info');
+            populateProductsForm();
+        }
+
+        function moveCarRank(id, direction) {
+            const products = appData.products || {};
+            let order = appData.siteConfig?.site?.productOrder || Object.keys(products);
+            Object.keys(products).forEach(k => {
+                if (!order.includes(k)) order.push(k);
+            });
+
+            const currIndex = order.indexOf(id);
+            if (currIndex === -1) return;
+
+            if (direction === 'top') {
+                order.splice(currIndex, 1);
+                order.unshift(id);
+            } else if (direction === 'up' && currIndex > 0) {
+                const temp = order[currIndex];
+                order[currIndex] = order[currIndex - 1];
+                order[currIndex - 1] = temp;
+            } else if (direction === 'down' && currIndex < order.length - 1) {
+                const temp = order[currIndex];
+                order[currIndex] = order[currIndex + 1];
+                order[currIndex + 1] = temp;
+            }
+
+            if (!appData.siteConfig.site) appData.siteConfig.site = {};
+            appData.siteConfig.site.productOrder = order;
+
+            const reorderedProducts = {};
+            order.forEach(k => {
+                if (products[k]) reorderedProducts[k] = products[k];
+            });
+            Object.keys(products).forEach(k => {
+                if (!reorderedProducts[k]) reorderedProducts[k] = products[k];
+            });
+            appData.products = reorderedProducts;
+
+            populateProductsForm();
+            showToast(`Urutan mobil "${products[id]?.name || id}" berhasil digeser!`, 'info');
+        }
 
         // ==========================================
         // 3. PRODUCTS FORM POPULATE & SAVE
@@ -3016,27 +4172,70 @@
             listContainer.innerHTML = '';
             
             const products = appData.products || {};
-            const keys = Object.keys(products);
+            let keys = Object.keys(products);
 
             if (keys.length === 0) {
                 listContainer.innerHTML = `<span class="text-xs text-gray-500 p-3 italic">Tidak ada produk</span>`;
                 return;
             }
 
-            keys.forEach(key => {
+            // Sort keys based on configured productOrder
+            const orderList = appData.siteConfig?.site?.productOrder || [];
+            if (orderList.length > 0) {
+                keys.sort((a, b) => {
+                    const idxA = orderList.indexOf(a);
+                    const idxB = orderList.indexOf(b);
+                    if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+                    if (idxA !== -1) return -1;
+                    if (idxB !== -1) return 1;
+                    return 0;
+                });
+            }
+
+            keys.forEach((key, idx) => {
                 const p = products[key];
-                const activeClass = selectedProductId === key ? 'bg-red-600 text-white font-bold shadow' : 'text-gray-400 hover:text-white hover:bg-slate-800/40';
-                const btn = `
-                    <button onclick="selectProductModel('${key}')" class="w-full text-left px-3 py-2 rounded-lg text-xs transition ${activeClass} flex items-center justify-between">
-                        <span>${p.name || key}</span>
-                        <span class="text-[10px] text-gray-500 font-mono">${key}</span>
-                    </button>
+                const activeClass = selectedProductId === key ? 'bg-red-600/20 border-red-500 text-white font-bold shadow' : 'bg-slate-950/40 border-slate-800/80 text-gray-300 hover:text-white hover:bg-slate-800/40';
+                
+                const itemHtml = `
+                    <div draggable="true" 
+                         ondragstart="handleCarDragStart(event, '${key}')" 
+                         ondragover="handleCarDragOver(event)" 
+                         ondragleave="handleCarDragLeave(event)" 
+                         ondrop="handleCarDrop(event, '${key}')" 
+                         ondragend="handleCarDragEnd(event)"
+                         class="group relative border rounded-xl p-2.5 transition-all flex items-center justify-between gap-2 cursor-grab active:cursor-grabbing ${activeClass}">
+                        <div class="flex items-center gap-2 min-w-0" onclick="selectProductModel('${key}')">
+                            <span class="text-gray-500 group-hover:text-gray-300 cursor-grab shrink-0 px-0.5" title="Drag & Drop untuk menggeser posisi">
+                                <i class="fa-solid fa-grip-vertical"></i>
+                            </span>
+                            <span class="w-5 h-5 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-[9px] font-mono font-bold text-gray-400 shrink-0">
+                                #${idx + 1}
+                            </span>
+                            <div class="min-w-0">
+                                <div class="text-xs font-bold truncate leading-tight">${p.name || key}</div>
+                                <div class="text-[10px] text-gray-500 font-mono truncate">${key}</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1 shrink-0">
+                            <button type="button" onclick="moveCarRank('${key}', 'top')" class="text-[10px] text-gray-400 hover:text-emerald-400 p-1 hover:bg-slate-800 rounded transition" title="Pindah Langsung ke Paling Depan (#1)">
+                                <i class="fa-solid fa-angles-up"></i>
+                            </button>
+                            <button type="button" onclick="moveCarRank('${key}', 'up')" class="text-[10px] text-gray-400 hover:text-white p-1 hover:bg-slate-800 rounded transition" title="Naik 1 Posisi">
+                                <i class="fa-solid fa-chevron-up"></i>
+                            </button>
+                            <button type="button" onclick="moveCarRank('${key}', 'down')" class="text-[10px] text-gray-400 hover:text-white p-1 hover:bg-slate-800 rounded transition" title="Turun 1 Posisi">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
                 `;
-                listContainer.insertAdjacentHTML('beforeend', btn);
+                listContainer.insertAdjacentHTML('beforeend', itemHtml);
             });
 
             if (selectedProductId && products[selectedProductId]) {
                 renderProductEditorForm(selectedProductId);
+            } else if (keys.length > 0) {
+                selectProductModel(keys[0]);
             } else {
                 document.getElementById('product-editor-empty').classList.remove('hidden');
                 document.getElementById('product-editor-form').classList.add('hidden');
@@ -3707,6 +4906,257 @@
             // Check status immediately
             checkLicenseStatusInTab();
             showToast('Kunci lisensi berhasil diperbarui! Silakan tekan Commit Perubahan untuk menyimpan ke GitHub.', 'success');
+        }
+
+        // ================= CUSTOM PAGES CMS LOGIC (pages.json) =================
+        function populatePagesForm() {
+            const listEl = document.getElementById('custom-pages-list');
+            if (!listEl) return;
+            listEl.innerHTML = '';
+
+            const pages = appData.pages || {};
+            const keys = Object.keys(pages);
+
+            if (keys.length === 0) {
+                listEl.innerHTML = '<p class="text-xs text-gray-500 text-center py-6">Belum ada halaman kustom.</p>';
+                document.getElementById('page-editor-form')?.classList.add('hidden');
+                document.getElementById('page-editor-empty')?.classList.remove('hidden');
+                return;
+            }
+
+            keys.forEach(k => {
+                const p = pages[k];
+                const isActive = k === selectedPageSlug;
+                const activeClass = isActive 
+                    ? 'border-red-500 bg-red-950/30 text-white' 
+                    : 'border-slate-800 hover:border-slate-700 bg-slate-900/40 text-gray-300';
+
+                const routeDisplay = p.routeUrl || (p.isSystemPage ? `/${k}/` : `/page/?id=${k}`);
+                const isSys = p.isSystemPage || k === 'pricelist' || k === 'brochure';
+                const badgeSys = isSys ? `<span class="text-[8px] bg-blue-900/60 text-blue-300 font-bold px-1.5 py-0.5 rounded border border-blue-700/40">Sistem</span>` : '';
+
+                const html = `
+                    <div onclick="selectPage('${k}')" class="p-3 rounded-xl border ${activeClass} cursor-pointer transition flex items-center justify-between gap-2 group">
+                        <div class="min-w-0 flex-1">
+                            <div class="flex items-center gap-1.5">
+                                <h4 class="text-xs font-bold font-outfit truncate text-white group-hover:text-red-400 transition">${p.title || k}</h4>
+                                ${badgeSys}
+                            </div>
+                            <div class="flex items-center gap-1.5 mt-1">
+                                <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-950 text-gray-400 truncate max-w-full">${routeDisplay}</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs text-gray-500 group-hover:text-white transition"></i>
+                    </div>
+                `;
+                listEl.insertAdjacentHTML('beforeend', html);
+            });
+
+            // Select first page by default if none selected or deleted
+            if (!selectedPageSlug || !pages[selectedPageSlug]) {
+                selectPage(keys[0]);
+            } else {
+                renderPageEditorForm(selectedPageSlug);
+            }
+        }
+
+        function selectPage(slug) {
+            selectedPageSlug = slug;
+            populatePagesForm();
+        }
+
+        function renderPageEditorForm(slug) {
+            const pages = appData.pages || {};
+            const page = pages[slug];
+            if (!page) return;
+
+            document.getElementById('page-editor-empty')?.classList.add('hidden');
+            const formEl = document.getElementById('page-editor-form');
+            if (formEl) formEl.classList.remove('hidden');
+
+            const isSys = page.isSystemPage || slug === 'pricelist' || slug === 'brochure';
+
+            document.getElementById('edit-page-header').innerText = `Edit: ${page.title || slug}`;
+            document.getElementById('edit-page-slug').value = slug;
+            document.getElementById('edit-page-title').value = page.title || '';
+            document.getElementById('edit-page-subtitle').value = page.subtitle || '';
+            
+            const previewLink = document.getElementById('edit-page-preview-link');
+            if (previewLink) {
+                previewLink.href = page.routeUrl || (isSys ? `../${slug}/` : `../page/?id=${slug}`);
+            }
+
+            const bodyContainer = document.getElementById('page-body-container');
+            const sysNote = document.getElementById('page-system-note');
+            const deleteBtn = document.getElementById('btn-delete-page');
+
+            if (isSys) {
+                bodyContainer?.classList.add('hidden');
+                sysNote?.classList.remove('hidden');
+                deleteBtn?.classList.add('hidden');
+            } else {
+                bodyContainer?.classList.remove('hidden');
+                sysNote?.classList.add('hidden');
+                deleteBtn?.classList.remove('hidden');
+
+                // Init / set CKEditor
+                const rawContent = page.content || '';
+                if (window.ClassicEditor) {
+                    if (pageCkEditorInstance) {
+                        pageCkEditorInstance.setData(rawContent);
+                    } else {
+                        const contentTextarea = document.getElementById('edit-page-content');
+                        if (contentTextarea) {
+                            window.ClassicEditor.create(contentTextarea, {
+                                toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo']
+                            }).then(editor => {
+                                pageCkEditorInstance = editor;
+                                pageCkEditorInstance.setData(rawContent);
+                            }).catch(e => {
+                                console.warn('CKEditor init fallback:', e);
+                                contentTextarea.value = rawContent;
+                            });
+                        }
+                    }
+                } else {
+                    const contentTextarea = document.getElementById('edit-page-content');
+                    if (contentTextarea) contentTextarea.value = rawContent;
+                }
+            }
+
+            // SEO fields
+            const seo = page.seo || {};
+            document.getElementById('edit-page-seo-title').value = seo.title || '';
+            document.getElementById('edit-page-seo-desc').value = seo.description || '';
+            document.getElementById('edit-page-seo-keywords').value = seo.keywords || '';
+            document.getElementById('edit-page-seo-image').value = seo.image || '';
+            
+            if (typeof updateImagePreview === 'function') {
+                updateImagePreview('edit-page-seo-image');
+            }
+        }
+
+        function saveCurrentPageDetails() {
+            if (!selectedPageSlug) return;
+            if (!appData.pages) appData.pages = {};
+
+            const existing = appData.pages[selectedPageSlug] || {};
+            const isSys = existing.isSystemPage || selectedPageSlug === 'pricelist' || selectedPageSlug === 'brochure';
+
+            let bodyContent = existing.content || '';
+            if (!isSys) {
+                if (pageCkEditorInstance) {
+                    bodyContent = pageCkEditorInstance.getData();
+                } else {
+                    bodyContent = document.getElementById('edit-page-content')?.value || '';
+                }
+            }
+
+            const title = document.getElementById('edit-page-title')?.value.trim() || selectedPageSlug;
+            const subtitle = document.getElementById('edit-page-subtitle')?.value.trim() || '';
+
+            const seoTitle = document.getElementById('edit-page-seo-title')?.value.trim() || '';
+            const seoDesc = document.getElementById('edit-page-seo-desc')?.value.trim() || '';
+            const seoKeywords = document.getElementById('edit-page-seo-keywords')?.value.trim() || '';
+            const seoImage = document.getElementById('edit-page-seo-image')?.value.trim() || '';
+
+            const today = new Date().toISOString().split('T')[0];
+
+            appData.pages[selectedPageSlug] = {
+                ...existing,
+                title: title,
+                slug: selectedPageSlug,
+                subtitle: subtitle,
+                updatedAt: today,
+                ...(isSys ? { isSystemPage: true, routeUrl: existing.routeUrl || `../${selectedPageSlug}/` } : { content: bodyContent, isSystemPage: false, routeUrl: `../page/?id=${selectedPageSlug}` }),
+                seo: {
+                    title: seoTitle,
+                    description: seoDesc,
+                    keywords: seoKeywords,
+                    image: seoImage
+                }
+            };
+
+            populatePagesForm();
+            showToast(`✅ Halaman "${title}" berhasil disimpan di memori! Tekan "Commit Perubahan" untuk publikasi ke GitHub.`);
+        }
+
+        function openAddPageModal() {
+            document.getElementById('new-page-title').value = '';
+            document.getElementById('new-page-slug').value = '';
+            document.getElementById('add-page-modal').classList.remove('hidden');
+        }
+
+        function closeAddPageModal() {
+            document.getElementById('add-page-modal').classList.add('hidden');
+        }
+
+        function autoGeneratePageSlug(val) {
+            const slug = val.toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-');
+            document.getElementById('new-page-slug').value = slug;
+        }
+
+        function createNewPageConfirm() {
+            const title = document.getElementById('new-page-title').value.trim();
+            let slug = document.getElementById('new-page-slug').value.trim();
+
+            if (!title) {
+                showToast('Harap masukkan judul halaman!', 'warning');
+                return;
+            }
+            if (!slug) {
+                slug = title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            }
+
+            if (!appData.pages) appData.pages = {};
+
+            if (appData.pages[slug]) {
+                showToast(`Halaman dengan slug "${slug}" sudah ada!`, 'warning');
+                return;
+            }
+
+            const today = new Date().toISOString().split('T')[0];
+
+            appData.pages[slug] = {
+                title: title,
+                slug: slug,
+                subtitle: `Informasi lengkap mengenai ${title}`,
+                updatedAt: today,
+                isSystemPage: false,
+                routeUrl: `../page/?id=${slug}`,
+                content: `<h2>${title}</h2><p>Tulis konten lengkap halaman di sini...</p>`,
+                seo: {
+                    title: `${title} | Honda`,
+                    description: `Informasi lengkap mengenai ${title} resmi.`,
+                    keywords: slug.replace(/-/g, ' '),
+                    image: '../assets/images/logo.png'
+                }
+            };
+
+            closeAddPageModal();
+            selectedPageSlug = slug;
+            populatePagesForm();
+            showToast(`🎉 Halaman "${title}" berhasil dibuat! Silakan sesuaikan konten dan SEO lalu commit ke GitHub.`);
+        }
+
+        function deleteCurrentPage() {
+            if (!selectedPageSlug) return;
+            const existing = appData.pages?.[selectedPageSlug];
+            if (existing?.isSystemPage || selectedPageSlug === 'pricelist' || selectedPageSlug === 'brochure') {
+                showToast('Halaman sistem tidak dapat dihapus!', 'warning');
+                return;
+            }
+            const pageTitle = existing?.title || selectedPageSlug;
+
+            if (confirm(`Apakah Anda yakin ingin menghapus halaman "${pageTitle}"?`)) {
+                delete appData.pages[selectedPageSlug];
+                selectedPageSlug = '';
+                populatePagesForm();
+                showToast(`Halaman "${pageTitle}" berhasil dihapus.`);
+            }
         }
     </script>
 </body>

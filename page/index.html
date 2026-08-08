@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <!-- Dynamic Primary SEO Metadata -->
+    <title id="meta-title">Halaman Informasi | Honda Bintaro</title>
+    <meta name="description" id="meta-desc" content="Informasi resmi seputar pembelian dan promo mobil Honda.">
+    <meta name="keywords" id="meta-keywords" content="honda bintaro, promo honda">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" id="og-title" content="Halaman Informasi | Honda Bintaro">
+    <meta property="og:description" id="og-desc" content="Informasi resmi seputar pembelian dan promo mobil Honda.">
+    <meta property="og:image" id="og-image" content="../assets/images/logo.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitter-title" content="Halaman Informasi | Honda Bintaro">
+    <meta name="twitter:description" id="twitter-desc" content="Informasi resmi seputar pembelian dan promo mobil Honda.">
+    <meta name="twitter:image" id="twitter-image" content="../assets/images/logo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" id="dynamic-favicon" href="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        honda: '#cc0000',
+                        'honda-dark': '#990000',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+        }
+        .page-content h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #111827;
+            margin-top: 1.75rem;
+            margin-bottom: 0.75rem;
+            font-family: 'Outfit', sans-serif;
+        }
+        .page-content h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Outfit', sans-serif;
+        }
+        .page-content p {
+            margin-bottom: 1rem;
+            line-height: 1.75;
+            color: #4b5563;
+        }
+        .page-content ul, .page-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
+            color: #4b5563;
+        }
+        .page-content ul {
+            list-style-type: disc;
+        }
+        .page-content ol {
+            list-style-type: decimal;
+        }
+        .page-content li {
+            margin-bottom: 0.35rem;
+        }
+    </style>
+
+    <!-- Shared Components Scripts -->
+    <script src="../assets/js/header.js" defer></script>
+    <script src="../assets/js/footer.js" defer></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <!-- SHARED NAVBAR HEADER -->
+    <div id="shared-header" data-page="page" data-base-path="../"></div>
+
+    <!-- BREADCRUMBS -->
+    <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-6">
+        <nav class="flex text-xs font-medium text-gray-500 gap-2 items-center">
+            <a href="../" class="hover:text-honda transition">Home</a>
+            <span>/</span>
+            <span class="text-gray-400">Halaman</span>
+            <span>/</span>
+            <span class="text-gray-900 font-semibold" id="breadcrumb-page-title">Memuat Halaman...</span>
+        </nav>
+    </section>
+
+    <!-- 404 NOT FOUND CONTAINER (Hidden by default) -->
+    <div id="page-not-found" class="hidden max-w-3xl mx-auto w-full px-4 py-16 text-center space-y-6 flex-1">
+        <div class="w-20 h-20 mx-auto rounded-full bg-red-50 text-honda flex items-center justify-center text-3xl font-bold">
+            !
+        </div>
+        <div class="space-y-2">
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Halaman Tidak Ditemukan</h1>
+            <p class="text-sm text-gray-500 max-w-md mx-auto">Halaman yang Anda tuju tidak ditemukan atau URL slug salah. Silakan pilih dari halaman lain yang tersedia di bawah.</p>
+        </div>
+        <div id="fallback-pages-list" class="flex flex-wrap justify-center gap-2 pt-2">
+            <!-- Dynamic available pages badges -->
+        </div>
+        <div class="pt-4">
+            <a href="../" class="inline-block bg-honda hover:bg-honda-dark text-white font-bold text-xs px-6 py-3 rounded-full transition shadow-sm">
+                Kembali ke Beranda
+            </a>
+        </div>
+    </div>
+
+    <!-- MAIN ARTICLE & CONTENT LAYOUT -->
+    <main id="page-main-container" class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex-1">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+            <!-- MAIN CONTENT ARTICLE -->
+            <article class="lg:col-span-8 bg-white border border-gray-100 rounded-3xl p-6 sm:p-10 shadow-sm space-y-6">
+                <!-- Page Header -->
+                <header class="border-b border-gray-100 pb-6 space-y-2">
+                    <h1 id="page-title" class="text-2xl sm:text-4xl font-extrabold font-outfit text-gray-900 tracking-tight leading-tight">
+                        Memuat Halaman...
+                    </h1>
+                    <p id="page-subtitle" class="text-sm text-gray-500 font-medium"></p>
+                    <div class="flex items-center gap-4 text-xs text-gray-400 pt-1">
+                        <span id="page-date" class="flex items-center gap-1.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            Diperbarui: -
+                        </span>
+                    </div>
+                </header>
+
+                <!-- Page Body Content (HTML from CKEditor / JSON) -->
+                <div id="page-content" class="page-content text-sm sm:text-base leading-relaxed text-gray-700">
+                    <!-- Populated dynamically -->
+                </div>
+            </article>
+
+            <!-- SIDEBAR -->
+            <aside class="lg:col-span-4 space-y-6">
+                <!-- Other Pages Navigation -->
+                <div class="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm space-y-4">
+                    <h3 class="font-bold text-sm text-gray-900 font-outfit uppercase tracking-wider border-b border-gray-100 pb-3 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-honda"></span> Halaman Lainnya
+                    </h3>
+                    <ul id="sidebar-pages-list" class="space-y-1 text-xs">
+                        <!-- Loaded dynamically -->
+                    </ul>
+                </div>
+
+                <!-- WhatsApp Quick Contact Widget -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-6 shadow-sm space-y-4 border border-slate-800">
+                    <div class="space-y-1">
+                        <span class="text-[10px] text-red-400 font-bold uppercase tracking-widest">Konsultasi Resmi</span>
+                        <h4 class="font-bold text-base font-outfit text-white leading-tight">Butuh Bantuan atau Info Promo?</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed pt-1">Sales Counter kami siap membantu simulasi kredit, booking test drive, dan penawaran OTR terbaik.</p>
+                    </div>
+                    <a id="page-wa-cta" href="#" target="_blank"
+                        class="flex items-center justify-center gap-2 w-full bg-honda hover:bg-honda-dark text-white py-3 rounded-full font-bold text-xs transition-all shadow-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.458L0 24zm5.835-3.32c1.629.967 3.39 1.48 5.206 1.481 5.485 0 9.95-4.466 9.954-9.953.002-2.657-1.03-5.155-2.906-7.03C16.27 3.299 13.774 2.26 11.121 2.26c-5.495 0-9.96 4.465-9.964 9.954-.001 1.892.493 3.738 1.433 5.345L1.5 21.5l4.392-1.153zM16.621 13.62c-.27-.135-1.597-.788-1.845-.878-.247-.09-.427-.135-.607.135-.18.27-.697.878-.855 1.058-.158.18-.315.202-.585.067-.27-.135-1.14-.42-2.172-1.341-.803-.715-1.344-1.602-1.502-1.872-.158-.27-.017-.417.118-.552.122-.122.27-.315.405-.473.135-.158.18-.27.27-.45.09-.18.045-.338-.022-.473-.068-.135-.608-1.464-.833-2.008-.22-.527-.44-.455-.608-.464-.158-.008-.338-.009-.518-.009-.18 0-.473.067-.72.338-.248.27-.945.923-.945 2.25s.968 2.61 1.103 2.79c.135.18 1.905 2.91 4.613 4.08.645.278 1.148.445 1.54.57.647.206 1.237.177 1.702.107.518-.077 1.597-.653 1.822-1.283.225-.63.225-1.17.158-1.283-.068-.113-.248-.18-.518-.315z" />
+                        </svg>
+                        <span>Chat WhatsApp Sekarang</span>
+                    </a>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- SHARED FOOTER -->
+    <div id="shared-footer" data-base-path="../"></div>
+
+    <!-- MAIN CORE PAGE JAVASCRIPT LOGIC -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        let pageId = (urlParams.get('id') || urlParams.get('slug') || 'privacy-policy').toLowerCase().trim();
+
+        let pagesData = {};
+        let siteConfig = {};
+
+        async function fetchPageData() {
+            try {
+                const [pagesRes, configRes] = await Promise.all([
+                    fetch('../data/pages.json'),
+                    fetch('../data/site_config.json')
+                ]);
+                pagesData = await pagesRes.json();
+                siteConfig = await configRes.json();
+
+                // Apply theme if available
+                if (siteConfig.theme && window.applyThemeConfig) {
+                    window.applyThemeConfig(siteConfig.theme);
+                }
+
+                // Check page existence
+                if (!pagesData[pageId]) {
+                    const availableKeys = Object.keys(pagesData);
+                    const match = availableKeys.find(k => k.toLowerCase() === pageId);
+                    if (match) {
+                        pageId = match;
+                    } else {
+                        renderPageNotFound(availableKeys);
+                        return;
+                    }
+                }
+
+                renderPageContent();
+                renderSidebarPages();
+                setupWhatsAppCTA();
+            } catch (err) {
+                console.error("Gagal memuat data halaman:", err);
+            }
+        }
+
+        function renderPageNotFound(availableKeys) {
+            document.getElementById('page-main-container').classList.add('hidden');
+            const notFoundEl = document.getElementById('page-not-found');
+            notFoundEl.classList.remove('hidden');
+
+            const listEl = document.getElementById('fallback-pages-list');
+            listEl.innerHTML = '';
+            availableKeys.forEach(k => {
+                const page = pagesData[k];
+                const btn = `
+                    <a href="./?id=${k}" class="bg-white hover:bg-red-50 text-gray-700 hover:text-honda border border-gray-200 hover:border-red-300 font-semibold text-xs px-3.5 py-1.5 rounded-full transition shadow-sm">
+                        ${page.title || k}
+                    </a>
+                `;
+                listEl.insertAdjacentHTML('beforeend', btn);
+            });
+        }
+
+        function renderPageContent() {
+            const page = pagesData[pageId];
+            if (!page) return;
+
+            const currentYear = new Date().getFullYear().toString();
+            const formatStr = (s) => s ? s.replace(/{year}/g, currentYear) : '';
+
+            // SEO updates
+            const seo = page.seo || {};
+            const pageTitle = formatStr(seo.title) || `${page.title} | ${siteConfig.contact?.dealerName || 'Honda'}`;
+            const pageDesc = formatStr(seo.description) || page.subtitle || `Informasi ${page.title} resmi.`;
+            const ogImage = seo.image || '../assets/images/logo.png';
+
+            document.title = pageTitle;
+            document.getElementById('meta-desc')?.setAttribute('content', pageDesc);
+            document.getElementById('meta-keywords')?.setAttribute('content', seo.keywords || 'honda');
+            document.getElementById('og-title')?.setAttribute('content', pageTitle);
+            document.getElementById('og-desc')?.setAttribute('content', pageDesc);
+            document.getElementById('og-image')?.setAttribute('content', ogImage);
+
+            // Article Content
+            document.getElementById('page-title').innerText = page.title;
+            document.getElementById('breadcrumb-page-title').innerText = page.title;
+            document.getElementById('page-subtitle').innerText = page.subtitle || '';
+            document.getElementById('page-date').innerHTML = `Diperbarui: ${page.updatedAt || 'Terbaru'}`;
+            document.getElementById('page-content').innerHTML = page.content || '<p class="text-gray-400">Konten halaman sedang disiapkan.</p>';
+        }
+
+        function renderSidebarPages() {
+            const listEl = document.getElementById('sidebar-pages-list');
+            listEl.innerHTML = '';
+
+            Object.keys(pagesData).forEach(k => {
+                const p = pagesData[k];
+                const isActive = k === pageId;
+                const activeClass = isActive ? 'bg-red-50 text-honda font-bold border-l-4 border-honda' : 'text-gray-600 hover:text-honda hover:bg-gray-50';
+                
+                const item = `
+                    <li>
+                        <a href="./?id=${k}" class="block px-3 py-2 rounded-lg transition ${activeClass}">
+                            ${p.title}
+                        </a>
+                    </li>
+                `;
+                listEl.insertAdjacentHTML('beforeend', item);
+            });
+        }
+
+        function setupWhatsAppCTA() {
+            const config = siteConfig.contact || {};
+            const rawPhone = config.phoneNumber || "6282299185425";
+            const phoneNumber = rawPhone.replace(/^\+/, '').replace(/^0/, '62');
+            const salesName = config.salesName || "Sales Counter";
+            const page = pagesData[pageId];
+            
+            const message = `Halo ${salesName}, saya sedang membaca halaman "${page?.title || 'Informasi Honda'}" di website dan ingin konsultasi lebih lanjut.`;
+            document.getElementById('page-wa-cta').href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        }
+
+        window.addEventListener('DOMContentLoaded', fetchPageData);
+    </script>
+</body>
+
+</html>
