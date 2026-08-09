@@ -200,6 +200,15 @@
         let pagesData = {};
         let siteConfig = {};
 
+        function isPageSystem(k, p) {
+            if (!p) return false;
+            if (p.isSystemPage === true) return true;
+            const key = (k || '').toLowerCase().trim();
+            if (['pricelist', 'brochure', 'promo', 'thank-you'].includes(key)) return true;
+            if (p.routeUrl && !p.routeUrl.includes('/page/')) return true;
+            return false;
+        }
+
         async function fetchPageData() {
             try {
                 const [pagesRes, configRes] = await Promise.all([
@@ -214,16 +223,26 @@
                     window.applyThemeConfig(siteConfig.theme);
                 }
 
-                // Check page existence
-                if (!pagesData[pageId]) {
+                let currentPage = pagesData[pageId];
+                if (!currentPage) {
                     const availableKeys = Object.keys(pagesData);
                     const match = availableKeys.find(k => k.toLowerCase() === pageId);
                     if (match) {
                         pageId = match;
-                    } else {
-                        renderPageNotFound(availableKeys);
-                        return;
+                        currentPage = pagesData[match];
                     }
+                }
+
+                // Check if page is a system page (e.g. pricelist, brochure, promo, thank-you) -> Redirect to its dedicated URL
+                if (currentPage && isPageSystem(pageId, currentPage)) {
+                    const targetUrl = (currentPage.routeUrl && !currentPage.routeUrl.includes('/page/')) ? currentPage.routeUrl : `../${pageId}/`;
+                    window.location.replace(targetUrl);
+                    return;
+                }
+
+                if (!currentPage) {
+                    renderPageNotFound(Object.keys(pagesData));
+                    return;
                 }
 
                 renderPageContent();
@@ -241,7 +260,10 @@
 
             const listEl = document.getElementById('fallback-pages-list');
             listEl.innerHTML = '';
-            availableKeys.forEach(k => {
+            
+            const customKeys = availableKeys.filter(k => !isPageSystem(k, pagesData[k]));
+
+            customKeys.forEach(k => {
                 const page = pagesData[k];
                 const btn = `
                     <a href="./?id=${k}" class="bg-white hover:bg-red-50 text-gray-700 hover:text-honda border border-gray-200 hover:border-red-300 font-semibold text-xs px-3.5 py-1.5 rounded-full transition shadow-sm">
@@ -282,9 +304,18 @@
 
         function renderSidebarPages() {
             const listEl = document.getElementById('sidebar-pages-list');
+            if (!listEl) return;
             listEl.innerHTML = '';
 
-            Object.keys(pagesData).forEach(k => {
+            // Filter ONLY non-system custom pages (Hide Pricelist, Brochure, Promo, Thank You)
+            const customKeys = Object.keys(pagesData).filter(k => !isPageSystem(k, pagesData[k]));
+
+            if (customKeys.length === 0) {
+                listEl.innerHTML = '<li class="text-gray-400 text-xs py-2 italic">Tidak ada halaman kustom lainnya.</li>';
+                return;
+            }
+
+            customKeys.forEach(k => {
                 const p = pagesData[k];
                 const isActive = k === pageId;
                 const activeClass = isActive ? 'bg-red-50 text-honda font-bold border-l-4 border-honda' : 'text-gray-600 hover:text-honda hover:bg-gray-50';

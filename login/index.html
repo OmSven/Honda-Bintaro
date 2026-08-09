@@ -17,6 +17,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -92,25 +93,65 @@
             outline: none;
         }
 
-        /* Light Theme overrides */
+        /* =======================================================
+           LIGHT THEME OVERRIDES (Comprehensive, High Contrast & Clean)
+           ======================================================= */
         .light-theme {
-            background-color: #f1f5f9;
-            color: #1e293b;
-        }
-        .light-theme .glass-panel {
-            background: rgba(255, 255, 255, 0.75);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
-        }
-        .light-theme .glass-input {
-            background: #ffffff;
-            border-color: #cbd5e1;
+            background-color: #f8fafc;
             color: #0f172a;
         }
-        .light-theme .glass-input:focus {
-            border-color: #cc0000;
-            box-shadow: 0 0 0 2px rgba(204, 0, 0, 0.15);
+        .light-theme .glass-panel {
+            background: #ffffff !important;
+            border-color: #e2e8f0 !important;
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
         }
+        .light-theme .glass-input,
+        .light-theme input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+        .light-theme select,
+        .light-theme textarea {
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+        .light-theme .glass-input:focus,
+        .light-theme input:focus,
+        .light-theme select:focus,
+        .light-theme textarea:focus {
+            border-color: #dc2626 !important;
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15) !important;
+        }
+        .light-theme select option {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+        }
+        .light-theme input::placeholder,
+        .light-theme textarea::placeholder {
+            color: #94a3b8 !important;
+        }
+        .light-theme input[readonly],
+        .light-theme input[disabled] {
+            background-color: #f1f5f9 !important;
+            color: #64748b !important;
+            border-color: #e2e8f0 !important;
+        }
+        
+        /* Explicit text readability for dynamic elements in Light Theme */
+        .light-theme .nav-item-label,
+        .light-theme #nav-visual-list .font-bold,
+        .light-theme #nav-visual-list span,
+        .light-theme .product-item-title,
+        .light-theme #product-models-list .text-xs.font-bold,
+        .light-theme #product-models-list .font-bold,
+        .light-theme .page-item-title,
+        .light-theme #custom-pages-list h4,
+        .light-theme .brochure-item-name,
+        .light-theme .brochure-item-row span,
+        .light-theme .brochure-item-row .font-bold,
+        .light-theme .nav-item-card span.font-bold {
+            color: #0f172a !important;
+        }
+        
+        /* Typography overrides */
         .light-theme h1, 
         .light-theme h2, 
         .light-theme h3, 
@@ -119,76 +160,191 @@
         .light-theme h6 {
             color: #0f172a !important;
         }
+        .light-theme .text-white {
+            color: #0f172a !important;
+        }
+        .light-theme .text-gray-300 {
+            color: #334155 !important;
+        }
         .light-theme .text-gray-400 {
-            color: #475569 !important; /* slate-600 */
+            color: #475569 !important;
         }
         .light-theme .text-gray-500 {
-            color: #64748b !important; /* slate-500 */
+            color: #64748b !important;
         }
+        .light-theme .text-red-400,
         .light-theme .text-red-500 {
-            color: #cc0000 !important;
+            color: #dc2626 !important;
         }
-        .light-theme .bg-slate-950\/40 {
-            background: #e2e8f0 !important;
-            border-color: #cbd5e1 !important;
+        .light-theme code {
+            background-color: #f1f5f9 !important;
+            color: #dc2626 !important;
+            border: 1px solid #e2e8f0 !important;
+        }
+
+        /* Container backgrounds & borders */
+        .light-theme .border-slate-800,
+        .light-theme .border-slate-800\/80,
+        .light-theme .border-slate-800\/60,
+        .light-theme .border-slate-800\/50,
+        .light-theme .border-slate-800\/40,
+        .light-theme .border-slate-700 {
+            border-color: #e2e8f0 !important;
         }
         .light-theme .bg-slate-900\/10,
         .light-theme .bg-slate-900\/20,
         .light-theme .bg-slate-900\/30,
         .light-theme .bg-slate-900\/40,
         .light-theme .bg-slate-900\/50,
+        .light-theme .bg-slate-900\/60,
         .light-theme .bg-slate-950\/10,
         .light-theme .bg-slate-950\/20,
         .light-theme .bg-slate-950\/30,
         .light-theme .bg-slate-950\/40,
         .light-theme .bg-slate-950\/50,
-        .light-theme .bg-slate-950\/60 {
-            background: #ffffff !important;
-            border-color: #cbd5e1 !important;
+        .light-theme .bg-slate-950\/60,
+        .light-theme .bg-slate-950\/70,
+        .light-theme .bg-slate-950\/80,
+        .light-theme .bg-slate-950 {
+            background-color: #f8fafc !important;
+            border-color: #e2e8f0 !important;
         }
-        .light-theme #repo-info-panel .text-white {
-            color: #0f172a !important;
-        }
-        .light-theme #changelog-content {
+
+        /* Number circles & small badges */
+        .light-theme .w-6.h-6.rounded-full.bg-slate-900,
+        .light-theme .w-5.h-5.rounded-full.bg-slate-900 {
+            background-color: #e2e8f0 !important;
             color: #334155 !important;
-        }
-        .light-theme #license-detected-domain {
-            color: #0f172a !important;
-        }
-        .light-theme #dropzone .text-white {
-            color: #0f172a !important;
-        }
-        .light-theme .border-slate-800,
-        .light-theme .border-slate-800\/60 {
             border-color: #cbd5e1 !important;
         }
-        .light-theme .nav-btn:hover {
-            background: #cbd5e1 !important;
-            color: #0f172a !important;
-        }
-        .light-theme .nav-btn:not(.bg-red-600) {
-            color: #475569 !important;
-        }
-        
-        /* Ensure active buttons (red class) keep white text in light theme */
+
+        /* Primary action buttons (Keep white text!) */
         .light-theme .bg-red-600,
-        .light-theme .bg-red-600 * {
+        .light-theme .bg-red-600 *,
+        .light-theme .bg-emerald-600,
+        .light-theme .bg-emerald-600 * {
             color: #ffffff !important;
         }
         .light-theme .bg-red-600:hover {
             background-color: #b91c1c !important;
         }
-
-        /* Ensure slate buttons keep light text color in light theme */
-        .light-theme .bg-slate-800,
-        .light-theme .bg-slate-800 *,
-        .light-theme .bg-slate-900,
-        .light-theme .bg-slate-900 *,
-        .light-theme .bg-slate-950,
-        .light-theme .bg-slate-950 * {
-            color: #f8fafc !important;
+        .light-theme .bg-emerald-600:hover {
+            background-color: #047857 !important;
         }
-        
+
+        /* Slate Action Buttons (Clean light slate styling) */
+        .light-theme button.bg-slate-800,
+        .light-theme button.bg-slate-900,
+        .light-theme a.bg-slate-800,
+        .light-theme a.bg-slate-900 {
+            background-color: #e2e8f0 !important;
+            color: #1e293b !important;
+            border-color: #cbd5e1 !important;
+        }
+        .light-theme button.bg-slate-800 *,
+        .light-theme button.bg-slate-900 * {
+            color: #1e293b !important;
+        }
+        .light-theme button.bg-slate-800:hover,
+        .light-theme button.bg-slate-900:hover {
+            background-color: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+
+        /* Navigation sidebar buttons */
+        .light-theme .nav-btn:not(.bg-red-600) {
+            color: #475569 !important;
+        }
+        .light-theme .nav-btn:not(.bg-red-600):hover {
+            background-color: #e2e8f0 !important;
+            color: #0f172a !important;
+        }
+
+        /* Subnav tab buttons */
+        .light-theme .subnav-btn:not(.bg-red-600) {
+            color: #475569 !important;
+        }
+        .light-theme .subnav-btn:not(.bg-red-600):hover {
+            background-color: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+
+        /* Lists & Card Items (Halaman Kustom, Katalog Produk, Navigasi) */
+        .light-theme .nav-item-card,
+        .light-theme .brochure-item-row,
+        .light-theme #custom-pages-list > div,
+        .light-theme #product-models-list > div {
+            background-color: #ffffff !important;
+            border-color: #e2e8f0 !important;
+            color: #1e293b !important;
+        }
+        .light-theme .nav-item-card:hover,
+        .light-theme .brochure-item-row:hover,
+        .light-theme #custom-pages-list > div:hover,
+        .light-theme #product-models-list > div:hover {
+            border-color: #cbd5e1 !important;
+            background-color: #f8fafc !important;
+        }
+
+        /* Active Items in Lists (Halaman Kustom, Model) */
+        .light-theme #custom-pages-list > div.border-red-500,
+        .light-theme #product-models-list > div.border-red-500 {
+            background-color: #fef2f2 !important;
+            border-color: #ef4444 !important;
+        }
+        .light-theme #custom-pages-list > div.border-red-500 h4,
+        .light-theme #product-models-list > div.border-red-500 .text-xs.font-bold {
+            color: #b91c1c !important;
+        }
+
+        /* Badges: Sistem, Dropdown, Link, WhatsApp */
+        .light-theme .bg-blue-900\/60,
+        .light-theme .bg-blue-950\/60,
+        .light-theme .bg-blue-500\/10 {
+            background-color: #eff6ff !important;
+            color: #1d4ed8 !important;
+            border-color: #bfdbfe !important;
+        }
+        .light-theme .bg-purple-500\/10 {
+            background-color: #faf5ff !important;
+            color: #7e22ce !important;
+            border-color: #e9d5ff !important;
+        }
+        .light-theme .bg-emerald-500\/10 {
+            background-color: #ecfdf5 !important;
+            color: #047857 !important;
+            border-color: #a7f3d0 !important;
+        }
+        .light-theme .bg-amber-500\/10 {
+            background-color: #fffbeb !important;
+            color: #b45309 !important;
+            border-color: #fde68a !important;
+        }
+
+        /* Google SERP Live Snippet Box (Clean & Readable in both modes) */
+        .google-serp-card {
+            background: #ffffff !important;
+            border: 1px solid #dadce0 !important;
+            box-shadow: 0 1px 6px rgba(32, 33, 36, 0.08) !important;
+        }
+        .google-serp-card * {
+            color: inherit;
+        }
+        .google-serp-card .serp-sitename {
+            color: #202124 !important;
+            font-weight: 600 !important;
+        }
+        .google-serp-card .serp-url {
+            color: #5f6368 !important;
+        }
+        .google-serp-card .serp-title {
+            color: #1a0dab !important;
+            font-weight: 500 !important;
+        }
+        .google-serp-card .serp-desc {
+            color: #4d5156 !important;
+        }
+
         .light-theme footer {
             background-color: transparent !important;
             border-top-color: transparent !important;
@@ -408,9 +564,6 @@
                     </button>
                     <button onclick="switchTab('products')" data-tab="products" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
                         <i class="fa-solid fa-car w-5 text-center"></i> Katalog Produk
-                    </button>
-                    <button onclick="switchTab('pricelist')" data-tab="pricelist" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
-                        <i class="fa-solid fa-tags w-5 text-center"></i> Pricelist OTR
                     </button>
                     <button onclick="switchTab('pages')" data-tab="pages" class="nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-gray-400 hover:text-white hover:bg-slate-800/40 whitespace-nowrap">
                         <i class="fa-solid fa-file-lines w-5 text-center"></i> Halaman Kustom
@@ -638,6 +791,47 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- Preloader Global Loading Animation Settings -->
+                                    <div class="bg-slate-950/50 p-4 rounded-xl border border-slate-800 space-y-3 mt-4">
+                                        <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                                            <div>
+                                                <h4 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                                    <i class="fa-solid fa-spinner text-red-500"></i> Animasi Loading Layar (Logo Preloader Global)
+                                                </h4>
+                                                <p class="text-[11px] text-gray-400 mt-0.5">Tampilkan logo animasi saat halaman website pertama kali dibuka hingga seluruh konten siap.</p>
+                                            </div>
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" id="cfg-site-preloader-enable" class="sr-only peer" checked>
+                                                <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
+                                            </label>
+                                        </div>
+
+                                        <div class="space-y-2 image-upload-group" data-field-id="cfg-site-preloader-image">
+                                            <label class="text-xs text-gray-400 font-semibold block">URL Gambar / GIF Animasi Loading</label>
+                                            <div class="flex gap-2">
+                                                <input type="text" id="cfg-site-preloader-image" class="glass-input flex-1 px-3 py-2 rounded-lg text-sm" placeholder="https://.../honda_loading.gif" oninput="updateImagePreview('cfg-site-preloader-image')">
+                                                <input type="file" id="cfg-site-preloader-image-file" class="hidden" accept="image/*" onchange="handleImageSelect('cfg-site-preloader-image', this)">
+                                                <button type="button" onclick="document.getElementById('cfg-site-preloader-image-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1.5">
+                                                    <i class="fa-solid fa-image"></i> Ganti GIF
+                                                </button>
+                                            </div>
+                                            <div class="image-preview-panel hidden flex flex-col sm:flex-row gap-4 p-3 bg-slate-950/40 border border-slate-800 rounded-lg">
+                                                <div class="current-preview-box flex-1">
+                                                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Sebelum (Di GitHub)</p>
+                                                    <img class="current-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                </div>
+                                                <div class="new-preview-box flex-grow flex-1 hidden">
+                                                    <p class="text-[10px] text-emerald-500 font-bold uppercase mb-1">Sesudah (Pratinjau Unggahan)</p>
+                                                    <img class="new-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                    <div class="flex gap-1.5 mt-2">
+                                                        <button type="button" onclick="cancelImageSelect('cfg-site-preloader-image')" class="bg-slate-900 hover:bg-slate-800 text-[10px] text-gray-400 font-semibold px-2.5 py-1 border border-slate-700 rounded transition">Batal</button>
+                                                        <button type="button" onclick="confirmImageReplace('cfg-site-preloader-image')" class="confirm-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[10px] text-white font-semibold px-2.5 py-1 rounded flex items-center gap-1 shadow-sm transition">Upload & Replace</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -818,47 +1012,6 @@
                                             <div class="text-[11px] text-gray-400 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800/80">
                                                 <i class="fa-solid fa-circle-info text-blue-400 mr-1"></i> 
                                                 Warna tema ini langsung diterapkan ke seluruh halaman website pengunjung secara instan saat disimpan.
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Preloader Global Loading Animation Settings -->
-                                    <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
-                                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                                            <div>
-                                                <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-                                                    <i class="fa-solid fa-spinner text-red-500"></i> Animasi Loading Layar (Preloader Global)
-                                                </h3>
-                                                <p class="text-xs text-gray-400 mt-0.5">Tampilkan logo animasi saat halaman website pertama kali dibuka hingga seluruh konten siap.</p>
-                                            </div>
-                                            <label class="relative inline-flex items-center cursor-pointer">
-                                                <input type="checkbox" id="cfg-site-preloader-enable" class="sr-only peer" checked>
-                                                <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
-                                            </label>
-                                        </div>
-
-                                        <div class="space-y-2 image-upload-group" data-field-id="cfg-site-preloader-image">
-                                            <label class="text-xs text-gray-400 font-semibold block">URL Gambar / GIF Animasi Loading</label>
-                                            <div class="flex gap-2">
-                                                <input type="text" id="cfg-site-preloader-image" class="glass-input flex-1 px-3 py-2 rounded-lg text-sm" placeholder="https://.../honda_loading.gif" oninput="updateImagePreview('cfg-site-preloader-image')">
-                                                <input type="file" id="cfg-site-preloader-image-file" class="hidden" accept="image/*" onchange="handleImageSelect('cfg-site-preloader-image', this)">
-                                                <button type="button" onclick="document.getElementById('cfg-site-preloader-image-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1.5">
-                                                    <i class="fa-solid fa-image"></i> Ganti GIF
-                                                </button>
-                                            </div>
-                                            <div class="image-preview-panel hidden flex flex-col sm:flex-row gap-4 p-3 bg-slate-950/40 border border-slate-800 rounded-lg">
-                                                <div class="current-preview-box flex-1">
-                                                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Sebelum (Di GitHub)</p>
-                                                    <img class="current-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
-                                                </div>
-                                                <div class="new-preview-box flex-grow flex-1 hidden">
-                                                    <p class="text-[10px] text-emerald-500 font-bold uppercase mb-1">Sesudah (Pratinjau Unggahan)</p>
-                                                    <img class="new-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
-                                                    <div class="flex gap-1.5 mt-2">
-                                                        <button type="button" onclick="cancelImageSelect('cfg-site-preloader-image')" class="bg-slate-900 hover:bg-slate-800 text-[10px] text-gray-400 font-semibold px-2.5 py-1 border border-slate-700 rounded transition">Batal</button>
-                                                        <button type="button" onclick="confirmImageReplace('cfg-site-preloader-image')" class="confirm-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[10px] text-white font-semibold px-2.5 py-1 rounded flex items-center gap-1 shadow-sm transition">Upload & Replace</button>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1051,8 +1204,58 @@
                                         </button>
                                     </div>
                                     
-                                    <!-- Page Selector -->
-                                    <div class="bg-slate-950/50 p-3.5 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                    <!-- GOOGLE XML SITEMAP (YOAST SEO STYLE) -->
+                                    <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800 space-y-3">
+                                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+                                            <div class="flex items-center gap-2.5">
+                                                <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center border border-emerald-500/20 shrink-0">
+                                                    <i class="fa-solid fa-sitemap text-sm"></i>
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2 font-outfit">
+                                                        <span>Google XML Sitemap</span>
+                                                        <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"><i class="fa-solid fa-circle-check mr-1"></i>Otomatis Dinamis</span>
+                                                    </h4>
+                                                    <p class="text-[11px] text-gray-400 mt-0.5">Sitemap XML ini otomatis mencakup semua halaman sistem, mobil katalog, dan artikel untuk didaftarkan di Google Search Console.</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-2 shrink-0">
+                                                <a id="sitemap-open-btn" href="../sitemap.xml" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-gray-300 hover:text-white border border-slate-700 transition flex items-center gap-1.5">
+                                                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka XML
+                                                </a>
+                                                <button type="button" onclick="copySitemapUrl()" class="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-xs text-white font-bold transition flex items-center gap-1.5 shadow-sm">
+                                                    <i class="fa-solid fa-copy"></i> Salin Link Sitemap
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <!-- URL Display & Quick Stats -->
+                                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+                                            <div class="sm:col-span-8 flex items-center gap-2 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+                                                <span class="text-[11px] text-gray-400 font-semibold shrink-0"><i class="fa-solid fa-link text-red-500 mr-1"></i> URL Sitemap:</span>
+                                                <input type="text" id="cfg-sitemap-url" readonly value="https://gusti.hondabintaro.com/sitemap.xml" class="bg-transparent text-xs font-mono text-emerald-600 dark:text-emerald-400 w-full outline-none select-all font-semibold">
+                                            </div>
+                                            <div class="sm:col-span-4 flex items-center justify-between sm:justify-end gap-3 text-xs bg-slate-950/30 p-2.5 rounded-lg border border-slate-800/60">
+                                                <span class="text-gray-400 text-[11px]">Total URL Terindeks:</span>
+                                                <span id="sitemap-url-count-badge" class="font-bold text-xs px-2.5 py-0.5 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 font-mono">16 URL</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Mini guide to register in Google Search Console -->
+                                        <div class="p-3 rounded-lg bg-slate-950/40 border border-slate-800/80 text-xs space-y-1">
+                                            <div class="text-[11px] font-semibold text-slate-800 dark:text-gray-300 flex items-center gap-1.5">
+                                                <i class="fa-brands fa-google text-blue-500"></i> Cara Mendaftarkan ke Google Search Console (Google Webmaster):
+                                            </div>
+                                            <p class="text-[10px] text-gray-500 leading-relaxed">
+                                                1. Buka <a href="https://search.google.com/search-console" target="_blank" class="text-red-500 underline font-semibold">Google Search Console</a> &rarr; 
+                                                2. Pilih menu <b>Sitemaps (Peta Situs)</b> di sebelah kiri &rarr; 
+                                                3. Masukkan <code>sitemap.xml</code> pada kolom <i>"Tambahkan peta situs baru"</i> lalu klik <b>Kirim (Submit)</b>.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Dropdown Target Selector -->
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-950/40 p-3.5 rounded-xl border border-slate-800/80">
                                         <div class="space-y-1 flex-1">
                                             <label class="text-xs font-bold text-gray-300 uppercase tracking-wider block">Pilih Halaman yang Ingin Diatur SEO-nya</label>
                                             <select id="seo-page-select" onchange="loadSelectedSeoPage()" class="glass-input w-full px-3 py-2 rounded-lg text-xs bg-slate-950 font-medium">
@@ -1173,8 +1376,8 @@
                                         </div>
 
                                         <div class="flex items-center justify-between pt-2 border-t border-slate-800">
-                                            <button onclick="saveCurrentSeoPage()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md transition flex items-center gap-1.5">
-                                                <i class="fa-solid fa-floppy-disk"></i> Simpan SEO Halaman Ini
+                                            <button onclick="saveCurrentSeoPage()" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold text-xs px-5 py-2.5 rounded-lg shadow-sm transition flex items-center gap-1.5">
+                                                <i class="fa-solid fa-floppy-disk text-red-500"></i> Simpan Sementara
                                             </button>
                                             <span class="text-[11px] text-gray-500 italic">Tekan "Commit Perubahan" di atas untuk deploy ke GitHub</span>
                                         </div>
@@ -1442,38 +1645,38 @@
                                         <div class="bg-slate-950/50 p-5 rounded-2xl border border-slate-800 space-y-4">
                                             <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
                                                 <div>
-                                                    <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5 font-outfit">
+                                                    <h4 class="text-xs font-bold uppercase tracking-wider text-red-500 flex items-center gap-1.5 font-outfit">
                                                         <i class="fa-solid fa-magnifying-glass"></i> Pengaturan SEO Google Model Ini
                                                     </h4>
                                                     <p class="text-[11px] text-gray-400 mt-0.5">Optimasi pencarian Google untuk halaman <code>/model/?id=<span id="edit-prod-seo-slug-preview">brio</span></code></p>
                                                 </div>
-                                                <span class="text-[10px] bg-red-950/50 text-red-400 font-bold px-2 py-0.5 rounded border border-red-800/40">SEO Terintegrasi</span>
+                                                <span class="text-[10px] font-bold px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"><i class="fa-solid fa-circle-check mr-1"></i>SEO Terintegrasi</span>
                                             </div>
 
                                             <!-- GOOGLE SEARCH SERP LIVE PREVIEW BOX -->
-                                            <div class="bg-slate-950/70 p-3.5 rounded-xl border border-slate-800 space-y-2">
+                                            <div class="bg-slate-900/40 p-3.5 rounded-xl border border-slate-800 space-y-2">
                                                 <div class="flex items-center justify-between">
                                                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider flex items-center gap-1.5">
-                                                        <i class="fa-brands fa-google text-blue-400"></i> Google SERP Live Preview
+                                                        <i class="fa-brands fa-google text-blue-500"></i> Google SERP Live Preview
                                                     </span>
                                                     <span class="text-[10px] text-gray-500 font-semibold">Tampilan Pencarian Google</span>
                                                 </div>
 
-                                                <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm space-y-1 select-none">
+                                                <div class="google-serp-card bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm space-y-1 select-none">
                                                     <div class="flex items-center gap-2 text-xs text-gray-700">
                                                         <div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center p-0.5 border border-gray-200 shrink-0">
                                                             <img id="prod-serp-preview-favicon" src="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" class="w-3.5 h-3.5 object-contain" alt="Favicon">
                                                         </div>
                                                         <div class="flex flex-col min-w-0">
-                                                            <span id="prod-serp-preview-sitename" class="font-semibold text-[11px] text-gray-900 truncate leading-tight">Honda Bintaro</span>
-                                                            <span id="prod-serp-preview-url" class="text-[9px] text-gray-500 font-mono truncate leading-tight">https://www.hondabintaro.com/model/?id=brio</span>
+                                                            <span id="prod-serp-preview-sitename" class="serp-sitename font-semibold text-[11px] text-gray-900 truncate leading-tight">Honda Bintaro</span>
+                                                            <span id="prod-serp-preview-url" class="serp-url text-[9px] text-gray-500 font-mono truncate leading-tight">https://www.hondabintaro.com/model/?id=brio</span>
                                                         </div>
                                                     </div>
                                                     <div class="pt-1">
-                                                        <h4 id="prod-serp-preview-title" class="text-[#1a0dab] hover:underline text-sm sm:text-base font-medium cursor-pointer leading-snug line-clamp-1">
+                                                        <h4 id="prod-serp-preview-title" class="serp-title text-[#1a0dab] hover:underline text-sm sm:text-base font-medium cursor-pointer leading-snug line-clamp-1">
                                                             Honda Brio - Spesifikasi, Harga OTR & Promo
                                                         </h4>
-                                                        <p id="prod-serp-preview-desc" class="text-[12px] text-[#4d5156] leading-relaxed line-clamp-2 mt-0.5">
+                                                        <p id="prod-serp-preview-desc" class="serp-desc text-[12px] text-[#4d5156] leading-relaxed line-clamp-2 mt-0.5">
                                                             Promo harga OTR dan spesifikasi Honda Brio terbaru. DP ringan, angsuran terjangkau, bonus aksesoris resmi.
                                                         </p>
                                                     </div>
@@ -1547,92 +1750,10 @@
                                         </div>
                                         
                                         <div class="flex justify-end pt-3 border-t border-slate-800">
-                                            <button onclick="saveCurrentProductDetails()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md transition">
-                                                Simpan Perubahan Model Ini
+                                            <button onclick="saveCurrentProductDetails()" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold text-xs px-5 py-2.5 rounded-lg shadow-sm transition flex items-center gap-1.5">
+                                                <i class="fa-solid fa-floppy-disk text-red-500"></i> Simpan Sementara
                                             </button>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB: PRICELIST -->
-                    <div id="tab-pricelist" class="tab-pane hidden space-y-6">
-                        <div class="glass-panel rounded-2xl p-6 shadow-xl">
-                            <div class="border-b border-slate-800 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                                <div>
-                                    <h2 class="text-xl font-bold text-white font-outfit flex items-center gap-2">
-                                        <i class="fa-solid fa-tags text-red-500"></i> Daftar Harga OTR (Pricelist)
-                                    </h2>
-                                    <p class="text-sm text-gray-400">Atur tabel harga OTR lengkap se-Jabodetabek dan paket Essential/Extra pada halaman Pricelist.</p>
-                                </div>
-                                <button onclick="commitFileToGitHub('data/pricelist.json')" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg shadow-lg shadow-red-600/20 transition-all flex items-center gap-2 self-start">
-                                    <i class="fa-solid fa-cloud-arrow-up"></i> Commit Perubahan
-                                </button>
-                            </div>
-
-                            <div class="space-y-6">
-                                <!-- Dropdown select table model to edit -->
-                                <div class="flex flex-col sm:flex-row sm:items-center gap-4 bg-slate-900/30 p-4 rounded-xl border border-slate-800">
-                                    <div class="space-y-1 flex-1">
-                                        <label class="text-xs text-gray-400 font-semibold block">Pilih Kategori Pricelist</label>
-                                        <select id="pricelist-model-select" onchange="loadSelectedPricelistModel()" class="glass-input px-3 py-2 rounded-lg text-sm bg-slate-950 min-w-[250px]">
-                                            <!-- Dynamic list of model types in pricelist -->
-                                        </select>
-                                    </div>
-                                    <div class="flex items-end gap-3 mt-4 sm:mt-0">
-                                        <button onclick="addNewPricelistModel()" class="bg-slate-800 hover:bg-slate-700 text-xs text-white px-3 py-2.5 rounded-lg border border-slate-700 flex items-center gap-1 transition">
-                                            <i class="fa-solid fa-plus text-red-500"></i> Tambah Kategori Baru
-                                        </button>
-                                        <button onclick="deletePricelistModel()" class="text-red-500 hover:text-red-400 text-xs font-bold py-2.5 flex items-center gap-1 transition">
-                                            <i class="fa-solid fa-trash-can"></i> Hapus Kategori Ini
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Dynamic pricelist editing table -->
-                                <div id="pricelist-editor-container" class="hidden glass-panel border border-slate-800 rounded-xl p-5 space-y-4">
-                                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
-                                        <div class="space-y-1 w-full sm:w-auto">
-                                            <label class="text-xs text-gray-400 font-semibold block">Nama Kategori Pricelist</label>
-                                            <input type="text" id="pricelist-model-label" class="glass-input px-3 py-1.5 rounded-lg text-sm font-bold min-w-[280px]">
-                                        </div>
-                                        <button onclick="addPricelistRow()" class="bg-slate-800 hover:bg-slate-700 text-xs px-2.5 py-1.5 rounded-md flex items-center gap-1 transition self-end sm:self-auto">
-                                            <i class="fa-solid fa-plus text-red-500"></i> Tambah Baris Varian
-                                        </button>
-                                    </div>
-
-                                    <div class="overflow-x-auto w-full">
-                                        <table class="w-full text-left text-sm border-collapse">
-                                            <thead>
-                                                <tr class="border-b border-slate-800 text-gray-400 text-xs uppercase font-bold">
-                                                    <th class="py-3 px-2">Varian / Tipe</th>
-                                                    <th class="py-3 px-2">Transmisi</th>
-                                                    <th class="py-3 px-2">Harga OTR</th>
-                                                    <th class="py-3 px-2">Paket Essential</th>
-                                                    <th class="py-3 px-2">Paket Extra</th>
-                                                    <th class="py-3 px-2 text-center w-16">Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="pricelist-rows-container">
-                                                <!-- Dynamic pricing rows -->
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    <!-- Notes Footers Editor -->
-                                    <div class="bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-2 mt-6">
-                                        <h3 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1">
-                                            <i class="fa-solid fa-note-sticky text-red-500"></i> Catatan Kaki Pricelist (Satu baris per catatan)
-                                        </h3>
-                                        <textarea id="pricelist-notes" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-28" placeholder="Catatan kaki 1&#10;Catatan kaki 2"></textarea>
-                                    </div>
-
-                                    <div class="flex justify-end pt-3">
-                                        <button onclick="saveCurrentPricelistDetails()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md transition">
-                                            Simpan Perubahan Tabel Ini
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -1649,7 +1770,7 @@
                                     </h2>
                                     <p class="text-sm text-gray-400">Buat dan kelola artikel, kebijakan privasi, syarat ketentuan, atau landing page promosi dinamis seperti di WordPress/Blogger.</p>
                                 </div>
-                                <button onclick="commitFileToGitHub('data/pages.json')" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg shadow-lg shadow-red-600/20 transition-all flex items-center gap-2">
+                                <button onclick="commitCurrentPageAndRelatedFiles()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg shadow-lg shadow-red-600/20 transition-all flex items-center gap-2">
                                     <i class="fa-solid fa-cloud-arrow-up"></i> Commit Perubahan Halaman
                                 </button>
                             </div>
@@ -1687,8 +1808,14 @@
 
                                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                             <div class="space-y-1">
-                                                <label class="text-xs font-semibold text-gray-300">ID / Slug URL (Huruf kecil & tanda hubung)</label>
-                                                <input type="text" id="edit-page-slug" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-mono bg-slate-950/80" readonly>
+                                                <div class="flex items-center justify-between">
+                                                    <label class="text-xs font-semibold text-gray-300">ID / Slug URL</label>
+                                                    <span id="edit-page-slug-lock-badge" class="hidden text-[10px] text-amber-400 font-bold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20 flex items-center gap-1">
+                                                        <i class="fa-solid fa-lock text-amber-400"></i> Terkunci (Sistem)
+                                                    </span>
+                                                </div>
+                                                <input type="text" id="edit-page-slug" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-mono" placeholder="slug-halaman">
+                                                <p id="edit-page-slug-help" class="text-[10px] text-gray-400">Slug menentukan tautan URL halaman di website.</p>
                                             </div>
                                             <div class="space-y-1">
                                                 <label class="text-xs font-semibold text-gray-300">Judul Halaman (H1)</label>
@@ -1701,34 +1828,212 @@
                                             <input type="text" id="edit-page-subtitle" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Ringkasan tentang isi halaman ini...">
                                         </div>
 
-                                        <!-- System Page Helper Notice (For Pricelist) -->
-                                        <div id="page-system-note" class="hidden p-4 rounded-xl bg-blue-950/30 border border-blue-800/50 text-blue-300 text-xs space-y-1.5">
-                                            <div class="flex items-center gap-2 font-bold text-blue-400">
-                                                <i class="fa-solid fa-circle-info"></i>
-                                                <span>Halaman Sistem Otomatis</span>
+                                        <!-- Pricelist OTR Specific Settings (Embedded Table Editor) -->
+                                        <div id="page-pricelist-specific-fields" class="hidden space-y-4">
+                                            <div class="bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-4">
+                                                <div class="border-b border-slate-800 pb-3">
+                                                    <h4 class="text-xs font-bold uppercase tracking-wider text-red-500 flex items-center gap-1.5 font-outfit">
+                                                        <i class="fa-solid fa-tags"></i> Tabel Harga OTR & Kategori Model
+                                                    </h4>
+                                                    <p class="text-[11px] text-gray-400 mt-0.5">Atur tabel harga OTR lengkap se-Jabodetabek dan paket Essential/Extra.</p>
+                                                </div>
+
+                                                <!-- Dropdown select table model to edit -->
+                                                <div class="flex flex-col sm:flex-row sm:items-center gap-4 bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">
+                                                    <div class="space-y-1 flex-1">
+                                                        <label class="text-xs text-gray-400 font-semibold block">Pilih Kategori Model</label>
+                                                        <select id="pricelist-model-select" onchange="loadSelectedPricelistModel()" class="glass-input px-3 py-2 rounded-lg text-xs bg-slate-950 min-w-[240px]">
+                                                            <!-- Dynamic list of model types in pricelist -->
+                                                        </select>
+                                                    </div>
+                                                    <div class="flex items-end gap-2 mt-3 sm:mt-0">
+                                                        <button type="button" onclick="addNewPricelistModel()" class="bg-slate-800 hover:bg-slate-700 text-xs text-white px-3 py-2 rounded-lg border border-slate-700 flex items-center gap-1 transition">
+                                                            <i class="fa-solid fa-plus text-red-500"></i> Tambah Kategori
+                                                        </button>
+                                                        <button type="button" onclick="deletePricelistModel()" class="text-red-500 hover:text-red-400 text-xs font-bold px-2 py-2 flex items-center gap-1 transition">
+                                                            <i class="fa-solid fa-trash-can"></i> Hapus Kategori
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Dynamic pricelist editing table -->
+                                                <div id="pricelist-editor-container" class="hidden glass-panel border border-slate-800 rounded-xl p-4 space-y-4">
+                                                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-3">
+                                                        <div class="space-y-1 w-full sm:w-auto">
+                                                            <label class="text-xs text-gray-400 font-semibold block">Nama Label Kategori</label>
+                                                            <input type="text" id="pricelist-model-label" class="glass-input px-3 py-1.5 rounded-lg text-xs font-bold min-w-[260px]">
+                                                        </div>
+                                                        <button type="button" onclick="addPricelistRow()" class="bg-slate-800 hover:bg-slate-700 text-xs px-2.5 py-1.5 rounded-md flex items-center gap-1 transition self-end sm:self-auto">
+                                                            <i class="fa-solid fa-plus text-red-500"></i> Tambah Baris Varian
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="overflow-x-auto w-full">
+                                                        <table class="w-full text-left text-xs border-collapse">
+                                                            <thead>
+                                                                <tr class="border-b border-slate-800 text-gray-400 text-[11px] uppercase font-bold">
+                                                                    <th class="py-2.5 px-2">Varian / Tipe</th>
+                                                                    <th class="py-2.5 px-2">Transmisi</th>
+                                                                    <th class="py-2.5 px-2">Harga OTR</th>
+                                                                    <th class="py-2.5 px-2">Paket Essential</th>
+                                                                    <th class="py-2.5 px-2">Paket Extra</th>
+                                                                    <th class="py-2.5 px-2 text-center w-12">Aksi</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="pricelist-rows-container">
+                                                                <!-- Dynamic pricing rows -->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                    <!-- Notes Footers Editor -->
+                                                    <div class="bg-slate-950/40 p-3.5 rounded-xl border border-slate-800/80 space-y-2 mt-4">
+                                                        <h5 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1">
+                                                            <i class="fa-solid fa-note-sticky text-red-500"></i> Catatan Kaki Pricelist (Satu baris per catatan)
+                                                        </h5>
+                                                        <textarea id="pricelist-notes" class="glass-input w-full px-3 py-2 rounded-lg text-xs h-24" placeholder="Catatan kaki 1&#10;Catatan kaki 2"></textarea>
+                                                    </div>
+
+                                                    <div class="flex justify-end pt-2">
+                                                        <button type="button" onclick="saveCurrentPricelistDetails()" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold text-xs px-4 py-2 rounded-lg shadow-sm transition flex items-center gap-1.5">
+                                                            <i class="fa-solid fa-floppy-disk text-red-500"></i> Simpan Sementara Tabel OTR
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <p class="leading-relaxed text-[11px] text-gray-300">Halaman ini terintegrasi dengan sistem dinamis. Anda dapat mengubah <strong>Judul Halaman (H1)</strong>, <strong>Ringkasan/Subtitle</strong>, serta seluruh <strong>Metadata SEO Google</strong> secara bebas melalui form ini.</p>
                                         </div>
 
-                                        <!-- Promo Page Specific Settings -->
-                                        <div id="page-promo-specific-fields" class="hidden bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-3.5">
-                                            <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5">
-                                                <i class="fa-solid fa-bullhorn"></i> Konten Headline Promo Utama
-                                            </h4>
-                                            <div class="grid grid-cols-1 gap-3 text-xs">
-                                                <div class="space-y-1">
-                                                    <label class="text-gray-300 font-semibold">Teks Badge (Contoh: Promo Eksklusif Honda Jabodetabek {year})</label>
-                                                    <input type="text" id="edit-promo-badge" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Promo Eksklusif Honda Jabodetabek {year}">
-                                                </div>
-                                                <div class="space-y-1">
-                                                    <label class="text-gray-300 font-semibold">Judul Headline Promo (Mendukung HTML gradasi)</label>
-                                                    <input type="text" id="edit-promo-title" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-bold" placeholder="Miliki Mobil Honda Impian Anda...">
-                                                </div>
-                                                <div class="space-y-1">
-                                                    <label class="text-gray-300 font-semibold">Sub-Judul Deskripsi Headline</label>
-                                                    <textarea id="edit-promo-desc" class="glass-input w-full px-3 py-2 rounded-lg text-xs h-16" placeholder="Dapatkan diskon OTR besar-besaran..."></textarea>
+                                        <!-- Promo Page Specific Settings (Comprehensive Sections) -->
+                                        <div id="page-promo-specific-fields" class="hidden space-y-4">
+                                            
+                                            <!-- Section 1: Hero & Headline -->
+                                            <div class="bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-3">
+                                                <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                                                    <i class="fa-solid fa-bullhorn"></i> 1. Konten Hero & Headline Promo Utama
+                                                </h4>
+                                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                                                    <div class="space-y-1 md:col-span-2">
+                                                        <label class="text-gray-300 font-semibold">Teks Badge Hero (Mendukung parameter <code>{year}</code>)</label>
+                                                        <input type="text" id="edit-promo-badge" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Promo Eksklusif Honda Jabodetabek {year}">
+                                                    </div>
+                                                    <div class="space-y-1 md:col-span-2">
+                                                        <label class="text-gray-300 font-semibold">Judul Headline H1 (Mendukung tag HTML seperti span gradasi)</label>
+                                                        <input type="text" id="edit-promo-title" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-bold" placeholder="Miliki Mobil Honda Impian Anda...">
+                                                    </div>
+                                                    <div class="space-y-1 md:col-span-2">
+                                                        <label class="text-gray-300 font-semibold">Sub-Judul Deskripsi Hero</label>
+                                                        <textarea id="edit-promo-desc" class="glass-input w-full px-3 py-2 rounded-lg text-xs h-16" placeholder="Dapatkan diskon OTR besar-besaran..."></textarea>
+                                                    </div>
+                                                    <div class="space-y-1">
+                                                        <label class="text-gray-300 font-semibold">Badge Kredibilitas (Judul)</label>
+                                                        <input type="text" id="edit-promo-sales-title" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Sales Counter Resmi">
+                                                    </div>
+                                                    <div class="space-y-1">
+                                                        <label class="text-gray-300 font-semibold">Badge Kredibilitas (Subjudul)</label>
+                                                        <input type="text" id="edit-promo-sales-desc" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Jaminan Transaksi Aman & Terpercaya">
+                                                    </div>
                                                 </div>
                                             </div>
+
+                                            <!-- Section 2: Form Penawaran & Urgensi -->
+                                            <div class="bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-3">
+                                                <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                                                    <i class="fa-solid fa-file-signature"></i> 2. Form Penawaran & Urgensi Kuota
+                                                </h4>
+                                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                                                    <div class="space-y-1">
+                                                        <label class="text-gray-300 font-semibold">Badge Urgensi Form (Countdown Header)</label>
+                                                        <input type="text" id="edit-promo-form-badge" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="PROMO TERBATAS HARI INI">
+                                                    </div>
+                                                    <div class="space-y-1">
+                                                        <label class="text-gray-300 font-semibold">Jumlah Sisa Kuota Promo (Angka)</label>
+                                                        <input type="text" id="edit-promo-quota-count" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="5">
+                                                    </div>
+                                                    <div class="space-y-1">
+                                                        <label class="text-gray-300 font-semibold">Judul Form Penawaran</label>
+                                                        <input type="text" id="edit-promo-form-title" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-bold" placeholder="Dapatkan Penawaran OTR Terbaik">
+                                                    </div>
+                                                    <div class="space-y-1">
+                                                        <label class="text-gray-300 font-semibold">Teks Tombol Kirim Form (CTA)</label>
+                                                        <input type="text" id="edit-promo-form-btn-text" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-semibold" placeholder="Kirim ke WhatsApp & Lihat Promo">
+                                                    </div>
+                                                    <div class="space-y-1 md:col-span-2">
+                                                        <label class="text-gray-300 font-semibold">Subjudul / Keterangan Form</label>
+                                                        <input type="text" id="edit-promo-form-subtitle" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Lengkapi data Anda, langsung dapatkan hitungan simulasi via WhatsApp">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Section 3: Bar Keunggulan Layanan (3 USP) -->
+                                            <div class="bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-3">
+                                                <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                                                    <i class="fa-solid fa-award"></i> 3. Bar Keunggulan Layanan (3 Poin USP)
+                                                </h4>
+                                                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                                                    <div class="bg-slate-950/40 p-3 rounded-lg border border-slate-800/80 space-y-2">
+                                                        <span class="text-[10px] font-bold text-red-400 uppercase">Poin Keunggulan 1</span>
+                                                        <input type="text" id="edit-promo-usp1-title" class="glass-input w-full px-2.5 py-1.5 rounded text-xs font-bold" placeholder="DP & Angsuran Termurah">
+                                                        <textarea id="edit-promo-usp1-desc" class="glass-input w-full px-2.5 py-1.5 rounded text-[11px] h-12" placeholder="Hitungan simulasi bisa disesuaikan budget"></textarea>
+                                                    </div>
+                                                    <div class="bg-slate-950/40 p-3 rounded-lg border border-slate-800/80 space-y-2">
+                                                        <span class="text-[10px] font-bold text-red-400 uppercase">Poin Keunggulan 2</span>
+                                                        <input type="text" id="edit-promo-usp2-title" class="glass-input w-full px-2.5 py-1.5 rounded text-xs font-bold" placeholder="Proses Kredit Cepat">
+                                                        <textarea id="edit-promo-usp2-desc" class="glass-input w-full px-2.5 py-1.5 rounded text-[11px] h-12" placeholder="Berkas dibantu s.d. approve finance"></textarea>
+                                                    </div>
+                                                    <div class="bg-slate-950/40 p-3 rounded-lg border border-slate-800/80 space-y-2">
+                                                        <span class="text-[10px] font-bold text-red-400 uppercase">Poin Keunggulan 3</span>
+                                                        <input type="text" id="edit-promo-usp3-title" class="glass-input w-full px-2.5 py-1.5 rounded text-xs font-bold" placeholder="Tukar Tambah Terbaik">
+                                                        <textarea id="edit-promo-usp3-desc" class="glass-input w-full px-2.5 py-1.5 rounded text-[11px] h-12" placeholder="Mobil lama dihargai tinggi dibanding pasaran"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Section 4: Judul Section Promo Terbaru & Katalog -->
+                                            <div class="bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-3">
+                                                <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                                                    <i class="fa-solid fa-layer-group"></i> 4. Header Section Grid Promo & Katalog
+                                                </h4>
+                                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                                                    <div class="space-y-1">
+                                                        <label class="text-gray-300 font-semibold">Judul Section "Promo Terbaru"</label>
+                                                        <input type="text" id="edit-promo-latest-title" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-bold" placeholder="Promo Terbaru Honda Bintaro">
+                                                    </div>
+                                                    <div class="space-y-1">
+                                                        <label class="text-gray-300 font-semibold">Subjudul Section "Promo Terbaru"</label>
+                                                        <input type="text" id="edit-promo-latest-subtitle" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Penawaran terbaik dan program cicilan khusus bulan ini">
+                                                    </div>
+                                                    <div class="space-y-1">
+                                                        <label class="text-gray-300 font-semibold">Judul Section "Katalog Promo Mobil"</label>
+                                                        <input type="text" id="edit-promo-catalog-title" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-bold" placeholder="Promo Menarik Mobil Honda">
+                                                    </div>
+                                                    <div class="space-y-1">
+                                                        <label class="text-gray-300 font-semibold">Subjudul Section "Katalog Promo Mobil"</label>
+                                                        <input type="text" id="edit-promo-catalog-subtitle" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Pilih mobil impian Anda dan dapatkan penawaran khusus...">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Section 5: Persuasive Bottom Banner -->
+                                            <div class="bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-3">
+                                                <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                                                    <i class="fa-solid fa-flag"></i> 5. Banner Bawah & Ajakan Bertindak (Bottom CTA)
+                                                </h4>
+                                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                                                    <div class="space-y-1 md:col-span-2">
+                                                        <label class="text-gray-300 font-semibold">Judul Banner Bawah</label>
+                                                        <input type="text" id="edit-promo-bottom-title" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-bold" placeholder="Tunggu Apa Lagi? Dapatkan Penawaran Spesial Anda">
+                                                    </div>
+                                                    <div class="space-y-1 md:col-span-2">
+                                                        <label class="text-gray-300 font-semibold">Deskripsi Ajakan Bertindak</label>
+                                                        <textarea id="edit-promo-bottom-desc" class="glass-input w-full px-3 py-2 rounded-lg text-xs h-16" placeholder="Kuota promo cicilan murah terbatas dan dapat berubah sewaktu-waktu..."></textarea>
+                                                    </div>
+                                                    <div class="space-y-1">
+                                                        <label class="text-gray-300 font-semibold">Teks Tombol Aksi Banner</label>
+                                                        <input type="text" id="edit-promo-bottom-btn-text" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-bold" placeholder="Dapatkan Promo Sekarang">
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                         <!-- Thank You Page Specific Settings -->
@@ -1753,12 +2058,33 @@
                                         </div>
 
                                         <!-- e-Brochure Specific Settings (Google Drive File IDs) -->
-                                        <div id="page-brochure-specific-fields" class="hidden bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-3.5">
-                                            <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5">
-                                                <i class="fa-solid fa-file-pdf"></i> Tautan PDF Brosur Mobil (Google Drive File ID)
-                                            </h4>
-                                            <p class="text-[11px] text-gray-400">Masukkan ID File Google Drive untuk setiap model mobil agar brosur PDF dapat dibaca langsung oleh pengunjung.</p>
-                                            <div id="edit-page-brochures-container" class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                                        <div id="page-brochure-specific-fields" class="hidden bg-slate-900/30 p-5 rounded-xl border border-slate-800 space-y-4">
+                                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
+                                                <div>
+                                                    <h4 class="text-xs font-bold uppercase tracking-wider text-red-500 flex items-center gap-1.5 font-outfit">
+                                                        <i class="fa-solid fa-file-pdf"></i> Tautan PDF Brosur Mobil (Google Drive File ID)
+                                                    </h4>
+                                                    <p class="text-[11px] text-gray-400 mt-0.5">Masukkan ID File Google Drive untuk setiap model mobil agar brosur PDF dapat diunduh/dibaca pengunjung.</p>
+                                                </div>
+                                                <a href="https://drive.google.com" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-3.5 py-2 rounded-lg shadow-sm flex items-center gap-1.5 transition self-start sm:self-auto shrink-0">
+                                                    <i class="fa-brands fa-google-drive text-sm"></i> Buka Google Drive <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                                </a>
+                                            </div>
+
+                                            <!-- Helpful Google Drive Upload Guide Notice -->
+                                            <div class="p-3.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-xs space-y-1.5">
+                                                <div class="flex items-center gap-2 font-bold text-blue-600 dark:text-blue-400">
+                                                    <i class="fa-solid fa-circle-info"></i>
+                                                    <span>Panduan Mengambil ID File dari Google Drive</span>
+                                                </div>
+                                                <ol class="list-decimal list-inside text-[11px] text-slate-700 dark:text-gray-300 space-y-1 leading-relaxed pl-1">
+                                                    <li>Buka <a href="https://drive.google.com" target="_blank" class="text-blue-500 underline font-semibold">Google Drive</a> dan unggah file brosur PDF mobil Anda.</li>
+                                                    <li>Klik kanan file PDF &rarr; pilih <b>Bagikan (Share)</b> &rarr; atur Akses Umum menjadi <b>"Siapa saja yang memiliki tautan" (Anyone with the link)</b>.</li>
+                                                    <li>Salin tautan dan ambil ID filenya (kode unik di antara <code>/d/</code> dan <code>/view</code>, contoh: <code>1T4R1Af7TcfOl_mhUJ...</code>).</li>
+                                                </ol>
+                                            </div>
+
+                                            <div id="edit-page-brochures-container" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                                                 <!-- Dynamic brochure fields per car model -->
                                             </div>
                                         </div>
@@ -1778,38 +2104,38 @@
                                         <div class="bg-slate-950/50 p-5 rounded-2xl border border-slate-800 space-y-4">
                                             <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
                                                 <div>
-                                                    <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5 font-outfit">
+                                                    <h4 class="text-xs font-bold uppercase tracking-wider text-red-500 flex items-center gap-1.5 font-outfit">
                                                         <i class="fa-solid fa-magnifying-glass"></i> Pengaturan SEO Google Halaman Ini
                                                     </h4>
                                                     <p class="text-[11px] text-gray-400 mt-0.5">Optimasi judul, deskripsi pencarian Google, kata kunci, dan gambar OpenGraph untuk halaman ini.</p>
                                                 </div>
-                                                <span class="text-[10px] bg-red-950/50 text-red-400 font-bold px-2 py-0.5 rounded border border-red-800/40">SEO Terintegrasi</span>
+                                                <span class="text-[10px] font-bold px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"><i class="fa-solid fa-circle-check mr-1"></i>SEO Terintegrasi</span>
                                             </div>
 
                                             <!-- GOOGLE SEARCH SERP LIVE PREVIEW BOX -->
-                                            <div class="bg-slate-950/70 p-3.5 rounded-xl border border-slate-800 space-y-2">
+                                            <div class="bg-slate-900/40 p-3.5 rounded-xl border border-slate-800 space-y-2">
                                                 <div class="flex items-center justify-between">
                                                     <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider flex items-center gap-1.5">
-                                                        <i class="fa-brands fa-google text-blue-400"></i> Google SERP Live Snippet Preview
+                                                        <i class="fa-brands fa-google text-blue-500"></i> Google SERP Live Snippet Preview
                                                     </span>
                                                     <span class="text-[10px] text-gray-500 font-semibold">Tampilan Hasil Pencarian Google</span>
                                                 </div>
 
-                                                <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm space-y-1 select-none">
+                                                <div class="google-serp-card bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm space-y-1 select-none">
                                                     <div class="flex items-center gap-2 text-xs text-gray-700">
                                                         <div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center p-0.5 border border-gray-200 shrink-0">
                                                             <img id="page-serp-preview-favicon" src="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" class="w-3.5 h-3.5 object-contain" alt="Favicon">
                                                         </div>
                                                         <div class="flex flex-col min-w-0">
-                                                            <span id="page-serp-preview-sitename" class="font-semibold text-[11px] text-gray-900 truncate leading-tight">Honda Bintaro</span>
-                                                            <span id="page-serp-preview-url" class="text-[9px] text-gray-500 font-mono truncate leading-tight">https://www.hondabintaro.com/page/?id=slug</span>
+                                                            <span id="page-serp-preview-sitename" class="serp-sitename font-semibold text-[11px] text-gray-900 truncate leading-tight">Honda Bintaro</span>
+                                                            <span id="page-serp-preview-url" class="serp-url text-[9px] text-gray-500 font-mono truncate leading-tight">https://www.hondabintaro.com/page/?id=slug</span>
                                                         </div>
                                                     </div>
                                                     <div class="pt-1">
-                                                        <h4 id="page-serp-preview-title" class="text-[#1a0dab] hover:underline text-sm sm:text-base font-medium cursor-pointer leading-snug line-clamp-1">
+                                                        <h4 id="page-serp-preview-title" class="serp-title text-[#1a0dab] hover:underline text-sm sm:text-base font-medium cursor-pointer leading-snug line-clamp-1">
                                                             Judul Halaman SEO
                                                         </h4>
-                                                        <p id="page-serp-preview-desc" class="text-[12px] text-[#4d5156] leading-relaxed line-clamp-2 mt-0.5">
+                                                        <p id="page-serp-preview-desc" class="serp-desc text-[12px] text-[#4d5156] leading-relaxed line-clamp-2 mt-0.5">
                                                             Deskripsi cuplikan yang muncul di hasil pencarian Google...
                                                         </p>
                                                     </div>
@@ -1887,8 +2213,8 @@
                                                 <i class="fa-solid fa-trash-can"></i> Hapus Halaman
                                             </button>
                                             <div class="flex-1"></div>
-                                            <button type="button" onclick="saveCurrentPageDetails()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-6 py-2.5 rounded-lg shadow-md transition flex items-center gap-1.5">
-                                                <i class="fa-solid fa-floppy-disk"></i> Simpan Halaman Ini
+                                            <button type="button" onclick="saveCurrentPageDetails()" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold text-xs px-5 py-2.5 rounded-lg shadow-sm transition flex items-center gap-1.5">
+                                                <i class="fa-solid fa-floppy-disk text-red-500"></i> Simpan Sementara
                                             </button>
                                         </div>
                                     </div>
@@ -2707,6 +3033,13 @@
 
         // Tab Switcher
         function switchTab(tabId) {
+            if (tabId === 'pricelist') {
+                switchTab('pages');
+                selectedPageSlug = 'pricelist';
+                renderPageEditorForm('pricelist');
+                return;
+            }
+
             document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
             const targetPane = document.getElementById(`tab-${tabId}`);
             if (targetPane) targetPane.classList.remove('hidden');
@@ -2864,48 +3197,124 @@
         }
 
         // Commit/Save specific JSON data to GitHub
-        async function commitFileToGitHub(path) {
+        // ==========================================
+        // XML SITEMAP GENERATOR & HELPERS
+        // ==========================================
+        function getSitemapBaseUrl() {
+            const origin = window.location.origin;
+            if (origin && !origin.includes('localhost') && !origin.includes('127.0.0.1') && !origin.startsWith('file:')) {
+                return origin.replace(/\/+$/, '');
+            }
+            return 'https://gusti.hondabintaro.com';
+        }
+
+        function generateSitemapXml() {
+            const baseUrl = getSitemapBaseUrl();
+            const today = new Date().toISOString().split('T')[0];
+
+            let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+
+            // 1. Homepage
+            xml += `  <url>\n    <loc>${baseUrl}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
+
+            // 2. System Pages
+            const systemPages = [
+                { path: 'pricelist/', freq: 'weekly', priority: '0.9' },
+                { path: 'promo/', freq: 'daily', priority: '0.9' },
+                { path: 'brochure/', freq: 'weekly', priority: '0.8' },
+                { path: 'thank-you/', freq: 'monthly', priority: '0.3' }
+            ];
+
+            systemPages.forEach(p => {
+                xml += `  <url>\n    <loc>${baseUrl}/${p.path}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${p.freq}</changefreq>\n    <priority>${p.priority}</priority>\n  </url>\n`;
+            });
+
+            // 3. Product Catalog Models
+            const products = appData.products || {};
+            Object.keys(products).forEach(modelId => {
+                xml += `  <url>\n    <loc>${baseUrl}/model/?id=${encodeURIComponent(modelId)}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+            });
+
+            // 4. Custom Pages
+            const pages = appData.pages || {};
+            Object.keys(pages).forEach(slug => {
+                const p = pages[slug];
+                if (!p.isSystemPage && slug !== 'pricelist' && slug !== 'promo' && slug !== 'brochure' && slug !== 'thank-you') {
+                    xml += `  <url>\n    <loc>${baseUrl}/page/?id=${encodeURIComponent(slug)}</loc>\n    <lastmod>${p.updatedAt || today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.5</priority>\n  </url>\n`;
+                }
+            });
+
+            xml += `</urlset>`;
+            return xml;
+        }
+
+        function updateSitemapStats() {
+            const baseUrl = getSitemapBaseUrl();
+            const sitemapUrlInput = document.getElementById('cfg-sitemap-url');
+            if (sitemapUrlInput) {
+                sitemapUrlInput.value = `${baseUrl}/sitemap.xml`;
+            }
+
+            const productsCount = Object.keys(appData.products || {}).length;
+            const customPagesCount = Object.keys(appData.pages || {}).filter(k => {
+                const p = appData.pages[k];
+                return !p.isSystemPage && k !== 'pricelist' && k !== 'promo' && k !== 'brochure' && k !== 'thank-you';
+            }).length;
+            const totalCount = 1 + 4 + productsCount + customPagesCount; // Home + 4 sys + products + custom
+
+            const badge = document.getElementById('sitemap-url-count-badge');
+            if (badge) {
+                badge.innerText = `${totalCount} URL Terindeks`;
+            }
+        }
+
+        function copySitemapUrl() {
+            const baseUrl = getSitemapBaseUrl();
+            const url = `${baseUrl}/sitemap.xml`;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(url).then(() => {
+                    showToast('📋 Link Sitemap XML berhasil disalin ke clipboard! Siap didaftarkan di Google Search Console.', 'success');
+                }).catch(() => {
+                    prompt('Salin URL Sitemap XML berikut:', url);
+                });
+            } else {
+                prompt('Salin URL Sitemap XML berikut:', url);
+            }
+        }
+
+        // Helper to commit a single file payload to GitHub
+        async function commitSingleFile(path, commitMessage) {
             updateGhConfigFromDom();
             if (!ghConfig.token) {
-                showToast('PAT Token tidak ditemukan!', 'error');
-                return;
+                showToast('PAT Token GitHub tidak ditemukan! Silakan atur di Tab GitHub Sync.', 'error');
+                return false;
             }
 
-            let jsonPayload = null;
+            let stringContent = '';
+            if (path === 'sitemap.xml') {
+                stringContent = generateSitemapXml();
+            } else {
+                let jsonPayload = null;
+                if (path === 'data/site_config.json') {
+                    jsonPayload = appData.siteConfig;
+                } else if (path === 'data/banner.json') {
+                    jsonPayload = appData.banner;
+                } else if (path === 'data/products.json') {
+                    jsonPayload = appData.products;
+                } else if (path === 'data/pricelist.json') {
+                    jsonPayload = appData.pricelist;
+                } else if (path === 'data/pages.json') {
+                    jsonPayload = appData.pages;
+                }
 
-            if (path === 'data/site_config.json') {
-                saveSiteConfigDomToData();
-                jsonPayload = appData.siteConfig;
-            } else if (path === 'data/banner.json') {
-                saveBannersDomToData();
-                jsonPayload = appData.banner;
-            } else if (path === 'data/products.json') {
-                if (selectedProductId) {
-                    saveCurrentProductDetails();
+                if (!jsonPayload) {
+                    return false;
                 }
-                jsonPayload = appData.products;
-            } else if (path === 'data/pricelist.json') {
-                if (selectedPricelistModelId) {
-                    saveCurrentPricelistDetails();
-                }
-                jsonPayload = appData.pricelist;
-            } else if (path === 'data/pages.json') {
-                if (selectedPageSlug) {
-                    saveCurrentPageDetails();
-                }
-                jsonPayload = appData.pages;
+                stringContent = JSON.stringify(jsonPayload, null, 2);
             }
 
-            if (!jsonPayload) {
-                showToast('Payload kosong, abaikan.', 'warning');
-                return;
-            }
-
-            const stringContent = JSON.stringify(jsonPayload, null, 2);
             const encodedContent = btoa(unescape(encodeURIComponent(stringContent)));
             const url = `https://api.github.com/repos/${ghConfig.owner}/${ghConfig.repo}/contents/${path}`;
-
-            showToast('Mengirimkan commit ke GitHub...', 'info');
 
             // Retrieve current SHA if missing
             if (!fileSha[path]) {
@@ -2917,9 +3326,6 @@
                 } catch (e) {}
             }
 
-            const commitMessage = prompt("Masukkan pesan commit:", `Update ${path.split('/').pop()} via Admin Dashboard`);
-            if (commitMessage === null) return; // User cancel
-
             const bodyData = {
                 message: commitMessage || `⚡ Update ${path} via Admin Dashboard`,
                 content: encodedContent,
@@ -2930,27 +3336,100 @@
                 bodyData.sha = fileSha[path];
             }
 
-            try {
-                const res = await fetch(url, {
-                    method: 'PUT',
-                    headers: { 
-                        'Authorization': `token ${ghConfig.token}`, 
-                        'Content-Type': 'application/json' 
-                    },
-                    body: JSON.stringify(bodyData)
-                });
+            const res = await fetch(url, {
+                method: 'PUT',
+                headers: { 
+                    'Authorization': `token ${ghConfig.token}`, 
+                    'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify(bodyData)
+            });
 
-                if (!res.ok) {
-                    const errorResponse = await res.json();
-                    throw new Error(errorResponse.message || 'Gagal menyimpan file.');
+            if (!res.ok) {
+                const errorResponse = await res.json();
+                throw new Error(errorResponse.message || `Gagal menyimpan ${path}`);
+            }
+
+            const resJson = await res.json();
+            fileSha[path] = resJson.content.sha;
+            return true;
+        }
+
+        // Commit/Save specific single JSON data to GitHub (for other tabs)
+        async function commitFileToGitHub(path) {
+            if (path === 'data/site_config.json') {
+                saveSiteConfigDomToData();
+            } else if (path === 'data/banner.json') {
+                saveBannersDomToData();
+            } else if (path === 'data/products.json') {
+                if (selectedProductId) saveCurrentProductDetails();
+            } else if (path === 'data/pricelist.json') {
+                if (selectedPricelistModelId) saveCurrentPricelistDetails();
+            } else if (path === 'data/pages.json') {
+                if (selectedPageSlug) saveCurrentPageDetails();
+            }
+
+            const commitMessage = prompt("Masukkan pesan commit:", `Update ${path.split('/').pop()} via Admin Dashboard`);
+            if (commitMessage === null) return; // User cancel
+
+            showToast(`Mengirimkan commit ${path} ke GitHub...`, 'info');
+            try {
+                await commitSingleFile(path, commitMessage);
+                
+                // Auto-sync sitemap.xml if products, pages, or site config changed
+                if (path === 'data/products.json' || path === 'data/pages.json' || path === 'data/site_config.json') {
+                    try {
+                        await commitSingleFile('sitemap.xml', `🗺️ Auto-sync sitemap.xml on ${path} update`);
+                    } catch (e) {}
                 }
 
-                const resJson = await res.json();
-                fileSha[path] = resJson.content.sha;
                 showToast('🎉 Hebat! Data berhasil dikomit ke GitHub. Halaman website akan terupdate dinamis.', 'success');
                 updateStatsPanel();
+                updateSitemapStats();
             } catch (err) {
                 showToast(err.message, 'error');
+            }
+        }
+
+        // Unified commit for Custom Pages + Pricelist OTR / e-Brochure / Promo / Thank You
+        async function commitCurrentPageAndRelatedFiles() {
+            if (!selectedPageSlug) {
+                showToast('Pilih halaman terlebih dahulu!', 'warning');
+                return;
+            }
+
+            // 1. Sync all DOM inputs to in-memory state
+            saveCurrentPageDetails();
+
+            const title = appData.pages[selectedPageSlug]?.title || selectedPageSlug;
+            const commitMessage = prompt("Masukkan pesan commit:", `Update halaman ${title} & konfigurasi via Admin Dashboard`);
+            if (commitMessage === null) return; // User cancel
+
+            // 2. Identify all files affected by this page
+            const filesToCommit = ['data/pages.json'];
+            if (selectedPageSlug === 'pricelist') {
+                filesToCommit.push('data/pricelist.json');
+            } else if (selectedPageSlug === 'brochure' || selectedPageSlug === 'promo' || selectedPageSlug === 'thank-you') {
+                filesToCommit.push('data/site_config.json');
+            } else {
+                // Regular custom page also syncs SEO to site_config.json
+                filesToCommit.push('data/site_config.json');
+            }
+
+            // Also auto-sync sitemap.xml
+            filesToCommit.push('sitemap.xml');
+
+            showToast(`Mengunggah ke GitHub: ${filesToCommit.join(' & ')}...`, 'info');
+
+            try {
+                for (const fPath of filesToCommit) {
+                    await commitSingleFile(fPath, commitMessage || `⚡ Update ${title} (${fPath}) via Admin Dashboard`);
+                }
+                showToast(`🎉 Sukses! Halaman "${title}" & file terkait (${filesToCommit.join(', ')}) berhasil disimpan & di-commit ke GitHub!`, 'success');
+                updateStatsPanel();
+                updateSitemapStats();
+            } catch (err) {
+                showToast(`Gagal commit: ${err.message}`, 'error');
             }
         }
 
@@ -3406,6 +3885,7 @@
             // --- SUBTAB: SEO METADATA ---
             populateSeoPageDropdown();
             loadSelectedSeoPage();
+            updateSitemapStats();
 
             // --- SUBTAB: FAQ & FOOTER ---
             const faqContainer = document.getElementById('cfg-faq-container');
@@ -3854,7 +4334,7 @@
                             <span class="w-6 h-6 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-xs font-mono font-bold text-gray-400 shrink-0">${idx + 1}</span>
                             <div class="min-w-0">
                                 <div class="flex items-center gap-2 flex-wrap">
-                                    <span class="font-bold text-xs text-white">${item.label}</span>
+                                    <span class="nav-item-label font-bold text-xs">${item.label}</span>
                                     ${typeBadge}
                                 </div>
                                 <div class="text-[11px] text-gray-500 font-mono truncate mt-0.5">${linkDisplay}</div>
@@ -4189,7 +4669,8 @@
                 config.seo[selectedSeoPage] = { title, description, keywords, image };
             }
 
-            showToast(`Pengaturan SEO untuk target "${selectedSeoPage}" berhasil disimpan secara lokal!`);
+            showToast(`💾 Pengaturan SEO untuk target "${selectedSeoPage}" berhasil disimpan sementara! Klik tombol "Commit Perubahan" di atas untuk mempublikasikannya ke website.`, 'info');
+            updateSitemapStats();
         }
 
         function openAddCustomSeoPageModal() {
@@ -4364,7 +4845,10 @@
 
             keys.forEach((key, idx) => {
                 const p = products[key];
-                const activeClass = selectedProductId === key ? 'bg-red-600/20 border-red-500 text-white font-bold shadow' : 'bg-slate-950/40 border-slate-800/80 text-gray-300 hover:text-white hover:bg-slate-800/40';
+                const isAct = selectedProductId === key;
+                const activeClass = isAct 
+                    ? 'border-red-500 bg-red-500/10 text-red-600 dark:text-white font-bold shadow-sm' 
+                    : 'border-slate-800/80 bg-slate-950/40 text-slate-800 dark:text-gray-300 hover:text-red-500 hover:bg-slate-800/40';
                 
                 const itemHtml = `
                     <div draggable="true" 
@@ -4375,14 +4859,14 @@
                          ondragend="handleCarDragEnd(event)"
                          class="group relative border rounded-xl p-2.5 transition-all flex items-center justify-between gap-2 cursor-grab active:cursor-grabbing ${activeClass}">
                         <div class="flex items-center gap-2 min-w-0" onclick="selectProductModel('${key}')">
-                            <span class="text-gray-500 group-hover:text-gray-300 cursor-grab shrink-0 px-0.5" title="Drag & Drop untuk menggeser posisi">
+                            <span class="text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 cursor-grab shrink-0 px-0.5" title="Drag & Drop untuk menggeser posisi">
                                 <i class="fa-solid fa-grip-vertical"></i>
                             </span>
-                            <span class="w-5 h-5 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-[9px] font-mono font-bold text-gray-400 shrink-0">
+                            <span class="w-5 h-5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-[9px] font-mono font-bold text-slate-600 dark:text-gray-400 shrink-0">
                                 #${idx + 1}
                             </span>
                             <div class="min-w-0">
-                                <div class="text-xs font-bold truncate leading-tight">${p.name || key}</div>
+                                <div class="product-item-title text-xs font-bold truncate leading-tight ${isAct ? 'text-red-600 font-extrabold' : ''}">${p.name || key}</div>
                                 <div class="text-[10px] text-gray-500 font-mono truncate">${key}</div>
                             </div>
                         </div>
@@ -4699,8 +5183,9 @@
                 image: pSeoImage
             };
 
-            showToast(`Perubahan spesifikasi dan SEO model "${p.name}" berhasil disimpan secara lokal! Tekan "Commit Perubahan" untuk publikasi ke GitHub.`);
+            showToast(`💾 Perubahan spesifikasi dan SEO model "${p.name}" berhasil disimpan sementara! Klik tombol "Commit Perubahan Produk" di atas untuk mempublikasikannya ke website.`, 'info');
             populateProductsForm(); 
+            updateSitemapStats();
         }
 
         function addNewProductModal() {
@@ -4862,7 +5347,7 @@
             const notesText = document.getElementById('pricelist-notes').value.trim();
             appData.pricelist.notes = notesText ? notesText.split('\n').map(n => n.trim()).filter(n => n) : [];
 
-            showToast(`Pricelist kategori ${m.label} & catatan diperbarui secara lokal! Jangan lupa Commit ke GitHub.`);
+            showToast(`💾 Tabel OTR kategori "${m.label}" berhasil disimpan sementara! Klik tombol "Commit Perubahan Halaman" di atas untuk mempublikasikannya ke website.`, 'info');
             populatePricelistForm(); 
         }
 
@@ -5224,25 +5709,25 @@
                 const p = pages[k];
                 const isActive = k === selectedPageSlug;
                 const activeClass = isActive 
-                    ? 'border-red-500 bg-red-950/30 text-white' 
-                    : 'border-slate-800 hover:border-slate-700 bg-slate-900/40 text-gray-300';
+                    ? 'border-red-500 bg-red-500/10 text-red-600 dark:text-white font-bold shadow-sm' 
+                    : 'border-slate-800/80 bg-slate-950/40 text-slate-800 dark:text-gray-300 hover:text-red-500 hover:bg-slate-800/40';
 
                 const routeDisplay = p.routeUrl || (p.isSystemPage ? `/${k}/` : `/page/?id=${k}`);
                 const isSys = p.isSystemPage || k === 'pricelist' || k === 'brochure' || k === 'promo' || k === 'thank-you';
-                const badgeSys = isSys ? `<span class="text-[8px] bg-blue-900/60 text-blue-300 font-bold px-1.5 py-0.5 rounded border border-blue-700/40">Sistem</span>` : '';
+                const badgeSys = isSys ? `<span class="text-[9px] bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-300 font-bold px-1.5 py-0.5 rounded border border-blue-200 dark:border-blue-700/40">Sistem</span>` : '';
 
                 const html = `
                     <div onclick="selectPage('${k}')" class="p-3 rounded-xl border ${activeClass} cursor-pointer transition flex items-center justify-between gap-2 group">
                         <div class="min-w-0 flex-1">
                             <div class="flex items-center gap-1.5">
-                                <h4 class="text-xs font-bold font-outfit truncate text-white group-hover:text-red-400 transition">${p.title || k}</h4>
+                                <h4 class="page-item-title text-xs font-bold font-outfit truncate ${isActive ? 'text-red-600 font-extrabold' : ''} group-hover:text-red-500 transition">${p.title || k}</h4>
                                 ${badgeSys}
                             </div>
                             <div class="flex items-center gap-1.5 mt-1">
-                                <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-950 text-gray-400 truncate max-w-full">${routeDisplay}</span>
+                                <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-950 text-slate-600 dark:text-gray-400 truncate max-w-full">${routeDisplay}</span>
                             </div>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-xs text-gray-500 group-hover:text-white transition"></i>
+                        <i class="fa-solid fa-chevron-right text-xs text-gray-400 group-hover:text-red-500 dark:group-hover:text-white transition"></i>
                     </div>
                 `;
                 listEl.insertAdjacentHTML('beforeend', html);
@@ -5272,10 +5757,28 @@
 
             const isSys = page.isSystemPage || slug === 'pricelist' || slug === 'brochure' || slug === 'promo' || slug === 'thank-you';
 
+            const slugInput = document.getElementById('edit-page-slug');
+            const slugLockBadge = document.getElementById('edit-page-slug-lock-badge');
+            const slugHelp = document.getElementById('edit-page-slug-help');
+
             document.getElementById('edit-page-header').innerText = `Edit: ${page.title || slug}`;
-            document.getElementById('edit-page-slug').value = slug;
+            slugInput.value = slug;
             document.getElementById('edit-page-title').value = page.title || '';
             document.getElementById('edit-page-subtitle').value = page.subtitle || '';
+
+            if (isSys) {
+                slugInput.readOnly = true;
+                slugInput.disabled = true;
+                slugInput.classList.add('opacity-60', 'cursor-not-allowed', 'bg-slate-950/90');
+                if (slugLockBadge) slugLockBadge.classList.remove('hidden');
+                if (slugHelp) slugHelp.innerText = 'Slug halaman sistem dikunci otomatis agar link rute website tetap aman.';
+            } else {
+                slugInput.readOnly = false;
+                slugInput.disabled = false;
+                slugInput.classList.remove('opacity-60', 'cursor-not-allowed', 'bg-slate-950/90');
+                if (slugLockBadge) slugLockBadge.classList.add('hidden');
+                if (slugHelp) slugHelp.innerText = 'Slug menentukan tautan URL halaman di website.';
+            }
             
             const previewLink = document.getElementById('edit-page-preview-link');
             if (previewLink) {
@@ -5283,27 +5786,54 @@
             }
 
             const bodyContainer = document.getElementById('page-body-container');
-            const sysNote = document.getElementById('page-system-note');
             const deleteBtn = document.getElementById('btn-delete-page');
+            const pricelistPanel = document.getElementById('page-pricelist-specific-fields');
             const promoPanel = document.getElementById('page-promo-specific-fields');
             const thankPanel = document.getElementById('page-thankyou-specific-fields');
             const brochurePanel = document.getElementById('page-brochure-specific-fields');
 
             // Hide all specific panels first
+            pricelistPanel?.classList.add('hidden');
             promoPanel?.classList.add('hidden');
             thankPanel?.classList.add('hidden');
             brochurePanel?.classList.add('hidden');
-            sysNote?.classList.add('hidden');
             bodyContainer?.classList.add('hidden');
 
             if (isSys) {
                 deleteBtn?.classList.add('hidden');
                 
-                if (slug === 'promo') {
+                if (slug === 'pricelist') {
+                    pricelistPanel?.classList.remove('hidden');
+                    populatePricelistForm();
+                } else if (slug === 'promo') {
                     promoPanel?.classList.remove('hidden');
                     document.getElementById('edit-promo-badge').value = page.promoBadge || appData.siteConfig?.promoPage?.badge || 'Promo Eksklusif Honda Jabodetabek {year}';
                     document.getElementById('edit-promo-title').value = page.promoTitle || appData.siteConfig?.promoPage?.title || 'Miliki Mobil Honda Impian Anda <br class="hidden sm:inline"><span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-400">DP Termurah & Bunga 0%</span>';
                     document.getElementById('edit-promo-desc').value = page.promoDescription || appData.siteConfig?.promoPage?.description || 'Dapatkan diskon OTR besar-besaran, gratis biaya service berkala s.d. 4 tahun, dan pengajuan kredit dibantu sampai 100% disetujui. Hubungi Sales Counter Resmi sekarang juga!';
+                    
+                    document.getElementById('edit-promo-sales-title').value = page.salesCounterBadgeTitle || 'Sales Counter Resmi';
+                    document.getElementById('edit-promo-sales-desc').value = page.salesCounterBadgeDesc || 'Jaminan Transaksi Aman & Terpercaya';
+                    document.getElementById('edit-promo-form-badge').value = page.formBadge || 'PROMO TERBATAS HARI INI';
+                    document.getElementById('edit-promo-quota-count').value = page.quotaCount || '5';
+                    document.getElementById('edit-promo-form-title').value = page.formTitle || 'Dapatkan Penawaran OTR Terbaik';
+                    document.getElementById('edit-promo-form-btn-text').value = page.formButtonText || 'Kirim ke WhatsApp & Lihat Promo';
+                    document.getElementById('edit-promo-form-subtitle').value = page.formSubtitle || 'Lengkapi data Anda, langsung dapatkan hitungan simulasi via WhatsApp';
+
+                    const usps = page.usps || [];
+                    document.getElementById('edit-promo-usp1-title').value = usps[0]?.title || 'DP & Angsuran Termurah';
+                    document.getElementById('edit-promo-usp1-desc').value = usps[0]?.desc || 'Hitungan simulasi bisa disesuaikan budget';
+                    document.getElementById('edit-promo-usp2-title').value = usps[1]?.title || 'Proses Kredit Cepat';
+                    document.getElementById('edit-promo-usp2-desc').value = usps[1]?.desc || 'Berkas dibantu s.d. approve finance';
+                    document.getElementById('edit-promo-usp3-title').value = usps[2]?.title || 'Tukar Tambah Terbaik';
+                    document.getElementById('edit-promo-usp3-desc').value = usps[2]?.desc || 'Mobil lama dihargai tinggi dibanding pasaran';
+
+                    document.getElementById('edit-promo-latest-title').value = page.latestPromosTitle || 'Promo Terbaru Honda Bintaro';
+                    document.getElementById('edit-promo-latest-subtitle').value = page.latestPromosSubtitle || 'Penawaran terbaik dan program cicilan khusus bulan ini';
+                    document.getElementById('edit-promo-catalog-title').value = page.catalogTitle || 'Promo Menarik Mobil Honda';
+                    document.getElementById('edit-promo-catalog-subtitle').value = page.catalogSubtitle || 'Pilih mobil impian Anda dan dapatkan penawaran khusus s.d akhir bulan ini!';
+                    document.getElementById('edit-promo-bottom-title').value = page.bottomBannerTitle || 'Tunggu Apa Lagi? Dapatkan Penawaran Spesial Anda';
+                    document.getElementById('edit-promo-bottom-desc').value = page.bottomBannerDesc || 'Kuota promo cicilan murah terbatas dan dapat berubah sewaktu-waktu. Isi data Anda sekarang agar tidak kehabisan promo terbaik bulan ini!';
+                    document.getElementById('edit-promo-bottom-btn-text').value = page.bottomBannerBtnText || 'Dapatkan Promo Sekarang';
                 } else if (slug === 'thank-you') {
                     thankPanel?.classList.remove('hidden');
                     document.getElementById('edit-thank-desc').value = page.description || appData.siteConfig?.thankYou?.description || 'Sistem kami sedang membuka aplikasi WhatsApp Anda di tab baru. Sales Counter kami, {salesName}, akan segera merespons Anda dalam waktu 10-15 menit untuk memberikan hitungan kredit / promo yang Anda ajukan.';
@@ -5320,16 +5850,23 @@
                             const modelName = appData.products[modelId]?.name || modelId;
                             const fileId = brochures[modelId] || '';
                             const fieldHtml = `
-                                <div class="brochure-item-row flex items-center justify-between gap-2 bg-slate-950/40 p-2 rounded-lg border border-slate-800 text-xs">
-                                    <span class="text-[11px] text-white font-semibold truncate flex-1">${modelName} <code class="text-gray-400 font-mono text-[9px]">(${modelId})</code></span>
-                                    <input type="text" data-model-id="${modelId}" class="col-brochure-id glass-input w-44 px-2 py-1 rounded text-xs font-mono" placeholder="ID Drive..." value="${fileId}">
+                                <div class="brochure-item-row p-3.5 rounded-xl border border-slate-800/80 bg-slate-950/40 space-y-2.5">
+                                    <div class="flex items-center justify-between gap-2">
+                                        <span class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5 leading-snug">
+                                            <i class="fa-solid fa-car text-red-500 text-xs shrink-0"></i>
+                                            <span class="brochure-item-name font-bold text-slate-900">${modelName}</span>
+                                        </span>
+                                        <code class="text-[10px] text-gray-500 font-mono bg-slate-100 dark:bg-slate-900 px-1.5 py-0.5 rounded shrink-0">${modelId}</code>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <input type="text" data-model-id="${modelId}" class="col-brochure-id glass-input flex-1 px-3 py-1.5 rounded-lg text-xs font-mono" placeholder="Masukkan ID File Google Drive..." value="${fileId}">
+                                        ${fileId ? `<a href="https://drive.google.com/file/d/${fileId}/view" target="_blank" class="px-2.5 py-1.5 text-xs text-blue-600 dark:text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg border border-blue-500/20 transition flex items-center gap-1 shrink-0 font-semibold" title="Buka File Brosur"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span class="hidden sm:inline">Cek</span></a>` : ''}
+                                    </div>
                                 </div>
                             `;
                             brochuresContainer.insertAdjacentHTML('beforeend', fieldHtml);
                         });
                     }
-                } else {
-                    sysNote?.classList.remove('hidden');
                 }
             } else {
                 bodyContainer?.classList.remove('hidden');
@@ -5513,14 +6050,79 @@
             };
 
             // Specific page handlers & cross-sync with siteConfig
-            if (selectedPageSlug === 'promo') {
+            if (selectedPageSlug === 'pricelist') {
+                const models = appData.pricelist?.models || [];
+                const m = models.find(item => item.id === selectedPricelistModelId);
+                if (m) {
+                    const labelInput = document.getElementById('pricelist-model-label');
+                    if (labelInput) m.label = labelInput.value.trim();
+                    m.items = [];
+                    document.querySelectorAll('.pricelist-data-row').forEach(row => {
+                        m.items.push({
+                            tipe: row.querySelector('.col-pl-tipe')?.value.trim() || '',
+                            trans: row.querySelector('.col-pl-trans')?.value.trim() || '',
+                            harga: row.querySelector('.col-pl-harga')?.value.trim() || '',
+                            essential: row.querySelector('.col-pl-essential')?.value.trim() || '',
+                            extra: row.querySelector('.col-pl-extra')?.value.trim() || ''
+                        });
+                    });
+                    const notesText = document.getElementById('pricelist-notes')?.value.trim();
+                    if (notesText !== undefined) {
+                        appData.pricelist.notes = notesText ? notesText.split('\n').map(n => n.trim()).filter(n => n) : [];
+                    }
+                }
+            } else if (selectedPageSlug === 'promo') {
                 const promoBadge = document.getElementById('edit-promo-badge')?.value.trim() || '';
                 const promoTitle = document.getElementById('edit-promo-title')?.value.trim() || '';
                 const promoDesc = document.getElementById('edit-promo-desc')?.value.trim() || '';
                 
+                const salesTitle = document.getElementById('edit-promo-sales-title')?.value.trim() || '';
+                const salesDesc = document.getElementById('edit-promo-sales-desc')?.value.trim() || '';
+                const formBadge = document.getElementById('edit-promo-form-badge')?.value.trim() || '';
+                const quotaCount = document.getElementById('edit-promo-quota-count')?.value.trim() || '5';
+                const formTitle = document.getElementById('edit-promo-form-title')?.value.trim() || '';
+                const formBtnText = document.getElementById('edit-promo-form-btn-text')?.value.trim() || '';
+                const formSubtitle = document.getElementById('edit-promo-form-subtitle')?.value.trim() || '';
+
+                const usp1Title = document.getElementById('edit-promo-usp1-title')?.value.trim() || '';
+                const usp1Desc = document.getElementById('edit-promo-usp1-desc')?.value.trim() || '';
+                const usp2Title = document.getElementById('edit-promo-usp2-title')?.value.trim() || '';
+                const usp2Desc = document.getElementById('edit-promo-usp2-desc')?.value.trim() || '';
+                const usp3Title = document.getElementById('edit-promo-usp3-title')?.value.trim() || '';
+                const usp3Desc = document.getElementById('edit-promo-usp3-desc')?.value.trim() || '';
+
+                const latestTitle = document.getElementById('edit-promo-latest-title')?.value.trim() || '';
+                const latestSubtitle = document.getElementById('edit-promo-latest-subtitle')?.value.trim() || '';
+                const catalogTitle = document.getElementById('edit-promo-catalog-title')?.value.trim() || '';
+                const catalogSubtitle = document.getElementById('edit-promo-catalog-subtitle')?.value.trim() || '';
+                const bottomTitle = document.getElementById('edit-promo-bottom-title')?.value.trim() || '';
+                const bottomDesc = document.getElementById('edit-promo-bottom-desc')?.value.trim() || '';
+                const bottomBtnText = document.getElementById('edit-promo-bottom-btn-text')?.value.trim() || '';
+
                 pagePayload.promoBadge = promoBadge;
                 pagePayload.promoTitle = promoTitle;
                 pagePayload.promoDescription = promoDesc;
+                pagePayload.salesCounterBadgeTitle = salesTitle;
+                pagePayload.salesCounterBadgeDesc = salesDesc;
+                pagePayload.formBadge = formBadge;
+                pagePayload.quotaCount = quotaCount;
+                pagePayload.formTitle = formTitle;
+                pagePayload.formButtonText = formBtnText;
+                pagePayload.formSubtitle = formSubtitle;
+
+                pagePayload.usps = [
+                    { title: usp1Title, desc: usp1Desc },
+                    { title: usp2Title, desc: usp2Desc },
+                    { title: usp3Title, desc: usp3Desc }
+                ];
+
+                pagePayload.latestPromosTitle = latestTitle;
+                pagePayload.latestPromosSubtitle = latestSubtitle;
+                pagePayload.catalogTitle = catalogTitle;
+                pagePayload.catalogSubtitle = catalogSubtitle;
+                pagePayload.bottomBannerTitle = bottomTitle;
+                pagePayload.bottomBannerDesc = bottomDesc;
+                pagePayload.bottomBannerBtnText = bottomBtnText;
 
                 if (!appData.siteConfig.promoPage) appData.siteConfig.promoPage = {};
                 appData.siteConfig.promoPage.badge = promoBadge;
@@ -5566,7 +6168,7 @@
             appData.pages[selectedPageSlug] = pagePayload;
 
             populatePagesForm();
-            showToast(`✅ Halaman "${title}" berhasil disimpan di memori! Tekan "Commit Perubahan" untuk publikasi ke GitHub.`);
+            showToast(`💾 Perubahan halaman "${title}" berhasil disimpan sementara! Klik tombol "Commit Perubahan Halaman" di atas untuk mempublikasikannya ke website.`, 'info');
         }
 
         function openAddPageModal() {

@@ -1,120 +1,125 @@
-# Website Sales Mobil Honda Bintaro v0.1
+# Website Sales Mobil Honda & CMS Admin Dashboard Serverless v0.1.0
 
-Website sales mobil Honda resmi untuk wilayah Bintaro & Jabodetabek. Antarmuka dikembangkan dengan performa tinggi, desain premium (dark-accented glassmorphism), serta sistem dinamisasi data terpusat menggunakan format JSON.
+Website penjualan sales mobil Honda modern, cepat, dan berkonversi tinggi yang dilengkapi dengan **CMS Admin Dashboard Serverless** terintegrasi GitHub REST API. Website ini dirancang khusus untuk mempermudah sales counter, dealer, atau digital marketer dalam mengelola katalog produk, harga OTR, promo, e-brosur, halaman kustom, dan SEO secara mandiri tanpa memerlukan server backend berbayar.
 
 ---
 
-## 🚀 Fitur Utama Website
+## 🚀 Fitur Utama Website (Frontend)
 
-### 1. Dinamisasi Data Terpusat (Dynamic Content JSON)
-Hampir seluruh teks, tautan, gambar, dan menu navigasi pada website diatur secara dinamis melalui file konfigurasi JSON. Ini mempermudah admin untuk mengubah informasi tanpa menyentuh kode HTML/JS secara langsung:
-*   **`data/site_config.json`:** Mengatur menu navigasi, identitas sales (nama, WhatsApp, email, foto), teks e-brosur, detail kontak banner, deskripsi bank transfer, teks persyaratan kredit, hingga tautan eksternal media sosial.
-*   **`data/products.json`:** Database spesifikasi teknis mobil, pilihan warna, kelengkapan fitur, galeri foto, urutan pemuatan mobil (`productOrder`), serta harga awal masing-masing tipe.
-*   **`data/pricelist.json`:** Database harga OTR (On The Road) lengkap Jabodetabek untuk setiap varian mobil beserta paket pembelian aksesoris (Essential & Extra).
+### 1. Desain Modern & High Performance
+* **Aksen Glassmorphism & Responsif Penuh:** Tampilan elegan dan responsif di semua perangkat (Desktop, Tablet, dan Mobile).
+* **Mode Terang & Gelap:** Mendukung preferensi tampilan pengguna dengan tingkat kontras yang optimal.
+* **Preloader Animasi:** Animasi pemuatan layar pembuka yang dapat diaktifkan/dinonaktifkan serta logo yang dapat disesuaikan.
 
-### 2. Katalog & Halaman Detail Produk Interaktif
-*   **Grid Produk Dinamis:** Menampilkan jajaran mobil Honda di halaman utama yang secara otomatis dikelompokkan berdasarkan kategori (SUV, MPV, Sedan, City Car & Hatchback).
-*   **Halaman Spesifik Model:** Tersedia 10 halaman detail model mobil resmi yang di-generate dinamis:
-    *   *Accord, Brio (Satya/RS), BR-V, City Hatchback RS, Civic RS, CR-V, E:N1, HR-V, StepWGN, dan WR-V.*
-    *   Menampilkan galeri slide foto beresolusi tinggi, daftar harga varian OTR, fitur-fitur unggulan, tabel spesifikasi lengkap (mesin, dimensi, transmisi, dsb) dalam bentuk akordeon, serta persyaratan kredit/simulasi cicilan.
+### 2. Katalog Produk & Halaman Detail Interaktif (`/model/?id=...`)
+* **Grid Lineup Kategori:** Menampilkan mobil berdasarkan kategori (SUV, MPV, Sedan, City Car & Hatchback).
+* **Detail Model Komprehensif:** Galeri foto beresolusi tinggi, pilihan warna mobil, daftar varian & harga OTR, tabel spesifikasi teknis lengkap dalam bentuk akordeon, serta simulasi persyaratan kredit.
+* **Status Lencana Khusus:** Dukungan lencana promosi seperti "New" (oranye) dan "All New" (merah menyala).
 
-### 3. e-Brochure Hub & Interactive PDF Viewer
-*   Halaman **e-Brochure** (`/brochure/`) yang memuat grid brosur resmi mobil berdasarkan urutan menu.
-*   **Interactive PDF Viewer:** Memungkinkan pelanggan membuka berkas PDF brosur langsung di dalam website melalui modal popup (menggunakan teknologi integrasi Google Drive Preview) tanpa perlu berpindah tab browser.
-*   **Direct Download:** Dilengkapi opsi unduhan berkas PDF resmi untuk disimpan di perangkat pengguna secara langsung.
+### 3. Halaman Daftar Harga OTR (`/pricelist/`)
+* **Tabel Harga Terstruktur:** Rincian harga OTR seluruh varian mobil Honda, paket Essential (Paket Prima), dan paket Extra (Paket Prima+).
+* **Tampilan Adaptif:** Tabel berjenjang (`rowspan`) pada desktop dan otomatis bertransformasi menjadi kartu ringkas di layar mobile.
+* **Catatan Kaki Dinamis:** Informasi ketentuan harga OTR, BBN, dan area penjualan yang dapat diperbarui secara mandiri.
 
-### 4. Tabel Daftar Harga OTR (Pricelist Mobil)
-*   Halaman **Pricelist** (`/pricelist/`) yang menyajikan rincian harga OTR seluruh varian mobil Honda, Paket Prima (Essential), dan Paket Prima+ (Extra).
-*   **Layout Adaptif (Responsive):** Rincian harga dirender dalam bentuk tabel berjenjang (`rowspan`) yang rapi pada desktop, dan otomatis bertransformasi menjadi susunan kartu merah premium pada layar mobile agar nyaman dibaca.
-*   **Fallback API:** Dilengkapi sistem *fallback* yang otomatis menggunakan data cadangan lokal apabila koneksi internet ke API server mengalami kendala.
+### 4. e-Brochure Hub & Google Drive PDF Viewer (`/brochure/`)
+* **Penampil PDF Interaktif:** Pengunjung dapat membaca brosur PDF resmi langsung di dalam website melalui modal popup integrasi Google Drive tanpa perlu membuka tab baru.
+* **Tombol Unduh Langsung:** Memungkinkan pengunjung mengunduh file brosur PDF asli ke perangkat mereka.
 
-### 5. Tombol Pintas WhatsApp Dinamis (WhatsApp Templates)
-*   Format pesan (template teks chat WA) dapat disesuaikan di dalam file JSON untuk berbagai aksi:
-    *   *Tanya Promo Utama* (di Sales Banner).
-    *   *Booking Test Drive* (Pesan khusus menyertakan model mobil pilihan).
-    *   *Minta Pricelist / Brosur*.
-*   Nomor WhatsApp sales disinkronkan secara global di seluruh tombol pintas di website.
+### 5. Landing Page Iklan Promo Google Ads (`/promo/`)
+* **Fokus Konversi Tinggi:** Halaman landing khusus promosi minim distraksi navigasi.
+* **Fitur Penunjang Iklan:** Countdown timer 24 jam (reset otomatis harian), indikator sisa kuota promo dinamis, poin keunggulan (USP), kartu promo unggulan, dan formulir konsultasi cepat terhubung ke WhatsApp.
 
-### 6. Keamanan & Pencegahan Penipuan (Fraud Warning System)
-*   Ikon notifikasi lonceng di bagian header yang secara interaktif membuka **Modal Peringatan Transaksi Aman**.
-*   Menampilkan gambar himbauan resmi dealer agar pelanggan hanya melakukan transfer dana ke rekening resmi atas nama dealer **Honda Bintaro**.
+### 6. Halaman Terima Kasih (`/thank-you/`)
+* **Konversi Otomatis:** Halaman sasaran setelah pengisian formulir promo yang secara otomatis mengarahkan pengunjung ke chat WhatsApp sales counter.
+
+### 7. Manajemen Halaman Kustom (`/page/?id=...`)
+* **Fleksibilitas Artikel & Landing Page:** Kemampuan membuat halaman tak terbatas untuk artikel tips, berita, kebijakan privasi, syarat ketentuan pemesanan, dsb.
+
+### 8. Tombol Pintas & Template Pesan WhatsApp
+* **Template Pesan Spesifik:** Teks chat WhatsApp otomatis terformat rapi sesuai aksi pengunjung (Tanya Promo, Konsultasi Model Tertentu beserta varian dan harga OTR, Booking Test Drive, atau Unduh Brosur).
+
+### 9. Keamanan & Peringatan Penipuan (Fraud Warning System)
+* **Modal Transaksi Aman:** Ikon lonceng di header yang membuka peringatan resmi dealer untuk mengingatkan pelanggan agar hanya melakukan transfer ke rekening resmi dealer.
+
+### 10. SEO Terintegrasi & Google XML Sitemap Otomatis
+* **SEO Metadata Lengkap:** Pengaturan judul (*Meta Title*), deskripsi (*Meta Description*), kata kunci (*Keywords*), serta gambar thumbnail media sosial (*OG Image* WhatsApp/Facebook) untuk setiap halaman dan model mobil.
+* **Google XML Sitemap Dinamis (`sitemap.xml` & `robots.txt`):** Peta situs berstandar protokol Google Search Console yang otomatis mencakup seluruh halaman dan produk baru.
+
+---
+
+## 💻 Fitur Dasbor Admin CMS Serverless (`/login/`)
+
+Dasbor admin berjalan sepenuhnya di sisi peramban (*client-side serverless*) menggunakan integrasi **GitHub REST API**. Anda tidak membutuhkan server hosting bulanan seperti PHP/Node.js maupun database SQL untuk mengoperasikannya.
+
+### 1. Keamanan & Autentikasi
+* **Login Gate Terenkripsi SHA-256:** Keamanan akses dasbor dengan verifikasi hash kata sandi client-side.
+* **Sistem Lisensi Domain:** Perlindungan domain website untuk kepemilikan lisensi resmi.
+
+### 2. Pengaturan Web & Kustomisasi Tema
+* **Profil & Identitas Sales:** Mengubah nama sales, nomor WhatsApp, email, foto profil, logo header, logo footer, dan logo animasi preloader layar.
+* **Preset Warna Dealer:** Memilih palet warna bawaan (Honda Red, Modern Blue, Emerald Green, Sleek Dark, dsb.) atau warna kustom dengan pratinjau langsung.
+* **Visual Menu Builder:** Mengatur navigasi header dengan visual list, drag & drop susunan menu, dropdown bertingkat, dan tombol WhatsApp CTA.
+* **Pusat SEO & Google XML Sitemap:** Pratinjau tampilan cuplikan Google SERP secara *realtime* dan tombol 1-klik salin link `sitemap.xml` untuk Google Webmaster.
+* **Informasi Rekening & Footer:** Mengatur alamat dealer, jam operasional, peta Google Maps, dan daftar rekening bank pembayaran resmi.
+
+### 3. Manajemen Banner Slider
+* **Multi-Device Banner:** Pengaturan banner terpisah untuk tampilan layar Desktop dan layar Mobile.
+* **Pengurutan & Tautan:** Tambah/hapus banner, ubah urutan slide, isi teks alt, dan atur tautan tujuan promosi.
+
+### 4. Manajemen Katalog Produk
+* **Tambah & Hapus Mobil:** Menambah model mobil baru atau menghapus unit yang diskontinu.
+* **Drag & Drop Urutan Mobil:** Mengubah peringkat prioritas tampil mobil di homepage dan menu navigasi.
+* **Form Lengkap:** Mengatur nama, kategori tipe, harga awal, badge status ("New" / "All New"), galeri foto, pilihan warna, spesifikasi teknis mesin/dimensi, serta SEO per model.
+
+### 5. Manajemen Halaman Kustom & Database Terpadu
+* **Editor Halaman Sistem:** Mengedit konten dan metadata halaman `pricelist`, `brochure`, `promo`, dan `thank-you`.
+* **Editor Tabel OTR (`pricelist.json`):** Menambah kategori mobil, varian, transmisi, harga OTR, paket Essential/Extra, dan catatan kaki secara visual.
+* **Editor e-Brochure Google Drive:** Menautkan ID file Google Drive untuk setiap model mobil dengan tombol pintas *"Buka Google Drive"* dan panduan langkah berbagi link.
+* **Rich Text CKEditor 5:** Penulisan isi halaman kustom baru dengan format visual kaya fitur (Heading, List, Link, Bold, Italic).
+* **Alur Simpan Sementara & Commit Multi-File:** Fitur draft lokal (*Simpan Sementara*) dan pengunggahan otomatis (*Commit Perubahan*) ke seluruh file JSON terkait (`pages.json`, `pricelist.json`, `site_config.json`, dan `sitemap.xml`) dalam satu kali klik.
+
+### 6. Pustaka Media (Media Library)
+* **Unggah & Ganti Gambar Otomatis:** Mengunggah file gambar langsung ke folder repositori `assets/images/` dengan fitur penghapusan file lama otomatis saat diganti (*auto-replace*).
+* **Manajemen Aset:** Menampilkan daftar gambar yang tersimpan, pratinjau ganda (*Before / After*), salin path relatif 1-klik, dan hapus gambar permanen.
 
 ---
 
 ## 🛠️ Riwayat Perubahan (Changelog)
 
-### Catatan Rilis v0.1.4
-Rilis **v0.1.4** fokus pada perilisan Dashboard Admin Serverless terintegrasi API GitHub REST, optimasi visual (Light/Dark mode, kontras tombol, layout sticky footer), Pustaka Media mandiri, editor deskripsi CKEditor, dinamisasi penuh halaman promo/terima kasih, serta integrasi kunci lisensi perlindungan domain.
+### 📦 Catatan Rilis v0.1.0 (Initial Official Release)
+*Rilis perdana resmi website sales mobil Honda modern dan CMS Admin Dashboard Serverless.*
 
-#### 🛠️ Fitur Baru (New Features)
-1. **Dashboard Admin Serverless (`/login/`):** Antarmuka CMS premium (slate-glassmorphism) yang terhubung langsung dengan GitHub REST API menggunakan PAT Token. Admin dapat mengedit seluruh data website secara langsung dari browser tanpa perlu node, terminal, maupun workflow.
-2. **Pustaka Media Dinamis (Media Library):** Modul untuk menampilkan daftar seluruh gambar di folder `assets/images/` GitHub. Admin dapat menyalin path relatif sekali klik atau menghapus file gambar secara permanen dari server GitHub.
-3. **Double Previews & Auto Asset Replacement:** Menampilkan pratinjau gambar sebelum (di GitHub) dan sesudah (unggahan lokal) berdampingan. Saat mengganti gambar, sistem secara otomatis menghapus file gambar lama di repositori GitHub sebelum mengunggah file baru.
-4. **Editor Teks Visual (CKEditor 5):** Integrasi CKEditor 5 untuk mempermudah penulisan deskripsi spesifikasi mobil dengan format visual kaya fitur (bold, list bullet, dsb).
-5. **Dinamisasi Halaman Promo Utama:** Menambahkan integrasi dinamis pada `/promo/index.html` sehingga badge, judul hero, dan deskripsi promo dimuat langsung dari `site_config.json`.
-6. **Sub-Tab Konfigurasi Komprehensif:** Menyediakan form pengeditan lengkap untuk navigasi menu (JSON editor), CNAME API link berita, e-brosur PDF Drive ID, SEO meta per halaman, detail bank footer, dan persyaratan kredit.
-7. **Security Gate Akses Kata Sandi (SHA-256):** Gerbang login interaktif (`#login-gate`) untuk membatasi akses ke dashboard admin menggunakan enkripsi SHA-256 yang aman dan diverifikasi secara client-side menggunakan browser *Web Crypto API*.
-8. **Modul Pengaktifan Lisensi (License Key):** Menambahkan tab setelan *License Key* di dashboard admin serta pengamanan pemblokiran dinamis pada saat pemuatan website (domain lock) menggunakan verifikasi hash SHA-256 terenkripsi terpusat.
-9. **Tombol Pintas "Lihat Website":** Menyediakan tombol tautan eksternal baru di header dasbor untuk mempermudah administrator membuka dan mempratinjau halaman website live pada tab browser baru.
-10. **Dropdown Status Lencana Produk:** Mengubah selektor status produk baru yang sebelumnya berupa checkbox menjadi dropdown pilihan dinamis yang mendukung lencana status "New" (warna oranye) dan lencana premium "All New" (warna merah menyala dengan teks putih).
-
-#### 🐛 Perbaikan Bug & Optimasi (Bug Fixes & Optimizations)
-1. **Perbaikan Layout Sticky Footer:** Menggunakan Flexbox CSS murni agar footer secara otomatis terdorong dan terkunci di dasar layar browser pada halaman berkonten pendek.
-2. **Fix Kontras Teks Mode Terang:** Menyempurnakan pewarnaan mode terang untuk memaksa tombol berlatar gelap (`bg-slate-800`, dsb.) dan tombol aksen merah (`bg-red-600`) tetap menampilkan teks putih kontras tinggi yang mudah dibaca.
-3. **Hotfix Syntax Error Template Literal:** Memperbaiki kesalahan penulisan parameter `'{salesName}'` pada render card promo di mana backticks (`` ` ``) bersarang sempat menyebabkan *unresponsive button* pada dashboard.
-4. **Resolusi Path Gambar Preview:** Menambahkan path resolver `resolveImagePreviewUrl` agar relative path lokal (seperti `assets/images/...`) otomatis diterjemahkan menjadi URL langsung dari storage server GitHub agar tampil sempurna di panel preview.
-5. **Pemuatan Data Lokal Awal (Local Preloading):** Menambahkan pembacaan asinkron file JSON lokal pada page-load sehingga logo dealer dan input form dapat langsung terpopulasi sejak awal meskipun Token PAT GitHub belum tersambung.
-6. **Fix Keterbacaan Teks Dropzone & Info Domain (Light Mode):** Memperbaiki kontras teks instruksi pada kolom seret berkas (dropzone) serta teks status domain lisensi di mode terang agar berwarna gelap pekat sehingga mudah dibaca.
-7. **Redesain Notifikasi Bantuan (Solid Toasts):** Mengubah warna latar belakang popup notifikasi toast yang melayang di pojok kiri bawah menjadi warna solid berbayang tebal agar teks notifikasi sukses atau gagal memiliki tingkat keterbacaan yang tinggi.
-8. **Mekanisme Cache-Busting & Keamanan Tambahan:** Menambahkan penanda waktu asinkron pada pembacaan database lisensi untuk mencegah browser melakukan caching, serta menyematkan sistem proteksi pengalihan nomor chat jika validasi lisensi dilewati.
-
----
-
-### Catatan Rilis v0.1.3
-Rilis **v0.1.3** fokus pada penyempurnaan UI preloader, integrasi grid Promo Terbaru dari data terpusat, pengurutan navigasi Model, serta perbaikan bugs/konflik styling pada landing page dan homepage.
-
-#### 🛠️ Fitur Baru (New Features)
-1. **Section Promo Terbaru (Dinamis dari JSON):** Menambahkan section "Promo Terbaru Honda Bintaro" di `/promo/` yang merender 4 kartu promosi terpusat secara dinamis dari file `site_config.json` (termasuk banner kustom "Rp 300JT*").
-2. **Navigasi Bersih & Menu Promo Baru:** Menyisipkan menu "Promo Honda 2026" ke navigasi utama, serta memperbarui dropdown menu "Model" di sidebar agar memuat daftar tipe mobil resmi Honda yang riil (Brio, HR-V, Accord, dll.) secara terurut sesuai daftar prioritas `productOrder`.
-3. **Preloader Global Lebih Besar:** Memperbesar ukuran overlay preloader transisi di `header.js` dari 64px menjadi 140px agar logo GIF animasi Honda tampil lebih megah dan premium.
+#### ✨ Fitur Baru (New Features)
+1. **Frontend Website Lengkap:**
+   - Halaman Beranda interaktif dengan banner slider, lineup kategori, kartu promo, berita WP JSON API, dan modal peringatan transfer aman (*Fraud Warning*).
+   - 11 Halaman detail model mobil Honda resmi (`/model/?id=...`) dengan spesifikasi akordeon lengkap dan simulasi kredit.
+   - Halaman Daftar Harga OTR (`/pricelist/`) dengan layout adaptif desktop (tabel berjenjang) dan mobile (kartu ringkas).
+   - Halaman e-Brochure Hub (`/brochure/`) dengan penampil PDF interaktif Google Drive modal dan opsi unduh langsung.
+   - Landing Page Iklan Google Ads (`/promo/`) dengan countdown timer 24 jam dan form konsultasi cepat WhatsApp.
+   - Halaman Terima Kasih (`/thank-you/`) sasaran konversi iklan dengan pemicu otomatis chat WhatsApp sales counter.
+   - Sistem Halaman Kustom (`/page/?id=...`) untuk artikel berita dan halaman statis tanpa batas.
+2. **CMS Admin Dashboard Serverless (`/login/`):**
+   - Antarmuka manajemen website modern berbasis GitHub REST API tanpa server backend.
+   - Login gate terenkripsi SHA-256 untuk keamanan akses dasbor.
+   - Visual Menu Builder untuk navigasi header dengan dukungan link, dropdown bertingkat, dan WhatsApp CTA.
+   - Customizer tema & palet warna dealer dengan live preview.
+   - Manajemen Banner Slider terpisah untuk perangkat Desktop dan Mobile.
+   - Manajemen Katalog Produk dengan urutan drag & drop dan badge status produk.
+   - Manajemen Halaman Kustom terintegrasi dengan editor tabel OTR dan penaut e-brosur Google Drive.
+   - Pustaka Media (*Media Library*) dengan upload, pratinjau ganda, dan penghapusan file otomatis.
+   - Rich Text CKEditor 5 untuk penulisan konten halaman baru.
+3. **Penyimpanan Terpadu & Alur Simpan Sementara:**
+   - Tombol **Simpan Sementara** di semua form editor untuk menyimpan draf perubahan ke memori lokal.
+   - Tombol **Commit Perubahan** yang otomatis mengunggah multi-file JSON terkait (`pages.json`, `pricelist.json`, `site_config.json`, dan `sitemap.xml`) secara beruntun dalam 1 kali prompt.
+4. **Google XML Sitemap & SEO Otomatis:**
+   - Pembuatan otomatis file `sitemap.xml` dan `robots.txt` berstandar Google Search Console.
+   - Box Google XML Sitemap di subtab SEO Metadata dengan link langsung, tombol salin 1-klik, indikator total URL terindeks, dan panduan Google Webmaster.
+5. **Sistem Lisensi Domain:**
+   - Penguncian dan verifikasi lisensi domain resmi berbasis enkripsi hash SHA-256.
 
 #### 🐛 Perbaikan Bug & Optimasi (Bug Fixes & Optimizations)
-1. **Resolusi Bug ReferenceError Halaman Promo:** Memperbaiki bug error pembacaan variabel `phone` di `/promo/` yang sempat menyebabkan pemuatan seluruh produk dinamis terhenti (kini sudah lancar 100%).
-2. **Fix Konflik Warna Hover Kategori:** Mengatasi bug teks tidak terbaca saat di-hover pada kategori tombol lineup aktif di homepage (`index.html`) dengan mengubah hover-state menjadi `hover:text-white` secara dinamis.
-3. **Keandalan Akordion Model:** Mengembalikan pemicu klik sidebar "Model" untuk selalu membuka accordion list kategori pada mobile & desktop guna menjamin stabilitas navigasi menu.
-
----
-
-### Catatan Rilis v0.1.2
-Rilis **v0.1.2** fokus pada optimalisasi SEO & Meta Sharing WhatsApp, pembuatan Landing Page Google Ads berkonversi tinggi, Halaman Terima Kasih dinamis, serta otomatisasi sinkronisasi SEO statis.
-
-#### 🛠️ Fitur Baru (New Features)
-1. **Sistem Sinkronisasi SEO Statis (`sync_seo.js`):** Script otomatisasi Node.js untuk menyelaraskan tag metadata SEO (`title`, `description`, `keywords`, `og:image`, `twitter:card`, `favicon`) di seluruh 15+ file HTML website berdasarkan pengaturan terpusat di `site_config.json`.
-2. **Dynamic Year Parser:** Script client-side di `header.js` yang menerjemahkan penanda `{year}` di judul halaman secara dinamis menjadi tahun berjalan saat ini (misal: 2026).
-3. **Landing Page Iklan Google Ads (`/promo/`):** Halaman khusus iklan tanpa distraksi navigasi dengan fitur countdown timer 24 jam (reset harian), indikator kuota dinamis (5 ke 0 menggunakan `localStorage`), dan grid 4 kolom mobil terlaris yang dinamis dari JSON.
-4. **Halaman Terima Kasih Dinamis (`/thank-you/`):** Halaman sasaran konversi iklan berbayar dengan header & footer terpusat, serta seluruh konten teks halaman yang dapat dikustomisasi secara dinamis dari `site_config.json`.
-5. **OpenGraph Preview WhatsApp:** Mengatur gambar pratinjau tautan WhatsApp secara dinamis (menggunakan gambar model mobil spesifik dari `products.json` or fallback logo resmi Honda dari JSON).
-
-#### 🐛 Perbaikan Bug & Optimasi (Bug Fixes & Optimizations)
-1. **Penyempurnaan Regex Pembersihan SEO:** Memperbaiki script sinkronisasi agar mendukung pembersihan tag `<link>` berformat self-closing (tanpa tag penutup `</link>`).
-2. **Optimasi Gambar Grid Promo:** Mengubah rasio gambar kartu mobil di landing page menjadi kotak penuh (`aspect-square`) dengan mode `object-cover` agar gambar visual marketing mengisi penuh area box secara estetik.
-3. **Integrasi FAQ Dinamis:** Memindahkan daftar Pertanyaan Umum (FAQ) di landing page promo agar dibaca secara dinamis dari file JSON global.
-
----
-
-### Catatan Rilis v0.1
-Berikut adalah catatan rilis fitur dan perbaikan yang dikerjakan pada rilis perdana **v0.1**:
-
-#### 🛠️ Fitur Baru (New Features)
-1.  **Dinamisasi Header & Footer:** Memisahkan struktur header/footer statis menjadi script asinkron (`header.js` dan `footer.js`) yang memuat data secara terpusat dari `site_config.json`.
-2.  **Halaman Pricelist Mobil:** Membuat modul halaman `/pricelist/` yang memuat data OTR dari URL CDN argust.my.id dengan mekanisme data lokal fallback.
-3.  **Halaman e-Brochure Mobil:** Membuat modul halaman `/brochure/` lengkap dengan modal penampil PDF Google Drive terintegrasi.
-4.  **Generasi Halaman Produk Dinamis:** Menghasilkan 10 subhalaman detail produk di folder `/model/` yang terintegrasi secara dinamis dengan layout global.
-5.  **Dinamisasi Persyaratan Kredit & Gambar Fraud:** Memindahkan teks persyaratan kredit dan tautan gambar popup fraud ke dalam konfigurasi JSON terpusat.
-
-#### 🐛 Perbaikan Bug & Optimasi (Bug Fixes & Optimizations)
-1.  **Penanganan Glitch Transisi Menu:** Menghapus transisi default Tailwind saat pemuatan halaman pertama kali untuk mencegah sidebar navigasi dan modal berkedip (muncul lalu tertutup sendiri), digantikan dengan transisi asinkron `requestAnimationFrame`.
-2.  **Koreksi Posisi Ikon Pencarian:** Menggeser posisi ikon kaca pembesar pencarian di kolom input header agar sejajar vertikal secara sempurna.
-3.  **Perbaikan Bug Halaman Detail:** Menyelesaikan error runtime javascript (`Cannot set properties of null`) pada halaman detail model akibat pencarian elemen spesifikasi yang kosong.
-4.  **Desain Responsif Banner Sales:** Mengoptimalkan tata letak responsive banner sales di perangkat tablet/mobile (breakpoint `lg`). Area biru (foto 1/3 & teks 2/3) diposisikan di atas, dan area merah (nama & tombol WhatsApp horizontal) berada di bawah untuk mencegah pemotongan wajah/kepala sales.
-5.  **Dinamisasi Nomor WA:** Menyamakan seluruh nomor tujuan WhatsApp di tombol utama (booking test drive, footer, header) merujuk secara terpusat pada file konfigurasi sales.
+1. **Keterbacaan Teks Mode Terang (Light Mode):** Memperbaiki kontras seluruh teks, judul menu, lencana sistem, dan tabel di dasbor admin agar memiliki kontras tinggi yang tajam di mode terang.
+2. **Penyeragaman Pratinjau Google SERP:** Merapikan tampilan kartu simulasi pencarian Google menjadi seragam, bersih (*clean*), dan minimalis.
+3. **Pencegahan Teks Terpotong di e-Brochure:** Merancang ulang baris input e-Brochure menjadi kartu responsif sehingga nama mobil dengan tipe panjang tampil utuh tanpa terpotong.
+4. **Optimasi Layout Mobile:** Penyempurnaan responsivitas tabel harga OTR, slider banner, dan kartu promosi pada perangkat smartphone.
+5. **Resolusi Path Gambar Preview:** Penyesuaian path resolver otomatis untuk gambar lokal relatif agar tampil langsung dari storage GitHub.

@@ -37,6 +37,34 @@
     "promoBadge": "Promo Eksklusif Honda Jabodetabek {year}",
     "promoTitle": "Miliki Mobil Honda Impian Anda <br class=\"hidden sm:inline\"><span class=\"text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-400\">DP Termurah & Bunga 0%</span>",
     "promoDescription": "Dapatkan diskon OTR besar-besaran, gratis biaya service berkala s.d. 4 tahun, dan pengajuan kredit dibantu sampai 100% disetujui. Hubungi Sales Counter Resmi sekarang juga!",
+    "salesCounterBadgeTitle": "Sales Counter Resmi",
+    "salesCounterBadgeDesc": "Jaminan Transaksi Aman & Terpercaya",
+    "formBadge": "PROMO TERBATAS HARI INI",
+    "formTitle": "Dapatkan Penawaran OTR Terbaik",
+    "formSubtitle": "Lengkapi data Anda, langsung dapatkan hitungan simulasi via WhatsApp",
+    "quotaCount": "5",
+    "formButtonText": "Kirim ke WhatsApp & Lihat Promo",
+    "usps": [
+      {
+        "title": "DP & Angsuran Termurah",
+        "desc": "Hitungan simulasi bisa disesuaikan budget"
+      },
+      {
+        "title": "Proses Kredit Cepat",
+        "desc": "Berkas dibantu s.d. approve finance"
+      },
+      {
+        "title": "Tukar Tambah Terbaik",
+        "desc": "Mobil lama dihargai tinggi dibanding pasaran"
+      }
+    ],
+    "latestPromosTitle": "Promo Terbaru Honda Bintaro",
+    "latestPromosSubtitle": "Penawaran terbaik dan program cicilan khusus bulan ini",
+    "catalogTitle": "Promo Menarik Mobil Honda",
+    "catalogSubtitle": "Pilih mobil impian Anda dan dapatkan penawaran khusus s.d akhir bulan ini!",
+    "bottomBannerTitle": "Tunggu Apa Lagi? Dapatkan Penawaran Spesial Anda",
+    "bottomBannerDesc": "Kuota promo cicilan murah terbatas dan dapat berubah sewaktu-waktu. Isi data Anda sekarang agar tidak kehabisan promo terbaik bulan ini!",
+    "bottomBannerBtnText": "Dapatkan Promo Sekarang",
     "seo": {
       "title": "Promo Mobil Honda Jabodetabek {year} - DP Minim & Angsuran Murah",
       "description": "Promo spesial Honda Jabodetabek {year}. Miliki Honda Brio, HR-V, WR-V, BR-V, CR-V dengan DP minim, angsuran ringan, serta diskon puluhan juta rupiah.",

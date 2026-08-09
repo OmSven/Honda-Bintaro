@@ -68,15 +68,15 @@
             
             <!-- Left Headline Text -->
             <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-600/20 border border-red-500/30 text-red-400 text-xs sm:text-sm font-semibold tracking-wide uppercase mx-auto lg:mx-0">
+                <div id="promo-hero-badge" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-600/20 border border-red-500/30 text-red-400 text-xs sm:text-sm font-semibold tracking-wide uppercase mx-auto lg:mx-0">
                     <span class="w-2 h-2 rounded-full bg-red-50 animate-ping"></span>
                     Promo Eksklusif Honda Jabodetabek <span class="current-year-span">2026</span>
                 </div>
-                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                <h1 id="promo-hero-title" class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
                     Miliki Mobil Honda Impian Anda <br class="hidden sm:inline">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-400">DP Termurah & Bunga 0%</span>
                 </h1>
-                <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto lg:mx-0">
+                <p id="promo-hero-desc" class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto lg:mx-0">
                     Dapatkan diskon OTR besar-besaran, gratis biaya service berkala s.d. 4 tahun, dan pengajuan kredit dibantu sampai 100% disetujui. Hubungi Sales Counter Resmi sekarang juga!
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
@@ -87,8 +87,8 @@
                             </svg>
                         </div>
                         <div class="text-left">
-                            <h4 class="font-bold text-sm">Sales Counter Resmi</h4>
-                            <p class="text-xs text-gray-400">Jaminan Transaksi Aman & Terpercaya</p>
+                            <h4 id="promo-badge-sales-title" class="font-bold text-sm">Sales Counter Resmi</h4>
+                            <p id="promo-badge-sales-desc" class="text-xs text-gray-400">Jaminan Transaksi Aman & Terpercaya</p>
                         </div>
                     </div>
                 </div>
@@ -99,14 +99,14 @@
                 <!-- Form Card -->
                 <div class="bg-white/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 text-gray-800 shadow-xl border border-white/20 mt-4 relative pt-10">
                     <!-- Urgency Countdown Banner -->
-                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-red-600 to-amber-500 text-xs font-bold px-4 py-1.5 rounded-full shadow-md z-20 flex items-center gap-1.5 whitespace-nowrap">
+                    <div id="promo-form-badge" class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-red-600 to-amber-500 text-xs font-bold px-4 py-1.5 rounded-full shadow-md z-20 flex items-center gap-1.5 whitespace-nowrap">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         PROMO TERBATAS HARI INI
                     </div>
-                    <h3 class="text-xl font-bold text-center text-gray-900 leading-tight">Dapatkan Penawaran OTR Terbaik</h3>
-                    <p class="text-xs text-gray-500 text-center mt-1 mb-6">Lengkapi data Anda, langsung dapatkan hitungan simulasi via WhatsApp</p>
+                    <h3 id="promo-form-title" class="text-xl font-bold text-center text-gray-900 leading-tight">Dapatkan Penawaran OTR Terbaik</h3>
+                    <p id="promo-form-subtitle" class="text-xs text-gray-500 text-center mt-1 mb-6">Lengkapi data Anda, langsung dapatkan hitungan simulasi via WhatsApp</p>
                     
                     <!-- Countdown Timer UI (24 Hours Reset) -->
                     <div class="grid grid-cols-3 gap-2 text-center bg-gray-100 rounded-xl p-2.5 mb-6 border border-gray-200">
@@ -128,7 +128,7 @@
                     <div class="flex items-center justify-between text-xs font-semibold text-gray-600 mb-6 px-1">
                         <span class="flex items-center gap-1">
                             <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                            Sisa Slot Promo Hari Ini:
+                            <span id="promo-quota-label">Sisa Slot Promo Hari Ini:</span>
                         </span>
                         <span class="font-extrabold" id="quota-counter">5 Kuota</span>
                     </div>
@@ -165,7 +165,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
                                 <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.907h.003c4.37 0 7.927-3.558 7.929-7.93a7.9 7.9 0 0 0-2.326-5.601zm-5.608 11.23a6.57 6.57 0 0 1-3.337-.916l-.239-.14-2.49.652.665-2.427-.154-.245a6.57 6.57 0 0 1-1.006-3.52c.004-3.62 2.96-6.577 6.582-6.577 1.756 0 3.407.683 4.646 1.923a6.57 6.57 0 0 1 1.918 4.654c-.004 3.62-2.96 6.577-6.584 6.577zm3.56-4.945c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.09-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
                             </svg>
-                            Kirim ke WhatsApp & Lihat Promo
+                            <span id="promo-form-btn-text">Kirim ke WhatsApp & Lihat Promo</span>
                         </button>
                     </form>
                 </div>
@@ -184,8 +184,8 @@
                     </svg>
                 </span>
                 <div class="text-left">
-                    <h4 class="font-bold text-sm text-gray-900">DP & Angsuran Termurah</h4>
-                    <p class="text-xs text-gray-500">Hitungan simulasi bisa disesuaikan budget</p>
+                    <h4 id="promo-usp1-title" class="font-bold text-sm text-gray-900">DP & Angsuran Termurah</h4>
+                    <p id="promo-usp1-desc" class="text-xs text-gray-500">Hitungan simulasi bisa disesuaikan budget</p>
                 </div>
             </div>
             <div class="flex items-center gap-3 justify-center sm:justify-start">
@@ -195,8 +195,8 @@
                     </svg>
                 </span>
                 <div class="text-left">
-                    <h4 class="font-bold text-sm text-gray-900">Proses Kredit Cepat</h4>
-                    <p class="text-xs text-gray-500">Berkas dibantu s.d. approve finance</p>
+                    <h4 id="promo-usp2-title" class="font-bold text-sm text-gray-900">Proses Kredit Cepat</h4>
+                    <p id="promo-usp2-desc" class="text-xs text-gray-500">Berkas dibantu s.d. approve finance</p>
                 </div>
             </div>
             <div class="flex items-center gap-3 justify-center sm:justify-start">
@@ -206,8 +206,8 @@
                     </svg>
                 </span>
                 <div class="text-left">
-                    <h4 class="font-bold text-sm text-gray-900">Tukar Tambah Terbaik</h4>
-                    <p class="text-xs text-gray-500">Mobil lama dihargai tinggi dibanding pasaran</p>
+                    <h4 id="promo-usp3-title" class="font-bold text-sm text-gray-900">Tukar Tambah Terbaik</h4>
+                    <p id="promo-usp3-desc" class="text-xs text-gray-500">Mobil lama dihargai tinggi dibanding pasaran</p>
                 </div>
             </div>
         </div>
@@ -217,8 +217,8 @@
     <section class="bg-white border-t border-b border-gray-100 py-16" id="latest-promo-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             <div class="text-center space-y-2">
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 font-outfit">Promo Terbaru Honda Bintaro</h2>
-                <p class="text-xs sm:text-sm text-gray-500">Penawaran terbaik dan program cicilan khusus bulan ini</p>
+                <h2 id="promo-latest-title" class="text-2xl sm:text-4xl font-extrabold text-gray-900 font-outfit">Promo Terbaru Honda Bintaro</h2>
+                <p id="promo-latest-subtitle" class="text-xs sm:text-sm text-gray-500">Penawaran terbaik dan program cicilan khusus bulan ini</p>
             </div>
 
             <div id="dynamic-latest-promos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -232,8 +232,8 @@
     <!-- CAR MODEL PROMO CARDS (Compact Grid View) -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12" id="promo-cards-container">
         <div class="text-center space-y-2">
-            <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 font-outfit">Promo Menarik Mobil Honda</h2>
-            <p class="text-sm sm:text-base text-gray-500">Pilih mobil impian Anda dan dapatkan penawaran khusus s.d akhir bulan ini!</p>
+            <h2 id="promo-catalog-title" class="text-2xl sm:text-4xl font-extrabold text-gray-900 font-outfit">Promo Menarik Mobil Honda</h2>
+            <p id="promo-catalog-subtitle" class="text-sm sm:text-base text-gray-500">Pilih mobil impian Anda dan dapatkan penawaran khusus s.d akhir bulan ini!</p>
         </div>
 
         <div id="dynamic-promo-cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -263,9 +263,9 @@
     <!-- PERSUASIVE SCROLL-UP BANNER -->
     <section class="bg-gradient-to-r from-red-700 to-red-900 text-white text-center py-12 px-4 border-t-4 border-amber-500">
         <div class="max-w-3xl mx-auto space-y-4">
-            <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight uppercase">Tunggu Apa Lagi? Dapatkan Penawaran Spesial Anda</h2>
-            <p class="text-xs sm:text-sm text-red-200 max-w-xl mx-auto">Kuota promo cicilan murah terbatas dan dapat berubah sewaktu-waktu. Isi data Anda sekarang agar tidak kehabisan promo terbaik bulan ini!</p>
-            <button onclick="scrollToForm()"
+            <h2 id="promo-bottom-title" class="text-xl sm:text-3xl font-extrabold tracking-tight uppercase">Tunggu Apa Lagi? Dapatkan Penawaran Spesial Anda</h2>
+            <p id="promo-bottom-desc" class="text-xs sm:text-sm text-red-200 max-w-xl mx-auto">Kuota promo cicilan murah terbatas dan dapat berubah sewaktu-waktu. Isi data Anda sekarang agar tidak kehabisan promo terbaik bulan ini!</p>
+            <button onclick="scrollToForm()" id="promo-bottom-btn-text"
                 class="inline-flex items-center justify-center px-8 py-3.5 bg-amber-500 hover:bg-amber-600 text-gray-900 font-extrabold text-sm rounded-xl transition duration-300 shadow-md transform hover:scale-[1.03] active:scale-[0.98] uppercase cursor-pointer">
                 Dapatkan Promo Sekarang
             </button>
@@ -397,29 +397,98 @@
                 document.getElementById('twitter-desc')?.setAttribute('content', pageDesc);
                 document.getElementById('twitter-image')?.setAttribute('content', ogImage);
                 
-                // Dynamic Hero Content for Promo Page (supports pages.json and site_config.json fallback)
+                // Dynamic Content for Promo Page (supports pages.json and site_config.json fallback)
                 const promoPage = pagesData?.promo || config.promoPage || {};
                 const promoBadge = promoPage.promoBadge || promoPage.badge;
                 const promoTitle = promoPage.promoTitle || promoPage.title;
                 const promoDesc = promoPage.promoDescription || promoPage.description;
 
+                // 1. Hero Left
                 if (promoBadge) {
-                    const badgeEl = document.querySelector('.tracking-wide.uppercase');
+                    const badgeEl = document.getElementById('promo-hero-badge') || document.querySelector('.tracking-wide.uppercase');
                     if (badgeEl) {
                         badgeEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-50 animate-ping text-red-50"></span> ${promoBadge.replace(/{year}/g, new Date().getFullYear())}`;
                     }
                 }
                 if (promoTitle) {
-                    const titleEl = document.querySelector('h1.font-extrabold');
-                    if (titleEl) {
-                        titleEl.innerHTML = promoTitle;
-                    }
+                    const titleEl = document.getElementById('promo-hero-title') || document.querySelector('h1.font-extrabold');
+                    if (titleEl) titleEl.innerHTML = promoTitle;
                 }
                 if (promoDesc) {
-                    const descEl = document.querySelector('p.text-gray-300');
-                    if (descEl) {
-                        descEl.innerHTML = promoDesc;
-                    }
+                    const descEl = document.getElementById('promo-hero-desc') || document.querySelector('p.text-gray-300');
+                    if (descEl) descEl.innerHTML = promoDesc;
+                }
+                if (promoPage.salesCounterBadgeTitle) {
+                    const el = document.getElementById('promo-badge-sales-title');
+                    if (el) el.innerText = promoPage.salesCounterBadgeTitle;
+                }
+                if (promoPage.salesCounterBadgeDesc) {
+                    const el = document.getElementById('promo-badge-sales-desc');
+                    if (el) el.innerText = promoPage.salesCounterBadgeDesc;
+                }
+
+                // 2. Leads Form & Urgency
+                if (promoPage.formBadge) {
+                    const el = document.getElementById('promo-form-badge');
+                    if (el) el.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> ${promoPage.formBadge}`;
+                }
+                if (promoPage.formTitle) {
+                    const el = document.getElementById('promo-form-title');
+                    if (el) el.innerText = promoPage.formTitle;
+                }
+                if (promoPage.formSubtitle) {
+                    const el = document.getElementById('promo-form-subtitle');
+                    if (el) el.innerText = promoPage.formSubtitle;
+                }
+                if (promoPage.formButtonText) {
+                    const el = document.getElementById('promo-form-btn-text');
+                    if (el) el.innerText = promoPage.formButtonText;
+                }
+                if (promoPage.quotaCount) {
+                    const el = document.getElementById('quota-counter');
+                    if (el) el.innerText = `${promoPage.quotaCount} Kuota`;
+                }
+
+                // 3. USPs Bar
+                if (Array.isArray(promoPage.usps) && promoPage.usps.length >= 3) {
+                    if (promoPage.usps[0]?.title) document.getElementById('promo-usp1-title').innerText = promoPage.usps[0].title;
+                    if (promoPage.usps[0]?.desc) document.getElementById('promo-usp1-desc').innerText = promoPage.usps[0].desc;
+                    if (promoPage.usps[1]?.title) document.getElementById('promo-usp2-title').innerText = promoPage.usps[1].title;
+                    if (promoPage.usps[1]?.desc) document.getElementById('promo-usp2-desc').innerText = promoPage.usps[1].desc;
+                    if (promoPage.usps[2]?.title) document.getElementById('promo-usp3-title').innerText = promoPage.usps[2].title;
+                    if (promoPage.usps[2]?.desc) document.getElementById('promo-usp3-desc').innerText = promoPage.usps[2].desc;
+                }
+
+                // 4. Section Titles
+                if (promoPage.latestPromosTitle) {
+                    const el = document.getElementById('promo-latest-title');
+                    if (el) el.innerText = promoPage.latestPromosTitle;
+                }
+                if (promoPage.latestPromosSubtitle) {
+                    const el = document.getElementById('promo-latest-subtitle');
+                    if (el) el.innerText = promoPage.latestPromosSubtitle;
+                }
+                if (promoPage.catalogTitle) {
+                    const el = document.getElementById('promo-catalog-title');
+                    if (el) el.innerText = promoPage.catalogTitle;
+                }
+                if (promoPage.catalogSubtitle) {
+                    const el = document.getElementById('promo-catalog-subtitle');
+                    if (el) el.innerText = promoPage.catalogSubtitle;
+                }
+
+                // 5. Bottom Banner
+                if (promoPage.bottomBannerTitle) {
+                    const el = document.getElementById('promo-bottom-title');
+                    if (el) el.innerText = promoPage.bottomBannerTitle;
+                }
+                if (promoPage.bottomBannerDesc) {
+                    const el = document.getElementById('promo-bottom-desc');
+                    if (el) el.innerText = promoPage.bottomBannerDesc;
+                }
+                if (promoPage.bottomBannerBtnText) {
+                    const el = document.getElementById('promo-bottom-btn-text');
+                    if (el) el.innerText = promoPage.bottomBannerBtnText;
                 }
                 
                 // Read featured models for promo list from config, default to top 4
