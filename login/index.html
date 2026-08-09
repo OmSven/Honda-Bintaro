@@ -527,7 +527,7 @@
                                 <button onclick="switchSubTab('nav-tautan')" data-subtab="nav-tautan" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">Navigasi & Tautan</button>
                                 <button onclick="switchSubTab('kredit-req')" data-subtab="kredit-req" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">Persyaratan Kredit</button>
                                 <button onclick="switchSubTab('seo-meta')" data-subtab="seo-meta" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">SEO Metadata</button>
-                                <button onclick="switchSubTab('promo-thankyou')" data-subtab="promo-thankyou" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">Halaman Promo & Thank You</button>
+                                <button onclick="switchSubTab('promo-beranda')" data-subtab="promo-beranda" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition"><i class="fa-solid fa-fire mr-1 text-red-500"></i> Promo Terbaru (Beranda)</button>
                                 <button onclick="switchSubTab('faq-footer')" data-subtab="faq-footer" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">FAQ & Footer</button>
                                 <button onclick="switchSubTab('keamanan')" data-subtab="keamanan" class="subnav-btn px-4 py-2 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-400 hover:text-white hover:bg-slate-800/40 transition">Kata Sandi Dasbor</button>
                             </div>
@@ -821,6 +821,47 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- Preloader Global Loading Animation Settings -->
+                                    <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
+                                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                                            <div>
+                                                <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                                    <i class="fa-solid fa-spinner text-red-500"></i> Animasi Loading Layar (Preloader Global)
+                                                </h3>
+                                                <p class="text-xs text-gray-400 mt-0.5">Tampilkan logo animasi saat halaman website pertama kali dibuka hingga seluruh konten siap.</p>
+                                            </div>
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" id="cfg-site-preloader-enable" class="sr-only peer" checked>
+                                                <div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
+                                            </label>
+                                        </div>
+
+                                        <div class="space-y-2 image-upload-group" data-field-id="cfg-site-preloader-image">
+                                            <label class="text-xs text-gray-400 font-semibold block">URL Gambar / GIF Animasi Loading</label>
+                                            <div class="flex gap-2">
+                                                <input type="text" id="cfg-site-preloader-image" class="glass-input flex-1 px-3 py-2 rounded-lg text-sm" placeholder="https://.../honda_loading.gif" oninput="updateImagePreview('cfg-site-preloader-image')">
+                                                <input type="file" id="cfg-site-preloader-image-file" class="hidden" accept="image/*" onchange="handleImageSelect('cfg-site-preloader-image', this)">
+                                                <button type="button" onclick="document.getElementById('cfg-site-preloader-image-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1.5">
+                                                    <i class="fa-solid fa-image"></i> Ganti GIF
+                                                </button>
+                                            </div>
+                                            <div class="image-preview-panel hidden flex flex-col sm:flex-row gap-4 p-3 bg-slate-950/40 border border-slate-800 rounded-lg">
+                                                <div class="current-preview-box flex-1">
+                                                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Sebelum (Di GitHub)</p>
+                                                    <img class="current-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                </div>
+                                                <div class="new-preview-box flex-grow flex-1 hidden">
+                                                    <p class="text-[10px] text-emerald-500 font-bold uppercase mb-1">Sesudah (Pratinjau Unggahan)</p>
+                                                    <img class="new-img-preview h-24 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                    <div class="flex gap-1.5 mt-2">
+                                                        <button type="button" onclick="cancelImageSelect('cfg-site-preloader-image')" class="bg-slate-900 hover:bg-slate-800 text-[10px] text-gray-400 font-semibold px-2.5 py-1 border border-slate-700 rounded transition">Batal</button>
+                                                        <button type="button" onclick="confirmImageReplace('cfg-site-preloader-image')" class="confirm-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[10px] text-white font-semibold px-2.5 py-1 rounded flex items-center gap-1 shadow-sm transition">Upload & Replace</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -897,10 +938,6 @@
                                         <div class="space-y-1">
                                             <label class="text-xs text-gray-400 font-semibold">Favicon URL</label>
                                             <input type="text" id="cfg-site-favicon" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                        </div>
-                                        <div class="space-y-1">
-                                            <label class="text-xs text-gray-400 font-semibold">Kunci Lisensi Website (License Key)</label>
-                                            <input type="text" id="cfg-site-license" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="Masukkan kunci lisensi untuk mengaktifkan website di domain live">
                                         </div>
                                         <div class="space-y-1">
                                             <label class="text-xs text-gray-400 font-semibold">Link API Berita/Informasi (WordPress JSON API)</label>
@@ -1145,71 +1182,20 @@
                                 </div>
                             </div>
 
-                            <!-- SUB-TAB: HALAMAN PROMO & THANK YOU -->
-                            <div id="subtab-pane-promo-thankyou" class="subtab-pane hidden space-y-6">
-                                <!-- Promo Page Text Copy -->
+                            <!-- SUB-TAB: PROMO TERBARU BERANDA (4 GRID CARDS) -->
+                            <div id="subtab-pane-promo-beranda" class="subtab-pane hidden space-y-6">
                                 <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
-                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-bullhorn text-red-500 mr-2"></i> Teks Headline Halaman Promo Utama</h3>
-                                    <div class="grid grid-cols-1 gap-4">
-                                        <div class="space-y-1">
-                                            <label class="text-xs text-gray-400 font-semibold">Teks Badge (Contoh: Promo Eksklusif Honda Jabodetabek {year})</label>
-                                            <input type="text" id="cfg-promo-badge" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-800 gap-3">
+                                        <div>
+                                            <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                                <i class="fa-solid fa-fire text-red-500"></i> Kelola Kartu Promo Terbaru (Grid Beranda & Promo)
+                                            </h3>
+                                            <p class="text-xs text-gray-400 mt-0.5">Atur 4 kartu promosi penawaran khusus yang tampil di section "Promo Terbaru Honda Bintaro" pada Beranda & Halaman Promo.</p>
                                         </div>
-                                        <div class="space-y-1">
-                                            <label class="text-xs text-gray-400 font-semibold">Judul Headline (Gunakan HTML jika perlu)</label>
-                                            <input type="text" id="cfg-promo-title" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                        </div>
-                                        <div class="space-y-1">
-                                            <label class="text-xs text-gray-400 font-semibold">Sub-Judul Deskripsi</label>
-                                            <textarea id="cfg-promo-desc" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-16"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Thank You Page Copy -->
-                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
-                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-circle-check text-red-500 mr-2"></i> Teks Halaman Terima Kasih (Thank You Page)</h3>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div class="space-y-1">
-                                            <label class="text-xs text-gray-400 font-semibold">Judul Utama (Title)</label>
-                                            <input type="text" id="cfg-thank-title" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                        </div>
-                                        <div class="space-y-1">
-                                            <label class="text-xs text-gray-400 font-semibold">Sub-Judul Utama (Subtitle)</label>
-                                            <input type="text" id="cfg-thank-subtitle" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                        </div>
-                                        <div class="space-y-1 md:col-span-2">
-                                            <label class="text-xs text-gray-400 font-semibold">Deskripsi Halaman (Mendukung parameter `{salesName}`)</label>
-                                            <textarea id="cfg-thank-desc" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-20"></textarea>
-                                        </div>
-                                        <div class="space-y-1">
-                                            <label class="text-xs text-gray-400 font-semibold">Teks Tombol WA Fallback</label>
-                                            <input type="text" id="cfg-thank-btn" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                        </div>
-                                        <div class="space-y-1">
-                                            <label class="text-xs text-gray-400 font-semibold">Teks Tombol Kembali</label>
-                                            <input type="text" id="cfg-thank-back" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Dynamic e-Brochure PDF Drive IDs mapping -->
-                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
-                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2"><i class="fa-solid fa-file-pdf text-red-500 mr-2"></i> Tautan PDF Brosur Mobil (Google Drive File ID)</h3>
-                                    <p class="text-xs text-gray-400">Masukkan ID File Google Drive agar Brosur PDF bisa dibaca interaktif langsung di dalam website.</p>
-                                    <div id="cfg-brochures-container" class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                        <!-- Dynamically loaded brochure fields -->
-                                    </div>
-                                </div>
-
-                                <!-- Dynamic Promo Cards list -->
-                                <div class="bg-slate-900/30 p-5 rounded-xl border border-slate-800/60 space-y-4">
-                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2 flex items-center justify-between">
-                                        <span>🔥 Daftar Promo Grid</span>
-                                        <button onclick="addPromoCardField()" class="bg-slate-800 hover:bg-slate-700 text-xs px-2.5 py-1 rounded flex items-center gap-1 transition">
-                                            <i class="fa-solid fa-plus text-red-500"></i> Tambah Promo
+                                        <button type="button" onclick="addPromoCardField()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-3.5 py-2 rounded-lg shadow transition flex items-center gap-1.5 self-start">
+                                            <i class="fa-solid fa-plus"></i> Tambah Kartu Promo
                                         </button>
-                                    </h3>
+                                    </div>
                                     <div id="cfg-promos-container" class="space-y-4">
                                         <!-- Dynamic promo cards -->
                                     </div>
@@ -1451,6 +1437,114 @@
                                             <label class="block text-xs text-gray-400 font-semibold">Deskripsi / Detail Keunggulan (Visual Editor)</label>
                                             <textarea id="edit-prod-description" class="glass-input w-full px-3 py-2 rounded-lg text-sm h-40" placeholder="Deskripsi keunggulan..."></textarea>
                                         </div>
+
+                                        <!-- Integrated SEO Metadata Box for Product Model -->
+                                        <div class="bg-slate-950/50 p-5 rounded-2xl border border-slate-800 space-y-4">
+                                            <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                                                <div>
+                                                    <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5 font-outfit">
+                                                        <i class="fa-solid fa-magnifying-glass"></i> Pengaturan SEO Google Model Ini
+                                                    </h4>
+                                                    <p class="text-[11px] text-gray-400 mt-0.5">Optimasi pencarian Google untuk halaman <code>/model/?id=<span id="edit-prod-seo-slug-preview">brio</span></code></p>
+                                                </div>
+                                                <span class="text-[10px] bg-red-950/50 text-red-400 font-bold px-2 py-0.5 rounded border border-red-800/40">SEO Terintegrasi</span>
+                                            </div>
+
+                                            <!-- GOOGLE SEARCH SERP LIVE PREVIEW BOX -->
+                                            <div class="bg-slate-950/70 p-3.5 rounded-xl border border-slate-800 space-y-2">
+                                                <div class="flex items-center justify-between">
+                                                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider flex items-center gap-1.5">
+                                                        <i class="fa-brands fa-google text-blue-400"></i> Google SERP Live Preview
+                                                    </span>
+                                                    <span class="text-[10px] text-gray-500 font-semibold">Tampilan Pencarian Google</span>
+                                                </div>
+
+                                                <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm space-y-1 select-none">
+                                                    <div class="flex items-center gap-2 text-xs text-gray-700">
+                                                        <div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center p-0.5 border border-gray-200 shrink-0">
+                                                            <img id="prod-serp-preview-favicon" src="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" class="w-3.5 h-3.5 object-contain" alt="Favicon">
+                                                        </div>
+                                                        <div class="flex flex-col min-w-0">
+                                                            <span id="prod-serp-preview-sitename" class="font-semibold text-[11px] text-gray-900 truncate leading-tight">Honda Bintaro</span>
+                                                            <span id="prod-serp-preview-url" class="text-[9px] text-gray-500 font-mono truncate leading-tight">https://www.hondabintaro.com/model/?id=brio</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pt-1">
+                                                        <h4 id="prod-serp-preview-title" class="text-[#1a0dab] hover:underline text-sm sm:text-base font-medium cursor-pointer leading-snug line-clamp-1">
+                                                            Honda Brio - Spesifikasi, Harga OTR & Promo
+                                                        </h4>
+                                                        <p id="prod-serp-preview-desc" class="text-[12px] text-[#4d5156] leading-relaxed line-clamp-2 mt-0.5">
+                                                            Promo harga OTR dan spesifikasi Honda Brio terbaru. DP ringan, angsuran terjangkau, bonus aksesoris resmi.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- SEO Input Fields -->
+                                            <div class="grid grid-cols-1 gap-3.5 text-xs">
+                                                <!-- Title Input with Score Bar -->
+                                                <div class="space-y-1">
+                                                    <div class="flex items-center justify-between">
+                                                        <label class="text-gray-300 font-semibold">Meta Title (Judul Google)</label>
+                                                        <div class="flex items-center gap-2">
+                                                            <span id="prod-seo-title-badge" class="text-[10px] px-2 py-0.5 rounded font-bold border bg-slate-900 text-gray-400">Score</span>
+                                                            <span id="prod-seo-title-counter" class="text-[10px] font-mono text-gray-400">0 / 60</span>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" id="edit-prod-seo-title" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Contoh: Honda WR-V 2026 - Spesifikasi, Harga OTR & Promo Honda Bintaro" oninput="updateProductSeoPreviewAndCounters()">
+                                                    <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
+                                                        <div id="prod-seo-title-bar" class="h-full bg-emerald-500 transition-all duration-200" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Description Input with Score Bar -->
+                                                <div class="space-y-1">
+                                                    <div class="flex items-center justify-between">
+                                                        <label class="text-gray-300 font-semibold">Meta Description (Ringkasan Google Snippet)</label>
+                                                        <div class="flex items-center gap-2">
+                                                            <span id="prod-seo-desc-badge" class="text-[10px] px-2 py-0.5 rounded font-bold border bg-slate-900 text-gray-400">Score</span>
+                                                            <span id="prod-seo-desc-counter" class="text-[10px] font-mono text-gray-400">0 / 160</span>
+                                                        </div>
+                                                    </div>
+                                                    <textarea id="edit-prod-seo-desc" class="glass-input w-full px-3 py-2 rounded-lg text-xs h-16" placeholder="Promo harga OTR dan spesifikasi lengkap..." oninput="updateProductSeoPreviewAndCounters()"></textarea>
+                                                    <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
+                                                        <div id="prod-seo-desc-bar" class="h-full bg-emerald-500 transition-all duration-200" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Keywords -->
+                                                <div class="space-y-1">
+                                                    <label class="text-gray-300 font-semibold">SEO Keywords (Kata Kunci)</label>
+                                                    <input type="text" id="edit-prod-seo-keywords" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="harga honda wr-v, promo honda bintaro, kredit wr-v">
+                                                </div>
+
+                                                <!-- OG Image with upload/replace support -->
+                                                <div class="space-y-2 image-upload-group" data-field-id="edit-prod-seo-image">
+                                                    <label class="text-gray-300 font-semibold block">Social Share OG Image URL</label>
+                                                    <div class="flex gap-2">
+                                                        <input type="text" id="edit-prod-seo-image" class="glass-input flex-1 px-3 py-2 rounded-lg text-xs" oninput="updateImagePreview('edit-prod-seo-image')">
+                                                        <input type="file" id="edit-prod-seo-image-file" class="hidden" accept="image/*" onchange="handleImageSelect('edit-prod-seo-image', this)">
+                                                        <button type="button" onclick="document.getElementById('edit-prod-seo-image-file').click()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg border border-slate-700 font-semibold transition flex items-center gap-1">
+                                                            <i class="fa-solid fa-image"></i> Ganti
+                                                        </button>
+                                                    </div>
+                                                    <div class="image-preview-panel hidden flex flex-col sm:flex-row gap-4 p-3 bg-slate-950/40 border border-slate-800 rounded-lg">
+                                                        <div class="current-preview-box flex-1">
+                                                            <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Di GitHub</p>
+                                                            <img class="current-img-preview h-20 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                        </div>
+                                                        <div class="new-preview-box flex-grow flex-1 hidden">
+                                                            <p class="text-[10px] text-emerald-500 font-bold uppercase mb-1">Pratinjau Unggahan</p>
+                                                            <img class="new-img-preview h-20 object-contain rounded border border-slate-800 bg-slate-900/50" src="">
+                                                            <div class="flex gap-1.5 mt-2">
+                                                                <button type="button" onclick="cancelImageSelect('edit-prod-seo-image')" class="bg-slate-900 hover:bg-slate-800 text-[10px] text-gray-400 font-semibold px-2.5 py-1 border border-slate-700 rounded transition">Batal</button>
+                                                                <button type="button" onclick="confirmImageReplace('edit-prod-seo-image')" class="confirm-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[10px] text-white font-semibold px-2.5 py-1 rounded flex items-center gap-1 shadow-sm transition">Upload</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         
                                         <div class="flex justify-end pt-3 border-t border-slate-800">
                                             <button onclick="saveCurrentProductDetails()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md transition">
@@ -1607,13 +1701,66 @@
                                             <input type="text" id="edit-page-subtitle" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Ringkasan tentang isi halaman ini...">
                                         </div>
 
-                                        <!-- System Page Helper Notice (For Pricelist & e-Brochure) -->
+                                        <!-- System Page Helper Notice (For Pricelist) -->
                                         <div id="page-system-note" class="hidden p-4 rounded-xl bg-blue-950/30 border border-blue-800/50 text-blue-300 text-xs space-y-1.5">
                                             <div class="flex items-center gap-2 font-bold text-blue-400">
                                                 <i class="fa-solid fa-circle-info"></i>
                                                 <span>Halaman Sistem Otomatis</span>
                                             </div>
-                                            <p class="leading-relaxed text-[11px] text-gray-300">Halaman ini menggunakan engine katalog/tabel otomatis. Anda dapat mengubah <strong>Judul Halaman (H1)</strong>, <strong>Ringkasan/Subtitle</strong>, dan seluruh <strong>Pengaturan SEO Google (Meta Title, Description, OG Image)</strong> secara dinamis melalui form ini.</p>
+                                            <p class="leading-relaxed text-[11px] text-gray-300">Halaman ini terintegrasi dengan sistem dinamis. Anda dapat mengubah <strong>Judul Halaman (H1)</strong>, <strong>Ringkasan/Subtitle</strong>, serta seluruh <strong>Metadata SEO Google</strong> secara bebas melalui form ini.</p>
+                                        </div>
+
+                                        <!-- Promo Page Specific Settings -->
+                                        <div id="page-promo-specific-fields" class="hidden bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-3.5">
+                                            <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5">
+                                                <i class="fa-solid fa-bullhorn"></i> Konten Headline Promo Utama
+                                            </h4>
+                                            <div class="grid grid-cols-1 gap-3 text-xs">
+                                                <div class="space-y-1">
+                                                    <label class="text-gray-300 font-semibold">Teks Badge (Contoh: Promo Eksklusif Honda Jabodetabek {year})</label>
+                                                    <input type="text" id="edit-promo-badge" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Promo Eksklusif Honda Jabodetabek {year}">
+                                                </div>
+                                                <div class="space-y-1">
+                                                    <label class="text-gray-300 font-semibold">Judul Headline Promo (Mendukung HTML gradasi)</label>
+                                                    <input type="text" id="edit-promo-title" class="glass-input w-full px-3 py-2 rounded-lg text-xs font-bold" placeholder="Miliki Mobil Honda Impian Anda...">
+                                                </div>
+                                                <div class="space-y-1">
+                                                    <label class="text-gray-300 font-semibold">Sub-Judul Deskripsi Headline</label>
+                                                    <textarea id="edit-promo-desc" class="glass-input w-full px-3 py-2 rounded-lg text-xs h-16" placeholder="Dapatkan diskon OTR besar-besaran..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Thank You Page Specific Settings -->
+                                        <div id="page-thankyou-specific-fields" class="hidden bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-3.5">
+                                            <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5">
+                                                <i class="fa-solid fa-circle-check"></i> Pesan & Tombol Halaman Terima Kasih
+                                            </h4>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                                                <div class="space-y-1 md:col-span-2">
+                                                    <label class="text-gray-300 font-semibold">Deskripsi Pengiriman Berhasil (Mendukung tag <code>{salesName}</code>)</label>
+                                                    <textarea id="edit-thank-desc" class="glass-input w-full px-3 py-2 rounded-lg text-xs h-20" placeholder="Sistem kami sedang membuka aplikasi WhatsApp..."></textarea>
+                                                </div>
+                                                <div class="space-y-1">
+                                                    <label class="text-gray-300 font-semibold">Teks Tombol WA Fallback</label>
+                                                    <input type="text" id="edit-thank-btn" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Hubungi WA Sekarang (Alternatif)">
+                                                </div>
+                                                <div class="space-y-1">
+                                                    <label class="text-gray-300 font-semibold">Teks Tombol Kembali</label>
+                                                    <input type="text" id="edit-thank-back" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Kembali ke Beranda">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- e-Brochure Specific Settings (Google Drive File IDs) -->
+                                        <div id="page-brochure-specific-fields" class="hidden bg-slate-900/30 p-4 rounded-xl border border-slate-800 space-y-3.5">
+                                            <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5">
+                                                <i class="fa-solid fa-file-pdf"></i> Tautan PDF Brosur Mobil (Google Drive File ID)
+                                            </h4>
+                                            <p class="text-[11px] text-gray-400">Masukkan ID File Google Drive untuk setiap model mobil agar brosur PDF dapat dibaca langsung oleh pengunjung.</p>
+                                            <div id="edit-page-brochures-container" class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                                                <!-- Dynamic brochure fields per car model -->
+                                            </div>
                                         </div>
 
                                         <!-- Page Body (Rich Text CKEditor for custom pages) -->
@@ -1628,23 +1775,82 @@
                                         </div>
 
                                         <!-- SEO Settings Box -->
-                                        <div class="bg-slate-950/50 p-4 rounded-xl border border-slate-800 space-y-4">
-                                            <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5">
-                                                <i class="fa-solid fa-magnifying-glass"></i> Pengaturan SEO Halaman Ini
-                                            </h4>
+                                        <div class="bg-slate-950/50 p-5 rounded-2xl border border-slate-800 space-y-4">
+                                            <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                                                <div>
+                                                    <h4 class="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5 font-outfit">
+                                                        <i class="fa-solid fa-magnifying-glass"></i> Pengaturan SEO Google Halaman Ini
+                                                    </h4>
+                                                    <p class="text-[11px] text-gray-400 mt-0.5">Optimasi judul, deskripsi pencarian Google, kata kunci, dan gambar OpenGraph untuk halaman ini.</p>
+                                                </div>
+                                                <span class="text-[10px] bg-red-950/50 text-red-400 font-bold px-2 py-0.5 rounded border border-red-800/40">SEO Terintegrasi</span>
+                                            </div>
 
-                                            <div class="grid grid-cols-1 gap-3 text-xs">
-                                                <div class="space-y-1">
-                                                    <label class="text-gray-300 font-semibold">SEO Meta Title (Judul Google)</label>
-                                                    <input type="text" id="edit-page-seo-title" class="glass-input w-full px-3 py-2 rounded-lg" placeholder="Judul untuk mesin pencari Google...">
+                                            <!-- GOOGLE SEARCH SERP LIVE PREVIEW BOX -->
+                                            <div class="bg-slate-950/70 p-3.5 rounded-xl border border-slate-800 space-y-2">
+                                                <div class="flex items-center justify-between">
+                                                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider flex items-center gap-1.5">
+                                                        <i class="fa-brands fa-google text-blue-400"></i> Google SERP Live Snippet Preview
+                                                    </span>
+                                                    <span class="text-[10px] text-gray-500 font-semibold">Tampilan Hasil Pencarian Google</span>
                                                 </div>
-                                                <div class="space-y-1">
-                                                    <label class="text-gray-300 font-semibold">SEO Meta Description (Ringkasan Google Snippet)</label>
-                                                    <textarea id="edit-page-seo-desc" class="glass-input w-full px-3 py-2 rounded-lg h-16" placeholder="Deskripsi cuplikan yang muncul di Google..."></textarea>
+
+                                                <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm space-y-1 select-none">
+                                                    <div class="flex items-center gap-2 text-xs text-gray-700">
+                                                        <div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center p-0.5 border border-gray-200 shrink-0">
+                                                            <img id="page-serp-preview-favicon" src="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" class="w-3.5 h-3.5 object-contain" alt="Favicon">
+                                                        </div>
+                                                        <div class="flex flex-col min-w-0">
+                                                            <span id="page-serp-preview-sitename" class="font-semibold text-[11px] text-gray-900 truncate leading-tight">Honda Bintaro</span>
+                                                            <span id="page-serp-preview-url" class="text-[9px] text-gray-500 font-mono truncate leading-tight">https://www.hondabintaro.com/page/?id=slug</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pt-1">
+                                                        <h4 id="page-serp-preview-title" class="text-[#1a0dab] hover:underline text-sm sm:text-base font-medium cursor-pointer leading-snug line-clamp-1">
+                                                            Judul Halaman SEO
+                                                        </h4>
+                                                        <p id="page-serp-preview-desc" class="text-[12px] text-[#4d5156] leading-relaxed line-clamp-2 mt-0.5">
+                                                            Deskripsi cuplikan yang muncul di hasil pencarian Google...
+                                                        </p>
+                                                    </div>
                                                 </div>
+                                            </div>
+
+                                            <div class="grid grid-cols-1 gap-3.5 text-xs">
+                                                <!-- Meta Title Input & Score Bar -->
+                                                <div class="space-y-1">
+                                                    <div class="flex items-center justify-between">
+                                                        <label class="text-gray-300 font-semibold">SEO Meta Title (Judul Google)</label>
+                                                        <div class="flex items-center gap-2">
+                                                            <span id="page-seo-title-badge" class="text-[10px] px-2 py-0.5 rounded font-bold border bg-slate-900 text-gray-400">Score</span>
+                                                            <span id="page-seo-title-counter" class="text-[10px] font-mono text-gray-400">0 / 60</span>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" id="edit-page-seo-title" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="Judul untuk mesin pencari Google..." oninput="updatePageSeoPreviewAndCounters()">
+                                                    <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
+                                                        <div id="page-seo-title-bar" class="h-full bg-emerald-500 transition-all duration-200" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Meta Description Input & Score Bar -->
+                                                <div class="space-y-1">
+                                                    <div class="flex items-center justify-between">
+                                                        <label class="text-gray-300 font-semibold">SEO Meta Description (Ringkasan Google Snippet)</label>
+                                                        <div class="flex items-center gap-2">
+                                                            <span id="page-seo-desc-badge" class="text-[10px] px-2 py-0.5 rounded font-bold border bg-slate-900 text-gray-400">Score</span>
+                                                            <span id="page-seo-desc-counter" class="text-[10px] font-mono text-gray-400">0 / 160</span>
+                                                        </div>
+                                                    </div>
+                                                    <textarea id="edit-page-seo-desc" class="glass-input w-full px-3 py-2 rounded-lg text-xs h-16" placeholder="Deskripsi cuplikan yang muncul di Google..." oninput="updatePageSeoPreviewAndCounters()"></textarea>
+                                                    <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
+                                                        <div id="page-seo-desc-bar" class="h-full bg-emerald-500 transition-all duration-200" style="width: 0%;"></div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Keywords -->
                                                 <div class="space-y-1">
                                                     <label class="text-gray-300 font-semibold">SEO Keywords (Pisahkan dengan koma)</label>
-                                                    <input type="text" id="edit-page-seo-keywords" class="glass-input w-full px-3 py-2 rounded-lg" placeholder="kebijakan privasi, syarat ketentuan honda">
+                                                    <input type="text" id="edit-page-seo-keywords" class="glass-input w-full px-3 py-2 rounded-lg text-xs" placeholder="kebijakan privasi, syarat ketentuan honda">
                                                 </div>
                                                 
                                                 <!-- SEO Image with upload-replace support -->
@@ -3142,6 +3348,13 @@
 
             // --- SUBTAB: TEMA & WARNA ---
             populateThemeForm();
+            if (document.getElementById('cfg-site-preloader-enable')) {
+                document.getElementById('cfg-site-preloader-enable').checked = config.site?.enablePreloader !== false;
+            }
+            if (document.getElementById('cfg-site-preloader-image')) {
+                document.getElementById('cfg-site-preloader-image').value = config.site?.preloaderImage || 'https://www.honda-bintaro.com/wp-content/uploads/2025/01/honda_loading.gif';
+                updateImagePreview('cfg-site-preloader-image');
+            }
 
             // --- SUBTAB: WHATSAPP TEMPLATE ---
             document.getElementById('cfg-wa-salesbanner').value = config.whatsappTemplates?.salesBanner || '';
@@ -3152,7 +3365,6 @@
 
             // --- SUBTAB: NAVIGASI & TAUTAN ---
             document.getElementById('cfg-site-favicon').value = config.site?.favicon || '';
-            document.getElementById('cfg-site-license').value = config.license || '';
             document.getElementById('license-tab-key').value = config.license || '';
             checkLicenseStatusInTab();
             const faviconEl = document.getElementById('dynamic-favicon');
@@ -3183,41 +3395,13 @@
             document.getElementById('cfg-credit-perusahaan-icon').value = catPerusahaan.icon || '';
             document.getElementById('cfg-credit-perusahaan-items').value = (catPerusahaan.items || []).join('\n');
 
-            // --- SUBTAB: PROMO & THANK YOU ---
-            const promoPage = config.promoPage || {};
-            document.getElementById('cfg-promo-badge').value = promoPage.badge || 'Promo Eksklusif Honda Jabodetabek {year}';
-            document.getElementById('cfg-promo-title').value = promoPage.title || 'Miliki Mobil Honda Impian Anda <br class="hidden sm:inline"><span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-400">DP Termurah & Bunga 0%</span>';
-            document.getElementById('cfg-promo-desc').value = promoPage.description || 'Dapatkan diskon OTR besar-besaran, gratis biaya service berkala s.d. 4 tahun, dan pengajuan kredit dibantu sampai 100% disetujui. Hubungi Sales Counter Resmi sekarang juga!';
-
-            const thank = config.thankYou || {};
-            document.getElementById('cfg-thank-title').value = thank.title || 'Pengiriman Berhasil!';
-            document.getElementById('cfg-thank-subtitle').value = thank.subtitle || 'Terima kasih atas minat Anda pada promo kami.';
-            document.getElementById('cfg-thank-desc').value = thank.description || 'Sistem kami sedang membuka aplikasi WhatsApp Anda di tab baru. Sales Counter kami, {salesName}, akan segera merespons Anda dalam waktu 10-15 menit untuk memberikan hitungan kredit / promo yang Anda ajukan.';
-            document.getElementById('cfg-thank-btn').value = thank.buttonText || 'Hubungi WA Sekarang (Alternatif)';
-            document.getElementById('cfg-thank-back').value = thank.backButtonText || 'Kembali ke Beranda';
-
-            // Dynamic Brochure PDF IDs mapping
-            const brochuresContainer = document.getElementById('cfg-brochures-container');
-            brochuresContainer.innerHTML = '';
-            const brochures = config.brochures || {};
-            const productKeys = Object.keys(appData.products || {});
-            productKeys.forEach(modelId => {
-                const modelName = appData.products[modelId]?.name || modelId;
-                const fileId = brochures[modelId] || '';
-                const fieldHtml = `
-                    <div class="brochure-item-row grid grid-cols-3 gap-2 items-center bg-slate-950/20 p-2.5 rounded-lg border border-slate-800/60 text-xs">
-                        <span class="text-[10px] text-white font-semibold col-span-1 leading-tight">${modelName} (<code>${modelId}</code>)</span>
-                        <input type="text" data-model-id="${modelId}" class="col-brochure-id glass-input col-span-2 px-2.5 py-1.5 rounded text-[11px] font-mono" placeholder="File ID Google Drive" value="${fileId}">
-                    </div>
-                `;
-                brochuresContainer.insertAdjacentHTML('beforeend', fieldHtml);
-            });
-
-            // Dynamic promos grid cards
+            // --- SUBTAB: PROMO TERBARU (BERANDA) & GRID CARDS ---
             const promosContainer = document.getElementById('cfg-promos-container');
-            promosContainer.innerHTML = '';
-            const promosList = config.promos || [];
-            promosList.forEach((promo, idx) => renderPromoCardItem(promo, idx));
+            if (promosContainer) {
+                promosContainer.innerHTML = '';
+                const promosList = config.promos || [];
+                promosList.forEach((promo, idx) => renderPromoCardItem(promo, idx));
+            }
 
             // --- SUBTAB: SEO METADATA ---
             populateSeoPageDropdown();
@@ -3225,9 +3409,11 @@
 
             // --- SUBTAB: FAQ & FOOTER ---
             const faqContainer = document.getElementById('cfg-faq-container');
-            faqContainer.innerHTML = '';
-            const faqs = config.faqs || [];
-            faqs.forEach((faq, idx) => renderFaqItem(faq, idx));
+            if (faqContainer) {
+                faqContainer.innerHTML = '';
+                const faqs = config.faqs || [];
+                faqs.forEach((faq, idx) => renderFaqItem(faq, idx));
+            }
 
             document.getElementById('cfg-foot-about').value = config.footer?.aboutText || '';
             document.getElementById('cfg-foot-hours').value = config.footer?.hours || '';
@@ -3261,6 +3447,14 @@
             config.theme.primaryLight = document.getElementById('cfg-theme-light').value.trim() || '#fee2e2';
             config.theme.accentColor = document.getElementById('cfg-theme-accent').value.trim() || '#f97316';
 
+            if (!config.site) config.site = {};
+            if (document.getElementById('cfg-site-preloader-enable')) {
+                config.site.enablePreloader = document.getElementById('cfg-site-preloader-enable').checked;
+            }
+            if (document.getElementById('cfg-site-preloader-image')) {
+                config.site.preloaderImage = document.getElementById('cfg-site-preloader-image').value.trim();
+            }
+
             // --- SUBTAB: WHATSAPP TEMPLATE ---
             config.whatsappTemplates.salesBanner = document.getElementById('cfg-wa-salesbanner').value.trim();
             config.whatsappTemplates.testDrive = document.getElementById('cfg-wa-testdrive').value.trim();
@@ -3269,9 +3463,8 @@
             config.whatsappTemplates.promoForm = document.getElementById('cfg-wa-promoform').value.trim();
 
             // --- SUBTAB: NAVIGASI & TAUTAN ---
-            if (!config.site) config.site = {};
             config.site.favicon = document.getElementById('cfg-site-favicon').value.trim();
-            config.license = document.getElementById('cfg-site-license').value.trim();
+            config.license = appData.siteConfig?.license || config.license || '';
             const faviconEl = document.getElementById('dynamic-favicon');
             if (faviconEl) {
                 faviconEl.href = config.site.favicon;
@@ -3311,40 +3504,17 @@
             const perusahaanItems = document.getElementById('cfg-credit-perusahaan-items').value.trim();
             config.creditRequirements.categories[1].items = perusahaanItems ? perusahaanItems.split('\n').map(i => i.trim()).filter(i => i) : [];
 
-            // --- SUBTAB: PROMO & THANK YOU ---
-            if (!config.promoPage) config.promoPage = {};
-            config.promoPage.badge = document.getElementById('cfg-promo-badge').value.trim();
-            config.promoPage.title = document.getElementById('cfg-promo-title').value.trim();
-            config.promoPage.description = document.getElementById('cfg-promo-desc').value.trim();
-
-            if (!config.thankYou) config.thankYou = {};
-            config.thankYou.title = document.getElementById('cfg-thank-title').value.trim();
-            config.thankYou.subtitle = document.getElementById('cfg-thank-subtitle').value.trim();
-            config.thankYou.description = document.getElementById('cfg-thank-desc').value.trim();
-            config.thankYou.buttonText = document.getElementById('cfg-thank-btn').value.trim();
-            config.thankYou.backButtonText = document.getElementById('cfg-thank-back').value.trim();
-
-            // Brochures mapping
-            config.brochures = {};
-            document.querySelectorAll('.brochure-item-row input.col-brochure-id').forEach(input => {
-                const modelId = input.getAttribute('data-model-id');
-                const fileId = input.value.trim();
-                if (fileId) {
-                    config.brochures[modelId] = fileId;
-                }
-            });
-
-            // Promos Grid list
+            // --- SUBTAB: PROMO TERBARU (BERANDA) & PROMOS GRID ---
             config.promos = [];
             document.querySelectorAll('.promo-card-row').forEach(row => {
                 config.promos.push({
-                    tag: row.querySelector('.row-pr-tag').value.trim(),
-                    tagColorClass: row.querySelector('.row-pr-color').value.trim(),
-                    title: row.querySelector('.row-pr-title').value.trim(),
-                    description: row.querySelector('.row-pr-desc').value.trim(),
-                    image: row.querySelector('.row-pr-image').value.trim(),
-                    waText: row.querySelector('.row-pr-watext').value.trim(),
-                    ctaText: row.querySelector('.row-pr-ctatext').value.trim()
+                    tag: row.querySelector('.row-pr-tag')?.value.trim() || '',
+                    tagColorClass: row.querySelector('.row-pr-color')?.value.trim() || 'bg-red-50 text-honda',
+                    title: row.querySelector('.row-pr-title')?.value.trim() || '',
+                    description: row.querySelector('.row-pr-desc')?.value.trim() || '',
+                    image: row.querySelector('.row-pr-image')?.value.trim() || '',
+                    waText: row.querySelector('.row-pr-watext')?.value.trim() || '',
+                    ctaText: row.querySelector('.row-pr-ctatext')?.value.trim() || 'Tanya Promo'
                 });
             });
 
@@ -4274,6 +4444,110 @@
             (p.images || []).forEach((img, idx) => renderProductImageItem(img, idx));
 
             setupCKEditor(p.description || '');
+
+            // Load and populate Integrated Product SEO
+            document.getElementById('edit-prod-seo-slug-preview').innerText = id;
+            const pSeo = appData.siteConfig?.seo?.models?.[id] || p.seo || {};
+            document.getElementById('edit-prod-seo-title').value = pSeo.title || (p.name ? `${p.name} - Spesifikasi, Harga OTR & Promo` : '');
+            document.getElementById('edit-prod-seo-desc').value = pSeo.description || (p.name ? `Promo harga OTR dan spesifikasi ${p.name} terbaru. DP ringan, angsuran terjangkau, bonus aksesoris resmi.` : '');
+            document.getElementById('edit-prod-seo-keywords').value = pSeo.keywords || (p.name ? `harga ${p.name.toLowerCase()}, promo ${p.name.toLowerCase()}, kredit ${id}` : '');
+            document.getElementById('edit-prod-seo-image').value = pSeo.image || p.images?.[0]?.full || '../assets/images/logo.png';
+            
+            updateProductSeoPreviewAndCounters();
+            if (typeof updateImagePreview === 'function') {
+                updateImagePreview('edit-prod-seo-image');
+            }
+        }
+
+        // Real-time Product SEO Preview & Score Bar Handler
+        function updateProductSeoPreviewAndCounters() {
+            const id = document.getElementById('edit-prod-id')?.value || 'brio';
+            const name = document.getElementById('edit-prod-name')?.value.trim() || id;
+            const titleInput = document.getElementById('edit-prod-seo-title');
+            const descInput = document.getElementById('edit-prod-seo-desc');
+            if (!titleInput || !descInput) return;
+
+            const title = titleInput.value.trim();
+            const desc = descInput.value.trim();
+
+            const dealerName = appData.siteConfig?.contact?.dealerName || 'Honda Bintaro';
+            const fallbackTitle = `${name} - Spesifikasi, Harga OTR & Promo ${dealerName}`;
+            const fallbackDesc = `Promo harga OTR dan spesifikasi ${name} terbaru. DP ringan, angsuran terjangkau, bonus aksesoris resmi.`;
+
+            // Update Google SERP Preview Card
+            const serpSite = document.getElementById('prod-serp-preview-sitename');
+            const serpUrl = document.getElementById('prod-serp-preview-url');
+            const serpTitle = document.getElementById('prod-serp-preview-title');
+            const serpDesc = document.getElementById('prod-serp-preview-desc');
+            const serpFavicon = document.getElementById('prod-serp-preview-favicon');
+
+            if (serpSite) serpSite.innerText = dealerName;
+            if (serpUrl) serpUrl.innerText = `https://www.hondabintaro.com/model/?id=${id}`;
+            if (serpTitle) serpTitle.innerText = title || fallbackTitle;
+            if (serpDesc) serpDesc.innerText = desc || fallbackDesc;
+            if (serpFavicon) serpFavicon.src = appData.siteConfig?.site?.favicon || 'https://asset.honda-indonesia.com/2023/07/26/favicon.ico';
+
+            // Title Score Calculation (Optimal: 50-60 chars)
+            const titleLen = title.length;
+            const titleCounter = document.getElementById('prod-seo-title-counter');
+            const titleBadge = document.getElementById('prod-seo-title-badge');
+            const titleBar = document.getElementById('prod-seo-title-bar');
+
+            if (titleCounter) titleCounter.innerText = `${titleLen} / 60`;
+            if (titleBar) {
+                const pct = Math.min(100, Math.round((titleLen / 60) * 100));
+                titleBar.style.width = `${pct}%`;
+                if (titleLen >= 50 && titleLen <= 60) {
+                    titleBar.className = "h-full bg-emerald-500 transition-all duration-200";
+                    if (titleBadge) {
+                        titleBadge.className = "text-[10px] px-2 py-0.5 rounded font-bold border bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+                        titleBadge.innerText = "Sempurna";
+                    }
+                } else if ((titleLen >= 30 && titleLen < 50) || (titleLen > 60 && titleLen <= 70)) {
+                    titleBar.className = "h-full bg-amber-500 transition-all duration-200";
+                    if (titleBadge) {
+                        titleBadge.className = "text-[10px] px-2 py-0.5 rounded font-bold border bg-amber-500/20 text-amber-400 border-amber-500/30";
+                        titleBadge.innerText = "Cukup Baik";
+                    }
+                } else {
+                    titleBar.className = "h-full bg-red-500 transition-all duration-200";
+                    if (titleBadge) {
+                        titleBadge.className = "text-[10px] px-2 py-0.5 rounded font-bold border bg-red-500/20 text-red-400 border-red-500/30";
+                        titleBadge.innerText = titleLen === 0 ? "Wajib Diisi" : "Terlalu Pendek / Panjang";
+                    }
+                }
+            }
+
+            // Description Score Calculation (Optimal: 120-160 chars)
+            const descLen = desc.length;
+            const descCounter = document.getElementById('prod-seo-desc-counter');
+            const descBadge = document.getElementById('prod-seo-desc-badge');
+            const descBar = document.getElementById('prod-seo-desc-bar');
+
+            if (descCounter) descCounter.innerText = `${descLen} / 160`;
+            if (descBar) {
+                const pct = Math.min(100, Math.round((descLen / 160) * 100));
+                descBar.style.width = `${pct}%`;
+                if (descLen >= 120 && descLen <= 160) {
+                    descBar.className = "h-full bg-emerald-500 transition-all duration-200";
+                    if (descBadge) {
+                        descBadge.className = "text-[10px] px-2 py-0.5 rounded font-bold border bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+                        descBadge.innerText = "Sempurna";
+                    }
+                } else if ((descLen >= 80 && descLen < 120) || (descLen > 160 && descLen <= 180)) {
+                    descBar.className = "h-full bg-amber-500 transition-all duration-200";
+                    if (descBadge) {
+                        descBadge.className = "text-[10px] px-2 py-0.5 rounded font-bold border bg-amber-500/20 text-amber-400 border-amber-500/30";
+                        descBadge.innerText = "Cukup Baik";
+                    }
+                } else {
+                    descBar.className = "h-full bg-red-500 transition-all duration-200";
+                    if (descBadge) {
+                        descBadge.className = "text-[10px] px-2 py-0.5 rounded font-bold border bg-red-500/20 text-red-400 border-red-500/30";
+                        descBadge.innerText = descLen === 0 ? "Wajib Diisi" : "Terlalu Pendek / Panjang";
+                    }
+                }
+            }
         }
 
         function setupCKEditor(initialContent) {
@@ -4356,8 +4630,8 @@
                             <p class="text-[8px] text-emerald-500 font-bold uppercase">Pratinjau Unggahan Baru</p>
                             <img class="new-img-preview h-12 object-contain rounded bg-slate-900" src="">
                             <div class="flex gap-1 mt-1">
-                                <button onclick="cancelRowImageSelect(this)" class="bg-slate-900 hover:bg-slate-800 text-[8px] text-gray-400 px-1 border border-slate-700 rounded">Batal</button>
-                                <button onclick="confirmRowImageReplace(this, 'product_gallery')" class="confirm-row-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[8px] text-white px-1.5 py-0.5 rounded flex items-center gap-0.5"><i class="fa-solid fa-circle-check"></i> Upload</button>
+                                <button onclick="cancelRowImageSelect(this)" class="bg-slate-800 text-[9px] text-gray-400 px-2 py-0.5 rounded">Batal</button>
+                                <button onclick="confirmRowImageReplace(this, 'product_gallery')" class="confirm-row-upload-btn bg-emerald-600 hover:bg-emerald-700 text-[9px] text-white px-2 py-0.5 rounded font-bold shadow-sm"><i class="fa-solid fa-circle-check"></i> Upload</button>
                             </div>
                         </div>
                     </div>
@@ -4402,7 +4676,30 @@
                 });
             });
 
-            showToast(`Perubahan untuk model ${p.name} disimpan secara lokal! Jangan lupa Commit ke GitHub.`);
+            // Save Integrated Product SEO
+            const pSeoTitle = document.getElementById('edit-prod-seo-title')?.value.trim() || '';
+            const pSeoDesc = document.getElementById('edit-prod-seo-desc')?.value.trim() || '';
+            const pSeoKeywords = document.getElementById('edit-prod-seo-keywords')?.value.trim() || '';
+            const pSeoImage = document.getElementById('edit-prod-seo-image')?.value.trim() || '';
+
+            p.seo = {
+                title: pSeoTitle,
+                description: pSeoDesc,
+                keywords: pSeoKeywords,
+                image: pSeoImage
+            };
+
+            if (!appData.siteConfig) appData.siteConfig = {};
+            if (!appData.siteConfig.seo) appData.siteConfig.seo = {};
+            if (!appData.siteConfig.seo.models) appData.siteConfig.seo.models = {};
+            appData.siteConfig.seo.models[id] = {
+                title: pSeoTitle,
+                description: pSeoDesc,
+                keywords: pSeoKeywords,
+                image: pSeoImage
+            };
+
+            showToast(`Perubahan spesifikasi dan SEO model "${p.name}" berhasil disimpan secara lokal! Tekan "Commit Perubahan" untuk publikasi ke GitHub.`);
             populateProductsForm(); 
         }
 
@@ -4895,7 +5192,6 @@
 
         function saveLicenseFromTab() {
             const tabKey = document.getElementById('license-tab-key').value.trim();
-            document.getElementById('cfg-site-license').value = tabKey;
             document.getElementById('license-tab-key').value = tabKey;
             
             // Sync config store
@@ -4932,7 +5228,7 @@
                     : 'border-slate-800 hover:border-slate-700 bg-slate-900/40 text-gray-300';
 
                 const routeDisplay = p.routeUrl || (p.isSystemPage ? `/${k}/` : `/page/?id=${k}`);
-                const isSys = p.isSystemPage || k === 'pricelist' || k === 'brochure';
+                const isSys = p.isSystemPage || k === 'pricelist' || k === 'brochure' || k === 'promo' || k === 'thank-you';
                 const badgeSys = isSys ? `<span class="text-[8px] bg-blue-900/60 text-blue-300 font-bold px-1.5 py-0.5 rounded border border-blue-700/40">Sistem</span>` : '';
 
                 const html = `
@@ -4974,7 +5270,7 @@
             const formEl = document.getElementById('page-editor-form');
             if (formEl) formEl.classList.remove('hidden');
 
-            const isSys = page.isSystemPage || slug === 'pricelist' || slug === 'brochure';
+            const isSys = page.isSystemPage || slug === 'pricelist' || slug === 'brochure' || slug === 'promo' || slug === 'thank-you';
 
             document.getElementById('edit-page-header').innerText = `Edit: ${page.title || slug}`;
             document.getElementById('edit-page-slug').value = slug;
@@ -4989,14 +5285,54 @@
             const bodyContainer = document.getElementById('page-body-container');
             const sysNote = document.getElementById('page-system-note');
             const deleteBtn = document.getElementById('btn-delete-page');
+            const promoPanel = document.getElementById('page-promo-specific-fields');
+            const thankPanel = document.getElementById('page-thankyou-specific-fields');
+            const brochurePanel = document.getElementById('page-brochure-specific-fields');
+
+            // Hide all specific panels first
+            promoPanel?.classList.add('hidden');
+            thankPanel?.classList.add('hidden');
+            brochurePanel?.classList.add('hidden');
+            sysNote?.classList.add('hidden');
+            bodyContainer?.classList.add('hidden');
 
             if (isSys) {
-                bodyContainer?.classList.add('hidden');
-                sysNote?.classList.remove('hidden');
                 deleteBtn?.classList.add('hidden');
+                
+                if (slug === 'promo') {
+                    promoPanel?.classList.remove('hidden');
+                    document.getElementById('edit-promo-badge').value = page.promoBadge || appData.siteConfig?.promoPage?.badge || 'Promo Eksklusif Honda Jabodetabek {year}';
+                    document.getElementById('edit-promo-title').value = page.promoTitle || appData.siteConfig?.promoPage?.title || 'Miliki Mobil Honda Impian Anda <br class="hidden sm:inline"><span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-400">DP Termurah & Bunga 0%</span>';
+                    document.getElementById('edit-promo-desc').value = page.promoDescription || appData.siteConfig?.promoPage?.description || 'Dapatkan diskon OTR besar-besaran, gratis biaya service berkala s.d. 4 tahun, dan pengajuan kredit dibantu sampai 100% disetujui. Hubungi Sales Counter Resmi sekarang juga!';
+                } else if (slug === 'thank-you') {
+                    thankPanel?.classList.remove('hidden');
+                    document.getElementById('edit-thank-desc').value = page.description || appData.siteConfig?.thankYou?.description || 'Sistem kami sedang membuka aplikasi WhatsApp Anda di tab baru. Sales Counter kami, {salesName}, akan segera merespons Anda dalam waktu 10-15 menit untuk memberikan hitungan kredit / promo yang Anda ajukan.';
+                    document.getElementById('edit-thank-btn').value = page.buttonText || appData.siteConfig?.thankYou?.buttonText || 'Hubungi WA Sekarang (Alternatif)';
+                    document.getElementById('edit-thank-back').value = page.backButtonText || appData.siteConfig?.thankYou?.backButtonText || 'Kembali ke Beranda';
+                } else if (slug === 'brochure') {
+                    brochurePanel?.classList.remove('hidden');
+                    const brochuresContainer = document.getElementById('edit-page-brochures-container');
+                    if (brochuresContainer) {
+                        brochuresContainer.innerHTML = '';
+                        const brochures = appData.siteConfig?.brochures || {};
+                        const productKeys = Object.keys(appData.products || {});
+                        productKeys.forEach(modelId => {
+                            const modelName = appData.products[modelId]?.name || modelId;
+                            const fileId = brochures[modelId] || '';
+                            const fieldHtml = `
+                                <div class="brochure-item-row flex items-center justify-between gap-2 bg-slate-950/40 p-2 rounded-lg border border-slate-800 text-xs">
+                                    <span class="text-[11px] text-white font-semibold truncate flex-1">${modelName} <code class="text-gray-400 font-mono text-[9px]">(${modelId})</code></span>
+                                    <input type="text" data-model-id="${modelId}" class="col-brochure-id glass-input w-44 px-2 py-1 rounded text-xs font-mono" placeholder="ID Drive..." value="${fileId}">
+                                </div>
+                            `;
+                            brochuresContainer.insertAdjacentHTML('beforeend', fieldHtml);
+                        });
+                    }
+                } else {
+                    sysNote?.classList.remove('hidden');
+                }
             } else {
                 bodyContainer?.classList.remove('hidden');
-                sysNote?.classList.add('hidden');
                 deleteBtn?.classList.remove('hidden');
 
                 // Init / set CKEditor
@@ -5031,17 +5367,116 @@
             document.getElementById('edit-page-seo-keywords').value = seo.keywords || '';
             document.getElementById('edit-page-seo-image').value = seo.image || '';
             
+            updatePageSeoPreviewAndCounters();
             if (typeof updateImagePreview === 'function') {
                 updateImagePreview('edit-page-seo-image');
+            }
+        }
+
+        // Real-time Page SEO Preview & Score Bar Handler
+        function updatePageSeoPreviewAndCounters() {
+            const slug = selectedPageSlug || 'page';
+            const pageObj = appData.pages?.[slug] || {};
+            const pageTitle = document.getElementById('edit-page-title')?.value.trim() || pageObj.title || slug;
+            const pageSubtitle = document.getElementById('edit-page-subtitle')?.value.trim() || pageObj.subtitle || '';
+            
+            const titleInput = document.getElementById('edit-page-seo-title');
+            const descInput = document.getElementById('edit-page-seo-desc');
+            if (!titleInput || !descInput) return;
+
+            const title = titleInput.value.trim();
+            const desc = descInput.value.trim();
+
+            const dealerName = appData.siteConfig?.contact?.dealerName || 'Honda Bintaro';
+            const fallbackTitle = `${pageTitle} | ${dealerName}`;
+            const fallbackDesc = pageSubtitle || `Informasi resmi mengenai ${pageTitle} pada dealer resmi ${dealerName}.`;
+
+            // Update Google SERP Preview Card
+            const serpSite = document.getElementById('page-serp-preview-sitename');
+            const serpUrl = document.getElementById('page-serp-preview-url');
+            const serpTitle = document.getElementById('page-serp-preview-title');
+            const serpDesc = document.getElementById('page-serp-preview-desc');
+            const serpFavicon = document.getElementById('page-serp-preview-favicon');
+
+            let routeDisplay = pageObj.routeUrl || (pageObj.isSystemPage ? `/${slug}/` : `/page/?id=${slug}`);
+            routeDisplay = routeDisplay.replace(/^\.\.\//, '/');
+
+            if (serpSite) serpSite.innerText = dealerName;
+            if (serpUrl) serpUrl.innerText = `https://www.hondabintaro.com${routeDisplay.startsWith('/') ? '' : '/'}${routeDisplay}`;
+            if (serpTitle) serpTitle.innerText = title || fallbackTitle;
+            if (serpDesc) serpDesc.innerText = desc || fallbackDesc;
+            if (serpFavicon) serpFavicon.src = appData.siteConfig?.site?.favicon || 'https://asset.honda-indonesia.com/2023/07/26/favicon.ico';
+
+            // Title Score Calculation (Optimal: 50-60 chars)
+            const titleLen = title.length;
+            const titleCounter = document.getElementById('page-seo-title-counter');
+            const titleBadge = document.getElementById('page-seo-title-badge');
+            const titleBar = document.getElementById('page-seo-title-bar');
+
+            if (titleCounter) titleCounter.innerText = `${titleLen} / 60`;
+            if (titleBar) {
+                const pct = Math.min(100, Math.round((titleLen / 60) * 100));
+                titleBar.style.width = `${pct}%`;
+                if (titleLen >= 50 && titleLen <= 60) {
+                    titleBar.className = "h-full bg-emerald-500 transition-all duration-200";
+                    if (titleBadge) {
+                        titleBadge.className = "text-[10px] px-2 py-0.5 rounded font-bold border bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+                        titleBadge.innerText = "Sempurna";
+                    }
+                } else if ((titleLen >= 30 && titleLen < 50) || (titleLen > 60 && titleLen <= 70)) {
+                    titleBar.className = "h-full bg-amber-500 transition-all duration-200";
+                    if (titleBadge) {
+                        titleBadge.className = "text-[10px] px-2 py-0.5 rounded font-bold border bg-amber-500/20 text-amber-400 border-amber-500/30";
+                        titleBadge.innerText = "Cukup Baik";
+                    }
+                } else {
+                    titleBar.className = "h-full bg-red-500 transition-all duration-200";
+                    if (titleBadge) {
+                        titleBadge.className = "text-[10px] px-2 py-0.5 rounded font-bold border bg-red-500/20 text-red-400 border-red-500/30";
+                        titleBadge.innerText = titleLen === 0 ? "Wajib Diisi" : "Terlalu Pendek / Panjang";
+                    }
+                }
+            }
+
+            // Description Score Calculation (Optimal: 120-160 chars)
+            const descLen = desc.length;
+            const descCounter = document.getElementById('page-seo-desc-counter');
+            const descBadge = document.getElementById('page-seo-desc-badge');
+            const descBar = document.getElementById('page-seo-desc-bar');
+
+            if (descCounter) descCounter.innerText = `${descLen} / 160`;
+            if (descBar) {
+                const pct = Math.min(100, Math.round((descLen / 160) * 100));
+                descBar.style.width = `${pct}%`;
+                if (descLen >= 120 && descLen <= 160) {
+                    descBar.className = "h-full bg-emerald-500 transition-all duration-200";
+                    if (descBadge) {
+                        descBadge.className = "text-[10px] px-2 py-0.5 rounded font-bold border bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+                        descBadge.innerText = "Sempurna";
+                    }
+                } else if ((descLen >= 80 && descLen < 120) || (descLen > 160 && descLen <= 180)) {
+                    descBar.className = "h-full bg-amber-500 transition-all duration-200";
+                    if (descBadge) {
+                        descBadge.className = "text-[10px] px-2 py-0.5 rounded font-bold border bg-amber-500/20 text-amber-400 border-amber-500/30";
+                        descBadge.innerText = "Cukup Baik";
+                    }
+                } else {
+                    descBar.className = "h-full bg-red-500 transition-all duration-200";
+                    if (descBadge) {
+                        descBadge.className = "text-[10px] px-2 py-0.5 rounded font-bold border bg-red-500/20 text-red-400 border-red-500/30";
+                        descBadge.innerText = descLen === 0 ? "Wajib Diisi" : "Terlalu Pendek / Panjang";
+                    }
+                }
             }
         }
 
         function saveCurrentPageDetails() {
             if (!selectedPageSlug) return;
             if (!appData.pages) appData.pages = {};
+            if (!appData.siteConfig) appData.siteConfig = {};
 
             const existing = appData.pages[selectedPageSlug] || {};
-            const isSys = existing.isSystemPage || selectedPageSlug === 'pricelist' || selectedPageSlug === 'brochure';
+            const isSys = existing.isSystemPage || selectedPageSlug === 'pricelist' || selectedPageSlug === 'brochure' || selectedPageSlug === 'promo' || selectedPageSlug === 'thank-you';
 
             let bodyContent = existing.content || '';
             if (!isSys) {
@@ -5062,7 +5497,7 @@
 
             const today = new Date().toISOString().split('T')[0];
 
-            appData.pages[selectedPageSlug] = {
+            const pagePayload = {
                 ...existing,
                 title: title,
                 slug: selectedPageSlug,
@@ -5076,6 +5511,59 @@
                     image: seoImage
                 }
             };
+
+            // Specific page handlers & cross-sync with siteConfig
+            if (selectedPageSlug === 'promo') {
+                const promoBadge = document.getElementById('edit-promo-badge')?.value.trim() || '';
+                const promoTitle = document.getElementById('edit-promo-title')?.value.trim() || '';
+                const promoDesc = document.getElementById('edit-promo-desc')?.value.trim() || '';
+                
+                pagePayload.promoBadge = promoBadge;
+                pagePayload.promoTitle = promoTitle;
+                pagePayload.promoDescription = promoDesc;
+
+                if (!appData.siteConfig.promoPage) appData.siteConfig.promoPage = {};
+                appData.siteConfig.promoPage.badge = promoBadge;
+                appData.siteConfig.promoPage.title = promoTitle;
+                appData.siteConfig.promoPage.description = promoDesc;
+            } else if (selectedPageSlug === 'thank-you') {
+                const thankDesc = document.getElementById('edit-thank-desc')?.value.trim() || '';
+                const thankBtn = document.getElementById('edit-thank-btn')?.value.trim() || '';
+                const thankBack = document.getElementById('edit-thank-back')?.value.trim() || '';
+
+                pagePayload.description = thankDesc;
+                pagePayload.buttonText = thankBtn;
+                pagePayload.backButtonText = thankBack;
+
+                if (!appData.siteConfig.thankYou) appData.siteConfig.thankYou = {};
+                appData.siteConfig.thankYou.title = title;
+                appData.siteConfig.thankYou.subtitle = subtitle;
+                appData.siteConfig.thankYou.description = thankDesc;
+                appData.siteConfig.thankYou.buttonText = thankBtn;
+                appData.siteConfig.thankYou.backButtonText = thankBack;
+            } else if (selectedPageSlug === 'brochure') {
+                if (!appData.siteConfig.brochures) appData.siteConfig.brochures = {};
+                document.querySelectorAll('#edit-page-brochures-container input.col-brochure-id').forEach(input => {
+                    const mId = input.getAttribute('data-model-id');
+                    const fId = input.value.trim();
+                    if (fId) {
+                        appData.siteConfig.brochures[mId] = fId;
+                    } else {
+                        delete appData.siteConfig.brochures[mId];
+                    }
+                });
+            }
+
+            // Sync SEO data to siteConfig.seo[selectedPageSlug] for fallback runtime lookup
+            if (!appData.siteConfig.seo) appData.siteConfig.seo = {};
+            appData.siteConfig.seo[selectedPageSlug] = {
+                title: seoTitle,
+                description: seoDesc,
+                keywords: seoKeywords,
+                image: seoImage
+            };
+
+            appData.pages[selectedPageSlug] = pagePayload;
 
             populatePagesForm();
             showToast(`✅ Halaman "${title}" berhasil disimpan di memori! Tekan "Commit Perubahan" untuk publikasi ke GitHub.`);
@@ -5145,7 +5633,7 @@
         function deleteCurrentPage() {
             if (!selectedPageSlug) return;
             const existing = appData.pages?.[selectedPageSlug];
-            if (existing?.isSystemPage || selectedPageSlug === 'pricelist' || selectedPageSlug === 'brochure') {
+            if (existing?.isSystemPage || selectedPageSlug === 'pricelist' || selectedPageSlug === 'brochure' || selectedPageSlug === 'promo' || selectedPageSlug === 'thank-you') {
                 showToast('Halaman sistem tidak dapat dihapus!', 'warning');
                 return;
             }

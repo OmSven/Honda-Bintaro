@@ -2,30 +2,25 @@
 <html lang="id">
 
 <head>
-    <!-- Primary SEO Metadata -->
-    <title>Terima Kasih - Data Pengisian Promo Diterima | Honda Bintaro</title>
-    <meta name="description" content="Terima kasih telah berkonsultasi mengenai promo mobil Honda. Sales Counter kami akan segera menghubungi Anda.">
-    <meta name="keywords" content="thank you honda bintaro">
+    <!-- Dynamic SEO Metadata -->
+    <title id="meta-title">Terima Kasih - Data Pengisian Promo Diterima | Honda Bintaro</title>
+    <meta name="description" id="meta-desc" content="Terima kasih telah berkonsultasi mengenai promo mobil Honda. Sales Counter kami akan segera menghubungi Anda.">
+    <meta name="keywords" id="meta-keywords" content="thank you honda bintaro">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Terima Kasih - Data Pengisian Promo Diterima | Honda Bintaro">
-    <meta property="og:description" content="Terima kasih telah berkonsultasi mengenai promo mobil Honda. Sales Counter kami akan segera menghubungi Anda.">
-    <meta property="og:image" content="../assets/images/logo.png">
+    <meta property="og:title" id="og-title" content="Terima Kasih - Data Pengisian Promo Diterima | Honda Bintaro">
+    <meta property="og:description" id="og-desc" content="Terima kasih telah berkonsultasi mengenai promo mobil Honda. Sales Counter kami akan segera menghubungi Anda.">
+    <meta property="og:image" id="og-image" content="../assets/images/logo.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Terima Kasih - Data Pengisian Promo Diterima | Honda Bintaro">
-    <meta name="twitter:description" content="Terima kasih telah berkonsultasi mengenai promo mobil Honda. Sales Counter kami akan segera menghubungi Anda.">
-    <meta name="twitter:image" content="../assets/images/logo.png">
+    <meta name="twitter:title" id="twitter-title" content="Terima Kasih - Data Pengisian Promo Diterima | Honda Bintaro">
+    <meta name="twitter:description" id="twitter-desc" content="Terima kasih telah berkonsultasi mengenai promo mobil Honda. Sales Counter kami akan segera menghubungi Anda.">
+    <meta name="twitter:image" id="twitter-image" content="../assets/images/logo.png">
 
     <!-- Favicon -->
-    <link rel="icon" href="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" type="image/x-icon">
-    <!-- Primary SEO Metadata -->
-    <!-- Open Graph / Facebook -->
-    <!-- Twitter -->
-    <!-- Favicon -->
-    <link class="favicon-link" rel="icon" href="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" type="image/x-icon">
+    <link rel="icon" id="dynamic-favicon" href="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Fonts -->
@@ -117,41 +112,62 @@
     <!-- SCRIPT FOR DYNAMIC TEXT & FALLBACK LINK -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Load config to dynamically render texts and bind WhatsApp link
-            fetch('../data/site_config.json')
-                .then(res => res.json())
-                .then(config => {
-                    const contact = config.contact || {};
-                    const salesName = contact.salesName || "Rere";
-                    const phone = contact.phoneNumber || "6282299185425";
-                    
-                    // Retrieve texts from JSON thankYou object
-                    const thankYouConfig = config.thankYou || {};
-                    
-                    const titleText = thankYouConfig.title || "Pengiriman Berhasil!";
-                    const subtitleText = thankYouConfig.subtitle || "Terima kasih atas minat Anda pada promo kami.";
-                    const descText = (thankYouConfig.description || "Sistem kami sedang membuka aplikasi WhatsApp Anda di tab baru. Sales Counter kami, {salesName}, akan segera merespons Anda dalam waktu 10-15 menit untuk memberikan hitungan kredit / promo yang Anda ajukan.")
-                        .replace(/{salesName}/g, salesName);
-                    const btnText = thankYouConfig.buttonText || "Hubungi WA Sekarang (Alternatif)";
-                    const backText = thankYouConfig.backButtonText || "Kembali ke Beranda";
-                    
-                    // Render to DOM
-                    document.getElementById('thank-you-title').innerText = titleText;
-                    document.getElementById('thank-you-subtitle').innerText = subtitleText;
-                    document.getElementById('thank-you-desc').innerHTML = descText.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'); // Support bold notation
-                    document.getElementById('thank-you-btn-text').innerText = btnText;
-                    document.getElementById('thank-you-back-btn').innerText = backText;
-                    
-                    // Set WhatsApp URL
-                    let msgTemplate = config.whatsappTemplates?.general || "Halo {salesName}, saya ingin berkonsultasi mengenai pembelian mobil Honda.";
-                    let msg = msgTemplate.replace(/{salesName}/g, salesName);
-                    const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-                    
-                    const waBtn = document.getElementById('btn-wa-fallback');
-                    if (waBtn) {
-                        waBtn.href = waUrl;
-                    }
-                }).catch(err => console.error("Error setting fallback WA button:", err));
+            // Load config & pages to dynamically render texts and bind WhatsApp link
+            Promise.all([
+                fetch('../data/site_config.json').then(res => res.json()).catch(() => ({})),
+                fetch('../data/pages.json').then(res => res.json()).catch(() => ({}))
+            ]).then(([config, pagesData]) => {
+                const contact = config.contact || {};
+                const salesName = contact.salesName || "Rere";
+                const phone = contact.phoneNumber || "6282299185425";
+                
+                // Retrieve texts from JSON thankYou object or pages.json
+                const thankYouConfig = config.thankYou || {};
+                const pageConfig = pagesData?.['thank-you'] || {};
+                const thankYouSeo = pageConfig.seo || {};
+
+                const currentYear = new Date().getFullYear().toString();
+                const formatYear = (s) => s ? s.replace(/{year}/g, currentYear) : '';
+
+                // Dynamic SEO
+                const pageTitle = formatYear(thankYouSeo.title) || `Terima Kasih - Data Pengisian Promo Diterima | ${contact.dealerName || 'Honda'}`;
+                const pageDesc = formatYear(thankYouSeo.description) || "Terima kasih telah berkonsultasi mengenai promo mobil Honda. Sales Counter kami akan segera menghubungi Anda.";
+                const ogImage = thankYouSeo.image || '../assets/images/logo.png';
+
+                document.title = pageTitle;
+                document.getElementById('meta-desc')?.setAttribute('content', pageDesc);
+                document.getElementById('meta-keywords')?.setAttribute('content', thankYouSeo.keywords || 'thank you');
+                document.getElementById('og-title')?.setAttribute('content', pageTitle);
+                document.getElementById('og-desc')?.setAttribute('content', pageDesc);
+                document.getElementById('og-image')?.setAttribute('content', ogImage);
+                document.getElementById('twitter-title')?.setAttribute('content', pageTitle);
+                document.getElementById('twitter-desc')?.setAttribute('content', pageDesc);
+                document.getElementById('twitter-image')?.setAttribute('content', ogImage);
+                
+                const titleText = pageConfig.title || thankYouConfig.title || "Pengiriman Berhasil!";
+                const subtitleText = pageConfig.subtitle || thankYouConfig.subtitle || "Terima kasih atas minat Anda pada promo kami.";
+                const descText = (pageConfig.description || thankYouConfig.description || "Sistem kami sedang membuka aplikasi WhatsApp Anda di tab baru. Sales Counter kami, {salesName}, akan segera merespons Anda dalam waktu 10-15 menit untuk memberikan hitungan kredit / promo yang Anda ajukan.")
+                    .replace(/{salesName}/g, salesName);
+                const btnText = pageConfig.buttonText || thankYouConfig.buttonText || "Hubungi WA Sekarang (Alternatif)";
+                const backText = pageConfig.backButtonText || thankYouConfig.backButtonText || "Kembali ke Beranda";
+                
+                // Render to DOM
+                document.getElementById('thank-you-title').innerText = titleText;
+                document.getElementById('thank-you-subtitle').innerText = subtitleText;
+                document.getElementById('thank-you-desc').innerHTML = descText.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'); // Support bold notation
+                document.getElementById('thank-you-btn-text').innerText = btnText;
+                document.getElementById('thank-you-back-btn').innerText = backText;
+                
+                // Set WhatsApp URL
+                let msgTemplate = config.whatsappTemplates?.general || "Halo {salesName}, saya ingin berkonsultasi mengenai pembelian mobil Honda.";
+                let msg = msgTemplate.replace(/{salesName}/g, salesName);
+                const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+                
+                const waBtn = document.getElementById('btn-wa-fallback');
+                if (waBtn) {
+                    waBtn.href = waUrl;
+                }
+            }).catch(err => console.error("Error setting fallback WA button:", err));
         });
     </script>
 </body>

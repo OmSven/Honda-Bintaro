@@ -2,25 +2,25 @@
 <html lang="id">
 
 <head>
-    <!-- Primary SEO Metadata -->
-    <title>Promo Mobil Honda Jabodetabek 2026 - DP Minim & Angsuran Murah</title>
-    <meta name="description" content="Promo spesial Honda Jabodetabek 2026. Miliki Honda Brio, HR-V, WR-V, BR-V, CR-V dengan DP minim, angsuran ringan, serta diskon puluhan juta rupiah. Hubungi Rere!">
-    <meta name="keywords" content="promo honda 2026, promo mobil honda jabodetabek, sales honda bintaro, diskon honda bintaro, cicilan honda murah">
+    <!-- Dynamic SEO Metadata -->
+    <title id="meta-title">Promo Mobil Honda Jabodetabek 2026 - DP Minim & Angsuran Murah</title>
+    <meta name="description" id="meta-desc" content="Promo spesial Honda Jabodetabek 2026. Miliki Honda Brio, HR-V, WR-V, BR-V, CR-V dengan DP minim, angsuran ringan, serta diskon puluhan juta rupiah. Hubungi Rere!">
+    <meta name="keywords" id="meta-keywords" content="promo honda 2026, promo mobil honda jabodetabek, sales honda bintaro, diskon honda bintaro, cicilan honda murah">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Promo Mobil Honda Jabodetabek 2026 - DP Minim & Angsuran Murah">
-    <meta property="og:description" content="Promo spesial Honda Jabodetabek 2026. Miliki Honda Brio, HR-V, WR-V, BR-V, CR-V dengan DP minim, angsuran ringan, serta diskon puluhan juta rupiah. Hubungi Rere!">
-    <meta property="og:image" content="../assets/images/logo.png">
+    <meta property="og:title" id="og-title" content="Promo Mobil Honda Jabodetabek 2026 - DP Minim & Angsuran Murah">
+    <meta property="og:description" id="og-desc" content="Promo spesial Honda Jabodetabek 2026. Miliki Honda Brio, HR-V, WR-V, BR-V, CR-V dengan DP minim, angsuran ringan, serta diskon puluhan juta rupiah. Hubungi Rere!">
+    <meta property="og:image" id="og-image" content="../assets/images/logo.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Promo Mobil Honda Jabodetabek 2026 - DP Minim & Angsuran Murah">
-    <meta name="twitter:description" content="Promo spesial Honda Jabodetabek 2026. Miliki Honda Brio, HR-V, WR-V, BR-V, CR-V dengan DP minim, angsuran ringan, serta diskon puluhan juta rupiah. Hubungi Rere!">
-    <meta name="twitter:image" content="../assets/images/logo.png">
+    <meta name="twitter:title" id="twitter-title" content="Promo Mobil Honda Jabodetabek 2026 - DP Minim & Angsuran Murah">
+    <meta name="twitter:description" id="twitter-desc" content="Promo spesial Honda Jabodetabek 2026. Miliki Honda Brio, HR-V, WR-V, BR-V, CR-V dengan DP minim, angsuran ringan, serta diskon puluhan juta rupiah. Hubungi Rere!">
+    <meta name="twitter:image" id="twitter-image" content="../assets/images/logo.png">
 
     <!-- Favicon -->
-    <link rel="icon" href="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" type="image/x-icon">
+    <link rel="icon" id="dynamic-favicon" href="https://asset.honda-indonesia.com/2023/07/26/favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Fonts -->
@@ -370,31 +370,55 @@
             const dynamicCards = document.getElementById('dynamic-promo-cards');
 
             Promise.all([
-                fetch('../data/products.json').then(res => res.json()),
-                fetch('../data/site_config.json').then(res => res.json())
-            ]).then(([products, config]) => {
+                fetch('../data/products.json').then(res => res.json()).catch(() => ({})),
+                fetch('../data/site_config.json').then(res => res.json()).catch(() => ({})),
+                fetch('../data/pages.json').then(res => res.json()).catch(() => ({}))
+            ]).then(([products, config, pagesData]) => {
                 const contact = config.contact || {};
                 const salesName = contact.salesName || "Rere";
                 const phone = contact.phoneNumber || "6282299185425";
+
+                // Dynamic SEO from pages.json
+                const promoPageSeo = pagesData?.promo?.seo || {};
+                const currentYear = new Date().getFullYear().toString();
+                const formatYear = (s) => s ? s.replace(/{year}/g, currentYear) : '';
+
+                const pageTitle = formatYear(promoPageSeo.title) || `Promo Mobil Honda Jabodetabek ${currentYear} - DP Minim & Angsuran Murah`;
+                const pageDesc = formatYear(promoPageSeo.description) || `Promo spesial Honda Jabodetabek ${currentYear}. Miliki Honda Brio, HR-V, WR-V, BR-V, CR-V dengan DP minim, angsuran ringan, serta diskon puluhan juta rupiah.`;
+                const ogImage = promoPageSeo.image || '../assets/images/logo.png';
+
+                document.title = pageTitle;
+                document.getElementById('meta-desc')?.setAttribute('content', pageDesc);
+                document.getElementById('meta-keywords')?.setAttribute('content', formatYear(promoPageSeo.keywords) || 'promo honda');
+                document.getElementById('og-title')?.setAttribute('content', pageTitle);
+                document.getElementById('og-desc')?.setAttribute('content', pageDesc);
+                document.getElementById('og-image')?.setAttribute('content', ogImage);
+                document.getElementById('twitter-title')?.setAttribute('content', pageTitle);
+                document.getElementById('twitter-desc')?.setAttribute('content', pageDesc);
+                document.getElementById('twitter-image')?.setAttribute('content', ogImage);
                 
-                // Dynamic Hero Content for Promo Page
-                const promoPage = config.promoPage || {};
-                if (promoPage.badge) {
+                // Dynamic Hero Content for Promo Page (supports pages.json and site_config.json fallback)
+                const promoPage = pagesData?.promo || config.promoPage || {};
+                const promoBadge = promoPage.promoBadge || promoPage.badge;
+                const promoTitle = promoPage.promoTitle || promoPage.title;
+                const promoDesc = promoPage.promoDescription || promoPage.description;
+
+                if (promoBadge) {
                     const badgeEl = document.querySelector('.tracking-wide.uppercase');
                     if (badgeEl) {
-                        badgeEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-50 animate-ping text-red-50"></span> ${promoPage.badge.replace(/{year}/g, new Date().getFullYear())}`;
+                        badgeEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-50 animate-ping text-red-50"></span> ${promoBadge.replace(/{year}/g, new Date().getFullYear())}`;
                     }
                 }
-                if (promoPage.title) {
+                if (promoTitle) {
                     const titleEl = document.querySelector('h1.font-extrabold');
                     if (titleEl) {
-                        titleEl.innerHTML = promoPage.title;
+                        titleEl.innerHTML = promoTitle;
                     }
                 }
-                if (promoPage.description) {
+                if (promoDesc) {
                     const descEl = document.querySelector('p.text-gray-300');
                     if (descEl) {
-                        descEl.innerHTML = promoPage.description;
+                        descEl.innerHTML = promoDesc;
                     }
                 }
                 

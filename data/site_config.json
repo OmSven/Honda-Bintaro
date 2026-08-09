@@ -19,6 +19,8 @@
   },
   "site": {
     "favicon": "https://asset.honda-indonesia.com/2023/07/26/favicon.ico",
+    "enablePreloader": true,
+    "preloaderImage": "https://www.honda-bintaro.com/wp-content/uploads/2025/01/honda_loading.gif",
     "promoFeaturedModels": [
       "brio",
       "hr-v",

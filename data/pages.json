@@ -3,7 +3,7 @@
     "title": "Pricelist Mobil Honda",
     "slug": "pricelist",
     "subtitle": "Daftar harga OTR mobil Honda terbaru resmi untuk wilayah Jabodetabek & sekitarnya",
-    "updatedAt": "2026-08-08",
+    "updatedAt": "2026-08-09",
     "isSystemPage": true,
     "routeUrl": "../pricelist/",
     "seo": {
@@ -17,13 +17,47 @@
     "title": "e-Brochure Mobil Honda",
     "slug": "brochure",
     "subtitle": "Silakan lihat langsung spesifikasi lengkap secara online atau unduh brosur resmi mobil Honda pilihan Anda.",
-    "updatedAt": "2026-08-08",
+    "updatedAt": "2026-08-09",
     "isSystemPage": true,
     "routeUrl": "../brochure/",
     "seo": {
       "title": "Unduh Brosur Resmi Mobil Honda Terbaru {year} | e-Brochure Honda Bintaro",
       "description": "Cek spesifikasi lengkap dan fitur unggulan mobil Honda pilihan Anda. Unduh e-Brochure resmi Honda Brio, HR-V, WR-V, BR-V, CR-V, Civic, Accord langsung.",
       "keywords": "brosur honda, e-brochure honda, spesifikasi honda brio, download brosur honda",
+      "image": "../assets/images/logo.png"
+    }
+  },
+  "promo": {
+    "title": "Promo Spesial Mobil Honda",
+    "slug": "promo",
+    "subtitle": "Dapatkan penawaran paket DP minim, cicilan bunga rendah, dan bonus aksesoris resmi",
+    "updatedAt": "2026-08-09",
+    "isSystemPage": true,
+    "routeUrl": "../promo/",
+    "promoBadge": "Promo Eksklusif Honda Jabodetabek {year}",
+    "promoTitle": "Miliki Mobil Honda Impian Anda <br class=\"hidden sm:inline\"><span class=\"text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-400\">DP Termurah & Bunga 0%</span>",
+    "promoDescription": "Dapatkan diskon OTR besar-besaran, gratis biaya service berkala s.d. 4 tahun, dan pengajuan kredit dibantu sampai 100% disetujui. Hubungi Sales Counter Resmi sekarang juga!",
+    "seo": {
+      "title": "Promo Mobil Honda Jabodetabek {year} - DP Minim & Angsuran Murah",
+      "description": "Promo spesial Honda Jabodetabek {year}. Miliki Honda Brio, HR-V, WR-V, BR-V, CR-V dengan DP minim, angsuran ringan, serta diskon puluhan juta rupiah.",
+      "keywords": "promo honda {year}, promo mobil honda jabodetabek, sales honda bintaro, diskon honda bintaro, cicilan honda murah",
+      "image": "../assets/images/logo.png"
+    }
+  },
+  "thank-you": {
+    "title": "Pengiriman Berhasil!",
+    "slug": "thank-you",
+    "subtitle": "Terima kasih atas minat Anda pada promo kami.",
+    "updatedAt": "2026-08-09",
+    "isSystemPage": true,
+    "routeUrl": "../thank-you/",
+    "description": "Sistem kami sedang membuka aplikasi WhatsApp Anda di tab baru. Sales Counter kami, {salesName}, akan segera merespons Anda dalam waktu 10-15 menit untuk memberikan hitungan kredit / promo yang Anda ajukan.",
+    "buttonText": "Hubungi WA Sekarang (Alternatif)",
+    "backButtonText": "Kembali ke Beranda",
+    "seo": {
+      "title": "Terima Kasih - Data Pengisian Promo Diterima | Honda Bintaro",
+      "description": "Terima kasih telah berkonsultasi mengenai promo mobil Honda. Sales Counter kami akan segera menghubungi Anda.",
+      "keywords": "thank you honda bintaro, konsultasi honda bintaro",
       "image": "../assets/images/logo.png"
     }
   },
