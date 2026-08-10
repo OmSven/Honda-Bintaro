@@ -17,7 +17,32 @@
       }
     ],
     "category": "MPV",
-    "new": true
+    "new": true,
+    "transmission": "e-CVT (Electric Continuous Variable Transmission)",
+    "dimensions": "4.830 mm x 1.750 mm x 1.845 mm",
+    "features": "Honda SENSING™, 2nd Row Captain Seat with Ottoman, 3rd Row Magic Seat, Plasmacluster Tri-Zone A/C, 11.4\" Display Audio.",
+    "specifications": [
+      {
+        "label": "Kapasitas Tempat Duduk",
+        "value": "7-Seater"
+      },
+      {
+        "label": "Tipe Mesin",
+        "value": "2.0L DOHC i-VTEC Atkinson Cycle"
+      },
+      {
+        "label": "Transmisi",
+        "value": "e-CVT (Electric Continuous Variable Transmission)"
+      },
+      {
+        "label": "Dimensi P x L x T",
+        "value": "4.830 mm x 1.750 mm x 1.845 mm"
+      },
+      {
+        "label": "Fitur Utama & Keamanan",
+        "value": "Honda SENSING™, 2nd Row Captain Seat with Ottoman, 3rd Row Magic Seat, Plasmacluster Tri-Zone A/C, 11.4\" Display Audio."
+      }
+    ]
   },
   "accord": {
     "name": "All New Honda Accord",
@@ -37,7 +62,32 @@
       }
     ],
     "category": "Sedan",
-    "new": false
+    "new": false,
+    "transmission": "E-CVT (Electrically Controlled CVT)",
+    "dimensions": "4.962 mm x 1.862 mm x 1.449 mm",
+    "features": "Honda SENSING™, Honda CONNECT with Digital Key, BOSE 12-Speaker Premium Sound, Google Built-in, Head-Up Display.",
+    "specifications": [
+      {
+        "label": "Kapasitas Tempat Duduk",
+        "value": "5-Seater"
+      },
+      {
+        "label": "Tipe Mesin",
+        "value": "2.0L DOHC i-VTEC Engine + E-CVT"
+      },
+      {
+        "label": "Transmisi",
+        "value": "E-CVT (Electrically Controlled CVT)"
+      },
+      {
+        "label": "Dimensi P x L x T",
+        "value": "4.962 mm x 1.862 mm x 1.449 mm"
+      },
+      {
+        "label": "Fitur Utama & Keamanan",
+        "value": "Honda SENSING™, Honda CONNECT with Digital Key, BOSE 12-Speaker Premium Sound, Google Built-in, Head-Up Display."
+      }
+    ]
   },
   "civic-rs": {
     "name": "New Honda Civic RS",
@@ -57,7 +107,32 @@
       }
     ],
     "category": "Sedan",
-    "new": false
+    "new": false,
+    "transmission": "CVT dengan Drive Mode (ECON, Normal, Sport)",
+    "dimensions": "4.678 mm x 1.802 mm x 1.415 mm",
+    "features": "Honda SENSING™, Honda Smart Key Card, 9\" Advanced Capacitive Touchscreen, Full LED Headlight, Sport Pedal.",
+    "specifications": [
+      {
+        "label": "Kapasitas Tempat Duduk",
+        "value": "5-Seater"
+      },
+      {
+        "label": "Tipe Mesin",
+        "value": "2.0L DOHC i-VTEC Engine + DBW"
+      },
+      {
+        "label": "Transmisi",
+        "value": "CVT dengan Drive Mode (ECON, Normal, Sport)"
+      },
+      {
+        "label": "Dimensi P x L x T",
+        "value": "4.678 mm x 1.802 mm x 1.415 mm"
+      },
+      {
+        "label": "Fitur Utama & Keamanan",
+        "value": "Honda SENSING™, Honda Smart Key Card, 9\" Advanced Capacitive Touchscreen, Full LED Headlight, Sport Pedal."
+      }
+    ]
   },
   "city-hatchback-rs": {
     "name": "Honda City Hatchback RS",
@@ -77,7 +152,32 @@
       }
     ],
     "category": "City Car & Hatchback",
-    "new": false
+    "new": false,
+    "transmission": "CVT / Manual 6-Kecepatan",
+    "dimensions": "4.349 mm x 1.748 mm x 1.488 mm",
+    "features": "Honda SENSING™, ULTRA Seat (Utility, Long, Tall, Refresh Mode), Remote Engine Start, 8\" Display Audio.",
+    "specifications": [
+      {
+        "label": "Kapasitas Tempat Duduk",
+        "value": "5-Seater"
+      },
+      {
+        "label": "Tipe Mesin",
+        "value": "1.5L DOHC i-VTEC Engine"
+      },
+      {
+        "label": "Transmisi",
+        "value": "CVT / Manual 6-Kecepatan"
+      },
+      {
+        "label": "Dimensi P x L x T",
+        "value": "4.349 mm x 1.748 mm x 1.488 mm"
+      },
+      {
+        "label": "Fitur Utama & Keamanan",
+        "value": "Honda SENSING™, ULTRA Seat (Utility, Long, Tall, Refresh Mode), Remote Engine Start, 8\" Display Audio."
+      }
+    ]
   },
   "cr-v": {
     "name": "New Honda CR-V",
@@ -98,7 +198,32 @@
       }
     ],
     "category": "SUV",
-    "new": true
+    "new": true,
+    "transmission": "E-CVT (e:HEV) / CVT (1.5L Turbo)",
+    "dimensions": "4.691 mm x 1.866 mm x 1.681 mm",
+    "features": "Honda SENSING™, Panoramic Sunroof, Hands-Free Access Power Tailgate with Walk Away Close, Honda CONNECT.",
+    "specifications": [
+      {
+        "label": "Kapasitas Tempat Duduk",
+        "value": "7-Seater"
+      },
+      {
+        "label": "Tipe Mesin",
+        "value": "1.5L DOHC i-VTEC Engine"
+      },
+      {
+        "label": "Transmisi",
+        "value": "E-CVT (e:HEV) / CVT (1.5L Turbo)"
+      },
+      {
+        "label": "Dimensi P x L x T",
+        "value": "4.691 mm x 1.866 mm x 1.681 mm"
+      },
+      {
+        "label": "Fitur Utama & Keamanan",
+        "value": "Honda SENSING™, Panoramic Sunroof, Hands-Free Access Power Tailgate with Walk Away Close, Honda CONNECT."
+      }
+    ]
   },
   "wr-v": {
     "name": "Honda WR-V",
@@ -121,7 +246,32 @@
       }
     ],
     "category": "SUV",
-    "new": true
+    "new": true,
+    "transmission": "CVT / Manual 6-Kecepatan",
+    "dimensions": "4.060 mm x 1.780 mm x 1.608 mm",
+    "features": "Honda SENSING™, Remote Engine Start, Walk-Away Auto Lock, High Ground Clearance 220mm, Hill Start Assist.",
+    "specifications": [
+      {
+        "label": "Kapasitas Tempat Duduk",
+        "value": "5-Seater"
+      },
+      {
+        "label": "Tipe Mesin",
+        "value": "1.5L DOHC i-VTEC Engine"
+      },
+      {
+        "label": "Transmisi",
+        "value": "CVT / Manual 6-Kecepatan"
+      },
+      {
+        "label": "Dimensi P x L x T",
+        "value": "4.060 mm x 1.780 mm x 1.608 mm"
+      },
+      {
+        "label": "Fitur Utama & Keamanan",
+        "value": "Honda SENSING™, Remote Engine Start, Walk-Away Auto Lock, High Ground Clearance 220mm, Hill Start Assist."
+      }
+    ]
   },
   "hr-v": {
     "name": "Honda HR-V",
@@ -145,7 +295,32 @@
       }
     ],
     "category": "SUV",
-    "new": true
+    "new": true,
+    "transmission": "e-CVT (Hybrid) / CVT (VTEC Turbo)",
+    "dimensions": "4.385 mm x 1.790 mm x 1.590 mm",
+    "features": "Honda SENSING™, Hands-Free Power Tailgate with Walk Away Close, Panoramic Glass Roof, Electrostatic Touch LED Map Light.",
+    "specifications": [
+      {
+        "label": "Kapasitas Tempat Duduk",
+        "value": "5-Seater"
+      },
+      {
+        "label": "Tipe Mesin",
+        "value": "1.5L DOHC i-VTEC Engine + DBW"
+      },
+      {
+        "label": "Transmisi",
+        "value": "e-CVT (Hybrid) / CVT (VTEC Turbo)"
+      },
+      {
+        "label": "Dimensi P x L x T",
+        "value": "4.385 mm x 1.790 mm x 1.590 mm"
+      },
+      {
+        "label": "Fitur Utama & Keamanan",
+        "value": "Honda SENSING™, Hands-Free Power Tailgate with Walk Away Close, Panoramic Glass Roof, Electrostatic Touch LED Map Light."
+      }
+    ]
   },
   "br-v": {
     "name": "Honda BR-V N7X",
@@ -167,7 +342,32 @@
       }
     ],
     "category": "SUV",
-    "new": true
+    "new": true,
+    "transmission": "CVT / Manual 6-Kecepatan",
+    "dimensions": "4.490 mm x 1.780 mm x 1.685 mm",
+    "features": "Honda SENSING™, Remote Engine Start, Honda LaneWatch™, Walk-Away Auto Lock, Ground Clearance 220mm.",
+    "specifications": [
+      {
+        "label": "Kapasitas Tempat Duduk",
+        "value": "7-Seater"
+      },
+      {
+        "label": "Tipe Mesin",
+        "value": "1.5L DOHC i-VTEC Engine"
+      },
+      {
+        "label": "Transmisi",
+        "value": "CVT / Manual 6-Kecepatan"
+      },
+      {
+        "label": "Dimensi P x L x T",
+        "value": "4.490 mm x 1.780 mm x 1.685 mm"
+      },
+      {
+        "label": "Fitur Utama & Keamanan",
+        "value": "Honda SENSING™, Remote Engine Start, Honda LaneWatch™, Walk-Away Auto Lock, Ground Clearance 220mm."
+      }
+    ]
   },
   "brio": {
     "name": "Honda Brio",
@@ -184,7 +384,7 @@
     "engine": "1.2L DOHC i-VTEC Engine",
     "transmission": "Manual 5-Kecepatan / CVT",
     "dimensions": "3.815 mm x 1.680 mm x 1.485 mm",
-    "features": "Full LED Headlamp with LED DRL, One Push Ignition System, 7\" Touchscreen Display Audio, Dual Front SRS Airbags.",
+    "features": "Full LED Headlamp with DRL, One Push Ignition System, 7\" Touchscreen Display Audio, Dual SRS Airbags.",
     "description": "<p>&nbsp;</p><p><b>BIGGEST DIMENSION</b></p><p>&nbsp;</p><p>Dengan kabin dan bagasi terluas di kelasnya, jadikan perjalananmu semakin nyaman.</p><p><br /><b>FUEL EFFICIENT</b></p><p>Konsumsi bahan bakar yang efisien didukung mesin.</p><p><br /><b>SOPHISTICATED FEATURE</b></p><p>Kini dilengkapi Full LED Headlamp with LED DRL untuk tampilan lebih sporty dan One Push Ignition System untuk kemudahan berkendara.</p><p><br /><small><b>Informasi:</b>&nbsp;Pembelian unit Honda di Honda Bintaro sangatlah aman, karena pembayaran menggunakan virtual account dengan nomor unik disetiap customer. Pastikan nama virtual account yang muncul adalah atas nama Honda Bintaro.</small></p>",
     "images": [
       {
@@ -193,7 +393,29 @@
       }
     ],
     "category": "City Car & Hatchback",
-    "new": false
+    "new": false,
+    "specifications": [
+      {
+        "label": "Kapasitas Tempat Duduk",
+        "value": "5-Seater"
+      },
+      {
+        "label": "Tipe Mesin",
+        "value": "1.2L DOHC i-VTEC Engine"
+      },
+      {
+        "label": "Transmisi",
+        "value": "Manual 5-Kecepatan / CVT"
+      },
+      {
+        "label": "Dimensi P x L x T",
+        "value": "3.815 mm x 1.680 mm x 1.485 mm"
+      },
+      {
+        "label": "Fitur Utama & Keamanan",
+        "value": "Full LED Headlamp with DRL, One Push Ignition System, 7\" Touchscreen Display Audio, Dual SRS Airbags."
+      }
+    ]
   },
   "superone": {
     "name": "Honda Super-ONE",
@@ -213,7 +435,32 @@
       }
     ],
     "category": "City Car & Hatchback",
-    "new": false
+    "new": false,
+    "transmission": "Single-Speed Automatic (EV Transaxle)",
+    "dimensions": "4.390 mm x 1.790 mm x 1.560 mm",
+    "features": "Honda SENSING™, 15.1\" Portrait Display Audio, 10.25\" Digital Meter Cluster, 68.8 kWh Lithium-ion Battery (Range 500 km).",
+    "specifications": [
+      {
+        "label": "Kapasitas Tempat Duduk",
+        "value": "5-Seater"
+      },
+      {
+        "label": "Tipe Mesin",
+        "value": "AC Synchronous Motor"
+      },
+      {
+        "label": "Transmisi",
+        "value": "Single-Speed Automatic (EV Transaxle)"
+      },
+      {
+        "label": "Dimensi P x L x T",
+        "value": "4.390 mm x 1.790 mm x 1.560 mm"
+      },
+      {
+        "label": "Fitur Utama & Keamanan",
+        "value": "Honda SENSING™, 15.1\" Portrait Display Audio, 10.25\" Digital Meter Cluster, 68.8 kWh Lithium-ion Battery (Range 500 km)."
+      }
+    ]
   },
   "en1": {
     "name": "Honda EN-1",
@@ -233,6 +480,31 @@
       }
     ],
     "category": "SUV",
-    "new": false
+    "new": false,
+    "transmission": "Single-Speed Automatic (EV Transaxle)",
+    "dimensions": "4.390 mm x 1.790 mm x 1.560 mm",
+    "features": "Honda SENSING™, 15.1\" Portrait Display Audio, 10.25\" Digital Meter Cluster, 68.8 kWh Lithium-ion Battery (Range 500 km).",
+    "specifications": [
+      {
+        "label": "Kapasitas Tempat Duduk",
+        "value": "5-Seater"
+      },
+      {
+        "label": "Tipe Mesin",
+        "value": "AC Synchronous Motor"
+      },
+      {
+        "label": "Transmisi",
+        "value": "Single-Speed Automatic (EV Transaxle)"
+      },
+      {
+        "label": "Dimensi P x L x T",
+        "value": "4.390 mm x 1.790 mm x 1.560 mm"
+      },
+      {
+        "label": "Fitur Utama & Keamanan",
+        "value": "Honda SENSING™, 15.1\" Portrait Display Audio, 10.25\" Digital Meter Cluster, 68.8 kWh Lithium-ion Battery (Range 500 km)."
+      }
+    ]
   }
 }

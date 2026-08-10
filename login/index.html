@@ -456,11 +456,35 @@
         .light-theme #changelog-content hr {
             background: linear-gradient(to right, rgba(0,0,0,0.08), rgba(0,0,0,0.02));
         }
+
+        /* High contrast text overrides for Dark Mode without affecting Light Mode */
+        body:not(.light-theme) .brochure-item-name,
+        body:not(.light-theme) .nav-item-label,
+        body:not(.light-theme) .text-slate-900,
+        body:not(.light-theme) .text-slate-800,
+        body:not(.light-theme) .text-gray-900,
+        body:not(.light-theme) .text-gray-800 {
+            color: #f1f5f9;
+        }
+        body:not(.light-theme) .serp-sitename,
+        body:not(.light-theme) .bg-white *,
+        body:not(.light-theme) .glass-panel.bg-white * {
+            color: initial;
+        }
     </style>
 </head>
 <body class="relative overflow-x-hidden">
+    <!-- TOAST NOTIFICATION CONTAINER (GLOBAL Z-50) -->
+    <div id="toast-container" class="fixed bottom-5 left-5 z-[99999] flex flex-col gap-2 pointer-events-auto"></div>
+
+    <script>
+        (function() {
+            var auth = sessionStorage.getItem('admin_authenticated') === 'true';
+            document.write('<style id="auth-guard-style">#admin-dashboard-container{display:' + (auth ? 'flex' : 'none') + ' !important;}#login-gate{display:' + (auth ? 'none' : 'flex') + ' !important;}</style>');
+        })();
+    </script>
     <!-- Login Gate (Security) -->
-    <div id="login-gate" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0b0f19] px-4 hidden">
+    <div id="login-gate" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0b0f19] px-4">
         <!-- Floating Blobs -->
         <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-red-900/10 blur-[150px] pointer-events-none"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-slate-900/40 blur-[150px] pointer-events-none"></div>
@@ -497,15 +521,12 @@
     </div>
 
     <!-- Admin Dashboard Container -->
-    <div id="admin-dashboard-container" class="hidden flex flex-col min-h-screen">
+    <div id="admin-dashboard-container" class="flex flex-col min-h-screen">
         <!-- Main content container wrapper to push footer to bottom -->
         <div class="main-content-wrapper">
         <!-- Floating Gradient Blobs -->
         <div class="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-red-900/10 blur-[120px] pointer-events-none"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-slate-900/40 blur-[120px] pointer-events-none"></div>
-
-        <!-- TOAST NOTIFICATION CONTAINER -->
-        <div id="toast-container" class="fixed bottom-5 left-5 z-50 flex flex-col gap-2"></div>
 
         <!-- MAIN HEADER -->
         <header class="glass-panel sticky top-0 z-40 px-6 py-4 flex items-center justify-between shadow-lg">
@@ -1570,51 +1591,62 @@
                                                 <i class="fa-solid fa-trash-can"></i> Hapus Model Ini
                                             </button>
                                         </div>
-
                                         <input type="hidden" id="edit-prod-id">
 
-                                        <!-- Main Grid Input fields -->
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Nama Mobil (Contoh: Honda WR-V)</label>
-                                                <input type="text" id="edit-prod-name" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        <!-- Section 1: Informasi Utama & Harga Mobil -->
+                                        <div class="space-y-2 pt-1">
+                                            <h4 class="text-xs font-bold uppercase tracking-wider text-red-500 flex items-center gap-1.5">
+                                                <i class="fa-solid fa-car text-xs"></i> Informasi Utama & Harga Mobil
+                                            </h4>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-950/40 p-4 rounded-xl border border-slate-800/80">
+                                                <div class="space-y-1">
+                                                    <label class="text-xs text-gray-400 font-semibold">Nama Mobil (Contoh: Honda WR-V)</label>
+                                                    <input type="text" id="edit-prod-name" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                                </div>
+                                                <div class="space-y-1">
+                                                    <label class="text-xs text-gray-400 font-semibold">Harga Terendah Base (Angka Murni: 290100000)</label>
+                                                    <input type="number" id="edit-prod-price" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                                </div>
+                                                <div class="space-y-1">
+                                                    <label class="text-xs text-gray-400 font-semibold">Uang Muka Display (DP)</label>
+                                                    <input type="text" id="edit-prod-dp" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                                </div>
+                                                <div class="space-y-1">
+                                                    <label class="text-xs text-gray-400 font-semibold">Cicilan Display (Angsuran)</label>
+                                                    <input type="text" id="edit-prod-angsuran" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                                </div>
+                                                <div class="space-y-1">
+                                                    <label class="text-xs text-gray-400 font-semibold">Kategori Mobil</label>
+                                                    <select id="edit-prod-category" class="glass-input w-full px-3 py-2 rounded-lg text-sm bg-slate-950">
+                                                        <option value="City Car & Hatchback">City Car & Hatchback</option>
+                                                        <option value="SUV">SUV</option>
+                                                        <option value="MPV">MPV</option>
+                                                        <option value="Sedan">Sedan</option>
+                                                    </select>
+                                                </div>
+                                                <div class="space-y-1">
+                                                    <label class="text-xs text-gray-400 font-semibold">Tampilkan Badge Baru (Badge Status)</label>
+                                                    <select id="edit-prod-new-select" class="glass-input w-full px-3 py-2 rounded-lg text-sm bg-slate-950 text-white">
+                                                        <option value="">Tidak Ada</option>
+                                                        <option value="New">New (Oranye)</option>
+                                                        <option value="All New">All New (Merah)</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Harga Terendah Base (Angka Murni: 290100000)</label>
-                                                <input type="number" id="edit-prod-price" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
+                                        </div>
+
+                                        <!-- Section 2: Spesifikasi Lengkap Mobil (Dinamis) -->
+                                        <div class="space-y-3 pt-2">
+                                            <div class="flex items-center justify-between">
+                                                <h4 class="text-xs font-bold uppercase tracking-wider text-red-500 flex items-center gap-1.5">
+                                                    <i class="fa-solid fa-sliders text-xs"></i> Spesifikasi Lengkap Mobil (Dinamis)
+                                                </h4>
+                                                <button type="button" onclick="addProductSpecRow()" class="px-2.5 py-1 text-xs font-bold text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 rounded-lg transition flex items-center gap-1">
+                                                    <i class="fa-solid fa-plus text-xs"></i> Tambah Baris Spesifikasi
+                                                </button>
                                             </div>
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Uang Muka Display (DP)</label>
-                                                <input type="text" id="edit-prod-dp" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Cicilan Display (Angsuran)</label>
-                                                <input type="text" id="edit-prod-angsuran" class="glass-input w-full px-3 py-2 rounded-lg text-sm">
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Kapasitas Tempat Duduk (Seats)</label>
-                                                <input type="text" id="edit-prod-seats" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="5-Seater">
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Tipe Mesin (Engine)</label>
-                                                <input type="text" id="edit-prod-engine" class="glass-input w-full px-3 py-2 rounded-lg text-sm" placeholder="1.5L DOHC i-VTEC Engine">
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-xs text-gray-400 font-semibold">Kategori Mobil</label>
-                                                <select id="edit-prod-category" class="glass-input w-full px-3 py-2 rounded-lg text-sm bg-slate-950">
-                                                    <option value="City Car & Hatchback">City Car & Hatchback</option>
-                                                    <option value="SUV">SUV</option>
-                                                    <option value="MPV">MPV</option>
-                                                    <option value="Sedan">Sedan</option>
-                                                </select>
-                                            </div>
-                                            <div class="space-y-1 mt-4">
-                                                <label class="text-xs text-gray-400 font-semibold">Tampilkan Badge Baru (Badge Status)</label>
-                                                <select id="edit-prod-new-select" class="glass-input w-full px-3 py-2 rounded-lg text-sm bg-slate-950 text-white">
-                                                    <option value="">Tidak Ada</option>
-                                                    <option value="New">New (Oranye)</option>
-                                                    <option value="All New">All New (Merah)</option>
-                                                </select>
+                                            <div id="edit-prod-specs-container" class="space-y-2 bg-slate-950/40 p-4 rounded-xl border border-slate-800/80">
+                                                <!-- Loaded dynamically via JS -->
                                             </div>
                                         </div>
 
@@ -2772,7 +2804,13 @@
                 gate.classList.add('opacity-0', 'transition-all', 'duration-500');
                 setTimeout(() => {
                     gate.remove();
-                    document.getElementById('admin-dashboard-container').classList.remove('hidden');
+                    const guardStyle = document.getElementById('auth-guard-style');
+                    if (guardStyle) guardStyle.remove();
+                    const dashContainer = document.getElementById('admin-dashboard-container');
+                    if (dashContainer) {
+                        dashContainer.style.display = 'flex';
+                        dashContainer.classList.remove('hidden');
+                    }
                 }, 500);
                 
                 showToast('Akses Diberikan! Selamat Datang di Dashboard.');
@@ -2905,11 +2943,22 @@
             const dashboardContainer = document.getElementById('admin-dashboard-container');
 
             if (isAuthenticated) {
+                const guardStyle = document.getElementById('auth-guard-style');
+                if (guardStyle) guardStyle.remove();
                 if (loginGate) loginGate.remove();
-                if (dashboardContainer) dashboardContainer.classList.remove('hidden');
+                if (dashboardContainer) {
+                    dashboardContainer.style.display = 'flex';
+                    dashboardContainer.classList.remove('hidden');
+                }
             } else {
-                if (dashboardContainer) dashboardContainer.classList.add('hidden');
-                if (loginGate) loginGate.classList.remove('hidden');
+                if (dashboardContainer) {
+                    dashboardContainer.style.display = 'none';
+                    dashboardContainer.classList.add('hidden');
+                }
+                if (loginGate) {
+                    loginGate.style.display = 'flex';
+                    loginGate.classList.remove('hidden');
+                }
             }
 
             // Load initial site config and security DB before connection
@@ -4303,6 +4352,46 @@
         // VISUAL NAVIGATION MENU BUILDER JS HANDLERS
         // ==========================================
         let navEditorMode = 'visual';
+        let navDraggedIndex = null;
+
+        function handleNavDragStart(e, idx) {
+            navDraggedIndex = idx;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', idx);
+            e.currentTarget.classList.add('opacity-40', 'border-red-500');
+        }
+
+        function handleNavDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+        }
+
+        function handleNavDragEnter(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('border-red-500', 'bg-slate-900/80');
+        }
+
+        function handleNavDragLeave(e) {
+            e.currentTarget.classList.remove('border-red-500', 'bg-slate-900/80');
+        }
+
+        function handleNavDrop(e, targetIdx) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('border-red-500', 'bg-slate-900/80');
+            if (navDraggedIndex === null || navDraggedIndex === targetIdx) return;
+            const list = appData.siteConfig?.navigation;
+            if (!list) return;
+            const [movedItem] = list.splice(navDraggedIndex, 1);
+            list.splice(targetIdx, 0, movedItem);
+            navDraggedIndex = null;
+            renderVisualNavList();
+            showToast('Urutan menu navigasi berhasil diperbarui!', 'info');
+        }
+
+        function handleNavDragEnd(e) {
+            e.currentTarget.classList.remove('opacity-40', 'border-red-500');
+            navDraggedIndex = null;
+        }
 
         function renderVisualNavList() {
             const listContainer = document.getElementById('nav-visual-list');
@@ -4329,8 +4418,18 @@
                 let linkDisplay = item.link || (item.type === 'dropdown' ? '(Daftar Submenu)' : '');
 
                 const rowHtml = `
-                    <div class="nav-item-card bg-slate-950/60 p-3 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-700 transition">
+                    <div class="nav-item-card bg-slate-950/60 p-3 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-700 transition cursor-move select-none"
+                         draggable="true"
+                         ondragstart="handleNavDragStart(event, ${idx})"
+                         ondragover="handleNavDragOver(event)"
+                         ondragenter="handleNavDragEnter(event)"
+                         ondragleave="handleNavDragLeave(event)"
+                         ondrop="handleNavDrop(event, ${idx})"
+                         ondragend="handleNavDragEnd(event)">
                         <div class="flex items-center gap-3 min-w-0">
+                            <span class="text-gray-500 hover:text-white cursor-grab active:cursor-grabbing px-1 text-sm shrink-0" title="Tahan & geser untuk mengubah posisi">
+                                <i class="fa-solid fa-grip-vertical"></i>
+                            </span>
                             <span class="w-6 h-6 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-xs font-mono font-bold text-gray-400 shrink-0">${idx + 1}</span>
                             <div class="min-w-0">
                                 <div class="flex items-center gap-2 flex-wrap">
@@ -4915,11 +5014,25 @@
             document.getElementById('edit-prod-price').value = p.price || 0;
             document.getElementById('edit-prod-dp').value = p.dp || '';
             document.getElementById('edit-prod-angsuran').value = p.angsuran || '';
-            document.getElementById('edit-prod-seats').value = p.seats || '';
-            document.getElementById('edit-prod-engine').value = p.engine || '';
             document.getElementById('edit-prod-category').value = p.category || 'SUV';
             const badgeVal = p.new === true ? 'New' : (p.new || '');
             document.getElementById('edit-prod-new-select').value = badgeVal;
+
+            // Populate Dynamic Specifications List
+            const specsContainer = document.getElementById('edit-prod-specs-container');
+            if (specsContainer) {
+                specsContainer.innerHTML = '';
+                let specsList = p.specifications || [];
+                if (!Array.isArray(specsList) || specsList.length === 0) {
+                    specsList = [];
+                    if (p.seats) specsList.push({ label: 'Kapasitas Tempat Duduk', value: p.seats });
+                    if (p.engine) specsList.push({ label: 'Tipe Mesin', value: p.engine });
+                    if (p.transmission) specsList.push({ label: 'Transmisi', value: p.transmission });
+                    if (p.dimensions) specsList.push({ label: 'Dimensi P x L x T', value: p.dimensions });
+                    if (p.features) specsList.push({ label: 'Fitur Utama & Keamanan', value: p.features });
+                }
+                specsList.forEach(s => renderProductSpecItem(s));
+            }
 
             document.getElementById('edit-prod-variants').value = (p.variants || []).join('\n');
 
@@ -5124,8 +5237,30 @@
             document.getElementById('edit-prod-images-container').insertAdjacentHTML('beforeend', html);
         }
 
-        function addProductImageRow() {
-            renderProductImageItem({ thumb: '', full: '' }, Date.now());
+        function renderProductSpecItem(spec = { label: '', value: '' }) {
+            const container = document.getElementById('edit-prod-specs-container');
+            if (!container) return;
+            const rowId = 'spec-row-' + Math.random().toString(36).substr(2, 9);
+            const labelVal = (spec.label || '').replace(/"/g, '&quot;');
+            const valueVal = (spec.value || '').replace(/"/g, '&quot;');
+            const html = `
+                <div id="${rowId}" class="prod-spec-row p-2.5 rounded-xl border border-slate-800/80 bg-slate-900/60 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                    <div class="w-full sm:w-1/3 shrink-0">
+                        <input type="text" class="col-spec-label glass-input w-full px-3 py-1.5 rounded-lg text-xs font-semibold" placeholder="Nama Label Spesifikasi" value="${labelVal}">
+                    </div>
+                    <div class="flex-1 flex items-center gap-2">
+                        <input type="text" class="col-spec-value glass-input flex-1 px-3 py-1.5 rounded-lg text-xs" placeholder="Keterangan / Nilai Spesifikasi" value="${valueVal}">
+                        <button type="button" onclick="document.getElementById('${rowId}').remove()" class="p-2 text-red-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition text-xs shrink-0" title="Hapus Baris Ini">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        function addProductSpecRow() {
+            renderProductSpecItem({ label: '', value: '' });
         }
 
         function saveCurrentProductDetails() {
@@ -5137,11 +5272,31 @@
             p.price = parseInt(document.getElementById('edit-prod-price').value) || 0;
             p.dp = document.getElementById('edit-prod-dp').value.trim();
             p.angsuran = document.getElementById('edit-prod-angsuran').value.trim();
-            p.seats = document.getElementById('edit-prod-seats').value.trim();
-            p.engine = document.getElementById('edit-prod-engine').value.trim();
             p.category = document.getElementById('edit-prod-category').value;
             const selectedBadge = document.getElementById('edit-prod-new-select').value;
             p.new = selectedBadge || false;
+
+            // Save Dynamic Specifications
+            p.specifications = [];
+            document.querySelectorAll('#edit-prod-specs-container .prod-spec-row').forEach(row => {
+                const label = row.querySelector('.col-spec-label')?.value.trim() || '';
+                const value = row.querySelector('.col-spec-value')?.value.trim() || '';
+                if (label || value) {
+                    p.specifications.push({ label, value });
+                }
+            });
+
+            // Backwards compatibility sync for primary fields
+            const seatsSpec = p.specifications.find(s => s.label.toLowerCase().includes('kapasitas') || s.label.toLowerCase().includes('seat'));
+            if (seatsSpec) p.seats = seatsSpec.value;
+            const engineSpec = p.specifications.find(s => s.label.toLowerCase().includes('mesin') || s.label.toLowerCase().includes('engine'));
+            if (engineSpec) p.engine = engineSpec.value;
+            const transSpec = p.specifications.find(s => s.label.toLowerCase().includes('transmisi') || s.label.toLowerCase().includes('transmission'));
+            if (transSpec) p.transmission = transSpec.value;
+            const dimSpec = p.specifications.find(s => s.label.toLowerCase().includes('dimensi') || s.label.toLowerCase().includes('dimension'));
+            if (dimSpec) p.dimensions = dimSpec.value;
+            const featSpec = p.specifications.find(s => s.label.toLowerCase().includes('fitur') || s.label.toLowerCase().includes('feature'));
+            if (featSpec) p.features = featSpec.value;
             
             if (ckEditorInstance) {
                 p.description = ckEditorInstance.getData().trim();

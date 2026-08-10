@@ -228,27 +228,8 @@
                 <!-- Specifications Tab content -->
                 <div id="tab-content-spec" class="hidden space-y-4">
                     <table class="w-full text-xs sm:text-sm border-collapse">
-                        <tbody>
-                            <tr class="border-b border-gray-100">
-                                <td class="py-3 font-semibold text-gray-500 w-1/3">Kapasitas Kursi</td>
-                                <td class="py-3 text-gray-800 font-medium" id="spec-seats">-</td>
-                            </tr>
-                            <tr class="border-b border-gray-100">
-                                <td class="py-3 font-semibold text-gray-500">Mesin</td>
-                                <td class="py-3 text-gray-800 font-medium" id="spec-engine">-</td>
-                            </tr>
-                            <tr class="border-b border-gray-100">
-                                <td class="py-3 font-semibold text-gray-500">Transmisi</td>
-                                <td class="py-3 text-gray-800 font-medium" id="spec-transmission">-</td>
-                            </tr>
-                            <tr class="border-b border-gray-100">
-                                <td class="py-3 font-semibold text-gray-500">Dimensi (P x L x T)</td>
-                                <td class="py-3 text-gray-800 font-medium" id="spec-dimensions">-</td>
-                            </tr>
-                            <tr class="border-b border-gray-100">
-                                <td class="py-3 font-semibold text-gray-500">Fitur Utama & Keamanan</td>
-                                <td class="py-3 text-gray-800 font-medium" id="spec-features">-</td>
-                            </tr>
+                        <tbody id="spec-table-body">
+                            <!-- Dynamic specifications rendered via JS -->
                         </tbody>
                     </table>
                 </div>
@@ -406,12 +387,34 @@
             document.getElementById('detail-tag-engine').innerText = `# ${car.engine || 'i-VTEC'}`;
             document.getElementById('detail-tag-category').innerText = `# ${car.category || 'SUV'}`;
 
-            // 4. Set Spec Table
-            document.getElementById('spec-seats').innerText = car.seats || '-';
-            document.getElementById('spec-engine').innerText = car.engine || '-';
-            document.getElementById('spec-transmission').innerText = car.transmission || '-';
-            document.getElementById('spec-dimensions').innerText = car.dimensions || '-';
-            document.getElementById('spec-features').innerText = car.features || '-';
+            // 4. Set Spec Table (Dynamic Specifications List)
+            const specTableBody = document.getElementById('spec-table-body');
+            if (specTableBody) {
+                specTableBody.innerHTML = '';
+                let specsList = car.specifications || [];
+                if (!Array.isArray(specsList) || specsList.length === 0) {
+                    specsList = [];
+                    if (car.seats) specsList.push({ label: 'Kapasitas Tempat Duduk', value: car.seats });
+                    if (car.engine) specsList.push({ label: 'Tipe Mesin', value: car.engine });
+                    if (car.transmission) specsList.push({ label: 'Transmisi', value: car.transmission });
+                    if (car.dimensions) specsList.push({ label: 'Dimensi (P x L x T)', value: car.dimensions });
+                    if (car.features) specsList.push({ label: 'Fitur Utama & Keamanan', value: car.features });
+                }
+
+                if (specsList.length === 0) {
+                    specTableBody.innerHTML = `<tr><td colspan="2" class="py-4 text-center text-gray-400 text-xs font-semibold">Spesifikasi teknis belum diatur.</td></tr>`;
+                } else {
+                    specsList.forEach(item => {
+                        if (!item.label && !item.value) return;
+                        specTableBody.innerHTML += `
+                            <tr class="border-b border-gray-100 hover:bg-gray-50/50 transition">
+                                <td class="py-3 px-2 font-semibold text-gray-500 w-1/3 align-top text-xs sm:text-sm">${item.label || '-'}</td>
+                                <td class="py-3 px-2 text-gray-800 font-medium align-top text-xs sm:text-sm">${item.value || '-'}</td>
+                            </tr>
+                        `;
+                    });
+                }
+            }
 
             // 5. Setup Multi-Image Gallery & Color Switcher
             setupImageGallery(car);
