@@ -328,13 +328,14 @@
     "variants": [
       "E N7X Edition CVT OTR : Rp335.700.000",
       "Prestige N7X Edition CVT OTR : Rp361.200.000",
-      "Prestige N7X Edition with Honda SENSING CVT OTR : Rp381.200.000"
+      "Prestige N7X Edition with Honda SENSING CVT OTR : Rp381.200.000",
+      "Turbo charger OTR 450000000"
     ],
     "dp": "Rp. 24.000.000",
     "angsuran": "Rp. 4.700.000",
     "seats": "7-Seater",
     "engine": "1.5L DOHC i-VTEC Engine",
-    "description": "<p><b>The Biggest Power</b></p><p>Mesin 1.5L i-VTEC hasilkan tenaga 121 PS tertinggi dikelasnya.</p><p><br /><b>The Biggest Cabin</b></p><p>Dengan kabin dan bagasi terluas dikelasnya, dukung aktivitas Anda bersama keluarga.</p><p><br /><b>Advanced Safety</b></p><p>Teknologi keselamatan &ldquo;Honda Sensing&rdquo; menggunakan sensor canggih untuk melindungi Anda di perjalanan.</p><p><br /><b>Intuitive Technology</b></p><p>Dilengkapi dengan Remote Engine Start, Walk-Away Auto Lock dan LaneWatch&trade; untuk kepraktisan Anda.</p><p><br /><small><b>Informasi:</b>&nbsp;Pembelian unit Honda di Honda Bintaro sangatlah aman, karena pembayaran menggunakan virtual account dengan nomor unik disetiap customer. Pastikan nama virtual account yang muncul adalah atas nama Honda Bintaro.</small></p>",
+    "description": "<p><strong>The Biggest Power</strong></p><p>Mesin 1.5L i-VTEC hasilkan tenaga 121 PS tertinggi dikelasnya.</p><p><br><strong>The Biggest Cabin</strong></p><p>Dengan kabin dan bagasi terluas dikelasnya, dukung aktivitas Anda bersama keluarga.</p><p><br><strong>Advanced Safety</strong></p><p>Teknologi keselamatan “Honda Sensing” menggunakan sensor canggih untuk melindungi Anda di perjalanan.</p><p><br><strong>Intuitive Technology</strong></p><p>Dilengkapi dengan Remote Engine Start, Walk-Away Auto Lock dan LaneWatch™ untuk kepraktisan Anda.</p><p><br><strong>Informasi:</strong>&nbsp;Pembelian unit Honda di Honda Bintaro sangatlah aman, karena pembayaran menggunakan virtual account dengan nomor unik disetiap customer. Pastikan nama virtual account yang muncul adalah atas nama Honda Bintaro.</p>",
     "images": [
       {
         "thumb": "https://www.honda-indonesia.com/glide/local/uploads/images/models/logo/l_frontal_view__1770279558745.png?w=300&s=8c0fe322e27e40e505f42b31b9226471",
@@ -342,7 +343,7 @@
       }
     ],
     "category": "SUV",
-    "new": true,
+    "new": "New",
     "transmission": "CVT / Manual 6-Kecepatan",
     "dimensions": "4.490 mm x 1.780 mm x 1.685 mm",
     "features": "Honda SENSING™, Remote Engine Start, Honda LaneWatch™, Walk-Away Auto Lock, Ground Clearance 220mm.",
@@ -367,7 +368,13 @@
         "label": "Fitur Utama & Keamanan",
         "value": "Honda SENSING™, Remote Engine Start, Honda LaneWatch™, Walk-Away Auto Lock, Ground Clearance 220mm."
       }
-    ]
+    ],
+    "seo": {
+      "title": "Promo Honda BR-V Terbaru 2026 - Harga OTR & Spesifikasi | Honda Bintaro",
+      "description": "Dapatkan harga OTR Honda BR-V terbaik untuk keluarga Anda di Honda Bintaro. Paket kredit bunga rendah dan proses cepat.",
+      "keywords": "honda br-v bintaro, promo brv, harga otr honda brv, kredit brv bintaro",
+      "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgdrytNeDFSOAgYMjtwXDq4RVqXEzOXnupcKTQ6uuGjQR5FbVZtJBsH-Ke7tPrRDi9u7jQlFTqpCI1SVVyJORCCoKQIBPl9D7MUv0XEPjACnIYBvPhWsam8hrwwkuXELRzf0m2solaHkxj4CUujLNXl-Wm0pLTtpuA6BlpeUAjgayqSFr1LSYqO6ksFofVS/s1600/brv-n7x.webp"
+    }
   },
   "brio": {
     "name": "Honda Brio",
