@@ -597,7 +597,7 @@
                                 <h4 class="font-bold text-base font-outfit text-gray-900 leading-snug mb-2">${p.title}</h4>
                                 <p class="text-xs text-gray-400 leading-relaxed mb-4">${p.description}</p>
                             </div>
-                            <a href="${promoWaUrl}" target="_blank" class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">${p.ctaText} &rarr;</a>
+                    <a href="${promoWaUrl}" target="_blank" class="block w-full text-center text-xs font-bold text-honda hover:text-honda-dark transition pt-2 border-t border-gray-100">${p.ctaText} &rarr;</a>
                         </div>
                     </div>
                 `;
@@ -611,31 +611,55 @@
 
             siteConfig.faqs.forEach((faq, index) => {
                 container.innerHTML += `
-                    <div class="border border-gray-200 rounded-xl overflow-hidden transition-all duration-300">
-                        <button class="faq-toggle w-full p-5 flex justify-between items-center text-left hover:bg-gray-50 transition focus:outline-none">
-                            <span class="font-bold text-sm sm:text-base text-gray-800">${faq.question}</span>
-                            <span class="faq-icon text-gray-400 transition-transform duration-200">
+                    <div class="faq-item border border-gray-200/80 rounded-xl overflow-hidden bg-white shadow-sm transition-all duration-300">
+                        <button class="faq-toggle w-full p-4 sm:p-5 flex justify-between items-center text-left hover:bg-gray-50/80 transition focus:outline-none gap-4 group">
+                            <span class="font-bold text-sm sm:text-base text-gray-800 group-hover:text-honda transition">${faq.question}</span>
+                            <span class="faq-icon text-gray-400 group-hover:text-honda transition-transform duration-300 shrink-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                 </svg>
                             </span>
                         </button>
-                        <div class="faq-content hidden p-5 bg-gray-50 border-t border-gray-100 text-xs sm:text-sm text-gray-500 leading-relaxed">
-                            ${faq.answer}
+                        <div class="faq-content max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out bg-gray-50/70 border-t border-transparent text-xs sm:text-sm text-gray-600 leading-relaxed px-5">
+                            <div class="py-4 border-t border-gray-100">
+                                ${faq.answer}
+                            </div>
                         </div>
                     </div>
                 `;
             });
 
-            // Rebind accordion listeners
-            const faqToggles = document.querySelectorAll('.faq-toggle');
-            faqToggles.forEach(toggle => {
+            // Rebind accordion listeners (Single open & smooth height transition)
+            const faqItems = container.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const toggle = item.querySelector('.faq-toggle');
+                const content = item.querySelector('.faq-content');
+                const icon = item.querySelector('.faq-icon');
+
                 toggle.addEventListener('click', () => {
-                    const container = toggle.parentElement;
-                    const content = container.querySelector('.faq-content');
-                    const icon = toggle.querySelector('.faq-icon');
-                    content.classList.toggle('hidden');
-                    icon.classList.toggle('rotate-180');
+                    const isOpen = content.classList.contains('max-h-96');
+
+                    // Close all other accordion items first
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            const otherContent = otherItem.querySelector('.faq-content');
+                            const otherIcon = otherItem.querySelector('.faq-icon');
+                            otherContent.classList.remove('max-h-96', 'opacity-100', 'border-gray-100');
+                            otherContent.classList.add('max-h-0', 'opacity-0', 'border-transparent');
+                            otherIcon.classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Toggle current item
+                    if (isOpen) {
+                        content.classList.remove('max-h-96', 'opacity-100', 'border-gray-100');
+                        content.classList.add('max-h-0', 'opacity-0', 'border-transparent');
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        content.classList.remove('max-h-0', 'opacity-0', 'border-transparent');
+                        content.classList.add('max-h-96', 'opacity-100', 'border-gray-100');
+                        icon.classList.add('rotate-180');
+                    }
                 });
             });
         }

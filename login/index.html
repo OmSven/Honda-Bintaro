@@ -3635,33 +3635,44 @@
         let ckEditorInstance = null;
         let pageCkEditorInstance = null;
 
-        // Toast Messages
-        function showToast(message, type = 'success') {
-            const toast = document.createElement('div');
-            toast.className = `flex items-center gap-3 px-5 py-3.5 rounded-xl shadow-2xl border text-sm font-semibold transition-all duration-300 transform translate-y-2 opacity-0 z-50`;
-
-            if (type === 'success') {
-                toast.className += ' bg-emerald-600 text-white border-emerald-500';
-                toast.innerHTML = `<i class="fa-solid fa-circle-check text-base"></i> <span>${message}</span>`;
-            } else if (type === 'error') {
-                toast.className += ' bg-red-600 text-white border-red-500';
-                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-base"></i> <span>${message}</span>`;
-            } else {
-                toast.className += ' bg-amber-600 text-white border-amber-500';
-                toast.innerHTML = `<i class="fa-solid fa-circle-info text-base"></i> <span>${message}</span>`;
+        function showToast(message, type = 'info') {
+            let container = document.getElementById('toast-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'toast-container';
+                container.className = 'fixed bottom-6 right-6 z-[99999] flex flex-col gap-3 max-w-md w-full px-4 pointer-events-none';
+                document.body.appendChild(container);
             }
 
-            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `pointer-events-auto flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl border text-sm font-semibold transition-all duration-300 transform translate-y-4 scale-95 opacity-0 z-50`;
+
+            if (type === 'success') {
+                toast.className += ' bg-emerald-600/95 backdrop-blur-md text-white border-emerald-400/30 shadow-emerald-950/30';
+                toast.innerHTML = `<i class="fa-solid fa-circle-check text-base text-emerald-200"></i> <span class="flex-1">${message}</span>`;
+            } else if (type === 'error') {
+                toast.className += ' bg-red-600/95 backdrop-blur-md text-white border-red-400/30 shadow-red-950/30';
+                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-base text-red-200"></i> <span class="flex-1">${message}</span>`;
+            } else if (type === 'warning') {
+                toast.className += ' bg-amber-600/95 backdrop-blur-md text-white border-amber-400/30 shadow-amber-950/30';
+                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-base text-amber-200"></i> <span class="flex-1">${message}</span>`;
+            } else {
+                toast.className += ' bg-slate-900/95 backdrop-blur-md text-white border-slate-700 shadow-slate-950/50';
+                toast.innerHTML = `<i class="fa-solid fa-circle-info text-base text-blue-400"></i> <span class="flex-1">${message}</span>`;
+            }
+
             container.appendChild(toast);
 
-            setTimeout(() => {
-                toast.classList.remove('translate-y-2', 'opacity-0');
-            }, 10);
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-4', 'scale-95', 'opacity-0');
+                toast.classList.add('translate-y-0', 'scale-100', 'opacity-100');
+            });
 
             setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-2');
-                setTimeout(() => toast.remove(), 300);
-            }, 3500);
+                toast.classList.remove('translate-y-0', 'scale-100', 'opacity-100');
+                toast.classList.add('translate-y-4', 'scale-95', 'opacity-0');
+                setTimeout(() => toast.remove(), 350);
+            }, 3800);
         }
 
         function logoutAdmin() {
@@ -5266,47 +5277,76 @@
         }
 
         // ==========================================
-        // DYNAMIC FOOTER LINKS HELPERS (MAX 5 LINKS)
+        // DYNAMIC FOOTER LINKS VISUAL MENU BUILDER (MAX 5 LINKS)
         // ==========================================
         function renderFooterLinkItem(fl = { label: '', link: '' }, idx) {
             const container = document.getElementById('footer-links-list-container');
             if (!container) return;
-            const rowId = 'footer-link-row-' + Math.random().toString(36).substr(2, 9);
             const labelVal = (fl.label || '').replace(/"/g, '&quot;');
             const linkVal = (fl.link || '').replace(/"/g, '&quot;');
 
             const html = `
-                <div id="${rowId}" draggable="true" 
-                     ondragstart="handleFooterLinkDragStart(event)" 
+                <div class="footer-link-item-row bg-slate-950/60 p-3 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-700 transition cursor-move select-none"
+                     draggable="true" 
+                     ondragstart="handleFooterLinkDragStart(event, ${idx})" 
                      ondragover="handleFooterLinkDragOver(event)" 
-                     ondrop="handleFooterLinkDrop(event)" 
-                     ondragend="handleFooterLinkDragEnd(event)" 
-                     class="footer-link-item-row p-3 rounded-xl border border-slate-800/80 bg-slate-950/50 hover:border-slate-700 transition flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                    <div class="flex items-center gap-2 cursor-grab shrink-0 text-gray-500 hover:text-white">
-                        <i class="fa-solid fa-grip-vertical text-sm"></i>
-                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest row-index-badge">#${idx + 1}</span>
-                    </div>
-                    <div class="w-full sm:w-1/3 shrink-0 space-y-1">
-                        <input type="text" class="col-footlink-label glass-input w-full px-3 py-1.5 rounded-lg text-xs font-semibold" placeholder="Nama Label Tautan" value="${labelVal}">
-                    </div>
-                    <div class="flex-1 flex flex-col gap-1.5">
-                        <div class="flex items-center gap-2">
-                            <input type="text" class="col-footlink-url glass-input flex-1 px-3 py-1.5 rounded-lg text-xs font-mono" placeholder="URL Tautan ({basePath}...)" value="${linkVal}">
-                            <button type="button" onclick="removeFooterLinkRow(this)" class="p-2 text-red-500 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition text-xs shrink-0" title="Hapus Tautan Footer Ini">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
+                     ondragenter="handleFooterLinkDragEnter(event)"
+                     ondragleave="handleFooterLinkDragLeave(event)"
+                     ondrop="handleFooterLinkDrop(event, ${idx})" 
+                     ondragend="handleFooterLinkDragEnd(event)">
+                    <div class="flex items-center gap-3 min-w-0 flex-1">
+                        <span class="text-gray-500 hover:text-white cursor-grab active:cursor-grabbing px-1 text-sm shrink-0" title="Tahan & geser untuk mengubah posisi">
+                            <i class="fa-solid fa-grip-vertical"></i>
+                        </span>
+                        <span class="w-6 h-6 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-xs font-mono font-bold text-gray-400 shrink-0 row-index-badge">#${idx + 1}</span>
+                        <div class="flex-1 space-y-1.5 min-w-0">
+                            <div class="flex items-center gap-2">
+                                <input type="text" class="col-footlink-label glass-input w-full px-2.5 py-1 rounded text-xs font-bold text-white" placeholder="Nama Label Tautan (contoh: Kebijakan Privasi)" value="${labelVal}">
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="text" class="col-footlink-url glass-input flex-1 px-2.5 py-1 rounded text-xs font-mono text-emerald-400" placeholder="URL Tautan ({basePath}...)" value="${linkVal}">
+                            </div>
+                            <div class="flex flex-wrap items-center gap-1 pt-0.5">
+                                <span class="text-[10px] text-gray-500 font-bold uppercase">Quick Preset:</span>
+                                <button type="button" onclick="setQuickFooterUrl(this, '{basePath}#privacy-section')" class="text-[9px] px-2 py-0.5 rounded bg-slate-900 hover:bg-slate-800 text-gray-300 border border-slate-800 font-mono">#privacy-section</button>
+                                <button type="button" onclick="setQuickFooterUrl(this, '{basePath}pricelist/')" class="text-[9px] px-2 py-0.5 rounded bg-slate-900 hover:bg-slate-800 text-gray-300 border border-slate-800 font-mono">Pricelist</button>
+                                <button type="button" onclick="setQuickFooterUrl(this, '{basePath}brochure/')" class="text-[9px] px-2 py-0.5 rounded bg-slate-900 hover:bg-slate-800 text-gray-300 border border-slate-800 font-mono">Brosur</button>
+                                <button type="button" onclick="setQuickFooterUrl(this, '{basePath}promo/')" class="text-[9px] px-2 py-0.5 rounded bg-slate-900 hover:bg-slate-800 text-gray-300 border border-slate-800 font-mono">Promo</button>
+                            </div>
                         </div>
-                        <div class="flex flex-wrap gap-1">
-                            <span class="text-[10px] text-gray-500 self-center">Tautan Cepat:</span>
-                            <button type="button" onclick="setQuickFooterUrl(this, '{basePath}#privacy-section')" class="text-[9px] px-1.5 py-0.5 rounded bg-slate-900 hover:bg-slate-800 text-gray-400 font-mono">#privacy-section</button>
-                            <button type="button" onclick="setQuickFooterUrl(this, '{basePath}pricelist/')" class="text-[9px] px-1.5 py-0.5 rounded bg-slate-900 hover:bg-slate-800 text-gray-400 font-mono">Pricelist</button>
-                            <button type="button" onclick="setQuickFooterUrl(this, '{basePath}brochure/')" class="text-[9px] px-1.5 py-0.5 rounded bg-slate-900 hover:bg-slate-800 text-gray-400 font-mono">Brosur</button>
-                            <button type="button" onclick="setQuickFooterUrl(this, '{basePath}promo/')" class="text-[9px] px-1.5 py-0.5 rounded bg-slate-900 hover:bg-slate-800 text-gray-400 font-mono">Promo</button>
-                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 shrink-0 self-end sm:self-center">
+                        <button type="button" onclick="moveFooterLinkItem(${idx}, -1)" class="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-slate-800 text-xs transition border border-slate-800" title="Ke Atas" ${idx === 0 ? 'disabled' : ''}>
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </button>
+                        <button type="button" onclick="moveFooterLinkItem(${idx}, 1)" class="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-slate-800 text-xs transition border border-slate-800" title="Ke Bawah">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </button>
+                        <button type="button" onclick="removeFooterLinkRow(this)" class="p-1.5 rounded-lg text-red-500 hover:text-red-400 hover:bg-red-500/10 text-xs transition border border-red-500/20" title="Hapus Tautan Footer Ini">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
                     </div>
                 </div>
             `;
             container.insertAdjacentHTML('beforeend', html);
+            updateFooterLinkBadges();
+        }
+
+        function moveFooterLinkItem(idx, direction) {
+            const container = document.getElementById('footer-links-list-container');
+            const rows = Array.from(container.querySelectorAll('.footer-link-item-row'));
+            const targetIdx = idx + direction;
+
+            if (targetIdx < 0 || targetIdx >= rows.length) return;
+
+            const currentRow = rows[idx];
+            const targetRow = rows[targetIdx];
+
+            if (direction === -1) {
+                container.insertBefore(currentRow, targetRow);
+            } else {
+                container.insertBefore(currentRow, targetRow.nextSibling);
+            }
             updateFooterLinkBadges();
         }
 
@@ -5326,6 +5366,7 @@
             }
             renderFooterLinkItem({ label: '', link: '' }, count);
             updateFooterLinkBadges();
+            showToast('Tautan footer baru ditambahkan!');
         }
 
         function removeFooterLinkRow(btn) {
@@ -5333,6 +5374,7 @@
             if (row) {
                 row.remove();
                 updateFooterLinkBadges();
+                showToast('Tautan footer dihapus!');
             }
         }
 
@@ -5354,34 +5396,35 @@
         }
 
         // Drag and Drop for Footer Links
-        let draggedFooterLinkRow = null;
-        function handleFooterLinkDragStart(e) {
-            draggedFooterLinkRow = e.currentTarget;
+        let draggedFooterLinkIdx = null;
+        function handleFooterLinkDragStart(e, idx) {
+            draggedFooterLinkIdx = idx;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', idx);
             e.currentTarget.classList.add('opacity-40', 'border-red-500');
         }
         function handleFooterLinkDragOver(e) {
             e.preventDefault();
-            const target = e.currentTarget;
-            if (target && target !== draggedFooterLinkRow && target.classList.contains('footer-link-item-row')) {
-                const bounding = target.getBoundingClientRect();
-                const offset = e.clientY - bounding.top;
-                if (offset > bounding.height / 2) {
-                    target.parentNode.insertBefore(draggedFooterLinkRow, target.nextSibling);
-                } else {
-                    target.parentNode.insertBefore(draggedFooterLinkRow, target);
-                }
-                updateFooterLinkBadges();
-            }
+            e.dataTransfer.dropEffect = 'move';
         }
-        function handleFooterLinkDrop(e) {
+        function handleFooterLinkDragEnter(e) {
             e.preventDefault();
-            updateFooterLinkBadges();
+            e.currentTarget.classList.add('border-red-500', 'bg-slate-900/80');
+        }
+        function handleFooterLinkDragLeave(e) {
+            e.currentTarget.classList.remove('border-red-500', 'bg-slate-900/80');
+        }
+        function handleFooterLinkDrop(e, targetIdx) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('border-red-500', 'bg-slate-900/80');
+            if (draggedFooterLinkIdx === null || draggedFooterLinkIdx === targetIdx) return;
+            moveFooterLinkItem(draggedFooterLinkIdx, targetIdx - draggedFooterLinkIdx);
+            draggedFooterLinkIdx = null;
+            showToast('Urutan tautan footer berhasil diperbarui!', 'info');
         }
         function handleFooterLinkDragEnd(e) {
-            if (draggedFooterLinkRow) {
-                draggedFooterLinkRow.classList.remove('opacity-40', 'border-red-500');
-                draggedFooterLinkRow = null;
-            }
+            e.currentTarget.classList.remove('opacity-40', 'border-red-500');
+            draggedFooterLinkIdx = null;
             updateFooterLinkBadges();
         }
 
