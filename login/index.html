@@ -5490,15 +5490,9 @@
             if (document.getElementById('cfg-foot-grid-cols')) {
                 document.getElementById('cfg-foot-grid-cols').value = (config.footer?.gridColumns || 4).toString();
             }
-            document.getElementById('cfg-foot-about').value = config.footer?.aboutText || '';
-            document.getElementById('cfg-foot-hours').value = config.footer?.hours || '';
-            document.getElementById('cfg-foot-map').value = config.footer?.mapLink || '';
-            document.getElementById('cfg-foot-address').value = config.footer?.address || '';
-            document.getElementById('cfg-foot-copyright').value = config.footer?.copyright || '';
-
-            // Payment fields
-            document.getElementById('cfg-payment-desc').value = config.footer?.paymentDesc || '';
-            document.getElementById('cfg-payment-banks').value = (config.footer?.paymentBanks || []).join(', ');
+            if (document.getElementById('cfg-foot-copyright')) {
+                document.getElementById('cfg-foot-copyright').value = config.footer?.copyright || '';
+            }
 
             renderFooterColumnsList();
         }
