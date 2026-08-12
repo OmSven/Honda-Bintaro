@@ -1,8 +1,8 @@
 {
   "adminPasswordHash": "6f6769327073a214d4c50b56780f8bd382988e1d1acdcacbfde5797b437f8bf0",
   "contact": {
-    "phoneNumber": "6282299185425",
-    "phoneDisplay": "0822-9918-5425",
+    "phoneNumber": "6282224000610",
+    "phoneDisplay": "08222-4000-610",
     "email": "sales@hondabintaro.com",
     "salesName": "Rere",
     "salesTitle": "Sales Counter",
@@ -22,7 +22,9 @@
     "footerTextColor": "#9ca3af",
     "headingFont": "Outfit",
     "bodyFont": "Inter",
-    "preset": "honda-red"
+    "preset": "honda-red",
+    "buttonHoverBg": "#990000",
+    "buttonHoverText": "#ffffff"
   },
   "site": {
     "favicon": "https://asset.honda-indonesia.com/2023/07/26/favicon.ico",
@@ -275,7 +277,7 @@
       "MANDIRI",
       "BRI"
     ],
-    "copyright": "&copy; 2026 Honda Bintaro. All rights reserved. Developed for Gusti.",
+    "copyright": "&copy; 2026 Honda Bintaro. All rights reserved.",
     "columns": [
       {
         "id": "col-1",
@@ -290,43 +292,42 @@
       },
       {
         "id": "col-2",
-        "title": "LOKASI DEALER RESMI",
+        "title": "Honda Bintaro",
         "blocks": [
           {
             "type": "google_maps",
             "address": "CBD 03 dan 05, Blok A2, Kota Taman Bintaro Jaya Sektor VII, Pondok Aren, Kec. Pondok Aren, Kota Tangerang Selatan, Banten 15224.",
-            "mapUrl": "https://maps.google.com/?q=Honda+Bintaro+Sektor+7",
+            "mapUrl": "https://g.page/hondabintaro/review?rc",
             "btnText": "Buka Google Maps"
           }
         ]
       },
       {
         "id": "col-3",
-        "title": "JAM OPERASIONAL",
+        "title": "Jam Operasional",
         "blocks": [
           {
             "type": "hours",
-            "text": "Senin - Sabtu: 08:30 - 17:00 WIB"
+            "text": "Senin - Sabtu: 08:00 - 16:00 WIB"
           },
           {
             "type": "whatsapp_contact",
-            "label": "Layanan Sales Consult:",
-            "phoneDisplay": "0822-9918-5425",
-            "phoneNumber": "6282299185425",
+            "label": "Whatsapp Sales Consultant:",
+            "phoneDisplay": "08222-4000-610",
+            "phoneNumber": "6282224000610",
             "email": "sales@hondabintaro.com"
           }
         ]
       },
       {
         "id": "col-4",
-        "title": "METODE PEMBAYARAN",
+        "title": "Pembayaran",
         "blocks": [
           {
             "type": "bank_payment",
-            "text": "Pembayaran aman dengan nomor virtual account resmi bank mandiri, BCA, maupun BRI yang didaftarkan khusus atas nama <b>Honda Bintaro</b>.",
+            "text": "Pembayaran aman dengan nomor virtual account resmi bank BCA, maupun BRI yang didaftarkan khusus atas nama <b>Honda Bintaro</b>.",
             "banks": [
               "BCA",
-              "MANDIRI",
               "BRI"
             ]
           }
