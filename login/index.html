@@ -177,7 +177,7 @@
             color: #0f172a !important;
         }
 
-        /* Typography overrides */
+        /* Typography & text class overrides in Light Theme */
         .light-theme h1,
         .light-theme h2,
         .light-theme h3,
@@ -187,8 +187,41 @@
             color: #0f172a !important;
         }
 
-        .light-theme .text-white {
+        .light-theme .glass-panel .text-white,
+        .light-theme #content-container .text-white,
+        .light-theme .tab-pane .text-white {
             color: #0f172a !important;
+        }
+
+        .light-theme .text-slate-100,
+        .light-theme .text-slate-200,
+        .light-theme .text-slate-300 {
+            color: #1e293b !important;
+        }
+
+        .light-theme .text-slate-400,
+        .light-theme .text-slate-500 {
+            color: #475569 !important;
+        }
+
+        .light-theme .prose-invert,
+        .light-theme .prose-invert * {
+            color: #1e293b !important;
+        }
+
+        /* Toast notifications must always have white text */
+        #toast-container * {
+            color: #ffffff !important;
+        }
+
+        /* Solid action buttons must maintain crisp white text in Light Theme */
+        .light-theme .bg-red-600,
+        .light-theme .bg-red-600 *,
+        .light-theme .bg-emerald-600,
+        .light-theme .bg-emerald-600 *,
+        .light-theme .bg-blue-600,
+        .light-theme .bg-blue-600 * {
+            color: #ffffff !important;
         }
 
         .light-theme .text-gray-300 {
@@ -2095,6 +2128,7 @@
                                              </div>
                                          </div>
                                      </div>
+                                </div>
 
                                 <!-- SUB-TAB: KATA SANDI DASBOR -->
                                 <div id="subtab-pane-keamanan" class="subtab-pane hidden space-y-6">
@@ -3635,12 +3669,12 @@
         let ckEditorInstance = null;
         let pageCkEditorInstance = null;
 
-        function showToast(message, type = 'info') {
+        function showToast(message, type = 'success') {
             let container = document.getElementById('toast-container');
             if (!container) {
                 container = document.createElement('div');
                 container.id = 'toast-container';
-                container.className = 'fixed bottom-6 right-6 z-[99999] flex flex-col gap-3 max-w-md w-full px-4 pointer-events-none';
+                container.className = 'fixed bottom-6 left-6 z-[99999] flex flex-col gap-3 max-w-md w-full px-4 pointer-events-none';
                 document.body.appendChild(container);
             }
 
@@ -3648,17 +3682,17 @@
             toast.className = `pointer-events-auto flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl border text-sm font-semibold transition-all duration-300 transform translate-y-4 scale-95 opacity-0 z-50`;
 
             if (type === 'success') {
-                toast.className += ' bg-emerald-600/95 backdrop-blur-md text-white border-emerald-400/30 shadow-emerald-950/30';
-                toast.innerHTML = `<i class="fa-solid fa-circle-check text-base text-emerald-200"></i> <span class="flex-1">${message}</span>`;
+                toast.className += ' bg-emerald-600 text-white border-emerald-500 shadow-emerald-950/30';
+                toast.innerHTML = `<i class="fa-solid fa-circle-check text-base text-white"></i> <span class="flex-1 text-white">${message}</span>`;
             } else if (type === 'error') {
-                toast.className += ' bg-red-600/95 backdrop-blur-md text-white border-red-400/30 shadow-red-950/30';
-                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-base text-red-200"></i> <span class="flex-1">${message}</span>`;
+                toast.className += ' bg-red-600 text-white border-red-500 shadow-red-950/30';
+                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-base text-white"></i> <span class="flex-1 text-white">${message}</span>`;
             } else if (type === 'warning') {
-                toast.className += ' bg-amber-600/95 backdrop-blur-md text-white border-amber-400/30 shadow-amber-950/30';
-                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-base text-amber-200"></i> <span class="flex-1">${message}</span>`;
+                toast.className += ' bg-amber-600 text-white border-amber-500 shadow-amber-950/30';
+                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-base text-white"></i> <span class="flex-1 text-white">${message}</span>`;
             } else {
-                toast.className += ' bg-slate-900/95 backdrop-blur-md text-white border-slate-700 shadow-slate-950/50';
-                toast.innerHTML = `<i class="fa-solid fa-circle-info text-base text-blue-400"></i> <span class="flex-1">${message}</span>`;
+                toast.className += ' bg-slate-900 text-white border-slate-700 shadow-slate-950/50';
+                toast.innerHTML = `<i class="fa-solid fa-circle-info text-base text-sky-400"></i> <span class="flex-1 text-white">${message}</span>`;
             }
 
             container.appendChild(toast);
@@ -4047,28 +4081,25 @@
                 }
             }
 
-            // Load initial site config and security DB before connection
+            // Load initial site config, banners, products, pricelist, pages, and security DB before connection
             try {
-                const [configRes, securityRes] = await Promise.all([
+                const [configRes, bannerRes, productsRes, pricelistRes, pagesRes, securityRes] = await Promise.all([
                     fetch('../data/site_config.json').then(r => r.json()).catch(() => null),
+                    fetch('../data/banner.json').then(r => r.json()).catch(() => null),
+                    fetch('../data/products.json').then(r => r.json()).catch(() => null),
+                    fetch('../data/pricelist.json').then(r => r.json()).catch(() => null),
+                    fetch('../data/pages.json').then(r => r.json()).catch(() => null),
                     fetch(`../data/security.json?t=${Date.now()}`).then(r => r.json()).catch(() => null)
                 ]);
 
-                if (securityRes) {
-                    appData.security = securityRes;
-                }
-
+                if (securityRes) appData.security = securityRes;
                 if (configRes) {
-                    const localConfig = configRes;
-                    appData.siteConfig = localConfig;
-
-
-
+                    appData.siteConfig = configRes;
                     // Update Login Gate Logo
                     const gateLogo = document.getElementById('gate-logo');
                     const gateLogoImg = document.getElementById('gate-logo-img');
-                    if (localConfig.contact?.headerLogo) {
-                        gateLogoImg.src = localConfig.contact.headerLogo;
+                    if (configRes.contact?.headerLogo) {
+                        gateLogoImg.src = configRes.contact.headerLogo;
                         gateLogoImg.classList.remove('hidden');
                         if (gateLogo) gateLogo.classList.add('hidden');
                     }
@@ -4076,20 +4107,31 @@
                     // Update Main Header Logo
                     const logoImg = document.getElementById('header-logo-img');
                     const logoFallback = document.getElementById('header-logo-fallback');
-                    if (localConfig.contact?.headerLogo) {
-                        logoImg.src = localConfig.contact.headerLogo;
+                    if (configRes.contact?.headerLogo) {
+                        logoImg.src = configRes.contact.headerLogo;
                         logoImg.classList.remove('hidden');
                         if (logoFallback) logoFallback.classList.add('hidden');
                     }
 
                     // Update dynamic favicon
                     const faviconEl = document.getElementById('dynamic-favicon');
-                    if (faviconEl && localConfig.site?.favicon) {
-                        faviconEl.href = localConfig.site.favicon;
+                    if (faviconEl && configRes.site?.favicon) {
+                        faviconEl.href = configRes.site.favicon;
                     }
                 }
+                if (bannerRes) appData.banner = bannerRes;
+                if (productsRes) appData.products = productsRes;
+                if (pricelistRes) appData.pricelist = pricelistRes;
+                if (pagesRes) appData.pages = pagesRes;
+
+                // Populate initial forms from local data immediately
+                if (appData.siteConfig) populateSiteConfigForm();
+                if (appData.banner) populateBannersForm();
+                if (appData.products) populateProductsForm();
+                if (appData.pricelist) populatePricelistForm();
+                if (appData.pages) populatePagesForm();
             } catch (e) {
-                console.warn('Gagal memuat logo gate lokal:', e);
+                console.warn('Gagal memuat berkas JSON lokal:', e);
             }
             // Theme Setup
             const savedTheme = localStorage.getItem('admin_theme');
@@ -4188,6 +4230,18 @@
                 activeBtn.className = "nav-btn w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-3 text-white bg-red-600 shadow-md shadow-red-600/20 whitespace-nowrap";
             }
 
+            if (tabId === 'site-config') {
+                populateSiteConfigForm();
+            }
+            if (tabId === 'banners') {
+                populateBannersForm();
+            }
+            if (tabId === 'products') {
+                populateProductsForm();
+            }
+            if (tabId === 'pages') {
+                populatePagesForm();
+            }
             if (tabId === 'media' && ghConfig.token) {
                 fetchMediaLibrary();
             }
@@ -5738,16 +5792,20 @@
         // 2. BANNERS FORM POPULATE & SAVE
         // ==========================================
         function populateBannersForm() {
+            if (!appData.banner) appData.banner = { banners: { desktop: [], mobile: [] } };
             const banner = appData.banner;
-            if (!banner) return;
 
             const dtContainer = document.getElementById('banners-desktop-container');
-            dtContainer.innerHTML = '';
-            (banner.banners?.desktop || []).forEach((b, idx) => renderBannerItem(b, idx, 'desktop'));
+            if (dtContainer) {
+                dtContainer.innerHTML = '';
+                (banner.banners?.desktop || []).forEach((b, idx) => renderBannerItem(b, idx, 'desktop'));
+            }
 
             const mbContainer = document.getElementById('banners-mobile-container');
-            mbContainer.innerHTML = '';
-            (banner.banners?.mobile || []).forEach((b, idx) => renderBannerItem(b, idx, 'mobile'));
+            if (mbContainer) {
+                mbContainer.innerHTML = '';
+                (banner.banners?.mobile || []).forEach((b, idx) => renderBannerItem(b, idx, 'mobile'));
+            }
         }
 
         function renderBannerItem(b, idx, type) {
