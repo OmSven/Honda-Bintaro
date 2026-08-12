@@ -15,6 +15,13 @@
     "primaryDark": "#990000",
     "primaryLight": "#fee2e2",
     "accentColor": "#f97316",
+    "buttonTextColor": "#ffffff",
+    "headerBg": "#ffffff",
+    "headerTextColor": "#0f172a",
+    "footerBg": "#111827",
+    "footerTextColor": "#9ca3af",
+    "headingFont": "Outfit",
+    "bodyFont": "Inter",
     "preset": "honda-red"
   },
   "site": {
@@ -257,6 +264,7 @@
     }
   ],
   "footer": {
+    "gridColumns": 4,
     "aboutText": "Sales resmi Honda Bintaro Jabodetabek terpercaya. Dapatkan promo harga OTR terbaik, cicilan ringan, uang muka rendah serta bonus aksesoris melimpah.",
     "hours": "Senin - Sabtu: 08:30 - 17:00 WIB",
     "address": "CBD 03 dan 05, Blok A2, Kota Taman Bintaro Jaya Sektor VII, Pondok Aren, Kec. Pondok Aren, Kota Tangerang Selatan, Banten 15224.",
@@ -267,7 +275,74 @@
       "MANDIRI",
       "BRI"
     ],
-    "copyright": "&copy; 2026 Honda Bintaro. All rights reserved. Developed for Gusti."
+    "copyright": "&copy; 2026 Honda Bintaro. All rights reserved. Developed for Gusti.",
+    "columns": [
+      {
+        "id": "col-1",
+        "title": "",
+        "blocks": [
+          {
+            "type": "logo_about",
+            "logoUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiGGwKoZTHNAiyQl2GdhLVz8Ij_x3QgqEfXWi2DXS0R9TvzEZh8aH9aNQEOoyQORyRrbzTr_HP9MJDWdzKafn1341u6lM0uZZCB3Mcdz-OcTcYylVgBca3d4CeOzXrdrxX3h1VLtqznGnLkXOxL8Gfe6UM-VnPwx4XIAPfKUWcMmrWr4Tfkv-hhBjvqmCo/s1600/logo-honda-how-we-move-you.png",
+            "text": "Sales resmi Honda Bintaro Jabodetabek terpercaya. Dapatkan promo harga OTR terbaik, cicilan ringan, uang muka rendah serta bonus aksesoris melimpah."
+          }
+        ]
+      },
+      {
+        "id": "col-2",
+        "title": "LOKASI DEALER RESMI",
+        "blocks": [
+          {
+            "type": "google_maps",
+            "address": "CBD 03 dan 05, Blok A2, Kota Taman Bintaro Jaya Sektor VII, Pondok Aren, Kec. Pondok Aren, Kota Tangerang Selatan, Banten 15224.",
+            "mapUrl": "https://maps.google.com/?q=Honda+Bintaro+Sektor+7",
+            "btnText": "Buka Google Maps"
+          }
+        ]
+      },
+      {
+        "id": "col-3",
+        "title": "JAM OPERASIONAL",
+        "blocks": [
+          {
+            "type": "hours",
+            "text": "Senin - Sabtu: 08:30 - 17:00 WIB"
+          },
+          {
+            "type": "whatsapp_contact",
+            "label": "Layanan Sales Consult:",
+            "phoneDisplay": "0822-9918-5425",
+            "phoneNumber": "6282299185425",
+            "email": "sales@hondabintaro.com"
+          }
+        ]
+      },
+      {
+        "id": "col-4",
+        "title": "METODE PEMBAYARAN",
+        "blocks": [
+          {
+            "type": "bank_payment",
+            "text": "Pembayaran aman dengan nomor virtual account resmi bank mandiri, BCA, maupun BRI yang didaftarkan khusus atas nama <b>Honda Bintaro</b>.",
+            "banks": [
+              "BCA",
+              "MANDIRI",
+              "BRI"
+            ]
+          }
+        ]
+      }
+    ],
+    "footerLinks": [
+      {
+        "label": "Kebijakan Privasi",
+        "link": "{basePath}#privacy-section"
+      },
+      {
+        "label": "Syarat & Ketentuan",
+        "link": "{basePath}#privacy-section"
+      }
+    ]
   },
   "modelLinks": {
     "brio": "model/brio/",
