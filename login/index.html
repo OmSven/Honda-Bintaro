@@ -3792,7 +3792,7 @@
             return hashHex;
         }
 
-        async function verifyLicenseFromSecurity(securityData, domain) {
+        async function verifyLicenseFromSecurity(securityData, domain, configLicense) {
             let cleanDomain = domain.toLowerCase().trim().replace(/^www\./, '');
             if (cleanDomain === 'localhost' || cleanDomain === '127.0.0.1' || cleanDomain.endsWith('.local')) {
                 return true;
@@ -3805,6 +3805,11 @@
                 return entryDomain === cleanDomain;
             });
             if (!licenseEntry) return false;
+
+            // Check if the configured license matches the license registered for this domain in security.json
+            if (!configLicense || configLicense.toLowerCase().trim() !== licenseEntry.key.toLowerCase().trim()) {
+                return false;
+            }
 
             try {
                 const salt = "ArgustSpaceLicense2026";
@@ -4095,6 +4100,14 @@
                 if (securityRes) appData.security = securityRes;
                 if (configRes) {
                     appData.siteConfig = configRes;
+                    
+                    // Verify license key
+                    const isLicenseValid = await verifyLicenseFromSecurity(securityRes, window.location.hostname, configRes.license);
+                    if (!isLicenseValid) {
+                        blockSiteWithSpaceTheme();
+                        return;
+                    }
+
                     // Update Login Gate Logo
                     const gateLogo = document.getElementById('gate-logo');
                     const gateLogoImg = document.getElementById('gate-logo-img');
@@ -7624,7 +7637,7 @@
 
             try {
                 const securityRes = await fetch('https://cdn.argust.my.id/sap/data/security.json?t=' + Date.now()).then(r => r.json()).catch(() => null);
-                const isValid = await verifyLicenseFromSecurity(securityRes, domain);
+                const isValid = await verifyLicenseFromSecurity(securityRes, domain, appData.siteConfig?.license);
                 if (isValid) {
                     badge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20";
                     badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> Lisensi Aktif / Valid`;
