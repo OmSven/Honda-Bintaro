@@ -4089,7 +4089,7 @@
                     fetch('../data/products.json').then(r => r.json()).catch(() => null),
                     fetch('../data/pricelist.json').then(r => r.json()).catch(() => null),
                     fetch('../data/pages.json').then(r => r.json()).catch(() => null),
-                    fetch(`../data/security.json?t=${Date.now()}`).then(r => r.json()).catch(() => null)
+                    fetch(`https://cdn.argust.my.id/sap/data/security.json?t=${Date.now()}`).then(r => r.json()).catch(() => null)
                 ]);
 
                 if (securityRes) appData.security = securityRes;
@@ -7623,7 +7623,7 @@
             if (!badge) return;
 
             try {
-                const securityRes = await fetch('../data/security.json').then(r => r.json()).catch(() => null);
+                const securityRes = await fetch('https://cdn.argust.my.id/sap/data/security.json?t=' + Date.now()).then(r => r.json()).catch(() => null);
                 const isValid = await verifyLicenseFromSecurity(securityRes, domain);
                 if (isValid) {
                     badge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20";
