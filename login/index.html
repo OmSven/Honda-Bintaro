@@ -4104,8 +4104,9 @@
                     // Verify license key
                     const isLicenseValid = await verifyLicenseFromSecurity(securityRes, window.location.hostname, configRes.license);
                     if (!isLicenseValid) {
-                        blockSiteWithSpaceTheme();
-                        return;
+                        console.warn("Lisensi website tidak valid atau belum dikonfigurasi.");
+                        // blockSiteWithSpaceTheme();
+                        // return;
                     }
 
                     // Update Login Gate Logo
